@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <!-- 멤버 테이블  -->
 CREATE TABLE "MEMBER" (
 	ID VARCHAR2(20),
@@ -40,8 +41,6 @@ CREATE TABLE CART (
 
 INSERT INTO CART (SEQ, ID, PNUM, PCOUNT) 
 VALUES(1, '111', 1, 1);
-
-
 
 
 <!-- img_file 테이블 -->

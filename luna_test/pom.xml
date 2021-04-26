@@ -19,9 +19,6 @@
 	        <id>codelds</id>
 	        <url>https://code.lds.org/nexus/content/groups/main-repo</url>
 	    </repository>
-	</repositories>
-	
-=======
 		<!-- ojdbc6 -->
 		<repository>
 			<id>oracle</id>
@@ -29,9 +26,9 @@
 			<url>http://maven.atlassian.com/3rdparty/</url>
 		</repository>
 	</repositories>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
+
 	<dependencies>
-<<<<<<< HEAD
+
 	<!-- ajax처리를 위한 라이브러리 -->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -108,8 +105,6 @@
 		  <artifactId>spring-jdbc</artifactId>
 		  <version>${org.springframework-version}</version>
 		</dependency>	
-	
-=======
 	<dependency>
 		  	<groupId>commons-dbcp</groupId>
 		  	<artifactId>commons-dbcp</artifactId>
@@ -139,7 +134,6 @@
 		    <artifactId>mybatis</artifactId>
 	 		<version>3.5.4</version>
 		</dependency>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		<!-- Spring -->
 		<dependency>
         	<groupId>org.springframework</groupId>

@@ -35,7 +35,15 @@ public class PboardController {
 
 		return "index";
 	}
-
+	
+	@RequestMapping(value = "/pboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String pboard(Locale locale, Model model) {
+		List<PBoardDTO> list = pBoardService.getAllList();
+		model.addAttribute("list",list);
+		
+		
+		return "pboardlist";
+	}
 
 	@RequestMapping(value = "/insertboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model) {

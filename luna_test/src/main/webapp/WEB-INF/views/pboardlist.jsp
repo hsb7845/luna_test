@@ -86,7 +86,7 @@
 					<td><%=dto.getPseq()%></td>
 					<td><%=dto.getPtitle()%></td>
 					<td><%=dto.getPcontent()%></td>
-					<td><fmt:formatDate value="<%=dto.getRegDate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
+					<td><fmt:formatDate value="<%=dto.getPdate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
 				</tr>
 	<%
 			}

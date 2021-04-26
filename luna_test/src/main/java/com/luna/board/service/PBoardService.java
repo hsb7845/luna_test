@@ -13,19 +13,19 @@ import com.luna.board.dtos.PBoardDTO;
 public class PBoardService implements IPBoardService{
 
 	@Autowired
-	IPBoardDAO pBoardDAO;
+	IPBoardDAO PBoardDAO;
 
 
 	@Override
 	public boolean insertBoard(PBoardDTO dto) {
 		// TODO Auto-generated method stub
-		return pBoardDAO.insertBoard(dto);
+		return PBoardDAO.insertBoard(dto);
 	}
 
 
 	@Override
 	public List<PBoardDTO> getAllList() {
 		// TODO Auto-generated method stub
-		return pBoardDAO.getAllList();
+		return PBoardDAO.getAllList();
 	}
 }

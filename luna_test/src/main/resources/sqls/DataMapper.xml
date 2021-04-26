@@ -14,25 +14,3 @@
 	</insert>
 
 </mapper>
-
-
-
-
-
-
-
-
-
-=======
-<mapper namespace="com.luna.board">
-
-	<select id="getAllList" resultType="PBDTO">
-		select pseq,pcontent,pdate,ptitle from P_board
-	</select>
-	
-	<insert id="insertboard" parameterType="PBDTO">
-		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
-	</insert>
-</mapper>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git

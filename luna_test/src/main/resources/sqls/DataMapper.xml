@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.hk.board">
+
+<mapper namespace="com.luna.board">
+
 	<select id="getAllList" resultType="PBoardDTO">
 		select pseq,ptitle,pcontent,pdate from P_board
 	</select>
@@ -12,7 +14,9 @@
 		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
 	</insert>
 
+
 </mapper>
+
 
 
 

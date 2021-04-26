@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<!-- 	DB 접속정보 파일 설정 -->
+
 
 	
 <!-- 	변수설정 -->
@@ -9,13 +9,13 @@
 		<typeAlias type="com.luna.board.dtos.PBoardDTO" alias="PBDTO"/>
 	</typeAliases>
 	
-<!-- 	DB접속 정보 셋팅 -->
-	
-	
+<!-- 	DB접속 정보 셋팅 -->	
 	<mappers>
 		<mapper resource="./sqls/DataMapper.xml"/>
 	</mappers>
 </configuration>
+
+
 
 	
 	

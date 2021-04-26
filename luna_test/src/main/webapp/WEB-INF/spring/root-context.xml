@@ -5,6 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
+
 	
 	 <!-- db.properties 파일을 관리하기 위한 객체를 등록함 -->
       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -30,3 +31,5 @@
 </beans>
 
 
+
+	

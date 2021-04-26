@@ -11,15 +11,12 @@ import com.luna.board.dtos.PBoardDTO;
 @Repository
 public class PBoardDAO implements IPBoardDAO{
 
-
 	
 
-	
-	private String namespace = "com.luna.board.";
-	
+	private String namespace = "com.hk.board.";
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
 	@Override
 	public boolean insertBoard(PBoardDTO dto) {
 		return sqlSession.insert(namespace+"insertboard",dto)>0? true:false;

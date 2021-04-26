@@ -9,6 +9,7 @@ import com.luna.board.daos.IPBoardDAO;
 import com.luna.board.dtos.PBoardDTO;
 
 @Service
+
 public class PBoardService implements IPBoardService{
 
 	@Autowired
@@ -27,12 +28,4 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return pBoardDAO.getAllList();
 	}
-
-
-	
-
-	
-	
-
-
 }

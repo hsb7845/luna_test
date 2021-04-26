@@ -21,30 +21,30 @@ import com.luna.board.service.IPBoardService;
  */
 @Controller
 public class PboardController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PboardController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@Autowired
 	private  IPBoardService pBoardService;
-	
+
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
 	public String index(Locale locale, Model model) {
-		
+
 		return "index";
 	}
-	
-	
+
+
 	@RequestMapping(value = "/insertboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model) {
-		
-		
-		
+
+
+
 		return "insertboard";
 	}
-	
+
 	@RequestMapping(value = "/insert.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, PBoardDTO dto) {
 		boolean isS = pBoardService.insertBoard(dto);
@@ -55,31 +55,12 @@ public class PboardController {
 			return "error";
 		}
 
-		
-	}
-	
-	@RequestMapping(value = "/error.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String error(Locale locale, Model model) {
-		
-		return "error";
-	}
-	
-	@RequestMapping(value = "/pboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String boardList(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		List<PBoardDTO> list = pBoardService.getAllList();
-		model.addAttribute("list",list);
-		
-		
-		return "pboardlist";
-	}
-	
 
-		
-		
+	}
+
+
+
+
+
 }
-	
-	
-	
 

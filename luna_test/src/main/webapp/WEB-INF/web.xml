@@ -29,7 +29,6 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>

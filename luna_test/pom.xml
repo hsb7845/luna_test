@@ -14,6 +14,7 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<repositories>
+<<<<<<< HEAD
 	    <!-- ojdbc6 -->
 	    <repository>
 	        <id>codelds</id>
@@ -21,7 +22,17 @@
 	    </repository>
 	</repositories>
 	
+=======
+		<!-- ojdbc6 -->
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>http://maven.atlassian.com/3rdparty/</url>
+		</repository>
+	</repositories>
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 	<dependencies>
+<<<<<<< HEAD
 	<!-- ajax처리를 위한 라이브러리 -->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -99,7 +110,53 @@
 		  <version>${org.springframework-version}</version>
 		</dependency>	
 	
+=======
+	<dependency>
+		  	<groupId>commons-dbcp</groupId>
+		  	<artifactId>commons-dbcp</artifactId>
+		  	<version>1.4</version>
+		</dependency>
+		<!--  spring-orm 라이브러리 설정 spring 관련 라이브러리와 같은 버전 설정 -->
+		<dependency>
+			  <groupId>org.springframework</groupId>
+			  <artifactId>spring-orm</artifactId>
+			  <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+	  		<groupId>org.mybatis</groupId>
+	  		<artifactId>mybatis-spring</artifactId>
+	  		<version>2.0.4</version>
+		</dependency>
+		<!-- ojdbc6 -->
+		<!-- oracle driver 설정 -->
+		<dependency>
+		    <groupId>com.oracle</groupId>
+		    <artifactId>ojdbc6</artifactId>
+		    <version>11.2.0.3</version>
+		</dependency>
+		<!-- mybatis -->
+		<dependency>
+ 	 		<groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+	 		<version>3.5.4</version>
+		</dependency>
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		<!-- Spring -->
+		<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-web</artifactId>
+        	<version>${org.springframework-version}</version>
+   	  	 </dependency>
+		<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-expression</artifactId>
+        	<version>${org.springframework-version}</version>
+   	  	 </dependency>
+		<dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-jdbc</artifactId>
+        	<version>${org.springframework-version}</version>
+      	</dependency>   
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

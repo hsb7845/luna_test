@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 <!-- 	DB 접속정보 파일 설정 -->
+<<<<<<< HEAD
 
 	
 <!-- 	변수설정 -->
@@ -16,3 +17,21 @@
 		<mapper resource="./sqls/DataMapper.xml"/>
 	</mappers>
 </configuration>
+=======
+	
+	
+<!-- 	변수설정 -->
+	<typeAliases>
+		<typeAlias type="com.luna.board.dtos.PBoardDTO" alias="PBDTO"/>
+	</typeAliases>
+	
+<!-- 	DB접속 정보 셋팅 -->
+	
+	<mappers>
+		<mapper resource="./sqls/DataMapper.xml"/>
+	</mappers>
+</configuration>
+
+
+
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git

@@ -47,6 +47,7 @@
 	 			}
 	 		}
 	 	}
+<<<<<<< HEAD
 	});
 	
 </script>
@@ -99,3 +100,71 @@
 </form>
 </body>
 </html>
+=======
+	})
+	
+ 	
+	
+	
+	
+</script>
+</head>
+<%
+	List<PBoardDTO> list= (List<PBoardDTO>) request.getAttribute("list");
+%>
+<body>
+<h1>게시판글목록</h1>
+<form action="muldel.do" method="post">
+<table border="1">
+	<col width="50px">
+	<col width="50px">
+	<col width="100px">
+	<col width="300px">
+	<col width="200px">
+	<tr>
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>번호</th>
+		<th>작성자</th>
+		<th>제목</th>
+		<th>작성일</th>
+	</tr>
+	<%
+		if(list==null||list.size()==0){
+			out.print("<tr><td colspan='5'>----작성된 글이 없습니다.</td></tr>");
+			}else{
+		for(int i=0;i<list.size();i++){
+			PBoardDTO dto=list.get(i);
+	%>
+				<tr>
+					<td><input type="checkbox" name="chk" value="<%=dto.getPseq()%>"/></td>
+					<td><%=dto.getPseq()%></td>
+					<td><%=dto.getPtitle()%></td>
+					<td><%=dto.getPcontent()%></td>
+					<td><fmt:formatDate value="<%=dto.getPdate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
+				</tr>
+	<%
+			}
+		}
+	%>
+	<tr>
+		<td colspan="5">
+			<a href="insertboard.do">글쓰기</a>
+			<a href="index">메인</a>
+			<input type="submit" value="삭제" />
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git

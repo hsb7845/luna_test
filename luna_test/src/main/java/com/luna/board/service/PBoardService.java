@@ -10,7 +10,6 @@ import com.luna.board.dtos.PBoardDTO;
 
 @Service
 public class PBoardService implements IPBoardService{
-<<<<<<< HEAD
 
 	@Autowired
 	IPBoardDAO pBoardDAO;
@@ -29,25 +28,5 @@ public class PBoardService implements IPBoardService{
 		return pBoardDAO.getAllList();
 	}
 
-=======
-	
-	@Autowired
-	IPBoardDAO pBoardDAO;
-	
-	
-	@Override
-	public boolean insertBoard(PBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return pBoardDAO.insertBoard(dto);
-	}
-
-
-	@Override
-	public List<PBoardDTO> getAllList() {
-		// TODO Auto-generated method stub
-		return pBoardDAO.getAllList();
-	}
-	
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 
 }

@@ -6,7 +6,7 @@
 	
 <!-- 	변수설정 -->
 	<typeAliases>
-		<typeAlias type="com.hk.board.dtos.CalDto" alias="CalDto"/>
+		<typeAlias type="com.luna.board.dtos.PBoardDTO" alias="PBDTO"/>
 	</typeAliases>
 	
 <!-- 	DB접속 정보 셋팅 -->

@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hk.board">
+	<select id="getAllList" resultType="PBoardDTO">
+		select pseq,ptitle,pcontent,pdate from P_board
+	</select>
+
+	<insert id="insertboard" parameterType="PBoardDTO">
+		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
+		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
+	</insert>
 
 </mapper>
 

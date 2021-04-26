@@ -11,7 +11,7 @@ import com.luna.board.dtos.PBoardDTO;
 @Repository
 public class PBoardDAO implements IPBoardDAO{
 	
-	private String namespace = "com.hk.board.";
+	private String namespace = "com.luna.board.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;

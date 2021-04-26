@@ -3,11 +3,11 @@
 
 <mapper namespace="com.luna.board">
 
-	<select id="getAllList" resultType="PBoardDTO">
-		select pseq,ptitle,pcontent,pdate from P_board
+	<select id="getAllList" resultType="PBDTO">
+		select pseq,pcontent,pdate,ptitle from P_board
 	</select>
 	
-	<insert id="insertboard" parameterType="PBoardDTO">
+	<insert id="insertboard" parameterType="PBDTO">
 		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
 		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
 	</insert>

@@ -24,7 +24,7 @@
 	
 	<update id ="updateStock" parameterType="StockDTO">
 		UPDATE STOCK
-		SET PNAME=#{pname}, SCOUNT=#{scount}, COST=#{cost}, CNUM=#{cnum}, PCONTENT=#{pcontent}, PRICE=#{price}, PSEQ=#{pseq}
+		SET PNAME=#{pname}, SCOUNT=#{scount}, COST=#{cost}, PCONTENT=#{pcontent}, PRICE=#{price}
 		WHERE PNUM=#{pnum}		
 	</update>
 	

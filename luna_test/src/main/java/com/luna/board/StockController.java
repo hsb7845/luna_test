@@ -44,7 +44,7 @@ public class StockController {
 		}
 	}	
 	
-	@RequestMapping(value = "/updateStockForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/stockUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateStock(Locale locale, Model model,int pnum) {
 		StockDTO dto = StockService.getStock(pnum);
 		System.out.println("pnum"+dto.getPnum());

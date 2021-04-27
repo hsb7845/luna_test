@@ -87,7 +87,8 @@
 	%>
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
-					<td><%=dto.getPname()%></td>
+					<td><%=dto.getPnum()%></td>
+					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
 					<td><%=dto.getScount()%></td>
 					<td><%=dto.getCost()%></td>
 					<td><%=dto.getCnum()%></td>

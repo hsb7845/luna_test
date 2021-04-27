@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IMemberDAO;
 import com.luna.board.dtos.MemberDTO;
+import com.luna.board.dtos.PBoardDTO;
 
 @Service
 public class MemberService implements IMemberService{
@@ -24,6 +25,24 @@ public class MemberService implements IMemberService{
 	public List<MemberDTO> getAllList() {
 		// TODO Auto-generated method stub
 		return MemberDAO.getAllList();
+	}
+
+	@Override
+	public PBoardDTO getMember(int pseq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateMember(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mulDelMember(String[] chk) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

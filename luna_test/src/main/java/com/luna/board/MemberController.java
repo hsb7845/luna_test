@@ -45,10 +45,43 @@ public class MemberController {
 		if(isS) {
 			return "redirect:member.do";
 		}else {
-			model.addAttribute("msg","가입실패");
+			model.addAttribute("msg","회원가입실패");
 			return "error";
 		}
 	}
+	
+	@RequestMapping(value = "/updateMemeberForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateboard(Locale locale, Model model,int pseq) {
+		PBoardDTO dto = MemberService.getMember(pseq);
+		System.out.println("ptitle"+dto.getPtitle());
+		model.addAttribute("dto", dto);
+		return "memberupdateform";
+	}
+	
+	@RequestMapping(value = "/updatepmember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String update(Locale locale, Model model, MemberDTO dto) {
+		boolean isS = MemberService.updateMember(dto);
+		if(isS) {
+			return "redirect:member.do";
+		}else {
+			model.addAttribute("msg","회원정보수정실패");
+			return "error";
+		}
+
+	}
+	
+	@RequestMapping(value = "/muldelMember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String muldel(Locale locale, Model model, String[] chk) {
+		boolean isS = MemberService.mulDelMember(chk);
+		if(isS) {
+			return "redirect:member.do";
+		}else {
+			model.addAttribute("msg","회원정보삭제실패");
+			return "error";
+		}
+
+	}
+	
 
 
 }

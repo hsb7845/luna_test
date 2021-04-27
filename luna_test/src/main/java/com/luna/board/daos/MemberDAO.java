@@ -1,6 +1,8 @@
 package com.luna.board.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,24 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public List<MemberDTO> getAllList() {
 		return sqlSession.selectList(namespace+"getAllList");
+	}
+	
+	@Override
+	public MemberDTO getMember(String id) {
+		return sqlSession.selectOne(namespace+"getMember",id);
+	}
+	
+	@Override
+	public boolean updateMember(MemberDTO dto) {
+		return sqlSession.update(namespace+"updateMember", dto)>0? true:false;
+	}
+	
+
+	@Override
+	public boolean mulDelMember(String[] chks) {
+		// TODO Auto-generated method stub
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("chks", chks);
+		return sqlSession.delete(namespace+"mulDelMember",map)>0?true:false;
 	}
 }

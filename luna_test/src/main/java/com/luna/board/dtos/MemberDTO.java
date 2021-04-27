@@ -13,8 +13,8 @@ public class MemberDTO {
 	private int phone;
 	private Date joindate;
 	private String admin;
-	private String NickName;
-	private String Name;
+	private String nickName;
+	private String name;
 	private int point;
 	
 	
@@ -33,8 +33,8 @@ public class MemberDTO {
 		this.phone = phone;
 		this.joindate = joindate;
 		this.admin = admin;
-		NickName = nickName;
-		Name = name;
+		nickName = nickName;
+		name = name;
 		this.point = point;
 	}
 	
@@ -99,16 +99,16 @@ public class MemberDTO {
 		this.admin = admin;
 	}
 	public String getNickName() {
-		return NickName;
+		return nickName;
 	}
 	public void setNickName(String nickName) {
-		NickName = nickName;
+		this.nickName = nickName;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public int getPoint() {
 		return point;
@@ -120,8 +120,8 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pwd=" + pwd + ", email=" + email + ", email_chk=" + email_chk + ", address="
-				+ address + ", Birth=" + birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
-				+ ", admin=" + admin + ", NickName=" + NickName + ", Name=" + Name + ", point=" + point + "]";
+				+ address + ", birth=" + birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
+				+ ", admin=" + admin + ", nickName=" + nickName + ", name=" + name + ", point=" + point + "]";
 	}
 	
 	

@@ -30,14 +30,14 @@
 		<th>성별</th>
 		<th>핸드폰</th>
 		<th>가입일</th>
-		<th>관리자여부</th>
+		<th>관리자</th>
 		<th>닉네임</th>
 		<th>이름</th>
 		<th>포인트</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='5'>----가입된 회원이 없습니다.</td></tr>");
+			out.print("<tr><td colspan='13'>----가입된 회원이 없습니다.</td></tr>");
 			}else{
 		for(int i=0;i<list.size();i++){
 			MemberDTO dto=list.get(i);

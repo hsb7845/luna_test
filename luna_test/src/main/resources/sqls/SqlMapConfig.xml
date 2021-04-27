@@ -6,6 +6,7 @@
 	
 <!-- 	변수설정 -->
 	<typeAliases>
+		<typeAlias type="com.luna.board.dtos.MemberDTO" alias="MDTO"/>
 		<typeAlias type="com.luna.board.dtos.PBoardDTO" alias="PBDTO"/>
 		<typeAlias type="com.luna.board.dtos.RBoardDTO" alias="RBDTO"/>
 	</typeAliases>

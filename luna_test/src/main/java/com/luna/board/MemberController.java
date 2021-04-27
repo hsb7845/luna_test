@@ -22,11 +22,12 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PboardController.class);
 
-	@RequestMapping(value = "/memder.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/member.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String member(Locale locale, Model model) {
 		List<MemberDTO> list = MemberService.getAllList();
 		model.addAttribute("list", list);
-		
+		System.out.println("여기나옴?");
+		System.out.println(list.get(0).getId());
 		return "memberlist";
 	}
 	

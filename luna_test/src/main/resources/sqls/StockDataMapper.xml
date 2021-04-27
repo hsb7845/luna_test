@@ -5,15 +5,40 @@
 
 <mapper namespace="com.luna.stock">
 
-	<select id="getAllList" resultType="PBDTO">
-		select pseq,pcontent,pdate,ptitle from P_board
+	<select id="getAllList" resultType="StockDTO">
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
+		FROM STOCK
 	</select>
-
-	<insert id="insertboard" parameterType="PBDTO">
-		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
+	
+	<insert id="insertStock" parameterType="StockDTO">
+		INSERT INTO STOCK
+		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ)
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, #{cnum}, #{pcontent}, #{price}, #{pseq})
 	</insert>
-
+	
+	<select id="getStock" resultType="StockDTO" parameterType="int">
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
+		FROM STOCK
+		WHERE pnum=#{pnum}	
+	</select>
+	
+	<update id ="updateStock" parameterType="StockDTO">
+		UPDATE STOCK
+		SET PNAME=#{pname}, SCOUNT=#{scount}, COST=#{cost}, CNUM=#{cnum}, PCONTENT=#{pcontent}, PRICE=#{price}, PSEQ=#{pseq}
+		WHERE PNUM=#{pnum}		
+	</update>
+	
+	<delete id ="deleteStock" parameterType="int">
+		DELETE FROM STOCK
+		WHERE PNUM=#{pnum}		
+	</delete>
+	
+	<delete id="mulDel" parameterType="Map">
+		DELETE FROM STOCK WHERE PNUM IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
 
 </mapper>
 

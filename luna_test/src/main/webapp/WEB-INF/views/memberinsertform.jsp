@@ -14,7 +14,7 @@
 		이메일 <input type="text" name="email"><br>
 		이메일확인(중복확인) <input type="text" name="email_chk"><br>
 		주소(API예정)	<input type="text" name="address"><br>
-		생년월일 <input type="date" name="birth"><br>
+		생년월일 <input type="date" name="birthtest"><br>
 		성별(남,여 체크 예정) <input type="text" name="sex"><br>
 		핸드폰 <input type="text" name="phone"><br>
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->

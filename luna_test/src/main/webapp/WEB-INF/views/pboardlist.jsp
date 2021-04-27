@@ -55,7 +55,7 @@
 %>
 <body>
 <h1>상품게시판글목록</h1>
-<form action="muldel.do" method="post">
+<form action="muldelPboard.do" method="post">
 <table border="1">
 	<col width="50px">
 	<col width="50px">

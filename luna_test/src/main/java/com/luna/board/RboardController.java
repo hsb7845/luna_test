@@ -29,7 +29,7 @@ public class RboardController {
 		return "rboardlist";
 	}
 	
-	@RequestMapping(value = "/insertboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model) {
 
 		return "rboardinsertform";
@@ -37,7 +37,7 @@ public class RboardController {
 	
 	
 	
-	@RequestMapping(value = "/insert.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertrboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, RBoardDTO dto) {
 		boolean isS = rBoardService.insertBoard(dto);
 		if(isS) {
@@ -49,7 +49,7 @@ public class RboardController {
 	}
 	
 	
-	@RequestMapping(value = "/updateRboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/updaterboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateboard(Locale locale, Model model,int rseq) {
 		RBoardDTO dto = rBoardService.getBoard(rseq);
 		System.out.println("rtitle"+dto.getRtitle());

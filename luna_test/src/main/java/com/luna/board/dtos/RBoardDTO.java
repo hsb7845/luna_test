@@ -6,7 +6,9 @@ public class RBoardDTO {
 	private String rcontent;
 	private int pseq;
 	private String id;
+	private int starrank;
 	private int par_rseq;
+	private int level;
 	
 	
 	public RBoardDTO() {
@@ -15,17 +17,39 @@ public class RBoardDTO {
 	}
 	
 	
-	public RBoardDTO(int rseq, String rtitle, String rcontent, int pseq, String id, int par_rseq) {
+	public RBoardDTO(int rseq, String rtitle, String rcontent, int pseq, String id, int starrank, int par_rseq, int level) {
 		super();
 		this.rseq = rseq;
 		this.rtitle = rtitle;
 		this.rcontent = rcontent;
 		this.pseq = pseq;
 		this.id = id;
+		this.starrank = starrank;
 		this.par_rseq = par_rseq;
+		this.level = level;
 	}
 	
 	
+	public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
+	public int getStarrank() {
+		return starrank;
+	}
+
+
+	public void setStarrank(int starrank) {
+		this.starrank = starrank;
+	}
+
+
 	public int getRseq() {
 		return rseq;
 	}
@@ -67,7 +91,7 @@ public class RBoardDTO {
 	@Override
 	public String toString() {
 		return "RBoardDTO [rseq=" + rseq + ", rtitle=" + rtitle + ", rcontent=" + rcontent + ", pseq=" + pseq + ", id="
-				+ id + ", par_rseq=" + par_rseq + "]";
+				+ id + ", starrank=" + starrank + ", par_rseq=" + par_rseq + ", level=" + level + "]";
 	}
 	
 }

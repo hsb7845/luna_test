@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IStockService;
 
+@Controller
 public class StockController {
 	
 	@Autowired
 	private  IStockService StockService;
 
-	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
-	public String index(Locale locale, Model model) {
 
-		return "index";
-	}
 	
 	@RequestMapping(value = "/stock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String rboard(Locale locale, Model model) {
@@ -35,7 +33,7 @@ public class StockController {
 		return "insertStockForm";
 	}
 	
-	@RequestMapping(value = "/insert.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertStock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, StockDTO dto) {
 		boolean isS = StockService.insertStock(dto);
 		if(isS) {

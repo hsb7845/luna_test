@@ -12,7 +12,7 @@ import com.luna.board.dtos.StockDTO;
 
 @Repository
 public class StockDAO implements IStockDAO {
-	private String namespace = "com.luna.board.";
+	private String namespace = "com.luna.stock.";
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;

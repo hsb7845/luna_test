@@ -10,6 +10,6 @@
 	<a href="pboard.do">상품게시판보기</a><br>
 	<a href="stock.do">상품재고보기</a>	
 	<a href="pboard.do">상품게시판보기</a>
-
+	<a href="member.do">회원목록보기</a>
 </body>
 </html>

@@ -11,7 +11,10 @@
 	
 <!-- 	DB접속 정보 셋팅 -->	
 	<mappers>
-		<mapper resource="./sqls/DataMapper.xml"/>
+		<mapper resource="./sqls/PboardDataMapper.xml"/>
+		<mapper resource="./sqls/StockDataMapper.xml"/>
+		<mapper resource="./sqls/MemberDataMapper.xml"/>
+		<mapper resource="./sqls/RboardDataMapper.xml"/>
 	</mappers>
 </configuration>
 

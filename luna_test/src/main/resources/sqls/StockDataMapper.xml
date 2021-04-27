@@ -3,7 +3,7 @@
 
 
 
-<mapper namespace="com.luna.board">
+<mapper namespace="com.luna.stock">
 
 	<select id="getAllList" resultType="PBDTO">
 		select pseq,pcontent,pdate,ptitle from P_board

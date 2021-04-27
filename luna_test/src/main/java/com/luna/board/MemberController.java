@@ -1,5 +1,6 @@
 package com.luna.board;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.MemberDTO;
+import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.service.IMemberService;
 
 @Controller
@@ -26,16 +28,28 @@ public class MemberController {
 	public String member(Locale locale, Model model) {
 		List<MemberDTO> list = MemberService.getAllList();
 		model.addAttribute("list", list);
-		System.out.println("여기나옴?");
-		System.out.println(list.get(0).getId());
 		return "memberlist";
 	}
 	
-	@RequestMapping(value = "/insertmember.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertboard(Locale locale, Model model) {
+	@RequestMapping(value = "/insertmemberform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertmember(Locale locale, Model model) {
 		return "memberinsertform";
 	}
-
 	
+	@RequestMapping(value = "/insertmember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insert(Locale locale, Model model, MemberDTO dto,String birthtest) {
+		System.out.println("birth : "+dto.getBirth());
+		Timestamp ts= Timestamp.valueOf(birthtest+" 00:00:00");
+		dto.setBirth(ts);
+		boolean isS = MemberService.insertMember(dto);
+		if(isS) {
+			return "redirect:member.do";
+		}else {
+			model.addAttribute("msg","가입실패");
+			return "error";
+		}
+	}
+
+
 }
 

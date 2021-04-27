@@ -6,7 +6,7 @@ import com.luna.board.dtos.MemberDTO;
 
 public interface IMemberService {
 
-	boolean insertBoad(MemberDTO dto);
+	boolean insertMember(MemberDTO dto);
 
 	List<MemberDTO> getAllList();
 

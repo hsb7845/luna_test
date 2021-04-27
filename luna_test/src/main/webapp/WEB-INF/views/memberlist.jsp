@@ -63,7 +63,7 @@
 	%>
 		<tr>
 		<td colspan="5">
-			<a href="insertpboardform.do">회원가입</a>
+			<a href="insertmemberform.do">회원가입</a>
 			<a href="index">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

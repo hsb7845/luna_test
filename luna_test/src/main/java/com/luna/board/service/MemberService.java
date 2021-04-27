@@ -15,9 +15,9 @@ public class MemberService implements IMemberService{
 	IMemberDAO MemberDAO;
 
 	@Override
-	public boolean insertBoad(MemberDTO dto) {
+	public boolean insertMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
-		return MemberDAO.insertBoad(dto);
+		return MemberDAO.insertMember(dto);
 	}
 
 	@Override

@@ -55,7 +55,7 @@
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>상품게시판글목록</h1>
+<h1>상품재고현황</h1>
 <form action="muldel.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -100,8 +100,8 @@
 		}
 	%>
 	<tr>
-		<td colspan="5">
-			<a href="insertStockForm.do">글쓰기</a>
+		<td colspan="9">
+			<a href="stockInsertForm.do">글쓰기</a>
 			<a href="index">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

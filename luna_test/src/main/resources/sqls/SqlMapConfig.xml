@@ -9,6 +9,7 @@
 		<typeAlias type="com.luna.board.dtos.MemberDTO" alias="MDTO"/>
 		<typeAlias type="com.luna.board.dtos.PBoardDTO" alias="PBDTO"/>
 		<typeAlias type="com.luna.board.dtos.RBoardDTO" alias="RBDTO"/>
+		<typeAlias type="com.luna.board.dtos.StockDTO" alias="StockDTO"/>
 	</typeAliases>
 <!-- 	DB접속 정보 셋팅 -->	
 	<mappers>

@@ -28,4 +28,7 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return PBoardDAO.getAllList();
 	}
+	
+	
+	
 }

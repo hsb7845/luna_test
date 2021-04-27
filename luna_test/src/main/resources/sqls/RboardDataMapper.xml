@@ -6,12 +6,12 @@
 <mapper namespace="com.luna.rboard">
 
 	<select id="getAllList" resultType="PBDTO">
-		select pseq,pcontent,pdate,ptitle from P_board
+		select rseq, rtitle, rcontent, pseq, id, starrank, par_rseq from R_board
 	</select>
 
 	<insert id="insertboard" parameterType="PBDTO">
-		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
+		INSERT INTO R_BOARD(RSEQ, RTITLE, RCONTENT, PSEQ, ID, STARRANK, PAR_RSEQ)
+		VALUES(R_BOARD_SEQ.nextval, #{RTITLE}, #{RCONTENT}, NULL, NULL, #{STARRANK}, #{PAR_RSEQ})
 	</insert>
 
 

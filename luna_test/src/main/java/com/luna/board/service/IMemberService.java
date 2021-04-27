@@ -1,5 +1,5 @@
 package com.luna.board.service;
 
-public class IMemberService {
+public interface IMemberService {
 
 }

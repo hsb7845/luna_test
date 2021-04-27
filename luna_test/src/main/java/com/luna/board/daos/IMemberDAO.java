@@ -1,5 +1,5 @@
 package com.luna.board.daos;
 
-public class IMemberDAO {
+public interface IMemberDAO {
 
 }

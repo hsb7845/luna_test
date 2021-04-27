@@ -1,5 +1,10 @@
 package com.luna.board.daos;
 
-public class MemberDAO {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class MemberDAO implements IMemberDAO {
+
+	private String namespace = "com.luna.member"
+	
 }

@@ -8,5 +8,6 @@
 </head>
 <body>
 	<a href="pboard.do">상품게시판보기</a>
+	<a href="member.do">회원목록보기</a>
 </body>
 </html>

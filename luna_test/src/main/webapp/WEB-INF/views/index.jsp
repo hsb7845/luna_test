@@ -8,5 +8,6 @@
 </head>
 <body>
 	<a href="pboard.do">상품게시판보기</a>
+	<a href="rboard.do">리뷰 게시판 보기</a>
 </body>
 </html>

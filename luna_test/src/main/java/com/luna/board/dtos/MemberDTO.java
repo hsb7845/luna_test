@@ -8,7 +8,7 @@ public class MemberDTO {
 	private String email;
 	private String email_chk;
 	private String address;
-	private int Birth;
+	private Date birth;
 	private String sex;
 	private int phone;
 	private Date joindate;
@@ -20,7 +20,7 @@ public class MemberDTO {
 	
 	
 	
-	public MemberDTO(String id, String pwd, String email, String email_chk, String address, int birth, String sex,
+	public MemberDTO(String id, String pwd, String email, String email_chk, String address, Date birth, String sex,
 			int phone, Date joindate, String admin, String nickName, String name, int point) {
 		super();
 		this.id = id;
@@ -28,7 +28,7 @@ public class MemberDTO {
 		this.email = email;
 		this.email_chk = email_chk;
 		this.address = address;
-		Birth = birth;
+		this.birth = birth;
 		this.sex = sex;
 		this.phone = phone;
 		this.joindate = joindate;
@@ -68,11 +68,11 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getBirth() {
-		return Birth;
+	public Date getBirth() {
+		return birth;
 	}
-	public void setBirth(int birth) {
-		Birth = birth;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 	public String getSex() {
 		return sex;
@@ -120,7 +120,7 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pwd=" + pwd + ", email=" + email + ", email_chk=" + email_chk + ", address="
-				+ address + ", Birth=" + Birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
+				+ address + ", Birth=" + birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
 				+ ", admin=" + admin + ", NickName=" + NickName + ", Name=" + Name + ", point=" + point + "]";
 	}
 	

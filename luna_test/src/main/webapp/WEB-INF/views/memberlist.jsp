@@ -45,8 +45,29 @@
 		<tr>
 			<td><%=dto.getId()%></td>
 			<td><%=dto.getPwd() %></td>
-		</tr>
-	
+			<td><%=dto.getEmail()%></td>
+			<td><%=dto.getEmail_chk()%></td>
+			<td><%=dto.getAddress()%></td>
+			<td><%=dto.getBirth()%></td>
+			<td><%=dto.getSex()%></td>
+			<td><%=dto.getPhone()%></td>
+			<td><%=dto.getJoindate()%></td>
+			<td><%=dto.getAdmin()%></td>
+			<td><%=dto.getNickName()%></td>
+			<td><%=dto.getName()%></td>
+			<td><%=dto.getPoint()%></td>
+			
+	<%
+			}
+		}
+	%>
+		<tr>
+		<td colspan="5">
+			<a href="insertpboardform.do">회원가입</a>
+			<a href="index">메인</a>
+			<input type="submit" value="삭제" />
+		</td>
+	</tr>
 	</table>
 	
 	

@@ -28,9 +28,9 @@ public class StockController {
 		return "stockList";
 	}
 	
-	@RequestMapping(value = "/insertStockForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/stockInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertStock(Locale locale, Model model) {
-		return "insertStockForm";
+		return "stockInsertForm";
 	}
 	
 	@RequestMapping(value = "/insertStock.do", method = {RequestMethod.GET,RequestMethod.POST})

@@ -13,7 +13,7 @@
 	<insert id="insertStock" parameterType="StockDTO">
 		INSERT INTO STOCK
 		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ)
-		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, #{cnum}, #{pcontent}, #{price}, #{pseq})
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null)
 	</insert>
 	
 	<select id="getStock" resultType="StockDTO" parameterType="int">

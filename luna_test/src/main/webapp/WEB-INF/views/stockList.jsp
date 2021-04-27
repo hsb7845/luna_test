@@ -100,8 +100,8 @@
 		}
 	%>
 	<tr>
-		<td colspan="5">
-			<a href="insertStockForm.do">글쓰기</a>
+		<td colspan="9">
+			<a href="stockInsertForm.do">글쓰기</a>
 			<a href="index">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

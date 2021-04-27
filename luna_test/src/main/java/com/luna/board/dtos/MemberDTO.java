@@ -8,19 +8,19 @@ public class MemberDTO {
 	private String email;
 	private String email_chk;
 	private String address;
-	private int Birth;
+	private Date birth;
 	private String sex;
 	private int phone;
 	private Date joindate;
 	private String admin;
-	private String NickName;
-	private String Name;
+	private String nickName;
+	private String name;
 	private int point;
 	
 	
 	
 	
-	public MemberDTO(String id, String pwd, String email, String email_chk, String address, int birth, String sex,
+	public MemberDTO(String id, String pwd, String email, String email_chk, String address, Date birth, String sex,
 			int phone, Date joindate, String admin, String nickName, String name, int point) {
 		super();
 		this.id = id;
@@ -28,13 +28,13 @@ public class MemberDTO {
 		this.email = email;
 		this.email_chk = email_chk;
 		this.address = address;
-		Birth = birth;
+		this.birth = birth;
 		this.sex = sex;
 		this.phone = phone;
 		this.joindate = joindate;
 		this.admin = admin;
-		NickName = nickName;
-		Name = name;
+		nickName = nickName;
+		name = name;
 		this.point = point;
 	}
 	
@@ -68,11 +68,11 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getBirth() {
-		return Birth;
+	public Date getBirth() {
+		return birth;
 	}
-	public void setBirth(int birth) {
-		Birth = birth;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 	public String getSex() {
 		return sex;
@@ -99,16 +99,16 @@ public class MemberDTO {
 		this.admin = admin;
 	}
 	public String getNickName() {
-		return NickName;
+		return nickName;
 	}
 	public void setNickName(String nickName) {
-		NickName = nickName;
+		this.nickName = nickName;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public int getPoint() {
 		return point;
@@ -120,8 +120,8 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pwd=" + pwd + ", email=" + email + ", email_chk=" + email_chk + ", address="
-				+ address + ", Birth=" + Birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
-				+ ", admin=" + admin + ", NickName=" + NickName + ", Name=" + Name + ", point=" + point + "]";
+				+ address + ", birth=" + birth + ", sex=" + sex + ", phone=" + phone + ", joindate=" + joindate
+				+ ", admin=" + admin + ", nickName=" + nickName + ", name=" + name + ", point=" + point + "]";
 	}
 	
 	

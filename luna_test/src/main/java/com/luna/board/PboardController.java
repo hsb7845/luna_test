@@ -82,7 +82,7 @@ public class PboardController {
 
 	}
 	
-	@RequestMapping(value = "/muldel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/muldelPboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = pBoardService.mulDel(chk);
 		if(isS) {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,16 +14,12 @@ import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.IRBoardService;
 
+@Controller
 public class RboardController {
 
 	@Autowired
 	private IRBoardService rBoardService;
 	
-	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
-	public String index(Locale locale, Model model) {
-
-		return "index";
-	}
 	
 	@RequestMapping(value = "/rboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String rboard(Locale locale, Model model) {
@@ -72,7 +69,7 @@ public class RboardController {
 
 	}
 	
-	@RequestMapping(value = "/muldel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/muldelRboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = rBoardService.mulDel(chk);
 		if(isS) {

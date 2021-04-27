@@ -1,5 +1,8 @@
+<%@page import="com.luna.board.dtos.MemberDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="insertboard.do">
-	<table>	
-	</table>
-	
-	
-	
-	</form>
-
+<h1>회원정보수정</h1>
 </body>
 </html>

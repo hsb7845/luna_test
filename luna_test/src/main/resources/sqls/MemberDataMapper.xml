@@ -10,9 +10,9 @@
 		from Member
 	</select>
 
-	<insert id="insertboard" parameterType="MDTO">
-		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
+	<insert id="insertMember" parameterType="MDTO">
+		INSERT INTO MEMBER(id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point)
+		VALUES(#{id},#{pwd},#{email}, #{email_chk}, #{address}, #{birth}, #{sex}, #{phone}, sysdate, #{admin}, #{nickName}, #{name}, #{point})
 	</insert>
 
 

@@ -20,6 +20,11 @@ public class MemberDTO {
 	
 	
 	
+	public MemberDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public MemberDTO(String id, String pwd, String email, String email_chk, String address, Date birth, String sex,
 			int phone, Date joindate, String admin, String nickName, String name, int point) {
 		super();
@@ -33,8 +38,8 @@ public class MemberDTO {
 		this.phone = phone;
 		this.joindate = joindate;
 		this.admin = admin;
-		nickName = nickName;
-		name = name;
+		this.nickName = nickName;
+		this.name = name;
 		this.point = point;
 	}
 	

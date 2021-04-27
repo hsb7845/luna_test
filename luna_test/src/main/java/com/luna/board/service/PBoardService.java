@@ -49,4 +49,11 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return PBoardDAO.updateBoard(dto);
 	}
+
+
+	@Override
+	public boolean mulDel(String[] chk) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.mulDel(chk);
+	}
 }

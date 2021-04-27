@@ -1,6 +1,8 @@
 package com.luna.board.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +44,13 @@ public class PBoardDAO implements IPBoardDAO{
 	public boolean updateBoard(PBoardDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"updateBoard",dto)>0? true:false;
+	}
+
+	@Override
+	public boolean mulDel(String[] chks) {
+		// TODO Auto-generated method stub
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("chks", chks);
+		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
 }

@@ -14,7 +14,7 @@ import com.luna.board.dtos.RBoardDTO;
 @Repository
 public class RBoardDAO implements IRBoardDAO {
 	
-	private String namespace = "com.luna.board.";
+	private String namespace = "com.luna.rboard.";
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;

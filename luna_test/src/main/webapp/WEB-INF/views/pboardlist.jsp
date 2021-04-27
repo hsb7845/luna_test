@@ -55,7 +55,7 @@
 	List<PBoardDTO> list= (List<PBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>게시판글목록</h1>
+<h1>상품게시판글목록</h1>
 <form action="muldel.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -66,8 +66,8 @@
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>번호</th>
-		<th>작성자</th>
 		<th>제목</th>
+		<th>내용</th>
 		<th>작성일</th>
 	</tr>
 	<%
@@ -80,7 +80,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getPseq()%>"/></td>
 					<td><%=dto.getPseq()%></td>
-					<td><%=dto.getPtitle()%></td>
+					<td><a href="updatePboardForm.do?pseq=<%=dto.getPseq() %>"><%=dto.getPtitle()%></a> </td>
 					<td><%=dto.getPcontent()%></td>
 					<td><fmt:formatDate value="<%=dto.getPdate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
 				</tr>
@@ -90,7 +90,7 @@
 	%>
 	<tr>
 		<td colspan="5">
-			<a href="insertboard.do">글쓰기</a>
+			<a href="insertpboardform.do">글쓰기</a>
 			<a href="index">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

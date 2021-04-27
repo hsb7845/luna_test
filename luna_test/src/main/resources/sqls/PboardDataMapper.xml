@@ -6,13 +6,26 @@
 <mapper namespace="com.luna.pboard">
 
 	<select id="getAllList" resultType="PBDTO">
-		select pseq,pcontent,pdate,ptitle from P_board
+		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc
 	</select>
 
 	<insert id="insertboard" parameterType="PBDTO">
 		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},#{pdate}, #{ptitle})
+		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle})
 	</insert>
+	
+	<select id ="getBoard" resultType="PBDTO" parameterType="int">
+		select pseq,pcontent,pdate,ptitle from P_board
+		where pseq = #{pseq}
+ 	</select>
+	
+	<update id ="updateBoard" parameterType="PBDTO">
+		UPDATE P_BOARD SET PCONTENT=#{pcontent},  PTITLE=#{ptitle} WHERE PSEQ=#{pseq}
+	</update>
+	
+	<delete id ="deleteBoard" parameterType="int">
+		delete from p_board where pseq =#{pseq}
+	</delete>
 
 
 </mapper>

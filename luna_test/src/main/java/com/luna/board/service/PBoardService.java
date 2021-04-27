@@ -28,4 +28,25 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return PBoardDAO.getAllList();
 	}
+
+
+	@Override
+	public PBoardDTO getBoard(int pseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getBoard(pseq);
+	}
+
+
+	@Override
+	public boolean deleteBoard(int pseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.deleteBoard(pseq);
+	}
+
+
+	@Override
+	public boolean updateBoard(PBoardDTO dto) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.updateBoard(dto);
+	}
 }

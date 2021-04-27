@@ -45,15 +45,12 @@ public class PboardController {
 		return "pboardlist";
 	}
 
-	@RequestMapping(value = "/insertboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertpboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model) {
-
-
-
-		return "insertboard";
+		return "pboardinsertform";
 	}
 
-	@RequestMapping(value = "/insert.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertpboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, PBoardDTO dto) {
 		boolean isS = pBoardService.insertBoard(dto);
 		if(isS) {
@@ -66,9 +63,26 @@ public class PboardController {
 
 	}
 
+	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateboard(Locale locale, Model model,int pseq) {
+		PBoardDTO dto = pBoardService.getBoard(pseq);
+		System.out.println("ptitle"+dto.getPtitle());
+		model.addAttribute("dto", dto);
+		return "pboardupdateform";
+	}
 
+	@RequestMapping(value = "/updatepboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String update(Locale locale, Model model, PBoardDTO dto) {
+		boolean isS = pBoardService.updateBoard(dto);
+		if(isS) {
+			return "redirect:pboard.do";
+		}else {
+			model.addAttribute("msg","글수정실패");
+			return "error";
+		}
 
-
+	}
+	
 
 }
 

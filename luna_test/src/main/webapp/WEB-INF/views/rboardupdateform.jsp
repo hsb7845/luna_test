@@ -24,10 +24,6 @@
 			<td><textarea name="rcontent">${dto.rcontent}</textarea></td>
 		</tr>
 		<tr>
-			<th>별점</th>
-			<td><textarea name="starrank">${dto.starrank}</textarea></td>
-		</tr>
-		<tr>
 			<td colspan="2"><input type="submit" value="수정"></td>
 		</tr>
 	</table>

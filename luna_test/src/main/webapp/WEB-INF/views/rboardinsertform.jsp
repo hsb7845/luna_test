@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="insertpboard.do">
+	<form method="post" action="insertrboard.do">
 	<table>
 		<tr>
 			<th>제목</th>

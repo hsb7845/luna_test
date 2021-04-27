@@ -1,7 +1,9 @@
 <%@page import="com.luna.board.dtos.RBoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 <!DOCTYPE html>
 <html>
@@ -58,44 +60,56 @@ List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
 <h1>리뷰 게시판 글 목록</h1>
 <form action="muldel.do" method="post">
 <table border="1">
-<col width="50px">
-<col width="50px">
-<col width="100px">
-<col width="300px">
-<col width="50px">
-<col width="50px">
-<col width="50px">
-<col width="50px">
-<tr>
-	<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-	<th>리뷰 게시글 번호</th>
-	<th>제목</th>
-	<th>내용</th>
-	<th>상품 게시글 번호</th>
-	<th>아이디</th>
-	<th>별점</th>
-	<th>부모글 번호</th>
-</tr>
-<%
-	if(list==null||list.size()==0){
-		out.print("<tr><td colspan='5'>----작성된 리뷰가 없습니다.</td></tr>");
-		} else {
-	for(int i=0;i<list.size();i++){
-		RBoardDTO dto=list.get(i);
-%>
+	<col width="50px">
+	<col width="200px">
+	<col width="100px">
+	<col width="300px">
+	<col width="200px">
+	<col width="100px">
+	<col width="100px">
+	<col width="200px">
+	<tr>
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>리뷰 게시글 번호</th>
+		<th>제목</th>
+		<th>내용</th>
+		<th>상품 게시글 번호</th>
+		<th>아이디</th>
+		<th>별점</th>
+		<th>부모글 번호</th>
+	</tr>
+	<%
+		if(list==null||list.size()==0){
+			out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
+			} else {
+		for(int i=0;i<list.size();i++){
+			RBoardDTO dto=list.get(i);
+	%>
 			<tr>
 				<td><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
 				<td><%=dto.getRseq()%></td>
-				<td><a href="updateRboardForm.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
-					<td><%=dto.getRcontent()%></td>
-				</tr>
+				<td>
+				<%
+				if(dto.getLevel()>1){				
+				%>
+				<span style="padding-left:20px"></span>└
+				<%
+					}	
+				%>
+				<a href="updaterboardForm.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
+				<td><%=dto.getRcontent()%></td>
+				<td><%=dto.getPseq()%></td>
+				<td><%=dto.getId()%></td>
+				<td><%=dto.getStarrank()%></td>
+				<td><%=dto.getPar_rseq()%></td>
+			</tr>
 <%
 		}
 	}
 %>
 <tr>
-	<td colspan="5">
-		<a href="insertboard.do">리뷰 쓰기</a>
+	<td colspan="8">
+		<a href="insertrboardform.do">리뷰 쓰기</a>
 		<a href="index">메인</a>
 		<input type="submit" value="삭제" />
 	</td>

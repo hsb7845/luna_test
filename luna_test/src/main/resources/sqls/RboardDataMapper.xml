@@ -6,12 +6,15 @@
 <mapper namespace="com.luna.rboard">
 
 	<select id="getAllList" resultType="RBDTO">
-		select rseq, rtitle, rcontent, pseq, id, starrank, par_rseq from R_board
+		select LEVEL, rseq, par_rseq, LPAD(' ', 4*(LEVEL-1)) || rtitle rtitle, rcontent, pseq, id, starrank from R_board
+		start with par_rseq=0
+		connect by prior rseq=par_rseq
+		order siblings by rseq desc
 	</select>
 
 	<insert id="insertboard" parameterType="RBDTO">
-		INSERT INTO R_BOARD(RSEQ, RTITLE, RCONTENT, PSEQ, ID, STARRANK, PAR_RSEQ)
-		VALUES(R_BOARD_SEQ.nextval, #{RTITLE}, #{RCONTENT}, NULL, NULL, #{STARRANK}, #{PAR_RSEQ})
+		INSERT INTO R_BOARD(rseq, rtitle, rcontent, pseq, id, starrank, par_rseq)
+		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, NULL, NULL, #{starrank}, #{par_rseq})
 	</insert>
 	
 	<select id ="getBoard" resultType="RBDTO" parameterType="int">

@@ -19,7 +19,6 @@ public class RBoardDAO implements IRBoardDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	private String[] chks;
 	
 	@Override
 	public boolean insertBoard(RBoardDTO dto) {
@@ -50,7 +49,7 @@ public class RBoardDAO implements IRBoardDAO {
 	}
 
 	@Override
-	public boolean mulDel(String[] chk) {
+	public boolean mulDel(String[] chks) {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;

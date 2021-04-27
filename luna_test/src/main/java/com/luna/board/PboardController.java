@@ -5,8 +5,7 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +21,7 @@ import com.luna.board.service.IPBoardService;
 @Controller
 public class PboardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(PboardController.class);
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -83,6 +82,17 @@ public class PboardController {
 
 	}
 	
+	@RequestMapping(value = "/muldel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String muldel(Locale locale, Model model, String[] chk) {
+		boolean isS = pBoardService.mulDel(chk);
+		if(isS) {
+			return "redirect:pboard.do";
+		}else {
+			model.addAttribute("msg","글수정실패");
+			return "error";
+		}
+
+	}
 
 }
 

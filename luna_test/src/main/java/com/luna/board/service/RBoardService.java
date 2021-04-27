@@ -5,55 +5,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.luna.board.daos.IPBoardDAO;
+import com.luna.board.daos.IRBoardDAO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 @Service
-
-public class PBoardService implements IPBoardService{
-
+public class RBoardService implements IRBoardService {
+	
 	@Autowired
-	IPBoardDAO PBoardDAO;
-
-
+	IRBoardDAO RBoardDAO;
+	
 	@Override
-	public boolean insertBoard(PBoardDTO dto) {
+	public boolean insertBoard(RBoardDTO dto) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.insertBoard(dto);
+		return RBoardDAO.insertBoard(dto);
+	}
+	
+	@Override
+	public List<RBoardDTO> getAllList() {
+		// TODO Auto-generated method stub
+		return RBoardDAO.getAllList();
 	}
 
-
+	
 	@Override
-	public List<PBoardDTO> getAllList() {
+	public RBoardDTO getBoard(int rseq) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.getAllList();
+		return RBoardDAO.getBoard(rseq);
+	}
+	
+	@Override
+	public boolean deleteBoard(int rseq) {
+		// TODO Auto-generated method stub
+		return RBoardDAO.deleteBoard(rseq);
 	}
 
-
 	@Override
-	public PBoardDTO getBoard(int pseq) {
+	public boolean updateBoard(RBoardDTO dto) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.getBoard(pseq);
+		return RBoardDAO.updateBoard(dto);
 	}
-
-
-	@Override
-	public boolean deleteBoard(int pseq) {
-		// TODO Auto-generated method stub
-		return PBoardDAO.deleteBoard(pseq);
-	}
-
-
-	@Override
-	public boolean updateBoard(PBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return PBoardDAO.updateBoard(dto);
-	}
-
 
 	@Override
 	public boolean mulDel(String[] chk) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.mulDel(chk);
+		return RBoardDAO.mulDel(chk);
 	}
 }

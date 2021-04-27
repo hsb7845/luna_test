@@ -27,7 +27,12 @@
 		delete from p_board where pseq =#{pseq}
 	</delete>
 
-
+	<delete id="mulDel" parameterType="Map">
+		DELETE FROM p_board WHERE PSEQ IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
 </mapper>
 
 

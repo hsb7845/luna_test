@@ -10,4 +10,5 @@ public interface IPBoardService {
 	PBoardDTO getBoard(int pseq);
 	boolean deleteBoard(int pseq);
 	boolean updateBoard(PBoardDTO dto);
+	boolean mulDel(String[] chk);
 }

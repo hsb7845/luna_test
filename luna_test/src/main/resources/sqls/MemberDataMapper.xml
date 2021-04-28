@@ -26,12 +26,24 @@
 	WHERE ID=#{id}
 	</update>
 	
-	<delete id="deleteMember" parameterType="Map">
+
+	<delete id="muldelMember" parameterType="Map">
 		DELETE FROM MEMBER WHERE ID IN 
 		<foreach collection="chks" item="i" separator="," open="(" close=")">
 			#{i}
 		</foreach>
 	</delete>
+	
+	
+	<select id ="idChk" resultType="int">
+		SELECT COUNT (*) FROM MEMBER 
+		WHERE ID = #{id}
+	</select>
+	
+		<select id ="pwdChk" resultType="int">
+		SELECT COUNT (*) FROM MEMBER 
+		WHERE PWD = #{pwd}
+	</select>
 	
 
 </mapper>

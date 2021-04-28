@@ -45,5 +45,10 @@ public class MemberService implements IMemberService{
 		return MemberDAO.muldelMember(chk);
 	}
 
+	@Override
+	public int idChk(MemberDTO dto) throws Exception{
+		int result= MemberDAO.idChk(dto);
+		return result;
+	}
 
 }

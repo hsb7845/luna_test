@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,5 +46,12 @@ public class MemberDAO implements IMemberDAO {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"muldelMember",map)>0?true:false;
+	}
+	
+	@Override
+	public int idChk(MemberDTO dto) throws Exception {
+		int result= sqlSession.selectOne("memberMapper.idChk", dto);
+		return result;
+				
 	}
 }

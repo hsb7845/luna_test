@@ -56,7 +56,7 @@ $(function(){
 %>
 <body>
 <p class="cls1">회원목록</p>
-	<form action="muldel.do" method="post">
+	<form action="muldelmember.do" method="post">
 	<table border = "1">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
@@ -81,6 +81,7 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			MemberDTO dto=list.get(i);
 	%>
+	
 		<tr>
 			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
 			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>

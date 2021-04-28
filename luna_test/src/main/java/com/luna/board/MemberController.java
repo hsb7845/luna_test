@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
@@ -84,6 +85,15 @@ public class MemberController {
 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	public int idChk(MemberDTO dto) throws Exception {
+		int result = MemberService.idChk(dto);
+		return result;
+	}
+	
+	
+
 
 
 }

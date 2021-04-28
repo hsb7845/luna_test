@@ -50,11 +50,10 @@ public class StockDAO implements IStockDAO {
 	}
 
 	@Override
-	public boolean mulDel(String[] chk) {
+	public boolean mulDel(String[] chks) {
 		// TODO Auto-generated method stub
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
-
 }

@@ -39,7 +39,7 @@
 			<td><input type="number" name="price" value="${dto.price }" ></td>
 		</tr>
 		<tr>
-			<td colspan="5"><input type="submit" value="수정"></td>
+			<td colspan="6"><input type="submit" value="수정"></td>
 		</tr>
 	</table>
 </form>	

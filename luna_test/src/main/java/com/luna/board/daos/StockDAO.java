@@ -34,7 +34,7 @@ public class StockDAO implements IStockDAO {
 	@Override
 	public StockDTO getStock(int pnum) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace="getStock",pnum);
+		return sqlSession.selectOne(namespace+"getStock",pnum);
 	}
 	
 	@Override

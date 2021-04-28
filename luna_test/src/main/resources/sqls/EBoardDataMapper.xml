@@ -1,0 +1,35 @@
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.luna.eboard">
+
+   <select id="getAllList" resultType="EBDTO">
+      select eseq, econtent, etitle from E_board order by eseq desc
+   </select>
+
+   <insert id="insertboard" parameterType="EBDTO">
+      INSERT INTO E_BOARD(ESEQ, ECONTENT, ETITLE)
+      VALUES(E_BOARD_SEQ.nextval,#{econtent}, #{etitle})
+   </insert>
+   
+   <select id ="getBoard" resultType="EBDTO" parameterType="int">
+      select eseq, econtent, etitle from E_board
+      where eseq = #{eseq}
+    </select>
+   
+   <update id ="updateBoard" parameterType="EBDTO">
+      UPDATE E_BOARD SET ECONTENT=#{econtent}, ETITLE=#{etitle} WHERE ESEQ=#{eseq}
+   </update>
+   
+   <delete id ="deleteBoard" parameterType="int">
+      delete from e_board where eseq =#{eseq}
+   </delete>
+
+   <delete id="mulDel" parameterType="Map">
+      DELETE FROM e_board WHERE ESEQ IN 
+      <foreach collection="chks" item="i" separator="," open="(" close=")">
+         #{i}
+      </foreach>
+   </delete>
+</mapper>

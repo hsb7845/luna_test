@@ -12,6 +12,7 @@
 		<typeAlias type="com.luna.board.dtos.StockDTO" alias="StockDTO"/>
 		<typeAlias type="com.luna.board.dtos.QBoardDTO" alias="QBDTO"/>
 		<typeAlias type="com.luna.board.dtos.BuyListDTO" alias="BLDTO"/>
+		<typeAlias type="com.luna.board.dtos.EBoardDTO" alias="EBDTO"/>
 	</typeAliases>
 <!-- 	DB접속 정보 셋팅 -->	
 	<mappers>
@@ -21,6 +22,7 @@
 		<mapper resource="./sqls/RboardDataMapper.xml"/>
 		<mapper resource="./sqls/QboardDataMapper.xml"/>
 		<mapper resource="./sqls/BuyListDataMapper.xml"/>
+		<mapper resource="./sqls/EBoardDataMapper.xml"/>
 	</mappers>
 </configuration>
 

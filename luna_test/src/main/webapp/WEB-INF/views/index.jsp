@@ -13,5 +13,6 @@
 	<a href="member.do">회원목록보기</a><br>
 	<a href="qboard.do">문의사항 게시판 보기</a><br>
 	<a href="buylist.do">구매 목록 보기</a>
+	<a href="cart.do">장바구니 보기(cart)</a>
 </body>
 </html>

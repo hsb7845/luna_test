@@ -2,12 +2,40 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품재고리스트</title>
+ <!-- Custom fonts for this template -->
+        <link
+            href="vendor/fontawesome-free/css/all.min.css"
+            rel="stylesheet"
+            type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this page -->
+        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <style>
+            .cls1 {
+                font-size: 40px;
+                text-align: center;
+            }
+            .cls2 {
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 // core, BOM, DOM  3가지 영역으로 나눔
@@ -55,7 +83,8 @@ $(function(){
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>상품재고현황</h1>
+<!-- <h1>상품재고현황</h1> -->
+<p class="cls1">상품재고현황</p> 
 <form action="muldelStock.do" method="post">
 <table border="1">
 	<col width="50px">

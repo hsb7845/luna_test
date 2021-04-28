@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
 <mapper namespace="com.luna.qboard">
 
+	<select id="getAllList" resultType="QBDTO">
+		select LEVEL, qseq, par_qseq, LPAD(' ', 4*(LEVEL-1)) || qtitle qtitle, qcontent, pseq, id from Q_board
+		start with par_qseq=0
+		connect by prior qseq=par_qseq
+		order siblings by qseq desc
+	</select>
+
+	<insert id="insertboard" parameterType="QBDTO">
+		INSERT INTO Q_BOARD(qseq, qtitle, qcontent, pseq, id, par_qseq)
+		VALUES(Q_BOARD_SEQ.nextval, #{qtitle}, #{qcontent}, NULL, NULL, #{par_qseq})
+	</insert>
+	
+	<select id ="getBoard" resultType="QBDTO" parameterType="int">
+		select qseq, qtitle, qcontent, pseq, id, par_qseq from Q_board
+		where qseq = #{qseq}
+ 	</select>
+ 	
+	<update id ="updateBoard" parameterType="QBDTO">
+		UPDATE Q_BOARD SET QCONTENT=#{qcontent}, QTITLE=#{qtitle} WHERE qSEQ=#{qseq}
+	</update>
+	
+	<delete id ="deleteBoard" parameterType="int">
+		delete from q_board where qseq =#{qseq}
+	</delete>
+	
+	<delete id="mulDel" parameterType="Map">
+		DELETE FROM q_board WHERE QSEQ IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
 </mapper>
+
+
+
+
+
+
+
+
+

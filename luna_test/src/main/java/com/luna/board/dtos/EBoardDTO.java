@@ -4,11 +4,11 @@ public class EBoardDTO {
 	private int eseq;
 	private String econtent;
 	private String etitle;
+	
+	
 	public int getEseq() {
 		return eseq;
 	}
-	
-	
 	public void setEseq(int eseq) {
 		this.eseq = eseq;
 	}

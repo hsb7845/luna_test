@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.service.IEBoardService;
 
-public class EBoardController {
 
 	@Controller
 	public class EboardController {
@@ -80,4 +79,3 @@ public class EBoardController {
 			}
 		}
 	}
-}

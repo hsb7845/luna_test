@@ -16,38 +16,32 @@ public class EBoardService implements IEBoardService {
 	
 	@Override
 	public boolean insertBoard(EBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return EBoardDAO.insertBoard(dto);
 	}
 
 	@Override
 	public List<EBoardDTO> getAllList() {
-		// TODO Auto-generated method stub
-		return null;
+		return EBoardDAO.getAllList();
 	}
 
 	@Override
 	public EBoardDTO getBoard(int eseq) {
-		// TODO Auto-generated method stub
-		return null;
+		return EBoardDAO.getBoard(eseq);
 	}
 
 	@Override
 	public boolean deleteBoard(int eseq) {
-		// TODO Auto-generated method stub
-		return false;
+		return EBoardDAO.deleteBoard(eseq);
 	}
 
 	@Override
 	public boolean updateBoard(EBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+		return EBoardDAO.updateBoard(dto);
 	}
 
 	@Override
 	public boolean mulDel(String[] chk) {
-		// TODO Auto-generated method stub
-		return false;
+		return EBoardDAO.mulDel(chk);
 	}
 
 }

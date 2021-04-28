@@ -16,7 +16,7 @@
 	</insert>
 
 	<select id="getMember" resultType="MDTO" parameterType="int">
-		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point
+		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point from member
 		where id = #{id}
 	</select>
 	

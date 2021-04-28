@@ -40,10 +40,10 @@ public class MemberDAO implements IMemberDAO {
 	
 
 	@Override
-	public boolean mulDelMember(String[] chks) {
+	public boolean muldelMember(String[] chks) {
 		// TODO Auto-generated method stub
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
-		return sqlSession.delete(namespace+"mulDelMember",map)>0?true:false;
+		return sqlSession.delete(namespace+"muldelMember",map)>0?true:false;
 	}
 }

@@ -10,6 +10,6 @@ public interface IMemberDAO {
 	boolean insertMember(MemberDTO dto);
 	MemberDTO getMember(String id);
 	boolean updateMember(MemberDTO dto);
-	boolean mulDelMember(String[] chks);
+	boolean muldelMember(String[] chks);
 
 }

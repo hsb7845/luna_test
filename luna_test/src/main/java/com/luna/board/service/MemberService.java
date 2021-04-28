@@ -40,9 +40,9 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
-	public boolean mulDelMember(String[] chk) {
+	public boolean muldelMember(String[] chk) {
 		// TODO Auto-generated method stub
-		return MemberDAO.mulDelMember(chk);
+		return MemberDAO.muldelMember(chk);
 	}
 
 

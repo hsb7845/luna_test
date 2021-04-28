@@ -15,7 +15,7 @@ public interface IMemberService {
 
 	boolean updateMember(MemberDTO dto);
 
-	boolean mulDelMember(String[] chk);
+	boolean muldelMember(String[] chk);
 
 
 

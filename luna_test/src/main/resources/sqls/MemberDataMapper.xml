@@ -22,10 +22,16 @@
 	
 	<update id="updateMember" parameterType="MDTO">
 	UPDATE MEMBER 
-	SET PWD=#{pwd}, EMAIL=#{eamil}, EMAIL_CHK=#{email_chk}, ADDRESS=#{address}, BIRTH=#{birth}, SEX=#{sex}, PHONE=#{phone}, ADMIN=#{admin}, NICKNAME=#{nickname}, NAME=#{name}, POINT=#{point}
+	SET PWD=#{pwd}, EMAIL=#{email}, EMAIL_CHK=#{email_chk}, ADDRESS=#{address}, BIRTH=#{birth}, SEX=#{sex}, PHONE=#{phone}, ADMIN=#{admin}, NICKNAME=#{nickName}, NAME=#{name}, POINT=#{point}
 	WHERE ID=#{id}
 	</update>
 	
+	<delete id="deleteMember" parameterType="Map">
+		DELETE FROM MEMBER WHERE ID IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
 	
 
 </mapper>

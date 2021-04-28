@@ -59,7 +59,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/updatemember.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String update(Locale locale, Model model, MemberDTO dto) {
+	public String update(Locale locale, Model model, MemberDTO dto, String birthtest) {
+		Timestamp ts= Timestamp.valueOf(birthtest+" 00:00:00");
+		dto.setBirth(ts);
 		boolean isS = MemberService.updateMember(dto);
 		if(isS) {
 			return "redirect:member.do";
@@ -70,9 +72,9 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping(value = "/muldelMember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/muldelmember.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
-		boolean isS = MemberService.mulDelMember(chk);
+		boolean isS = MemberService.muldelMember(chk);
 		if(isS) {
 			return "redirect:member.do";
 		}else {

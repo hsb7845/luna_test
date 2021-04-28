@@ -88,7 +88,7 @@ $(function(){
 			<td><%=dto.getEmail()%></td>
 			<td><%=dto.getEmail_chk()%></td>
 			<td><%=dto.getAddress()%></td>
-			<td><%=dto.getBirth()%></td>
+			<td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>			
 			<td><%=dto.getSex()%></td>
 			<td><%=dto.getPhone()%></td>
 			<td><%=dto.getJoindate()%></td>

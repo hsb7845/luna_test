@@ -52,7 +52,7 @@
 %>
 <body>
 <h1>리뷰 게시판 글 목록</h1>
-<form action="muldel.do" method="post">
+<form action="muldelRboard.do" method="post">
 <table border="1">
 	<col width="50px">
 	<col width="200px">

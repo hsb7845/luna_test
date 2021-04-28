@@ -28,7 +28,7 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
-	public PBoardDTO getMember(int pseq) {
+	public PBoardDTO getMember(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

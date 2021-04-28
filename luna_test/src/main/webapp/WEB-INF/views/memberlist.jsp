@@ -82,8 +82,8 @@ $(function(){
 			MemberDTO dto=list.get(i);
 	%>
 		<tr>
-			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"/></td>
-			<td><%=dto.getId()%></td>
+			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
+			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>
 			<td><%=dto.getPwd() %></td>
 			<td><%=dto.getEmail()%></td>
 			<td><%=dto.getEmail_chk()%></td>
@@ -96,6 +96,7 @@ $(function(){
 			<td><%=dto.getNickName()%></td>
 			<td><%=dto.getName()%></td>
 			<td><%=dto.getPoint()%></td>
+		</tr>
 			
 	<%
 			}

@@ -10,6 +10,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>회원정보수정</h1>
+	<form method="post" action="updatemember.do">
+		<h1 style = "text-align:left">회원정보수정</h1>
+		아이디 <input type="text" name="id" value="${dto.id}"><br>
+		비밀번호 <input type="password" name="pwd"  value="${dto.pwd}"><br>
+		이메일 <input type="text" name="email"  value="${dto.email}"><br>
+		이메일확인(중복확인) <input type="text" name="email_chk"  value="${dto.email_chk}"><br>
+		주소(API예정)	<input type="text" name="address"  value="${dto.address}"><br>
+		생년월일 <input type="date" name="birthtest"  value="${dto.birthtest}"><br>
+		성별(남,여 체크 예정) <input type="text" name="sex"  value="${dto.sex}"><br>
+		핸드폰 <input type="text" name="phone"  value="${dto.phone}"><br>
+<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
+  		관리자 <input type="text" name="admin"  value="${dto.admin}"><br>  
+		닉네임 <input type="text" name="nickName"  value="${dto.nickName}"><br>
+		이름	<input type="text" name="name"  value="${dto.name}"><br>
+		포인트 <input type="text" name="point"  value="${dto.point}"><br>
+		<input type="submit" value="등록">
+		<input type="reset" value="다시입력">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</form>
 </body>
 </html>

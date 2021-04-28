@@ -38,7 +38,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/insertmember.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, MemberDTO dto,String birthtest) {
-		System.out.println("birth : "+dto.getBirth());
 		Timestamp ts= Timestamp.valueOf(birthtest+" 00:00:00");
 		dto.setBirth(ts);
 		boolean isS = MemberService.insertMember(dto);
@@ -50,10 +49,9 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value = "/updateMemeberForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updateboard(Locale locale, Model model,int pseq) {
-		PBoardDTO dto = MemberService.getMember(pseq);
-		System.out.println("ptitle"+dto.getPtitle());
+	@RequestMapping(value = "/updatememberForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateboard(Locale locale, Model model,String id) {
+		PBoardDTO dto = MemberService.getMember(id);
 		model.addAttribute("dto", dto);
 		return "memberupdateform";
 	}

@@ -11,11 +11,12 @@ public interface IMemberService {
 
 	List<MemberDTO> getAllList();
 
-	PBoardDTO getMember(int pseq);
+	PBoardDTO getMember(String id);
 
 	boolean updateMember(MemberDTO dto);
 
 	boolean mulDelMember(String[] chk);
+
 
 
 }

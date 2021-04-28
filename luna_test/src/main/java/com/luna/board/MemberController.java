@@ -50,8 +50,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/updatememberForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updateboard(Locale locale, Model model,String id) {
-		PBoardDTO dto = MemberService.getMember(id);
+	public String updatemember(Locale locale, Model model,String id) {
+		MemberDTO dto = MemberService.getMember(id);
 		model.addAttribute("dto", dto);
 		return "memberupdateform";
 	}

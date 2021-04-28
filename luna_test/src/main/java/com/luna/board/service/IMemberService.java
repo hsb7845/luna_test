@@ -11,7 +11,7 @@ public interface IMemberService {
 
 	List<MemberDTO> getAllList();
 
-	PBoardDTO getMember(String id);
+	MemberDTO getMember(String id);
 
 	boolean updateMember(MemberDTO dto);
 

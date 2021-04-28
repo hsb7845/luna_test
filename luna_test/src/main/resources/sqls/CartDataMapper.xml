@@ -4,7 +4,8 @@
 <mapper namespace="com.luna.cart">
 
 	<select id="getAllList" resultType="CartDTO">
-		SELECT SEQ, ID, PSEQ, PCOUNT FROM CART
+		SELECT SEQ, ID, PSEQ, PCOUNT 
+		FROM CART
 	</select>
 
 	<insert id="insertCart" parameterType="CartDTO">

@@ -19,7 +19,7 @@ public class CartController {
 	private ICartService CartService;
 	
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String rboard(Locale locale, Model model) {
+	public String cart(Locale locale, Model model) {
 		List<CartDTO> list = CartService.getAllList();
 		model.addAttribute("list",list);
 		

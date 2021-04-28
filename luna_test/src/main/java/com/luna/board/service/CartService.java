@@ -16,7 +16,7 @@ public class CartService implements ICartService {
 	@Override
 	public List<CartDTO> getAllList() {
 		// TODO Auto-generated method stub
-		return null;
+		return CartDAO.getAllList();
 	}
 
 }

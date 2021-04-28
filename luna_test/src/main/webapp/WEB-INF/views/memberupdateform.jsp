@@ -17,7 +17,7 @@
 		이메일 <input type="text" name="email"  value="${dto.email}"><br>
 		이메일확인(중복확인) <input type="text" name="email_chk"  value="${dto.email_chk}"><br>
 		주소(API예정)	<input type="text" name="address"  value="${dto.address}"><br>
-		생년월일 <input type="date" name="birthtest"  value="${dto.birthtest}"><br>
+		생년월일 <input type="date" name="birth"  value="<fmt:formatDate value="${dto.birth }" pattern="yyyy-MM-dd"/>"><br>
 		성별(남,여 체크 예정) <input type="text" name="sex"  value="${dto.sex}"><br>
 		핸드폰 <input type="text" name="phone"  value="${dto.phone}"><br>
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->

@@ -56,7 +56,7 @@ public class MemberController {
 		return "memberupdateform";
 	}
 	
-	@RequestMapping(value = "/updatepmember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/updatemember.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String update(Locale locale, Model model, MemberDTO dto) {
 		boolean isS = MemberService.updateMember(dto);
 		if(isS) {

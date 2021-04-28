@@ -30,19 +30,19 @@ public class MemberService implements IMemberService{
 	@Override
 	public MemberDTO getMember(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return MemberDAO.getMember(id);
 	}
 
 	@Override
 	public boolean updateMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
-		return false;
+		return MemberDAO.updateMember(dto);
 	}
 
 	@Override
 	public boolean mulDelMember(String[] chk) {
 		// TODO Auto-generated method stub
-		return false;
+		return MemberDAO.mulDelMember(chk);
 	}
 
 

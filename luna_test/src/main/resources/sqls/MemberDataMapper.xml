@@ -15,7 +15,7 @@
 		VALUES(#{id},#{pwd},#{email}, #{email_chk}, #{address}, #{birth}, #{sex}, #{phone}, sysdate, #{admin}, #{nickName}, #{name}, #{point})
 	</insert>
 
-	<select id="getMember" resultType="MDTO" parameterType="int">
+	<select id="getMember" resultType="MDTO" parameterType="STRING">
 		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point from member
 		where id = #{id}
 	</select>

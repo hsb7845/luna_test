@@ -57,9 +57,4 @@ public class StockDAO implements IStockDAO {
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
 
-
-	
-
-	
-
 }

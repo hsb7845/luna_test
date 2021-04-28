@@ -30,11 +30,16 @@ public class PboardController {
 	private  IPBoardService pBoardService;
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
-	public String index(Locale locale, Model model) {
+	public String main(Locale locale, Model model) {
 
 		return "index";
 	}
 	
+	@RequestMapping(value = "/index.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String index(Locale locale, Model model) {
+
+		return "index";
+	}
 	@RequestMapping(value = "/pboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pboard(Locale locale, Model model) {
 		List<PBoardDTO> list = pBoardService.getAllList();

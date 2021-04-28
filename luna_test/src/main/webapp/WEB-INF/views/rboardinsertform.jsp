@@ -18,7 +18,11 @@
 			<td><textarea name="rcontent"></textarea></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="작성"></td>
+			<th>별점</th>
+			<td><input type="number" name="starrank"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="submit" value="작성"></td>
 		</tr>
 	</table>
 	</form>

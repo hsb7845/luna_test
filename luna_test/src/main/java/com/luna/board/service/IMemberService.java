@@ -17,7 +17,7 @@ public interface IMemberService {
 
 	boolean muldelMember(String[] chk);
 
-	int idChk(MemberDTO dto) throws Exception;
+	public int idChk(MemberDTO dto) throws Exception;
 
 
 

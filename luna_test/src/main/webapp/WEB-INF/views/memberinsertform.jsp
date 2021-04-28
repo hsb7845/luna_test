@@ -9,7 +9,8 @@
 <body>
 	<form method="post" action="insertmember.do">
 		<h1 style = "text-align:left">회원가입</h1>
-		아이디 <input type="text" name="id"><br>
+		아이디 <input type="text" name="id">
+		<button type="button" id="idOverlap" onclick="fn_idChk();">중복확인</button><br>
 		비밀번호 <input type="password" name="pwd"><br>
 		이메일 <input type="text" name="email"><br>
 		이메일확인(중복확인) <input type="text" name="email_chk"><br>
@@ -27,6 +28,27 @@
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
 	</form>
+	
+ <script type="text/javascript">
+	
+	function fn_idChk() {
+		$.ajax({
+			url : "/member/idChk",
+			type : "post",
+			dataType : "json",
+			data : { "identification" : $("#identification").val()},
+			success : function(data) {
+				if(data == 1) {
+					alert("중복된 아이디 입니다.");
+					$("#submit").attr("disabled", "disabled");
+				} else if(data == 0) {
+					alert("사용가능한 아이디 입니다.");
+					$("#submit").removeAttr("disabled");
+				}
+			}
+		})
+	}
 
+ </script>
 </body>
 </html>

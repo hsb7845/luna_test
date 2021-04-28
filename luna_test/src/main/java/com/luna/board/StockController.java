@@ -63,7 +63,7 @@ public class StockController {
 		}
 	}
 	
-	@RequestMapping(value = "/muldel.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/muldelStock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = StockService.mulDel(chk);
 		if(isS) {

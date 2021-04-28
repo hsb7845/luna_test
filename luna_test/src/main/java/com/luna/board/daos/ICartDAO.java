@@ -1,5 +1,9 @@
 package com.luna.board.daos;
 
-public interface ICartDAO {
+import java.util.List;
 
+import com.luna.board.dtos.CartDTO;
+
+public interface ICartDAO {
+	List<CartDTO> getAllList();
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luna.cart">
+
+	<select id="getAllList" resultType="CartDTO">
+		SELECT SEQ, ID, PSEQ, PCOUNT 
+		FROM CART
+	</select>
+
+	<insert id="insertCart" parameterType="CartDTO">
+		INSERT INTO CART (SEQ, ID, PSEQ, PCOUNT) 
+		VALUES(CART_SEQ.NEXTVAL, #{id}, null, #{pcount})
+	</insert>
+	
+	<select id ="getCart" resultType="CartDTO" parameterType="int">
+		SELECT SEQ, ID, PSEQ, PCOUNT 
+		FROM CART
+		WHERE seq = #{seq}
+ 	</select>
+	
+	<update id ="updateCart" parameterType="CartDTO">
+		UPDATE CART SET ID=#{id}, PSEQ=#{pseq}, PCOUNT=#{pcount} 
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<delete id ="deleteCart" parameterType="int">
+		DELETE FROM CART 
+		WHERE SEQ =#{seq}
+	</delete>
+
+	<delete id="mulDel" parameterType="Map">
+		DELETE FROM CART WHERE SEQ IN  
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
+</mapper>

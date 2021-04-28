@@ -21,7 +21,7 @@ public class StockController {
 
 	
 	@RequestMapping(value = "/stock.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String rboard(Locale locale, Model model) {
+	public String stock(Locale locale, Model model) {
 		List<StockDTO> list = StockService.getAllList();
 		model.addAttribute("list",list);
 		

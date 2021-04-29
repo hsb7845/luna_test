@@ -16,30 +16,29 @@
 <meta charset="UTF-8">
 <title>쿠폰함 </title>
 <!-- Custom fonts for this template -->
-        <link
-            href="vendor/fontawesome-free/css/all.min.css"
-            rel="stylesheet"
-            type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+<link
+    href="vendor/fontawesome-free/css/all.min.css"
+    rel="stylesheet"
+    type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this page -->
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <style>
-            .cls1 {
-                font-size: 40px;
-                text-align: center;
-            }
-            .cls2 {
-                font-size: 20px;
-                text-align: center;
-            }
-            
-        </style>
+<!-- Custom styles for this page -->
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<style>
+.cls1 {
+    font-size: 40px;
+    text-align: center;
+}
+.cls2 {
+    font-size: 20px;
+    text-align: center;
+}
+</style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -90,74 +89,73 @@ $(function(){
 <body>
 <p class="cls1">쿠폰함</p> 
 <form action="muldelCoupon.do" method="post">
-<table border="1">
-	<col width="50px">
-	<col width="150px">
-	<col width="150px">
-	<col width="150px">
-	<col width="150px">
-	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>쿠폰번호</th>
-		<th>쿠폰내용</th>
-		<th>할인금액</th>
-		<th>아이디</th>
-	</tr>
+<!-- <table border="1"> -->
+<%-- 	<col width="50px"> --%>
+<%-- 	<col width="150px"> --%>
+<%-- 	<col width="150px"> --%>
+<%-- 	<col width="150px"> --%>
+<%-- 	<col width="150px"> --%>
+<!-- 	<tr> -->
+<!-- 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th> -->
+<!-- 		<th>쿠폰번호</th> -->
+<!-- 		<th>쿠폰내용</th> -->
+<!-- 		<th>할인금액</th> -->
+<!-- 		<th>아이디</th> -->
+<!-- 	</tr> -->
 
-<!-- <table	 -->
-<!-- 	border="1" -->
-<!-- 	class="table table-bordered dataTable" -->
-<!-- 	id="dataTable" -->
-<!-- 	width="100%" -->
-<!-- 	cellspacing="0" -->
-<!-- 	role="grid" -->
-<!-- 	aria-describedby="dataTable_info" -->
-<!-- 	style="width: 100%;"> -->
-<!-- 	<tr role="row"> -->
-<!-- 	     <th -->
-<!-- 	         class="sorting_asc" -->
-<!-- 	         tabindex="0" -->
-<!-- 	         aria-controls="dataTable" -->
-<!-- 	         rowspan="1" -->
-<!-- 	         colspan="1" -->
-<!-- 	         aria-sort="ascending" -->
-<!-- 	         aria-label="Name: activate to sort column descending" -->
-<!-- 	         style="width: 10px;"> -->
-<!-- 	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th> -->
-	    
-<!-- 	     <th -->
-<!-- 	         class="sorting" -->
-<!-- 	         tabindex="0" -->
-<!-- 	         aria-controls="dataTable" -->
-<!-- 	         rowspan="1" -->
-<!-- 	         colspan="1" -->
-<!-- 	         aria-label="Office: activate to sort column ascending" -->
-<!-- 	         style="width: 10px;">쿠폰번호</th> -->
-<!-- 	       <th -->
-<!-- 	         class="sorting"체 -->
-<!-- 	         tabindex="0" -->
-<!-- 	         aria-controls="dataTable" -->
-<!-- 	         rowspan="1" -->
-<!-- 	         colspan="1" -->
-<!-- 	         aria-label="Position: activate to sort column ascending" -->
-<!-- 	         style="width: 72px;">쿠폰내용</th> -->
-<!-- 	     <th -->
-<!-- 	         class="sorting" -->
-<!-- 	         tabindex="0" -->
-<!-- 	         aria-controls="dataTable" -->
-<!-- 	         rowspan="1" -->
-<!-- 	         colspan="1" -->
-<!-- 	         aria-label="Age: activate to sort column ascending" -->
-<!-- 	         style="width: 31px;">할인금액</th> -->
-<!-- 	     <th -->
-<!-- 	         class="sorting" -->
-<!-- 	         tabindex="0" -->
-<!-- 	         aria-controls="dataTable" -->
-<!-- 	         rowspan="1" -->
-<!-- 	         colspan="1" -->
-<!-- 	         aria-label="Start date: activate to sort column ascending" -->
-<!-- 	         style="width: 69px;">아이디</th>                                       -->
-<!-- 	 </tr> -->
+<table	
+	border="1"
+	class="table table-bordered dataTable"
+	id="dataTable"
+	width="100%"
+	cellspacing="0"
+	role="grid"
+	aria-describedby="dataTable_info"
+	style="width: 100%;">
+	<tr role="row">
+	     <th
+	         class="sorting_asc"
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-sort="ascending"
+	         aria-label="Name: activate to sort column descending"
+	         style="width: 10px;">
+	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>	    
+	     <th
+	         class="sorting"
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-label="Office: activate to sort column ascending"
+	         style="width: 50px;">쿠폰번호</th>
+	       <th
+	         class="sorting"체
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-label="Position: activate to sort column ascending"
+	         style="width: 150px;">쿠폰내용</th>
+	     <th
+	         class="sorting"
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-label="Age: activate to sort column ascending"
+	         style="width: 31px;">할인금액</th>
+	     <th
+	         class="sorting"
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-label="Start date: activate to sort column ascending"
+	         style="width: 50px;">아이디</th>                                      
+	 </tr>
 	
 	<%
 		if(list==null||list.size()==0){
@@ -179,8 +177,8 @@ $(function(){
 	%>
 	<tr>
 		<td colspan="5">
-			<a href="couponInsertForm.do">쿠폰추가</a><br>
-			<a href=".do">메인</a><br>
+			<a href="couponInsertForm.do">쿠폰추가</a>
+			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>

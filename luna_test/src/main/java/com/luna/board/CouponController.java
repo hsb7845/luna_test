@@ -25,6 +25,7 @@ public class CouponController {
 		
 		return "couponList";
 	}
+	
 	@RequestMapping(value = "/couponInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertCoupon(Locale locale, Model model) {
 		return "couponInsertForm";

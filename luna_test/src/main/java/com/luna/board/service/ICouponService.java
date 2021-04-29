@@ -12,6 +12,4 @@ public interface ICouponService {
 	boolean deleteCoupon(int cseq);
 	boolean updateCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
-	
-
 }

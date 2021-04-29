@@ -50,7 +50,7 @@ public class CouponDAO implements ICouponDAO {
 	}
 
 	@Override
-	public boolean mulDel(String[] chk) {
+	public boolean mulDel(String[] chks) {
 		// TODO Auto-generated method stub
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);

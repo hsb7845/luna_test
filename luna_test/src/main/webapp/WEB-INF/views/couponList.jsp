@@ -102,8 +102,6 @@ $(function(){
 <!-- 		<th>할인금액</th> -->
 <!-- 		<th>아이디</th> -->
 <!-- 	</tr> -->
-<div class="container-fluid">
-
 <table	
 	border="1"
 	class="table table-bordered dataTable"

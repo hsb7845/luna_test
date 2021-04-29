@@ -66,7 +66,7 @@ public class PoptionController {
 	
 	@RequestMapping(value = "/muldelpoption.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chks) {
-		boolean isS = POptionService.mulDel(chks);
+		boolean isS = POptionService.mulDelPoption(chks);
 		if(isS) {
 			return "redirect:poption.do";
 		} else {

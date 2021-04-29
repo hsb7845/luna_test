@@ -40,7 +40,7 @@ public class POptionService implements IPoptionService {
 	}
 
 	@Override
-	public boolean mulDel(String[] chks) {
+	public boolean mulDelPoption(String[] chks) {
 		// TODO Auto-generated method stub
 		return POptionDAO.mulDelPoption(chks);
 	}

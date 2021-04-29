@@ -15,7 +15,7 @@
 		VALUES(P_Option_SEQ.nextval, NULL,#{otitle}, #{ocontent})
 	</insert>
 
-	<select id="getPoption" resultType="PODTO" parameterType="STRING">
+	<select id="getPoption" resultType="PODTO" parameterType="int">
 		select oseq, pseq, otitle, ocontent 
 		from p_option
 		where oseq = #{oseq}
@@ -28,7 +28,7 @@
 	</update>
 	
 
-	<delete id="muldelOption" parameterType="Map">
+	<delete id="mulDelPoption" parameterType="Map">
 		DELETE FROM P_OPTION
 		WHERE oseq IN 
 		<foreach collection="chks" item="i" separator="," open="(" close=")">

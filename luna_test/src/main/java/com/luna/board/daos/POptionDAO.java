@@ -42,7 +42,7 @@ import com.luna.board.dtos.POptionDTO;
 		@Override
 		public	boolean updatePoption(POptionDTO dto) {
 			// TODO Auto-generated method stub
-			return sqlSession.update(namespace+"updatPoption", dto)>0?true:false;
+			return sqlSession.update(namespace+"updatePoption", dto)>0?true:false;
 		}
 		
 		@Override
@@ -50,7 +50,7 @@ import com.luna.board.dtos.POptionDTO;
 			// TODO Auto-generated method stub
 			Map<String, String[]> map = new HashMap<String, String[]>();
 			map.put("chks", chks);
-			return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
+			return sqlSession.delete(namespace+"mulDelPoption",map)>0?true:false;
 		}
 }
 	

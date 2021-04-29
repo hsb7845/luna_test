@@ -12,16 +12,16 @@
 </head>
 <body>
 	<form method="post" action="updatepoption.do">
-	<input type="hidden" name="Oseq" value="${dto.Oseq}">
+	<input type="hidden" name="oseq" value="${dto.oseq}">
 	<table>
 
 	<tr>
 			<th>옵션제목</th>
-			<td><input type="text" name="Otitle" value="${dto.Otitle }"></td>
+			<td><input type="text" name="otitle" value="${dto.otitle }"></td>
 		</tr>
 		<tr>
 			<th>옵션내용</th>
-			<td><textarea name="Ocontent">${dto.Ocontent }</textarea></td>
+			<td><textarea name="ocontent">${dto.ocontent }</textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="수정"></td>

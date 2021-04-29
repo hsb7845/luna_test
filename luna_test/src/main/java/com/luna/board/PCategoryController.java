@@ -66,7 +66,7 @@ public class PCategoryController {
 
 	}
 	
-	@RequestMapping(value = "/muldelEboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/muldelPcategory.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = pCategoryService.mulDel(chk);
 		if(isS) {

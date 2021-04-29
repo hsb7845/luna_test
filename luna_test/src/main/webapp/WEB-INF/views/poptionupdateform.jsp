@@ -14,6 +14,7 @@
 	<form method="post" action="updatepoption.do">
 	<input type="hidden" name="Oseq" value="${dto.Oseq}">
 	<table>
+
 	<tr>
 			<th>옵션제목</th>
 			<td><input type="text" name="Otitle" value="${dto.Otitle }"></td>

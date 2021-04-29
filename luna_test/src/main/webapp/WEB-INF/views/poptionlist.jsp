@@ -77,7 +77,7 @@
 				<td><input type="checkbox" name="chk" value="<%=dto.getOseq()%>"/></td>
 				<td><%=dto.getOseq()%></td>
 				<td><%=dto.getPseq() %>
-				<td><a href="updatepoptionForm.do?Oseq=<%=dto.getOseq() %>"><%=dto.getOtitle()%></td>
+				<td><a href="updatepoptionForm.do?oseq=<%=dto.getOseq() %>"><%=dto.getOtitle()%></td>
 				<td><%=dto.getOcontent()%></td>
 			</tr>
 <%

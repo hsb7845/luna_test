@@ -46,8 +46,8 @@ public class PoptionController {
 	
 	
 	@RequestMapping(value = "/updatepoptionForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updatepoption(Locale locale, Model model,int qseq) {
-		POptionDTO dto = POptionService.getPoption(qseq);
+	public String updatepoption(Locale locale, Model model,int oseq) {
+		POptionDTO dto = POptionService.getPoption(oseq);
 		model.addAttribute("dto", dto);
 		return "poptionupdateform";
 	}

@@ -30,7 +30,7 @@ import com.luna.board.dtos.POptionDTO;
 		@Override
 		public boolean insertPoption(POptionDTO dto) {
 			// TODO Auto-generated method stub
-			return sqlSession.insert(namespace+"insertPoption",dto)>0?true:false;
+	return sqlSession.insert(namespace+"insertPoption",dto)>0?true:false;
 		}
 
 		@Override

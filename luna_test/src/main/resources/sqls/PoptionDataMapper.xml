@@ -3,26 +3,26 @@
 
 
 
-<mapper namespace="com.luna.option">
+<mapper namespace="com.luna.poption">
 
 	<select id="getAllList" resultType="PODTO">
 		select oseq, pseq, otitle, ocontent
 		from p_option
 	</select>
 
-	<insert id="insertOption" parameterType="PODTO">
-		INSERT INTO MEMBER(oseq, pseq, otitle, ocontent)
+	<insert id="insertPoption" parameterType="PODTO">
+		INSERT INTO p_option(oseq, pseq, otitle, ocontent)
 		VALUES(P_Option_SEQ.nextval, NULL,#{otitle}, #{ocontent})
 	</insert>
 
-	<select id="getOption" resultType="PODTO" parameterType="STRING">
+	<select id="getPoption" resultType="PODTO" parameterType="STRING">
 		select oseq, pseq, otitle, ocontent 
 		from p_option
 		where oseq = #{oseq}
 	</select>
 	
-	<update id="updateOption" parameterType="PODTO">
-	UPDATE p_opttion 
+	<update id="updatePoption" parameterType="PODTO">
+	UPDATE p_option 
 	SET otitle=#{otitle}, ocontent=#{ocontent}
 	WHERE oseq=#{oseq}
 	</update>

@@ -70,7 +70,7 @@ public class PCategoryController {
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = pCategoryService.mulDel(chk);
 		if(isS) {
-			return "redirect:eboard.do";
+			return "redirect:pcategory.do";
 		} else {
 			model.addAttribute("msg","상품 분류 글 수정을 실패하였습니다.");
 			return "error";

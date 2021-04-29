@@ -78,7 +78,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getEseq()%>"/></td>
 					<td><%=dto.getEseq()%></td>
-					<td><a href="updateEboardForm.do?eseq=<%=dto.getEseq() %>"><%=dto.getEtitle()%></a> </td>
+					<td><a href="updateeboardForm.do?eseq=<%=dto.getEseq() %>"><%=dto.getEtitle()%></a> </td>
 					<td><%=dto.getEcontent()%></td>
 				</tr>
 	<%

@@ -50,21 +50,23 @@
 %>
 <body>
 <h1>카테고리 게시판 글 목록</h1>
-<form action="muldelPcatecory.do" method="post">
+<form action="muldelPcategory.do" method="post">
 <table border="1">
 	<col width="50px">
-	<col width="50px">
-	<col width="50px">
-	<col width="50px">
+	<col width="100px">
+	<col width="100px">
+	<col width="100px">
+	<col width="100px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>번호</th>
 		<th>형태</th>
 		<th>색상</th>
-		<th>사이트</th>
+		<th>사이즈</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='4'>----작성된 카테고리가 없습니다.</td></tr>");
+			out.print("<tr><td colspan='5'>----작성된 카테고리가 없습니다.</td></tr>");
 			}else{
 		for(int i=0;i<list.size();i++){
 			PCategoryDTO dto=list.get(i);
@@ -72,7 +74,7 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getCnum()%>"/></td>
 					<td><%=dto.getCnum()%></td>
-					<td><a href="updatePcategoryForm.do?cnum=<%=dto.getCnum() %>"><%=dto.getPtype()%></a> </td>
+					<td><a href="updatepcategoryForm.do?cnum=<%=dto.getCnum() %>"><%=dto.getPtype()%></a> </td>
 					<td><%=dto.getPcolor()%></td>
 					<td><%=dto.getPsize()%></td>
 				</tr>
@@ -82,7 +84,7 @@
 	%>
 	<tr>
 		<td colspan="5">
-			<a href="inserteboardform.do">카테고리 작성</a>
+			<a href="insertpcategoryform.do">카테고리 작성</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

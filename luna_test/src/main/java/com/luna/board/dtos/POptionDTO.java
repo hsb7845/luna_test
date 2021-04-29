@@ -1,28 +1,15 @@
 package com.luna.board.dtos;
 
 public class POptionDTO {
-	private int qseq;
+	private int oseq;
 	private int pseq;
 	private String otitle;
 	private String ocontent;
-	
-	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "POptionDTO [qseq=" + qseq + ", pseq=" + pseq + ", otitle=" + otitle + ", ocontent=" + ocontent + "]";
+	public int getOseq() {
+		return oseq;
 	}
-	public POptionDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public int getQseq() {
-		return qseq;
-	}
-	public void setQseq(int qseq) {
-		this.qseq = qseq;
+	public void setOseq(int oseq) {
+		this.oseq = oseq;
 	}
 	public int getPseq() {
 		return pseq;
@@ -42,6 +29,15 @@ public class POptionDTO {
 	public void setOcontent(String ocontent) {
 		this.ocontent = ocontent;
 	}
+	@Override
+	public String toString() {
+		return "POptionDTO [oseq=" + oseq + ", pseq=" + pseq + ", otitle=" + otitle + ", ocontent=" + ocontent + "]";
+	}
+	public POptionDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 	

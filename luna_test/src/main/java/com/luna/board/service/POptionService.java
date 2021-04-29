@@ -28,9 +28,9 @@ public class POptionService implements IPoptionService {
 	}
 
 	@Override
-	public POptionDTO getPoption(int qseq) {
+	public POptionDTO getPoption(int oseq) {
 		// TODO Auto-generated method stub
-		return POptionDAO.getPoption(qseq);
+		return POptionDAO.getPoption(oseq);
 	}
 
 	@Override

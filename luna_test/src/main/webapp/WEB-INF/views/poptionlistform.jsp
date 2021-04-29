@@ -1,4 +1,4 @@
-<%@page import="com.luna.board.dtos.QBoardDTO"%>
+<%@page import="com.luna.board.dtos.POptionDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -47,17 +47,51 @@
 
 </script>
 </head>
+<%
+	List<POptionDTO> list= (List<POptionDTO>) request.getAttribute("list");
+%>
 <body>
-<h1>옵션</h1>
+<h1>문의 게시판 글 목록</h1>
 <form action="muldelpoption.do" method="post">
+<table border="1">
+	<col width="50px">
+	<col width="50px">
+	<col width="200px">
+	<col width="300px">
+	<col width="200px">
+	<col width="100px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>번호</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>상품 게시글 번호</th>
-		<th>아이디</th>
-	</tr>
-
+		<th>옵션번호</th>
+		<th>상품게시글번호</th>
+		<th>옵션제목</th>
+		<th>옵션내용</th>
+ㄴ	</tr>
+	<%
+		if(list==null||list.size()==0){
+			out.print("<tr><td colspan='6'>----작성된 문의 사항이 없습니다.---</td></tr>");
+			} else {
+		for(int i=0;i<list.size();i++){
+			POptionDTO dto=list.get(i);
+	%>
+			<tr>
+				<td><input type="checkbox" name="chk" value="<%=dto.getOseq()%>"/></td>
+				<a href="updatepoptionForm.do?Oseq=<%=dto.getOseq() %>"><%=dto.getOtitle()%></a> </td>
+				<td><%=dto.getPseq()%></td>
+				<td><%=dto.getOcontent()%></td>
+			</tr>
+<%
+		}
+	}
+%>
+<tr>
+	<td>
+		<a href="insertpoptionform.do">옵션추가</a>
+		<a href=".do">메인</a>
+		<input type="submit" value="삭제" />
+	</td>
+</tr>
+</table>
+</form>
 </body>
 </html>

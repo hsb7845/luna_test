@@ -10,7 +10,7 @@ public interface IPOptionDAO {
 
 	boolean insertPoption(POptionDTO dto);
 
-	POptionDTO getPoption(int qseq);
+	POptionDTO getPoption(int oseq);
 
 	boolean updatePoption(POptionDTO dto);
 

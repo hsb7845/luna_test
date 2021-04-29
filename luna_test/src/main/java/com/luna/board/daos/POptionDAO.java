@@ -34,9 +34,9 @@ import com.luna.board.dtos.POptionDTO;
 		}
 
 		@Override
-		public POptionDTO getPoption(int qseq) {
+		public POptionDTO getPoption(int oseq) {
 			// TODO Auto-generated method stub
-			return sqlSession.selectOne(namespace+"getPoption",qseq);
+			return sqlSession.selectOne(namespace+"getPoption",oseq);
 		}
 
 		@Override

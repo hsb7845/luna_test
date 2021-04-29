@@ -28,7 +28,7 @@
 		<mapper resource="./sqls/EBoardDataMapper.xml"/>
 		<mapper resource="./sqls/CartDataMapper.xml"/>
 		<mapper resource="./sqls/PCategoryDataMapper.xml"/>
-		<mapper resource="./spls/BuyDetailMapper.xml"/>
+		<mapper resource="./sqls/BuyDetailMapper.xml"/>
 	</mappers>
 </configuration>
 

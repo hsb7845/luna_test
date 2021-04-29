@@ -102,6 +102,7 @@ $(function(){
 <!-- 		<th>할인금액</th> -->
 <!-- 		<th>아이디</th> -->
 <!-- 	</tr> -->
+<div class="container-fluid">
 
 <table	
 	border="1"
@@ -177,7 +178,7 @@ $(function(){
 	%>
 	<tr>
 		<td colspan="5">
-			<a href="couponInsertForm.do">쿠폰추가</a>
+			<a href="couponInsertForm.do" >쿠폰추가</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

@@ -34,7 +34,6 @@
 		<mapper resource="./sqls/BuyDetailMapper.xml"/>
 		<mapper resource="./sqls/CouponDataMapper.xml"/>
 		<mapper resource="./sqls/ImgFileDataMapper.xml"/>
-		<mapper resource="./sqls/ImgFileDataMapper.xml"/>
 		<mapper resource="./sqls/PoptionDataMapper.xml"/>
 		
 	</mappers>

@@ -90,61 +90,74 @@ $(function(){
 <body>
 <p class="cls1">쿠폰함</p> 
 <form action="muldelCoupon.do" method="post">
+<table border="1">
+	<col width="50px">
+	<col width="150px">
+	<col width="150px">
+	<col width="150px">
+	<col width="150px">
+	<tr>
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>쿠폰번호</th>
+		<th>쿠폰내용</th>
+		<th>할인금액</th>
+		<th>아이디</th>
+	</tr>
 
-<table	
-	border="1"
-	class="table table-bordered dataTable"
-	id="dataTable"
-	width="100%"
-	cellspacing="0"
-	role="grid"
-	aria-describedby="dataTable_info"
-	style="width: 100%;">
-	<tr role="row">
-	     <th
-	         class="sorting_asc"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-sort="ascending"
-	         aria-label="Name: activate to sort column descending"
-	         style="width: 10px;">
-	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+<!-- <table	 -->
+<!-- 	border="1" -->
+<!-- 	class="table table-bordered dataTable" -->
+<!-- 	id="dataTable" -->
+<!-- 	width="100%" -->
+<!-- 	cellspacing="0" -->
+<!-- 	role="grid" -->
+<!-- 	aria-describedby="dataTable_info" -->
+<!-- 	style="width: 100%;"> -->
+<!-- 	<tr role="row"> -->
+<!-- 	     <th -->
+<!-- 	         class="sorting_asc" -->
+<!-- 	         tabindex="0" -->
+<!-- 	         aria-controls="dataTable" -->
+<!-- 	         rowspan="1" -->
+<!-- 	         colspan="1" -->
+<!-- 	         aria-sort="ascending" -->
+<!-- 	         aria-label="Name: activate to sort column descending" -->
+<!-- 	         style="width: 10px;"> -->
+<!-- 	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th> -->
 	    
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Office: activate to sort column ascending"
-	         style="width: 10px;">쿠폰번호</th>
-	       <th
-	         class="sorting"체
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Position: activate to sort column ascending"
-	         style="width: 72px;">쿠폰내용</th>
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Age: activate to sort column ascending"
-	         style="width: 31px;">할인금액</th>
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Start date: activate to sort column ascending"
-	         style="width: 69px;">아이디</th>                                      
-	 </tr>
+<!-- 	     <th -->
+<!-- 	         class="sorting" -->
+<!-- 	         tabindex="0" -->
+<!-- 	         aria-controls="dataTable" -->
+<!-- 	         rowspan="1" -->
+<!-- 	         colspan="1" -->
+<!-- 	         aria-label="Office: activate to sort column ascending" -->
+<!-- 	         style="width: 10px;">쿠폰번호</th> -->
+<!-- 	       <th -->
+<!-- 	         class="sorting"체 -->
+<!-- 	         tabindex="0" -->
+<!-- 	         aria-controls="dataTable" -->
+<!-- 	         rowspan="1" -->
+<!-- 	         colspan="1" -->
+<!-- 	         aria-label="Position: activate to sort column ascending" -->
+<!-- 	         style="width: 72px;">쿠폰내용</th> -->
+<!-- 	     <th -->
+<!-- 	         class="sorting" -->
+<!-- 	         tabindex="0" -->
+<!-- 	         aria-controls="dataTable" -->
+<!-- 	         rowspan="1" -->
+<!-- 	         colspan="1" -->
+<!-- 	         aria-label="Age: activate to sort column ascending" -->
+<!-- 	         style="width: 31px;">할인금액</th> -->
+<!-- 	     <th -->
+<!-- 	         class="sorting" -->
+<!-- 	         tabindex="0" -->
+<!-- 	         aria-controls="dataTable" -->
+<!-- 	         rowspan="1" -->
+<!-- 	         colspan="1" -->
+<!-- 	         aria-label="Start date: activate to sort column ascending" -->
+<!-- 	         style="width: 69px;">아이디</th>                                       -->
+<!-- 	 </tr> -->
 	
 	<%
 		if(list==null||list.size()==0){
@@ -155,8 +168,8 @@ $(function(){
 	%>
 		<tr align="center">
 				<td><input type="checkbox" name="chk" value="<%=dto.getCseq()%>"/></td>
-				<td><a href="couponUpdateForm.do?cseq=<%=dto.getCseq()%>" ><%=dto.getCseq()%></td>
-				<td><%=dto.getCcontent()%></a></td>
+				<td><%=dto.getCseq()%></td>
+				<td><a href="couponUpdateForm.do?cseq=<%=dto.getCseq()%>" ><%=dto.getCcontent()%></a></td>
 				<td><%=dto.getDiscount()%></td>
 				<td><%=dto.getId()%></td>
 			</tr>

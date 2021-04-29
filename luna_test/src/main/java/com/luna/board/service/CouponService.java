@@ -20,4 +20,34 @@ public class CouponService implements ICouponService {
 		return CouponDAO.getAllList();
 	}
 
+	@Override
+	public boolean insertCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return CouponDAO.insertCoupon(dto);
+	}
+
+	@Override
+	public CouponDTO getCoupon(int cseq) {
+		// TODO Auto-generated method stub
+		return CouponDAO.getCoupon(cseq);
+	}
+
+	@Override
+	public boolean deleteCoupon(int cseq) {
+		// TODO Auto-generated method stub
+		return CouponDAO.deleteCoupon(cseq);
+	}
+
+	@Override
+	public boolean updateCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return CouponDAO.updateCoupon(dto);
+	}
+
+	@Override
+	public boolean mulDel(String[] chk) {
+		// TODO Auto-generated method stub
+		return CouponDAO.mulDel(chk);
+	}
+
 }

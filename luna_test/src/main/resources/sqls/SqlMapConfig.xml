@@ -15,6 +15,7 @@
 		<typeAlias type="com.luna.board.dtos.EBoardDTO" alias="EBDTO"/>
 		<typeAlias type="com.luna.board.dtos.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.luna.board.dtos.PCategoryDTO" alias="PCDTO"/>
+		<typeAlias type="com.luna.board.dtos.BuyDetailDTO" alias="BDDTO"/>
 	</typeAliases>
 <!-- 	DB접속 정보 셋팅 -->	
 	<mappers>
@@ -27,6 +28,7 @@
 		<mapper resource="./sqls/EBoardDataMapper.xml"/>
 		<mapper resource="./sqls/CartDataMapper.xml"/>
 		<mapper resource="./sqls/PCategoryDataMapper.xml"/>
+		<mapper resource="./spls/BuyDetailMapper.xml"/>
 	</mappers>
 </configuration>
 

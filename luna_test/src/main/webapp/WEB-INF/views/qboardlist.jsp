@@ -51,7 +51,7 @@
 	List<QBoardDTO> list= (List<QBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>리뷰 게시판 글 목록</h1>
+<h1>문의 게시판 글 목록</h1>
 <form action="muldelQboard.do" method="post">
 <table border="1">
 	<col width="50px">

@@ -14,7 +14,7 @@
 <script type="text/javascript">
 
 	function allSel(val){
-		var chks=document.getElementsByName("chk");
+		var chks=document.getElementsByName("chks");
 		for(var i=0;i<chks.length;i++){
 			chks[i].checked=val.checked;
 		}
@@ -22,7 +22,7 @@
 	$(function(){
 		$("form").submit(function(){
 			var bool = true;
-			var count=$(this).find("input[name=chk]:checked").length;
+			var count=$(this).find("input[name=chks]:checked").length;
 			if(count==0){
 				alert('최소 하나 이상 체크하세요!!!');
 				bool= false;
@@ -32,10 +32,10 @@
 			return bool
 		});
 		
-		var chks = document.getElementsByName("chk");
+		var chks = document.getElementsByName("chks");
 	 	for(var i=0;i<chks.length;i++){
 	 		chks[i].onclick =function(){
-	 			var checkdObjs = document.querySelectorAll("input[name=chk]:checked");
+	 			var checkdObjs = document.querySelectorAll("input[name=chks]:checked");
 	 			if(checkedObjs.length ==chks.length){
 	 				document.getElementsByName("all")[0].checked=true;
 	 			}else{
@@ -74,7 +74,7 @@
 			POptionDTO dto=list.get(i);
 	%>
 			<tr>
-				<td><input type="checkbox" name="chk" value="<%=dto.getOseq()%>"/></td>
+				<td><input type="checkbox" name="chks" value="<%=dto.getOseq()%>"/></td>
 				<td><%=dto.getOseq()%></td>
 				<td><%=dto.getPseq() %>
 				<td><a href="updatepoptionForm.do?oseq=<%=dto.getOseq() %>"><%=dto.getOtitle()%></td>

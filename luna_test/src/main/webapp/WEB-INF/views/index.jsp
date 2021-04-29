@@ -16,5 +16,6 @@
 	<a href="cart.do">장바구니 보기(cart)</a><br>
 	<a href="eboard.do">이벤트 게시판 보기</a><br>
 	<a href="pcategory.do">상품 분류 보기</a><br>
+	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 </body>
 </html>

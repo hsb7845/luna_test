@@ -15,10 +15,10 @@
 	<a href="buylist.do">구매 목록 보기</a><br>
 	<a href="cart.do">장바구니 보기(cart)</a><br>
 	<a href="eboard.do">이벤트 게시판 보기</a><br>
-	<a href="pcategory.do">상품 분류 보기</a><br>
 	<a href="poption.do">옵션 보기</a><br>
 	
+	<a href="pcategory.do">상품 분류 보기</a><br>
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
+	<a href="ifile.do">이미지 파일 보기</a><br>
 </body>
 </html>

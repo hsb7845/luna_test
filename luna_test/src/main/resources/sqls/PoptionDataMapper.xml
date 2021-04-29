@@ -5,45 +5,36 @@
 
 <mapper namespace="com.luna.member">
 
-	<select id="getAllList" resultType="MDTO">
-		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point
-		from Member
+	<select id="getAllList" resultType="PODTO">
+		select oseq, pseq, otitle, ocontent
+		from p_option
 	</select>
 
-	<insert id="insertMember" parameterType="MDTO">
-		INSERT INTO MEMBER(id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point)
-		VALUES(#{id},#{pwd},#{email}, #{email_chk}, #{address}, #{birth}, #{sex}, #{phone}, sysdate, #{admin}, #{nickName}, #{name}, #{point})
+	<insert id="insertOption" parameterType="PODTO">
+		INSERT INTO MEMBER(oseq, pseq, otitle, ocontent)
+		VALUES(P_Option_SEQ.nextval, NULL,#{otitle}, #{ocontent})
 	</insert>
 
-	<select id="getMember" resultType="MDTO" parameterType="STRING">
-		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point from member
-		where id = #{id}
+	<select id="getOption" resultType="PODTO" parameterType="STRING">
+		select oseq, pseq, otitle, ocontent 
+		from p_option
+		where oseq = #{oseq}
 	</select>
 	
-	<update id="updateMember" parameterType="MDTO">
-	UPDATE MEMBER 
-	SET PWD=#{pwd}, EMAIL=#{email}, EMAIL_CHK=#{email_chk}, ADDRESS=#{address}, BIRTH=#{birth}, SEX=#{sex}, PHONE=#{phone}, ADMIN=#{admin}, NICKNAME=#{nickName}, NAME=#{name}, POINT=#{point}
-	WHERE ID=#{id}
+	<update id="updateOption" parameterType="PODTO">
+	UPDATE p_opttion 
+	SET otitle=#{otitle}, ocontent=#{ocontent}
+	WHERE oseq=#{oseq}
 	</update>
 	
 
-	<delete id="muldelMember" parameterType="Map">
-		DELETE FROM MEMBER WHERE ID IN 
+	<delete id="muldelOption" parameterType="Map">
+		DELETE FROM P_OPTION
+		WHERE oseq IN 
 		<foreach collection="chks" item="i" separator="," open="(" close=")">
 			#{i}
 		</foreach>
 	</delete>
-	
-	
-	<select id ="idChk" resultType="int">
-		SELECT COUNT (*) FROM MEMBER 
-		WHERE ID = #{id}
-	</select>
-	
-		<select id ="pwdChk" resultType="int">
-		SELECT COUNT (*) FROM MEMBER 
-		WHERE PWD = #{pwd}
-	</select>
 	
 
 </mapper>

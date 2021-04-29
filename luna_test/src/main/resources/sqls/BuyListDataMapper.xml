@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luna.buylist">
+
+	<select id="getAllList" resultType="BLDTO">
+		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
+		FROM BUY_LIST
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="BLDTO">
+		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
+		FROM BUY_LIST where bseq=#{bseq} 
+	</select>
+	
+	<insert id="insertBoard" parameterType="BLDTO">
+		INSERT INTO BUY_LIST
+		(BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE)
+		VALUES(buy_list_seq.nextval,#{id},sysdate,#{trackingNum},#{delStatus},#{name},#{phone},#{address}, #{totalPrice})		
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from buy_list
+		where bseq =#{bseq}
+	</delete>
+	
+	
+	<update id="updateBoard" parameterType="BLDTO">
+		update buy_list  SET ID=#{id}, TRACKINGNUM=#{trackingNum}, DELSTATUS=#{delStatus}, NAME=#{name}, PHONE=#{phone}, ADDRESS=#{address}, TOTALPRICE=#{totalPrice}
+		where bseq=#{bseq}
+	</update>
+	
+	<delete id="mulDelBoard" parameterType="Map">
+		DELETE FROM buy_list WHERE BSEQ IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
+	
+	
+	
 </mapper>

@@ -1,1 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.luna.imgfile">
+
+	<select id="getAllList" resultType="IFDTO">
+		select imgnum, filesize, imgname, id, pseq, rseq, eseq 
+		from IMG_FILE
+	</select>
+
+	<insert id="insertboard" parameterType="IFDTO">
+		INSERT INTO IMG_FILE
+		(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ)
+		VALUES(IMG_FILE_SEQ.nextval, #{filesize}, #{imgname}, null, null, null, null);
+	</insert>
+	
+	<select id ="getBoard" resultType="IFDTO" parameterType="int">
+		select imgnum, filesize, imgname, id, pseq, rseq, eseq 
+		from img_file
+		where imgnum = #{imgnum}
+ 	</select>
+ 	
+	<update id ="updateBoard" parameterType="IFDTO">
+		UPDATE IMG_FILE SET FILESIZE=#{filesize}, IMGNAME=#{imgname}, ID=#{id}, PSEQ=#{pseq}, RSEQ=#{rseq}, ESEQ=#{eseq}
+		WHERE IMGNUM=#{imgnum}	
+	</update>
+	
+	<delete id ="deleteBoard" parameterType="int">
+		delete from img_file where imgnum =#{imgnum}
+	</delete>
+	
+	<delete id="mulDel" parameterType="Map">
+		DELETE FROM img_file WHERE imgnum IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+

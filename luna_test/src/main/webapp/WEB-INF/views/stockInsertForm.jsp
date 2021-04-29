@@ -32,7 +32,7 @@
 		</tr>
 		
 		<tr>
-			<td colspan="2"><input type="submit" value="추가"></td>
+			<td colspan="6"><input type="submit" value="추가"></td>
 		</tr>
 	</table>
 </form>	

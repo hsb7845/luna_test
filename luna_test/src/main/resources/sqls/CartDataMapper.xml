@@ -10,7 +10,7 @@
 
 	<insert id="insertCart" parameterType="CartDTO">
 		INSERT INTO CART (SEQ, ID, PSEQ, PCOUNT) 
-		VALUES(CART_SEQ.NEXTVAL, #{id}, null, #{pcount})
+		VALUES(CART_SEQ.NEXTVAL,null, null, #{pcount})
 	</insert>
 	
 	<select id ="getCart" resultType="CartDTO" parameterType="int">
@@ -20,7 +20,7 @@
  	</select>
 	
 	<update id ="updateCart" parameterType="CartDTO">
-		UPDATE CART SET ID=#{id}, PSEQ=#{pseq}, PCOUNT=#{pcount} 
+		UPDATE CART SET PCOUNT=#{pcount} 
 		WHERE SEQ=#{seq}
 	</update>
 	

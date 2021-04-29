@@ -19,4 +19,36 @@ public class CartService implements ICartService {
 		return CartDAO.getAllList();
 	}
 
+	@Override
+	public boolean insertCart(CartDTO dto) {
+		// TODO Auto-generated method stub
+		return CartDAO.insertCart(dto);
+	}
+
+	@Override
+	public CartDTO getCart(int seq) {
+		// TODO Auto-generated method stub
+		return CartDAO.getCart(seq);
+	}
+
+	@Override
+	public boolean updateCart(CartDTO dto) {
+		// TODO Auto-generated method stub
+		return CartDAO.updateCart(dto);
+	}
+	
+	@Override
+	public boolean deleteCart(int seq) {
+		// TODO Auto-generated method stub
+		return CartDAO.deleteCart(seq);
+	}
+
+	@Override
+	public boolean mulDel(String[] chk) {
+		// TODO Auto-generated method stub
+		return CartDAO.mulDel(chk);
+	}
+
+
+
 }

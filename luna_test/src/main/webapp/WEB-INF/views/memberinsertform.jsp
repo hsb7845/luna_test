@@ -12,7 +12,7 @@
 		<div>
 			<label for="id">아이디</label>
 			<input type="text" name="id"/>
-			<button type="submit" id="idChk" onclick="fn_idChk();">중복확인</button><br>
+			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
 		비밀번호 <input type="password" name="pwd"><br>
 		이메일 <input type="text" name="email"><br>

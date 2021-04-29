@@ -124,7 +124,7 @@ $(function(){
 	         colspan="1"
 	         aria-sort="ascending"
 	         aria-label="Name: activate to sort column descending"
-	         style="width: 59px;">
+	         style="width: 10px;">
 	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 	    
 	     <th

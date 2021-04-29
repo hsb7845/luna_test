@@ -8,7 +8,7 @@
 		FROM COUPON		
 	</select>
 	
-	<insert id="insertCoupon" parameterType="CoupontDTO">
+	<insert id="insertCoupon" parameterType="CouponDTO">
 		INSERT INTO COUPON (CSEQ, CONTENT, DISCOUNT, ID)
 		VALUES(COUPON_SEQ.NEXTVAL, #{content}, #{discount}, null)		
 	</insert>

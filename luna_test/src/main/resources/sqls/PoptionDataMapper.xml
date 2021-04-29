@@ -3,7 +3,7 @@
 
 
 
-<mapper namespace="com.luna.member">
+<mapper namespace="com.luna.option">
 
 	<select id="getAllList" resultType="PODTO">
 		select oseq, pseq, otitle, ocontent

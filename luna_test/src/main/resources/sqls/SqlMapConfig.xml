@@ -16,7 +16,7 @@
 		<typeAlias type="com.luna.board.dtos.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.luna.board.dtos.PCategoryDTO" alias="PCDTO"/>
 		<typeAlias type="com.luna.board.dtos.BuyDetailDTO" alias="BDDTO"/>
-		<typeAlias type="com.luna.board.dtos.POptionDTO" alias="BDDTO"/>	
+		<typeAlias type="com.luna.board.dtos.POptionDTO" alias="PODTO"/>	
 		<typeAlias type="com.luna.board.dtos.CouponDTO" alias="CouponDTO"/>
 		<typeAlias type="com.luna.board.dtos.ImgFileDTO" alias="IFDTO"/>
 	</typeAliases>

@@ -48,6 +48,16 @@
 </script>
 </head>
 <body>
+<h1>옵션</h1>
+<form action="muldelpoption.do" method="post">
+	<tr>
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>번호</th>
+		<th>제목</th>
+		<th>내용</th>
+		<th>상품 게시글 번호</th>
+		<th>아이디</th>
+	</tr>
 
 </body>
 </html>

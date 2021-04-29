@@ -13,7 +13,7 @@
 	<insert id="insertboard" parameterType="IFDTO">
 		INSERT INTO IMG_FILE
 		(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ)
-		VALUES(IMG_FILE_SEQ.nextval, #{filesize}, #{imgname}, null, null, null, null);
+		VALUES(IMG_FILE_SEQ.nextval, #{filesize}, #{imgname}, null, null, null, null)
 	</insert>
 	
 	<select id ="getBoard" resultType="IFDTO" parameterType="int">

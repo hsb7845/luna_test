@@ -92,7 +92,7 @@
 		}
 	%>
 	<tr>
-		<td colspan="5">
+		<td colspan="8">
 			<a href="insertimgfileform.do">이미지 파일 작성</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />

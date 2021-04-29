@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="insertpcategory.do">
+	<form method="post" action="insertimgfile.do">
 	<table>
 		<tr>
 			<th>파일 사이즈</th>

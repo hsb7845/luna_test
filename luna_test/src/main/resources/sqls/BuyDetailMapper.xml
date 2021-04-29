@@ -2,6 +2,39 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luna.buydetail">
 
+	<select id="getAllList" resultType="BDDTO">
+		SELECT BDSEQ,PNUM,PCOUNT,BSEQ
+		FROM BUY_DETAIL
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="BDDTO">
+		SELECT BDSEQ,PNUM,PCOUNT,BSEQ
+		FROM BUY_DETAIL where bdseq=#{bdseq} 
+	</select>
+	
+	<insert id="insertBoard" parameterType="BDDTO">
+		INSERT INTO BUY_DETAIL
+		(BDSEQ,PNUM,PCOUNT,BSEQ)
+		VALUES(buy_detail_seq.nextval,#{pnum},#{pcount},#{bseq})		
+	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from BUY_DETAIL
+		where bseq =#{bseq}
+	</delete>
+	
+	
+	<update id="updateBoard" parameterType="BDDTO">
+		update BUY_DETAIL  SET pnum = #{pnum} ,pcount =#{pcount}
+		where bdseq=#{bdseq}
+	</update>
+	
+	<delete id="mulDelBoard" parameterType="Map">
+		DELETE FROM buy_detail WHERE BdSEQ IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
 	
 	
 	

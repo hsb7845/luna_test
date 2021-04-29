@@ -10,6 +10,10 @@
 	<form method="post" action="insertpcategory.do">
 	<table>
 		<tr>
+			<th>번호</th>
+			<td><input type="text" name="cnum"></td>
+		</tr>
+		<tr>
 			<th>형태</th>
 			<td><input type="text" name="ptype"></td>
 		</tr>
@@ -22,7 +26,7 @@
 			<td><input type="text" name="psize"></td>
 		</tr>
 		<tr>
-			<td colspan="3"><input type="submit" value="작성"></td>
+			<td colspan="4"><input type="submit" value="작성"></td>
 		</tr>
 	</table>
 	</form>

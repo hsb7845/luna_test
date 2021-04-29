@@ -13,7 +13,7 @@
 
    <insert id="insertboard" parameterType="PCDTO">
       INSERT INTO P_CATEGORY(CNUM, PTYPE, PCOLOR, PSIZE)
-      VALUES(P_CATEGORY_SEQ.nextval, #{ptype}, #{pcolor}, #{psize})
+      VALUES(#{cnum}, #{ptype}, #{pcolor}, #{psize})
    </insert>
    
    <select id ="getBoard" resultType="PCDTO" parameterType="int">

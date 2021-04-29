@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="updatpcategory.do">
+	<form method="post" action="updatepcategory.do">
 	<input type="hidden" name="cnum" value="${dto.cnum}">
 	<table>
 		

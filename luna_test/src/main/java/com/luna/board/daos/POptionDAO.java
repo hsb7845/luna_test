@@ -14,13 +14,13 @@ import com.luna.board.dtos.POptionDTO;
 
 @Repository
 	public class POptionDAO implements IPOptionDAO{
-		private String namespace = "com.luna.poption.";
+	
+	private String namespace = "com.luna.poption.";
 	
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String[] chks;
 	
 	@Override
 	public List<POptionDTO> getAllList() {
@@ -46,7 +46,7 @@ import com.luna.board.dtos.POptionDTO;
 		}
 		
 		@Override
-		public 	boolean mulDelPoption(String[] chk) {
+		public 	boolean mulDelPoption(String[] chks) {
 			// TODO Auto-generated method stub
 			Map<String, String[]> map = new HashMap<String, String[]>();
 			map.put("chks", chks);

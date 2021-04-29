@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.luna.board.dtos.POptionDTO;
 import com.luna.board.service.IPoptionService;
 
+@Controller
 public class PoptionController {
 
 	@Autowired
@@ -23,7 +25,7 @@ public class PoptionController {
 		return "poptionlist";
 	}
 	
-	@RequestMapping(value = "/insertpoption.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertpoptionform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertpoption(Locale locale, Model model) {
 
 		return "poptioninsertform";
@@ -37,7 +39,7 @@ public class PoptionController {
 		if(isS) {
 			return "redirect:poption.do";
 		} else {
-			model.addAttribute("msg", "문의 글 추가를 실패하였습니다.");
+			model.addAttribute("msg", "옵션작성을 실패하였습니다.");
 			return "error";
 		}
 	}
@@ -56,19 +58,19 @@ public class PoptionController {
 		if(isS) {
 			return "redirect:poption.do";
 		} else {
-			model.addAttribute("msg","문의 글 수정을 실패하였습니다.");
+			model.addAttribute("msg","옵션 수정 실패");
 			return "error";
 		}
 
 	}
 	
 	@RequestMapping(value = "/muldelpoption.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String muldel(Locale locale, Model model, String[] chk) {
-		boolean isS = POptionService.mulDel(chk);
+	public String muldel(Locale locale, Model model, String[] chks) {
+		boolean isS = POptionService.mulDel(chks);
 		if(isS) {
 			return "redirect:poption.do";
 		} else {
-			model.addAttribute("msg","문의 글 수정을 실패하였습니다.");
+			model.addAttribute("msg","옵션 삭제 실패");
 			return "error";
 		}
 

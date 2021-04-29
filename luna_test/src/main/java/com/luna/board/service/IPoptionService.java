@@ -16,7 +16,7 @@ public interface IPoptionService {
 	boolean updatePoption(POptionDTO dto);
 
 
-	boolean mulDel(String[] chk);
+	boolean mulDel(String[] chks);
 
 
 

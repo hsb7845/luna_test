@@ -14,7 +14,7 @@ public interface IPOptionDAO {
 
 	boolean updatePoption(POptionDTO dto);
 
-	boolean mulDelPoption(String[] chk);
+	boolean mulDelPoption(String[] chks);
 
 
 }

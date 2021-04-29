@@ -55,24 +55,19 @@
 %>
 <body>
 <h1>구매현황</h1>
-<form action="buyListMulDel.do" method="post">
+<form action="buyDetailMulDel.do" method="post">
 <table border="1">
 	<col width="50px">
 	<col width="50px">
-	<col width="100px">
-	<col width="300px">
+	<col width="200px">
+	<col width="200px">
 	<col width="200px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>번호</th>
-		<th>아이디</th>
-		<th>배송현황</th>
-		<th>운송장번호</th>
-		<th>받는이</th>
-		<th>주소</th>
-		<th>전화번호</th>
-		<th>총 금액</th>
-		<th>구매날짜</th>
+		<th>상품번호</th>
+		<th>수량</th>
+		<th>구매번호</th>
 		
 	</tr>
 	<%
@@ -85,8 +80,9 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getBdseq()%>"/></td>
 					<td><%=dto.getBdseq()%></td>
-					<td><%=dto.getPcount()%></td>
 					<td><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPnum()%></a> </td>
+					<td><%=dto.getPcount()%>개</td>
+					<td><%=dto.getBseq() %>
 				</tr>
 	<%
 			}

@@ -19,7 +19,7 @@ public class BuyDetailController {
 	@Autowired
 	private IBuyDetailService buyDetailService;
 	
-	@RequestMapping(value = "/buyDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/buydetail.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getAllBuyDetail(Locale locale, Model model) {
 		List<BuyDetailDTO> list = buyDetailService.getAllList();
 		model.addAttribute("list",list);
@@ -37,7 +37,7 @@ public class BuyDetailController {
 	public String buyDetailInsert(Locale locale, Model model,BuyDetailDTO dto) {
 		boolean isS = buyDetailService.insertBoard(dto);
 		if(isS) {
-			return "redirect:buyDetail.do";
+			return "redirect:buydetail.do";
 		}else {
 			model.addAttribute("msg","글추가실패");
 			return "error";
@@ -46,8 +46,8 @@ public class BuyDetailController {
 	}
 	
 	@RequestMapping(value = "/buyDetailUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String buyDetailUpdateForm(Locale locale, Model model,int bseq) {
-		BuyDetailDTO dto = buyDetailService.getBoard(bseq);
+	public String buyDetailUpdateForm(Locale locale, Model model,int bdseq) {
+		BuyDetailDTO dto = buyDetailService.getBoard(bdseq);
 		model.addAttribute("dto",dto);
 		return "buyDetailUpdateForm";
 	}
@@ -56,7 +56,7 @@ public class BuyDetailController {
 	public String buyDetailUpdate(Locale locale, Model model,BuyDetailDTO dto) {
 		boolean isS = buyDetailService.updateBoard(dto);
 		if(isS) {
-			return "redirect:buyDetail.do";
+			return "redirect:buydetail.do";
 		}else {
 			model.addAttribute("msg","글수정실패");
 			return "error";
@@ -65,10 +65,10 @@ public class BuyDetailController {
 	}
 	
 	@RequestMapping(value = "/buyDetailDelete.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String buyDetailDelete(Locale locale, Model model,int bseq) {
-		boolean isS = buyDetailService.deleteBoard(bseq);
+	public String buyDetailDelete(Locale locale, Model model,int bdseq) {
+		boolean isS = buyDetailService.deleteBoard(bdseq);
 		if(isS) {
-			return "redirect:buyDetail.do";
+			return "redirect:buydetail.do";
 		}else {
 			model.addAttribute("msg","글삭제실패");
 			return "error";
@@ -82,7 +82,7 @@ public class BuyDetailController {
 	public String buyDetailMulDel(Locale locale, Model model,String[] chk) {
 		boolean isS = buyDetailService.mulDel(chk);
 		if(isS) {
-			return "redirect:buyDetail.do";
+			return "redirect:buydetail.do";
 		}else {
 			model.addAttribute("msg","글수정실패");
 			return "error";

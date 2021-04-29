@@ -70,7 +70,7 @@
 	</tr>
 	<%
 		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='6'>----작성된 문의 사항 없습니다.---</td></tr>");
+			out.print("<tr><td colspan='6'>----작성된 문의 사항이 없습니다.---</td></tr>");
 			} else {
 		for(int i=0;i<list.size();i++){
 			QBoardDTO dto=list.get(i);
@@ -97,7 +97,7 @@
 %>
 <tr>
 	<td colspan="6">
-		<a href="insertqboardform.do">문의 사항 쓰기</a>
+		<a href="insertqboardform.do">문의 사항 작성</a>
 		<a href=".do">메인</a>
 		<input type="submit" value="삭제" />
 	</td>

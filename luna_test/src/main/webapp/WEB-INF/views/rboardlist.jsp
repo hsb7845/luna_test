@@ -103,7 +103,7 @@
 %>
 <tr>
 	<td colspan="8">
-		<a href="insertrboardform.do">리뷰 쓰기</a>
+		<a href="insertrboardform.do">리뷰 작성</a>
 		<a href=".do">메인</a>
 		<input type="submit" value="삭제" />
 	</td>

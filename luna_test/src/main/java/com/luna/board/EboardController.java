@@ -62,7 +62,7 @@ import com.luna.board.service.IEBoardService;
 			if(isS) {
 				return "redirect:eboard.do";
 			} else {
-				model.addAttribute("msg","리뷰 글 수정 실패");
+				model.addAttribute("msg","이벤트 글 수정을 실패하였습니다.");
 				return "error";
 			}
 
@@ -74,7 +74,7 @@ import com.luna.board.service.IEBoardService;
 			if(isS) {
 				return "redirect:eboard.do";
 			} else {
-				model.addAttribute("msg","리뷰 글 수정 실패");
+				model.addAttribute("msg","이벤트 글 수정을 실패하였습니다.");
 				return "error";
 			}
 		}

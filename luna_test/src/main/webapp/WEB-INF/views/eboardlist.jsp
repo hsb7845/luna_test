@@ -28,7 +28,7 @@
 			var bool = true;
 			var count=$(this).find("input[name=chk]:checked").length;
 			if(count==0){
-				alert('최소 하나이상 체크하세요!!!');
+				alert('최소 하나 이상 체크하세요!!!');
 				bool= false;
 			}else if(confirm("정말 삭제하시겠습니까?")==false){
 				bool = false;
@@ -87,7 +87,7 @@
 	%>
 	<tr>
 		<td colspan="4">
-			<a href="inserteboardform.do">글쓰기</a>
+			<a href="inserteboardform.do">이벤트 작성</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

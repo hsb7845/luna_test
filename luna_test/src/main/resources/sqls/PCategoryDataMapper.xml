@@ -1,1 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.luna.pcategory">
+
+   <select id="getAllList" resultType="PCDTO">
+      select cnum, ptype, pcolor, psize 
+      from p_category 
+      order by cnum desc
+   </select>
+
+   <insert id="insertboard" parameterType="PCDTO">
+      INSERT INTO P_CATEGORY(CNUM, PTYPE, PCOLOR, PSIZE)
+      VALUES(P_CATEGORY_SEQ.nextval, #{ptype}, #{pcolor}, #{psize})
+   </insert>
+   
+   <select id ="getBoard" resultType="PCDTO" parameterType="int">
+      select cnum, ptype, pcolor, psize 
+      from p_category
+      where cnum = #{cnum}
+    </select>
+   
+   <update id ="updateBoard" parameterType="PCDTO">
+      UPDATE P_CATEGORY 
+      SET PTYPE = #{ptype}, PCOLOR = #{pcolor}, PSIZE=#{psize} 
+      WHERE CNUM = #{cnum}
+   </update>
+   
+   <delete id ="deleteBoard" parameterType="int">
+      delete from p_category where cnum = #{cnum}
+   </delete>
+
+   <delete id="mulDel" parameterType="Map">
+      DELETE FROM p_category WHERE CNUM IN 
+      <foreach collection="chks" item="i" separator="," open="(" close=")">
+         #{i}
+      </foreach>
+   </delete>
+</mapper>

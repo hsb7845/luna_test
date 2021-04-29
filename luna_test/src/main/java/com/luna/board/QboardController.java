@@ -41,7 +41,7 @@ public class QboardController {
 		if(isS) {
 			return "redirect:qboard.do";
 		} else {
-			model.addAttribute("msg", "리뷰 글 추가를 실패하였습니다.");
+			model.addAttribute("msg", "문의 글 추가를 실패하였습니다.");
 			return "error";
 		}
 	}
@@ -61,7 +61,7 @@ public class QboardController {
 		if(isS) {
 			return "redirect:qboard.do";
 		} else {
-			model.addAttribute("msg","리뷰 글 수정 실패");
+			model.addAttribute("msg","문의 글 수정을 실패하였습니다.");
 			return "error";
 		}
 
@@ -73,7 +73,7 @@ public class QboardController {
 		if(isS) {
 			return "redirect:qboard.do";
 		} else {
-			model.addAttribute("msg","리뷰 글 수정 실패");
+			model.addAttribute("msg","문의 글 수정을 실패하였습니다.");
 			return "error";
 		}
 

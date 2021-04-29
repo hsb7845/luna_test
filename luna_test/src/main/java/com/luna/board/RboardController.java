@@ -63,7 +63,7 @@ public class RboardController {
 		if(isS) {
 			return "redirect:rboard.do";
 		} else {
-			model.addAttribute("msg","리뷰 글 수정 실패");
+			model.addAttribute("msg","리뷰 글 수정을 실패하였습니다.");
 			return "error";
 		}
 
@@ -75,7 +75,7 @@ public class RboardController {
 		if(isS) {
 			return "redirect:rboard.do";
 		} else {
-			model.addAttribute("msg","리뷰 글 수정 실패");
+			model.addAttribute("msg","리뷰 글 수정을 실패하였습니다.");
 			return "error";
 		}
 

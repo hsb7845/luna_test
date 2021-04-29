@@ -60,7 +60,7 @@ public class PboardController {
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {
-			model.addAttribute("msg","글추가실패");
+			model.addAttribute("msg","상품 글 추가를 실패하였습니다.");
 			return "error";
 		}
 
@@ -81,7 +81,7 @@ public class PboardController {
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {
-			model.addAttribute("msg","글수정실패");
+			model.addAttribute("msg","상품 글 수정을 실패하였습니다.");
 			return "error";
 		}
 
@@ -93,7 +93,7 @@ public class PboardController {
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {
-			model.addAttribute("msg","글수정실패");
+			model.addAttribute("msg","상품 글 수정을 실패하였습니다.");
 			return "error";
 		}
 

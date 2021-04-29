@@ -20,6 +20,6 @@
 	
 	<a href="pcategory.do">상품 분류 보기</a><br>
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
-	<a href="ifile.do">이미지 파일 보기</a><br>
+	<a href="imgfile.do">이미지 파일 보기</a><br>
 </body>
 </html>

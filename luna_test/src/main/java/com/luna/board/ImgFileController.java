@@ -20,7 +20,7 @@ public class ImgFileController {
 	
 	
 	@RequestMapping(value = "/imgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String qboard(Locale locale, Model model) {
+	public String imgfile(Locale locale, Model model) {
 		List<ImgFileDTO> list = imgFileService.getAllList();
 		model.addAttribute("list",list);
 		
@@ -59,7 +59,7 @@ public class ImgFileController {
 	public String update(Locale locale, Model model, ImgFileDTO dto) {
 		boolean isS = imgFileService.updateBoard(dto);
 		if(isS) {
-			return "redirect:qboard.do";
+			return "redirect:imgfile.do";
 		} else {
 			model.addAttribute("msg","이미지 파일 수정을 실패하였습니다.");
 			return "error";
@@ -73,7 +73,7 @@ public class ImgFileController {
 		if(isS) {
 			return "redirect:imgfile.do";
 		} else {
-			model.addAttribute("msg","이지미 파일 수정을 실패하였습니다.");
+			model.addAttribute("msg","이미지 파일 수정을 실패하였습니다.");
 			return "error";
 		}
 

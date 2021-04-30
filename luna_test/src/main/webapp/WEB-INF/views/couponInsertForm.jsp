@@ -8,11 +8,7 @@
 </head>
 <body>
 <form method="post" action="insertCoupon.do">
-<table>
-	<tr>
-		<th>쿠폰번호</th>
-		<td><input type="number" name="cseq" ></td>
-	</tr>
+<table>	
 	<tr>
 		<th>쿠폰내용</th>
 		<td><input type="text" name="ccontent"></td>

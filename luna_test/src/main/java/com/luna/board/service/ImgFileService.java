@@ -29,7 +29,8 @@ public class ImgFileService implements IImgFileService {
 		String imgname = multiFile.getOriginalFilename();
 		int fileSize = (int)multiFile.getSize();
 		
-		String path2="/upload";
+		String path2=request.getSession()
+				.getServletContext().getRealPath("upload");
 		System.out.println(path2);
 		File f = new File(path2+"/"+imgname);
 		

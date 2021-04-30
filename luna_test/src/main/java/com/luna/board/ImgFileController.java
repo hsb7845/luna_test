@@ -1,9 +1,13 @@
 package com.luna.board;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,5 +83,22 @@ public class ImgFileController {
 			return "error";
 		}
 
+	}
+	
+	
+	@RequestMapping(value = "/download.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public void download(Locale locale, Model model,int imgnum,HttpServletResponse response,HttpServletRequest request) throws Exception{
+		ImgFileDTO dto = imgFileService.getBoard(imgnum);
+		String imgname = dto.getImgname();
+		String path = request.getSession()
+				.getServletContext().getRealPath("upload");
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(path+"/"+imgname));
+		response.reset();
+		response.setContentType("application/octet-steam");
+		String encoding = new String(imgname.getBytes("utf-8"),"8859_1");
+		response.setHeader("Content-Disposition", "attachment; filename="+encoding);
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
 }

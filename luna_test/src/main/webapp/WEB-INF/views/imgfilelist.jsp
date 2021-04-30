@@ -80,8 +80,8 @@
 				<tr>
 					<td><input type="checkbox" name="chk" value="<%=dto.getImgnum()%>"/></td>
 					<td><%=dto.getImgnum()%></td>
-					<td><a href="updateimgfileForm.do?imgnum=<%=dto.getImgnum() %>"><%=dto.getFilesize()%></a> </td>
-					<td><%=dto.getImgname()%></td>
+					<td><a href="download.do?imgnum=<%=dto.getImgnum() %>"><%=dto.getImgname()%></a></td>
+					<td><%=dto.getFilesize()%></td>
 					<td><%=dto.getId()%></td>
 					<td><%=dto.getPseq()%></td>
 					<td><%=dto.getRseq()%></td>

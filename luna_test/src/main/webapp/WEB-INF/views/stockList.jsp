@@ -89,16 +89,16 @@ $(function(){
 <table border="1">
 	<col width="50px">
 	<col width="100px">
-	<col width="100px">
-	<col width="100px">
+	<col width="400px">
+	<col width="150px">
 	<col width="200px">
 	<col width="50px">
 	<col width="200px">
 	<col width="100px">
-	<col width="50px">
+	<col width="200px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>싱픔번호</th>
+		<th>상품번호</th>
 		<th>상품명</th>
 		<th>상품재고수량</th>
 		<th>원가</th>

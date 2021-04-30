@@ -92,8 +92,10 @@ $(function(){
 	<col width="400px">
 	<col width="150px">
 	<col width="200px">
-	<col width="50px">
+	<col width="100px">
 	<col width="200px">
+	<col width="50px">
+	<col width="300px">
 	<col width="100px">
 	<col width="200px">
 	<tr>

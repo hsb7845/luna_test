@@ -23,7 +23,7 @@
  	</select>
  	
 	<update id ="updateBoard" parameterType="RBDTO">
-		UPDATE R_BOARD SET RCONTENT=#{rcontent},  RTITLE=#{rtitle} WHERE RSEQ=#{rseq}
+		UPDATE R_BOARD SET RCONTENT=#{rcontent},  RTITLE=#{rtitle} , STARRANK=#{starrank} WHERE RSEQ=#{rseq}
 	</update>
 	
 	<delete id ="deleteBoard" parameterType="int">

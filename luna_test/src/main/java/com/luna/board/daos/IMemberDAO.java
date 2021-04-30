@@ -12,5 +12,6 @@ public interface IMemberDAO {
 	boolean updateMember(MemberDTO dto);
 	boolean muldelMember(String[] chks);
 	public int idChk(MemberDTO dto) throws Exception;
+	MemberDTO login(MemberDTO dto);
 
 }

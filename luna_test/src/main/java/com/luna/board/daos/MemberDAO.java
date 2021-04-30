@@ -54,4 +54,13 @@ public class MemberDAO implements IMemberDAO {
 		return result;
 				
 	}
+
+	@Override
+	public MemberDTO login(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		dto = sqlSession.selectOne(namespace+"login", dto);
+		System.out.println(dto.getAdmin());
+	
+		return dto;
+	}
 }

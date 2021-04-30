@@ -45,6 +45,11 @@
 		WHERE PWD = #{pwd}
 	</select>
 	
+	
+	<select id="login" resultType="MDTO" parameterType="MDTO">
+		select id,admin from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
 
 </mapper>
 

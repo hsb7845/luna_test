@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +99,33 @@ public class MemberController {
 	}
 	
 	
+	
+	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String loginForm(Locale locale, Model model) {
+		return "userlogin";
+
+	}
+	
+	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request) {
+		String msg= "";
+		boolean isS = false;
+		dto=MemberService.login(dto);
+		if(dto.getId()!=null) {
+			isS=true;
+		}
+		HttpSession session = request.getSession();
+		
+		if(isS) {
+			session.setAttribute("id", dto.getId());
+			session.setAttribute("admin",dto.getAdmin());
+			System.out.println("admin : "+dto.getAdmin());
+		}else {
+			msg="아이디나 비밀번호가 틀렸습니다.";
+		}
+		model.addAttribute("msg",msg);
+		return "index";
+	}
 
 
 

@@ -19,6 +19,8 @@ public interface IMemberService {
 
 	public int idChk(MemberDTO dto) throws Exception;
 
+	MemberDTO login(MemberDTO dto);
+
 
 
 }

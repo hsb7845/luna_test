@@ -51,4 +51,10 @@ public class MemberService implements IMemberService{
 		return result;
 	}
 
+	@Override
+	public MemberDTO login(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return MemberDAO.login(dto);
+	}
+
 }

@@ -92,7 +92,7 @@ $(function(){
 			<td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>			
 			<td><%=dto.getSex()%></td>
 			<td><%=dto.getPhone()%></td>
-			<td><%=dto.getJoindate()%></td>
+			<td><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
 			<td><%=dto.getAdmin()%></td>
 			<td><%=dto.getNickName()%></td>
 			<td><%=dto.getName()%></td>

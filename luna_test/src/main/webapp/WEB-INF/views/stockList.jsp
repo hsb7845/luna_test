@@ -89,11 +89,11 @@ $(function(){
 <table border="1">
 	<col width="50px">
 	<col width="100px">
-	<col width="100px">
+	<col width="200px">
 	<col width="100px">
 	<col width="200px">
 	<col width="50px">
-	<col width="200px">
+	<col width="300px">
 	<col width="100px">
 	<col width="50px">
 	<tr>

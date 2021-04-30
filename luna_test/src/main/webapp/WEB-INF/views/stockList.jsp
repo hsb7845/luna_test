@@ -89,15 +89,13 @@ $(function(){
 <table border="1">
 	<col width="50px">
 	<col width="100px">
-	<col width="400px">
-	<col width="150px">
-	<col width="200px">
-	<col width="100px">
-	<col width="200px">
-	<col width="50px">
 	<col width="300px">
+	<col width="150px">
 	<col width="100px">
-	<col width="200px">
+	<col width="150px">
+	<col width="500px">
+	<col width="100px">
+	<col width="100px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>상품번호</th>
@@ -116,7 +114,7 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			StockDTO dto=list.get(i);
 	%>
-				<tr>
+				<tr align="center">
 					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
 					<td><%=dto.getPnum()%></td>
 					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>

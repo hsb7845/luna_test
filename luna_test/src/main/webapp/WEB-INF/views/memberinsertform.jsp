@@ -123,9 +123,9 @@
 		성별
 		남<input type="checkbox" name="sex"  value="male" >
 		여<input type="checkbox" name="sex"  value="femail" ><br>
-		핸드폰 <input type="text" name="phone"><br>
+		핸드폰 <input type="text" name="phone">
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
-  		관리자 <input type="hidden" name="admin"><br>  
+  		 <input type="hidden" name="admin"><br>  
 		닉네임 <input type="text" name="nickName"><br>
 		이름	<input type="text" name="name"><br>
 		포인트 <input type="text" name="point"><br>

@@ -3,7 +3,7 @@ package com.luna.board.dtos;
 public class ImgFileDTO {
 
 	private int imgnum;
-	private String filesize;
+	private int  filesize;
 	private String imgname;
 	private String id;
 	private int pseq;
@@ -15,16 +15,16 @@ public class ImgFileDTO {
 	public void setImgnum(int imgnum) {
 		this.imgnum = imgnum;
 	}
-	public String getFilesize() {
+	public int  getFilesize() {
 		return filesize;
 	}
-	public void setFilesize(String filesize) {
+	public void setFilesize(int  filesize) {
 		this.filesize = filesize;
 	}
-	public String getImgname() {
+	public String  getImgname() {
 		return imgname;
 	}
-	public void setImgname(String imgname) {
+	public void setImgname(String  imgname) {
 		this.imgname = imgname;
 	}
 	public String getId() {
@@ -56,7 +56,7 @@ public class ImgFileDTO {
 		return "ImgFileDTO [imgnum=" + imgnum + ", filesize=" + filesize + ", imgname=" + imgname + ", id=" + id
 				+ ", pseq=" + pseq + ", rseq=" + rseq + ", eseq=" + eseq + "]";
 	}
-	public ImgFileDTO(int imgnum, String filesize, String imgname, String id, int pseq, int rseq, int eseq) {
+	public ImgFileDTO(int imgnum, int  filesize, String imgname, String id, int pseq, int rseq, int eseq) {
 		super();
 		this.imgnum = imgnum;
 		this.filesize = filesize;

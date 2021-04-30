@@ -4,7 +4,7 @@
 
 	<select id="getAllList" resultType="BDDTO">
 		SELECT BDSEQ,PNUM,PCOUNT,BSEQ
-		FROM BUY_DETAIL
+		FROM BUY_DETAIL ORDER BY BDSEQ DESC
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultType="BDDTO">

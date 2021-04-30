@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<th>별점</th>
-			<td><input type="number" name="starrank">${dto.starrank}</textarea></td>
+			<td><input type="number" name="starrank" value="${dto.starrank}"></td>
 		</tr>
 		<tr>
 			<td colspan="3"><input type="submit" value="수정"></td>

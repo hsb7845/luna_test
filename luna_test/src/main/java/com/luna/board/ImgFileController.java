@@ -3,11 +3,13 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.luna.board.dtos.ImgFileDTO;
 import com.luna.board.service.IImgFileService;
@@ -35,9 +37,9 @@ public class ImgFileController {
 	
 	
 	
-	@RequestMapping(value = "/insertimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, ImgFileDTO dto) {
-		boolean isS = imgFileService.insertBoard(dto);
+	@RequestMapping(value = "/uploadimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insert(MultipartHttpServletRequest request,Locale locale, Model model) {
+		boolean isS = imgFileService.insertBoard(request);
 		if(isS) {
 			return "redirect:imgfile.do";
 		} else {
@@ -47,25 +49,25 @@ public class ImgFileController {
 	}
 	
 	
-	@RequestMapping(value = "/updateimgfileForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updateboard(Locale locale, Model model,int imgnum) {
-		ImgFileDTO dto = imgFileService.getBoard(imgnum);
-		System.out.println("filesize"+dto.getFilesize());
-		model.addAttribute("dto", dto);
-		return "imgfileupdateform";
-	}
+//	@RequestMapping(value = "/updateimgfileForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String updateboard(Locale locale, Model model,int imgnum) {
+//		ImgFileDTO dto = imgFileService.getBoard(imgnum);
+//		System.out.println("filesize"+dto.getFilesize());
+//		model.addAttribute("dto", dto);
+//		return "imgfileupdateform";
+//	}
+//
+//	@RequestMapping(value = "/updateimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String update(Locale locale, Model model, ImgFileDTO dto) {
+//		boolean isS = imgFileService.updateBoard(dto);
+//		if(isS) {
+//			return "redirect:imgfile.do";
+//		} else {
+//			model.addAttribute("msg","이미지 파일 수정을 실패하였습니다.");
+//			return "error";
+//		}
 
-	@RequestMapping(value = "/updateimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String update(Locale locale, Model model, ImgFileDTO dto) {
-		boolean isS = imgFileService.updateBoard(dto);
-		if(isS) {
-			return "redirect:imgfile.do";
-		} else {
-			model.addAttribute("msg","이미지 파일 수정을 실패하였습니다.");
-			return "error";
-		}
-
-	}
+//	}
 	
 	@RequestMapping(value = "/muldelImgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {

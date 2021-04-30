@@ -11,7 +11,7 @@
 		<h1 style = "text-align:left">회원가입</h1>
 		<div>
 			<label for="id">아이디</label>
-			<input type="text" name="id"/>
+			<input type="text" name="id" id="id"/>
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
 		비밀번호 <input type="password" name="pwd"><br>
@@ -31,15 +31,16 @@
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
 	</form>
-	
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
 	
 	function fn_idChk() {
 		$.ajax({
-			url : "/idChk",
-			type : "post",
+			url : "idChk.do",
+			mehthod : "post",
 			dataType : "json",
-			data : { "identification" : $("#identification").val()},
+			data : { "id" : $("#id").val()},
+			asnc:false,
 			success : function(data) {
 				if(data == 1) {
 					alert("중복된 아이디 입니다.");

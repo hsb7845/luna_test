@@ -50,7 +50,7 @@ public class MemberDAO implements IMemberDAO {
 	
 	@Override
 	public int idChk(MemberDTO dto) throws Exception {
-		int result= sqlSession.selectOne("memberMapper.idChk", dto);
+		int result= sqlSession.selectOne(namespace+"idChk", dto);
 		return result;
 				
 	}

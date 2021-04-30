@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.ServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +88,10 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(MemberDTO dto) throws Exception {
+	@RequestMapping(value="/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public int idChk(MemberDTO dto,ServletRequest request) throws Exception {
+		String id = request.getParameter("id");
+		dto.setId(id);
 		int result = MemberService.idChk(dto);
 		return result;
 	}

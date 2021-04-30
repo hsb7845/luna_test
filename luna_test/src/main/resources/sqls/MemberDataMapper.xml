@@ -35,12 +35,12 @@
 	</delete>
 	
 	
-	<select id ="idChk" resultType="int">
+	<select id ="idChk" resultType="int" parameterType="MDTO">
 		SELECT COUNT (*) FROM MEMBER 
 		WHERE ID = #{id}
 	</select>
 	
-		<select id ="pwdChk" resultType="int">
+		<select id ="pwdChk" resultType="int" parameterType="MDTO">
 		SELECT COUNT (*) FROM MEMBER 
 		WHERE PWD = #{pwd}
 	</select>

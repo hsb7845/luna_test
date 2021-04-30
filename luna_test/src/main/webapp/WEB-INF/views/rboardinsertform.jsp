@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<th>별점</th>
-			<td><input type="number" name="starrank"></textarea></td>
+			<td><input type="number" name="starrank"></td>
 		</tr>
 		<tr>
 			<td colspan="3"><input type="submit" value="작성"></td>

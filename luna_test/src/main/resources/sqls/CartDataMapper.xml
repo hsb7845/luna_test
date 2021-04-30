@@ -5,7 +5,7 @@
 
 	<select id="getAllList" resultType="CartDTO">
 		SELECT SEQ, ID, PSEQ, PCOUNT 
-		FROM CART
+		FROM CART 
 	</select>
 
 	<insert id="insertCart" parameterType="CartDTO">

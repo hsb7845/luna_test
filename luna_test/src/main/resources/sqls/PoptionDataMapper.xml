@@ -7,7 +7,7 @@
 
 	<select id="getAllList" resultType="PODTO">
 		select oseq, pseq, otitle, ocontent
-		from p_option
+		from p_option order by oseq desc
 	</select>
 
 	<insert id="insertPoption" parameterType="PODTO">

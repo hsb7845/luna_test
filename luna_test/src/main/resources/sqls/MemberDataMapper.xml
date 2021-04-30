@@ -7,7 +7,7 @@
 
 	<select id="getAllList" resultType="MDTO">
 		select id, pwd, email, email_chk, address, birth, sex, phone, joinDate, admin, nickName, name, point
-		from Member
+		from Member order by id desc
 	</select>
 
 	<insert id="insertMember" parameterType="MDTO">

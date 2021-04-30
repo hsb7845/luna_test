@@ -5,7 +5,7 @@
 
 	<select id="getAllList" resultType="CouponDTO">		
 		SELECT CSEQ, CCONTENT, DISCOUNT, ID
-		FROM COUPON		
+		FROM COUPON	order by cseq desc	
 	</select>
 	
 	<insert id="insertCoupon" parameterType="CouponDTO">

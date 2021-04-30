@@ -7,7 +7,7 @@
 
 	<select id="getAllList" resultType="StockDTO">
 		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
-		FROM STOCK
+		FROM STOCK order by pnum desc
 	</select>
 	
 	<insert id="insertStock" parameterType="StockDTO">

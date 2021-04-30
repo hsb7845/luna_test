@@ -103,14 +103,12 @@ $(function(){
 			}
 		}
 	%>
-		<tr>
-		<td colspan="5">
+	</table>
+		
 			<a href="insertmemberform.do">회원가입</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
-		</td>
-	</tr>
-	</table>
+		
 	
 	
 	</form>

@@ -38,8 +38,8 @@
 	<a href="pcategory.do">상품 분류 보기</a><br>
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
-	<a href="loginForm.do">로그인</a>
-	<a href="adminMain.do">adminMain</a>
+	<a href="loginForm.do">로그인</a><br>
+	<a href="adminMain.do">adminMain</a><br>
 
 </body>
 </html>

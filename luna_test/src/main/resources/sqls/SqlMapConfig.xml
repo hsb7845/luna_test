@@ -19,6 +19,7 @@
 		<typeAlias type="com.luna.board.dtos.POptionDTO" alias="PODTO"/>	
 		<typeAlias type="com.luna.board.dtos.CouponDTO" alias="CouponDTO"/>
 		<typeAlias type="com.luna.board.dtos.ImgFileDTO" alias="IFDTO"/>
+		<typeAlias type="com.luna.board.dtos.adminDTO" alias="AMDTO"/>
 	</typeAliases>
 <!-- 	DB접속 정보 셋팅 -->	
 	<mappers>
@@ -35,6 +36,7 @@
 		<mapper resource="./sqls/CouponDataMapper.xml"/>
 		<mapper resource="./sqls/ImgFileDataMapper.xml"/>
 		<mapper resource="./sqls/PoptionDataMapper.xml"/>
+		<mapper resource="./sqls/adminDetaMapper.xml"/>
 		
 	</mappers>
 </configuration>

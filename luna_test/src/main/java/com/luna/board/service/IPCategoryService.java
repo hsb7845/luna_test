@@ -16,6 +16,6 @@ public interface IPCategoryService {
 
 	boolean mulDel(String[] chk);
 
-	boolean deleteBoard(int cnum);
+	boolean deleteBoard(int cnum);	
 
 }

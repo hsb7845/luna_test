@@ -3,6 +3,8 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
+import org.mybatis.logging.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +76,23 @@ public class PCategoryController {
 		} else {
 			model.addAttribute("msg","상품 분류 글 수정을 실패하였습니다.");
 			return "error";
+		}
+	}
+	
+	@RequestMapping("/admin/*")
+	public static class AdminController {
+		
+		private static final Logger logger = (Logger) LoggerFactory.getLogger(AdminController.class.getName());
+		
+		@RequestMapping(value = "/index.do", method = {RequestMethod.GET,RequestMethod.POST})
+		public void getIndex() throws Exception {
+			logger.info("get index");
+		}
+		
+		// 상품 등록
+		@RequestMapping(value = "/test", method = RequestMethod.GET)
+		public void getGoodsRegister() throws Exception {
+		 logger.info("get goods register");
 		}
 	}
 }

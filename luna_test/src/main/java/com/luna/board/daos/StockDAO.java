@@ -56,4 +56,6 @@ public class StockDAO implements IStockDAO {
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
+	
+	
 }

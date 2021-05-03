@@ -43,5 +43,7 @@ public class PCategoryService implements IPCategoryService {
 	public boolean mulDel(String[] chk) {
 		return PCategoryDAO.mulDel(chk);
 	}
+
+
 	
 }

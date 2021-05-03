@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,12 +45,13 @@
 </head>
 <body>
    <div class="wrap">
-      <div class="grid1">header</div>
+      <div class="grid1" id="header">header</div>
       <div class="grid2" ><h2>관리자페이지</h2>
          <div id="m1">
             <h5><a href="#" id="button1">재고관리</a></h5>
             <h5><a href="#" id="button2">회원관리</a></h5>
             <h5><a href="#" id="button3">게시판관리</a></h5>
+            <h5><a href="test" id="button4">테스트</a></h5>
          </div>
          <div id="m2">
             <div><h6><a href="#" id="button4-1">귀걸이</a></h6></div>
@@ -64,9 +67,13 @@
 			</section>
 		</div>
 		</div>	
-		<div class="grid3" id="button5">content</div>
+		<div class="grid3" id="container">content
+			<aside>
+				<%@ include file="test.jsp" %>
+			</aside>
+		</div>
 		
-		<div class="grid4">footer</div>
+		<div class="grid4" id="footer">footer</div>
 	</div>	
 </body>
 </html>

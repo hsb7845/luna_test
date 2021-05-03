@@ -44,14 +44,14 @@
 <body>
    <div class="wrap">
       <div class="grid1">header</div>
-      <div class="grid2"><h2>관리자페이지</h2>
+      <div class="grid2" ><h2>관리자페이지</h2>
          <div id="m1">
-            <h5><a href="#">재고관리</a></h5>
-            <h5><a href="#">회원관리</a></h5>
-            <h5><a href="#">게시판관리</a></h5>
+            <h5><a href="#" id="button1">재고관리</a></h5>
+            <h5><a href="#" id="button2">회원관리</a></h5>
+            <h5><a href="#" id="button3">게시판관리</a></h5>
          </div>
          <div id="m2">
-            <div><h6><a href="#">귀걸이</a></h6></div>
+            <div><h6><a href="#" id="button4-1">귀걸이</a></h6></div>
             <div><h6><a href="#">목걸이</a></h6></div>
             <div><h6><a href="#">기타</a></h6></div>
             <div><h6><a href="#">리뷰</a></h6></div>
@@ -60,11 +60,12 @@
          </div>
 		<div id="m3">
 			<section>
-				<h5><a href="#">주문관리</a></h5>
+				<h5><a href="#" id="button4">주문관리</a></h5>
 			</section>
 		</div>
 		</div>	
-		<div class="grid3">content</div>
+		<div class="grid3" id="button5">content</div>
+		
 		<div class="grid4">footer</div>
 	</div>	
 </body>

@@ -120,6 +120,7 @@ public class MemberController {
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("admin",dto.getAdmin());
 			System.out.println("admin : "+dto.getAdmin());
+			return "adminMain";
 		}else {
 			msg="아이디나 비밀번호가 틀렸습니다.";
 		}

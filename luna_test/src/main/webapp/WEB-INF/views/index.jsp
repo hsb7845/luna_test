@@ -34,12 +34,12 @@
 	<a href="buydetail.do">구매 상세 보기</a><br>
 	<a href="cart.do">장바구니 보기(cart)</a><br>
 	<a href="eboard.do">이벤트 게시판 보기</a><br>
-	<a href="poption.do">옵션 보기</a><br>
-	
+	<a href="poption.do">옵션 보기</a><br>	
 	<a href="pcategory.do">상품 분류 보기</a><br>
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a>
+	<a href="adminMain.do">adminMain</a>
 
 </body>
 </html>

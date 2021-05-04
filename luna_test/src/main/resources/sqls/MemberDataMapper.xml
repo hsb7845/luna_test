@@ -22,7 +22,7 @@
 	
 	<update id="updateMember" parameterType="MDTO">
 	UPDATE MEMBER 
-	SET PWD=#{pwd}, EMAIL=#{email}, ADR1=#{adr1}, ADR1=#{adr2}, ADR1=#{adr3}, ADR1=#{adr4}, BIRTH=#{birth}, SEX=#{sex}, PHONE=#{phone},  NICKNAME=#{nickName}, NAME=#{name}, POINT=#{point}
+	SET PWD=#{pwd}, EMAIL=#{email}, ADR1=#{adr1}, ADR2=#{adr2}, ADR3=#{adr3}, ADR4=#{adr4}, BIRTH=#{birth}, SEX=#{sex}, PHONE=#{phone},  NICKNAME=#{nickName}, NAME=#{name}, POINT=#{point}
 	WHERE ID=#{id}
 	</update>
 	

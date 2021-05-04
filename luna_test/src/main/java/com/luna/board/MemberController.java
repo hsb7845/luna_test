@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.service.IMemberService;
@@ -110,17 +111,21 @@ public class MemberController {
 	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request) {
 		String msg= "";
 		boolean isS = false;
+		HttpSession session = request.getSession();
 		dto=MemberService.login(dto);
 		if(dto.getId()!=null) {
 			isS=true;
 		}
-		HttpSession session = request.getSession();
-		
 		if(isS) {
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("admin",dto.getAdmin());
-			System.out.println("admin : "+dto.getAdmin());
-			return "adminMain";
+			if(dto.getAdmin().equals("관리자")) {
+				System.out.println("admin : "+dto.getAdmin());
+				return "adminMain";
+			}else {
+				return "index";
+			}
+			
 		}else {
 			msg="아이디나 비밀번호가 틀렸습니다.";
 		}

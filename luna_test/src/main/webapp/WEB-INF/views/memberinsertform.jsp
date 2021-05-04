@@ -40,21 +40,21 @@
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
-			<input class="pw_input" name="pwd">
+			<input class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합">
 		</div>
 <!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
 		</div>
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
-				<input class="pwck_input">
+				<input class="pwck_input" name="pwdCheck">
 			</div>
 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>
 		<div class="mail_wrap">
-			<div class="name">이메일</div>
+			<div class="email">이메일</div>
 			<div class="mail_input_box">
 			<input class="mail_input" name="email">
 			</div>
@@ -265,9 +265,18 @@
 	        $('.pwck_input_re_1').css('display','none');
 	        $('.pwck_input_re_2').css('display','block');
 	        pwckcorCheck = false;
-	    }        
+	    }  
 	});    
-	 
+	
+	
+// 	function chekPassword(){
+// 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
+	
+
+
+
+
+
 	
  </script>
 

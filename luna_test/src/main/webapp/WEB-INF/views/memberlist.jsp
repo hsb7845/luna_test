@@ -63,8 +63,10 @@ $(function(){
 		<th>아이디</th>
 		<th>비밀번호</th>
 		<th>이메일</th>
-		<th>이메일확인</th>
+		<th>우편번호</th>
 		<th>주소</th>
+		<th>상세주소</th>
+		<th>참고주소</th>
 		<th>생년월일</th>
 		<th>성별</th>
 		<th>핸드폰</th>
@@ -87,8 +89,11 @@ $(function(){
 			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>
 			<td><%=dto.getPwd() %></td>
 			<td><%=dto.getEmail()%></td>
-			<td><%=dto.getEmail_chk()%></td>
-			<td><%=dto.getAddress()%></td>
+			<td><%=dto.getAdr1()%></td>
+			<td><%=dto.getAdr2()%></td>
+			<td><%=dto.getAdr3()%></td>
+			<td><%=dto.getAdr4()%></td>
+			
 			<td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>			
 			<td><%=dto.getSex()%></td>
 			<td><%=dto.getPhone()%></td>

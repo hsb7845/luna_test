@@ -21,6 +21,15 @@
 }    
 
 
+.pw_reg_tr{
+	display :none;
+	color : green;
+}
+
+.pw_reg_fl{
+	display:  none;
+	color :red;
+}
 
 </style>
 
@@ -42,6 +51,8 @@
 		<div class="pw_input_box">
 			<input class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합">
 		</div>
+		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
+		<div class ="pw_reg_fl">최소 하나이상의 특수문자를 사용해주세요.</div>
 <!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
 		</div>
 		<div class="pwck_wrap">
@@ -268,11 +279,22 @@
 	    }  
 	});    
 	
+	$('.pw_input').on("propertychange change keyup paste input", function(){
+		var pw = $('.pw_input').val();
+		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/;
+		if(check.test(pw)==true){
+			$('.pw_reg_tr').css('display','block');
+			$('.pw_reg_fl').css('display','none');
+		}else{
+			$('.pw_reg_tr').css('display','none');
+			$('.pw_reg_fl').css('display','block');
+		}
+	});
 	
-// 	function chekPassword(){
+// 	function chekPassword(){ //여기 보시면 function 정의만 되어있고 부르는게 없어서 
+	// 위에 비밀번호 확인 하는거랑 똑같이 input 값에 value 바뀌면 적용되게끔 바꾸었습니다.
 // 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
 	
-
 
 
 

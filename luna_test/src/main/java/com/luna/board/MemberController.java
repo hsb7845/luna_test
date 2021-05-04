@@ -123,7 +123,7 @@ public class MemberController {
 				System.out.println("admin : "+dto.getAdmin());
 				return "adminMain";
 			}else {
-				return "index";
+				return "myPage";
 			}
 			
 		}else {

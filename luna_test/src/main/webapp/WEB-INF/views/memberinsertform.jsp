@@ -15,9 +15,24 @@
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
 		비밀번호 <input type="password" name="pwd"><br>
-		이메일 <input type="text" name="email"><br>
-		이메일확인(중복확인) <input type="text" name="email_chk"><br>
-<!-- 		주소(API예정)	<input type="text" name="address"><br> -->
+		<div class="mail_wrap">
+			<div class="name">이메일</div>
+			<div class="mail_input_box">
+			<input class="mail_input" name="email">
+			</div>
+			<div class="mail_check_wrap">
+			<div class="mail_check_input_box" id="mail_check_input_box_false">	
+					<input class="mail_check_input" disabled="disabled">
+			</div>
+			<div class="mail_check_button">
+				<span>인증번호 전송</span>
+			</div>
+			<div class="clearfix"></div>
+			 <span id="mail_check_input_box_warn"></span>
+			</div>
+		</div>
+		<br>
+
 
 <input type="text" id="sample2_postcode" placeholder="우편번호">
 <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -134,7 +149,8 @@
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
-	
+ 	var code = "";                //이메일전송 인증번호 저장위한 코드
+ 
 	function fn_idChk() {
 		$.ajax({
 			url : "idChk.do",
@@ -153,7 +169,44 @@
 			}
 		})
 	}
+	
 
+	 
+	/* 인증번호 이메일 전송 */
+	$(".mail_check_button").click(function(){
+		var email = $(".mail_input").val();            // 입력한 이메일
+		var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+		var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+	
+		 $.ajax({
+		        
+			type:"GET",
+		    url:"mailCheck?email=" + email,
+		    success:function(data){
+		            
+				console.log("data : " + data);
+			    cehckBox.attr("disabled",false);
+			    boxWrap.attr("id", "mail_check_input_box_true");
+			    code = data;
+		    }	
+		});
+               
+    });
+	/* 인증번호 비교 */
+	$(".mail_check_input").blur(function(){
+    
+    var inputCode = $(".mail_check_input").val();        // 입력코드    
+    var checkResult = $("#mail_check_input_box_warn"); // 비교결과
+	
+    if(inputCode == code) {
+    	checkResult.html("인증번호가 일치합니다.");
+    	checkResult.attr("class", "corret");
+    	}else {
+    		checkResult.html("인증번호를 다시 확인해주세요.");
+    		checkResult.attr("class", "incorrect");
+    	}	
+	    
+	});
  </script>
 
 

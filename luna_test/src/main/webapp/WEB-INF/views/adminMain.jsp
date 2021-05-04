@@ -42,10 +42,13 @@
     }
  
 </style>
+<script type="text/javascript">
+	document.createElement("header");
+</script>
 </head>
 <body>
    <div class="wrap">
-      <div class="grid1" id="header">header</div>
+      <div class="grid1" id="header">header</a></div>
       <div class="grid2" ><h2>관리자페이지</h2>
          <div id="m1">
             <h5><a href="stock.do" id="button1">재고관리</a></h5>

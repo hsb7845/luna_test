@@ -6,10 +6,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<style type="text/css">
+
+
+
+.pwck_input_re_1{
+        color : green;
+        display : none;    
+}
+.pwck_input_re_2{
+        color : red;
+        display : none;    
+}    
+
+
+
+</style>
+
 </head>
-<body>
+
+
+
+
+<body> 		
 	<form method="post" action="insertmember.do">
 		<h1 style = "text-align:left">회원가입</h1>
 		<div>
@@ -17,7 +37,22 @@
 			<input type="text" name="id" id="id"/>
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
-		비밀번호 <input type="password" name="pwd"><br>
+		<div class="pw_wrap">
+		<div class="pw_name=">비밀번호</div>
+		<div class="pw_input_box">
+			<input class="pw_input" name="pwd">
+		</div>
+<!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
+		</div>
+		<div class="pwck_wrap">
+			<div class="pwck_name">비밀번호확인</div>
+			<div class="pwck_input_box">
+				<input class="pwck_input">
+			</div>
+		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
+		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
+		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
+		</div>
 		<div class="mail_wrap">
 			<div class="name">이메일</div>
 			<div class="mail_input_box">
@@ -28,13 +63,13 @@
 					<input class="mail_check_input" disabled="disabled">
 			</div>
 			<div class="mail_check_button">
-				<span>인증번호 전송</span>
+				<span><input type="button" value="인증번호 전송"></span>
 			</div>
 			<div class="clearfix"></div>
 			 <span id="mail_check_input_box_warn"></span>
 			</div>
 		</div>
-		<br>
+
 
 
 <input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호">
@@ -210,6 +245,30 @@
     	}	
 	    
 	});
+	
+	
+
+	 
+	/* 비밀번호 확인 일치 유효성 검사 */
+	 
+	$('.pwck_input').on("propertychange change keyup paste input", function(){
+	 
+	    var pw = $('.pw_input').val();
+	    var pwck = $('.pwck_input').val();
+	    $('.final_pwck_ck').css('display', 'none');
+	        
+	    if(pw == pwck){
+	        $('.pwck_input_re_1').css('display','block');
+	        $('.pwck_input_re_2').css('display','none');
+	        pwckcorCheck = true;
+	    }else{
+	        $('.pwck_input_re_1').css('display','none');
+	        $('.pwck_input_re_2').css('display','block');
+	        pwckcorCheck = false;
+	    }        
+	});    
+	 
+	
  </script>
 
 

@@ -50,14 +50,14 @@
 			<h5>${dto.nickname} 님 <a href="coupon.do">쿠폰함</a></h5>
 			
 			
-	      	<h5><a href="updatemember.do">회원정보 수정</a></h5>
-			<h5><a href="">장바구니</a></h5>
-	        <h5><a href="member.do">최근 본 상품</a></h5>
+	      	<h5><a href="#">회원정보 수정</a></h5>
+			<h5><a href="cart.do">장바구니</a></h5>
+	        <h5><a href="#">최근 본 상품</a></h5>
 	        <h5><a href="rboard.do">내가 쓴 리뷰 보기</a></h5>
 	        <h5><a href="qboard.do">내가 쓴 문의 사항 보기</a></h5>
 		</div>	
-		<div class="content">content</div>
-		<div class="footer"><%@ include file="footer.jsp" %>footer</div>
+		<div class="content"></div>
+		<div class="footer"><%@ include file="footer.jsp" %></div>
 	</div>	
 </body>
 </html>

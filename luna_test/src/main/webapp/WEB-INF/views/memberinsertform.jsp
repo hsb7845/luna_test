@@ -42,7 +42,7 @@
 	<form method="post" action="insertmember.do">
 		<h1 style = "text-align:left">회원가입</h1>
 		<div>
-			<label for="id">아이디</label>
+			<label for="id">아이디</label><br>
 			<input type="text" name="id" id="id"/>
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
@@ -71,7 +71,7 @@
 			</div>
 			<div class="mail_check_wrap">
 			<div class="mail_check_input_box" id="mail_check_input_box_false">	
-					<input class="mail_check_input" disabled="disabled">
+					인증번호<br><input class="mail_check_input" disabled="disabled">
 			</div>
 			<div class="mail_check_button">
 				<span><input type="button" value="인증번호 전송"></span>
@@ -183,17 +183,17 @@
     }
 </script>
 		
-		생년월일 <input type="date" name="birthtest"><br>
+		생년월일<br> <input type="date" name="birthtest"><br>
 		성별
-		남<input type="checkbox" name="sex"  value="male" >
-		여<input type="checkbox" name="sex"  value="femail" ><br>
-		핸드폰 <input type="text" name="phone">
+		남<input type="checkbox" name="sex"  value="남" >
+		여<input type="checkbox" name="sex"  value="여" ><br>
+		핸드폰 <br><input type="text" name="phone">
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
   		 <input type="hidden" name="admin"><br>  
-		닉네임 <input type="text" name="nickName"><br>
-		이름	<input type="text" name="name"><br>
-		포인트 <input type="text" name="point"><br>
-		<input type="submit" value="등록">
+		닉네임 <br><input type="text" name="nickName"><br>
+		이름<br>	<input type="text" name="name">
+		 <input type="hidden" name="point"><br><br>
+		<input type="submit" value="회원가입">
 		<input type="reset" value="다시입력">
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

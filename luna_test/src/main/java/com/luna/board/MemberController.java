@@ -13,13 +13,21 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
@@ -184,5 +192,45 @@ public class MemberController {
     }
 
 
+    @GetMapping("/login.do")
+    public @ResponseBody String kakaologin(String code) { //Data를 리턴해주는 컨트롤러 함수
+    	 
+    	RestTemplate rt = new RestTemplate();
+    	
+    	// HttpHeader 오브젝트생성
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.add("Content-type","application/x-www-form-urlencoded:charset=utf-8");
+    	
+    	
+    	// HttpBody 오브젝트생성
+    	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
+    	params.add("grant_type", "authorization_code");
+    	params.add("clined_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
+    	params.add("redirect_uri", "http://localhost:8090/board/login");
+    	params.add("code", code);
+
+    	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+    	HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest=
+    			new HttpEntity<>(params,headers);
+    	
+    	//Http요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음
+    	ResponseEntity<String> response = rt.exchange(
+    		"https://kauth.kakao.com/oauth/token",
+    		HttpMethod.POST,
+    		kakaoTokenRequest,
+    		String.class
+    			
+    	);
+    			
+    	
+    	
+    	
+		return "myPage";
+    	
+    } 
+
+
+
 }
+
 

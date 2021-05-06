@@ -8,7 +8,7 @@
 <script>
 	$(document).ready(function() {
 		// 상품 등록 유효성검사
-		$("#addBtn").click(function(){
+		$("#addBtn").click(function() {
 			var productName=$("#productName").val();
 			var productPrice=$("#productPrice").val();
 			var productDesc=$("#productDesc").val();

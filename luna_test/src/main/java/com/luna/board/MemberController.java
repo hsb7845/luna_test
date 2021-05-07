@@ -192,40 +192,42 @@ public class MemberController {
     }
 
 
-    @GetMapping("/login.do")
-    public @ResponseBody String kakaologin(String code) { //Data를 리턴해주는 컨트롤러 함수
+    @GetMapping("/board/kakao/callback")
+    public @ResponseBody String kakaoCallback(String code) { //Data를 리턴해주는 컨트롤러 함수
     	 
-    	RestTemplate rt = new RestTemplate();
-    	
-    	// HttpHeader 오브젝트생성
-    	HttpHeaders headers = new HttpHeaders();
-    	headers.add("Content-type","application/x-www-form-urlencoded:charset=utf-8");
-    	
-    	
-    	// HttpBody 오브젝트생성
-    	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
-    	params.add("grant_type", "authorization_code");
-    	params.add("clined_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
-    	params.add("redirect_uri", "http://localhost:8090/board/login");
-    	params.add("code", code);
-
-    	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
-    	HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest=
-    			new HttpEntity<>(params,headers);
-    	
-    	//Http요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음
-    	ResponseEntity<String> response = rt.exchange(
-    		"https://kauth.kakao.com/oauth/token",
-    		HttpMethod.POST,
-    		kakaoTokenRequest,
-    		String.class
+//    	RestTemplate rt = new RestTemplate();
+//    	
+//    	// HttpHeader 오브젝트생성
+//    	HttpHeaders headers = new HttpHeaders();
+//    	headers.add("Content-type","application/x-www-form-urlencoded:charset=utf-8");
+//    	
+//    	
+//    	// HttpBody 오브젝트생성
+//    	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
+//    	params.add("grant_type", "authorization_code");
+//    	params.add("clined_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
+//    	params.add("redirect_uri", "http://localhost:8090/board/kakao.callback");
+//    	params.add("code", code);
+//		System.out.println("response");
+//
+//    	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+//    	HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest=
+//    			new HttpEntity<>(params,headers);
+//    	
+//    	//Http요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음
+//    	ResponseEntity<String> response = rt.exchange(
+//    		"https://kauth.kakao.com/oauth/token",
+//    		HttpMethod.POST,
+//    		kakaoTokenRequest,
+//    		String.class
+//    		
     			
-    	);
+//    	);
     			
     	
     	
     	
-		return "myPage";
+		return "카카오인증완료";
     	
     } 
 

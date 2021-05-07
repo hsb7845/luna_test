@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.luna.board.dtos.PBoardDTO;
-import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.IRBoardService;
 
@@ -23,10 +21,12 @@ public class RboardController {
 	
 	@RequestMapping(value = "/rboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String rboard(Locale locale, Model model) {
+		
 		List<RBoardDTO> list = rBoardService.getAllList();
 		model.addAttribute("list",list);
-		
+		System.out.println("11");
 		return "rboardlist";
+		
 	}
 	
 	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -38,9 +38,13 @@ public class RboardController {
 	
 	
 	@RequestMapping(value = "/insertrboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, RBoardDTO dto) {
+	public String insert(Locale locale, Model model, RBoardDTO dto, String starrank[]) {
+		dto.setStarrank(Integer.parseInt(starrank[starrank.length-1]));
+		System.out.println(dto.getStarrank()+"111111");
+		System.out.println(dto);
 		boolean isS = rBoardService.insertBoard(dto);
 		if(isS) {
+			System.out.println(dto);
 			return "redirect:rboard.do";
 		} else {
 			model.addAttribute("msg", "리뷰 글 추가를 실패하였습니다.");

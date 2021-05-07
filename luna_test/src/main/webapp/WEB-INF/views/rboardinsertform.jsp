@@ -137,7 +137,8 @@
 	<div class="wrap">
     <h1>리뷰 쓰기</h1>
     <form method="post" action="insertrboard.do">
-    	
+    <table>
+    
     	<tr>
 			<th>제목</th>
 			<td><input type="text" name="rtitle" required="required"
@@ -146,14 +147,14 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea rows="5" name="rcontent" required="required" 
-			placeholder="10자 이상  100자 이하" onfocus="this.placeholder=''" 
-			onblur="this.placeholder='10자 이상 100자 이하'" name="search"></textarea></td>
+			<td><textarea rows="5" name="rcontent" class="review_textarea" placeholder="10자 이상  100자 이하" onfocus="this.placeholder=''" 	onblur="this.placeholder='10자 이상 100자 이하'"></textarea></td>
 		</tr><br><br>
     	<tr>
 			<th>사진 첨부하기</th>
 			<td><input type="file" name="imgname"></td>
 		</tr><br><br>
+	</table>
+
         <input type="hidden" name="rate" id="rate" value="5"/>
         <div class="review_rating">
             <div class="rating">
@@ -175,6 +176,7 @@
             <input type="submit" value="등록">
             <input type="button" value="뒤로 가기" onclick="history.back(-1);">
         </div>
+        
     </form>
 	</div>
 	
@@ -183,7 +185,7 @@
 	
 <script>
 //별점 마킹 모듈 프로토타입으로 생성
-function Rating(){};
+function Rating(){
 Rating.prototype.rate = 0;
 Rating.prototype.setRate = function(newrate){
     //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
@@ -196,7 +198,7 @@ Rating.prototype.setRate = function(newrate){
             item.checked = false;
         }
     });   
-}
+}}
 
 
 let rating = new Rating();//별점 인스턴스 생성
@@ -237,6 +239,7 @@ document.querySelector('#save').addEventListener('click', function(e){
     }
     //폼 서밋
 });
+
 
 
 

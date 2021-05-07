@@ -1,5 +1,6 @@
 package com.luna.board.dtos;
 
+
 import java.util.Date;
 
 public class PBoardDTO {
@@ -7,9 +8,25 @@ public class PBoardDTO {
 	private String pcontent;
 	private Date pdate;
 	private String ptitle;
-
-
+	private ImgFileDTO image;
+	private StockDTO stock;
 	
+	public StockDTO getStock() {
+		return stock;
+	}
+
+	public void setStock(StockDTO stock) {
+		this.stock = stock;
+	}
+
+	public ImgFileDTO getImage() {
+		return image;
+	}
+
+	public void setImage(ImgFileDTO image) {
+		this.image = image;
+	}
+
 	public PBoardDTO() {
 		super();
 		// TODO Auto-generated constructor stub

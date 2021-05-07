@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IPBoardDAO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.PagingDTO;
 
 @Service
 
@@ -55,5 +56,19 @@ public class PBoardService implements IPBoardService{
 	public boolean mulDel(String[] chk) {
 		// TODO Auto-generated method stub
 		return PBoardDAO.mulDel(chk);
+	}
+
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return PBoardDAO.countBoard();
+	}
+
+
+	@Override
+	public List<PBoardDTO> getPagingList(PagingDTO pagingDTO) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getPagingList(pagingDTO);
 	}
 }

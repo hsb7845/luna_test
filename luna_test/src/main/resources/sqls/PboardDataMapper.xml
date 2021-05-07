@@ -2,9 +2,20 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-
 <mapper namespace="com.luna.pboard">
-
+	<resultMap type="PBDTO" id="PBDTO_resultMap">
+		<result column="PSEQ" property="pseq"/>
+		<result column="PDATE" property="pdate"/>
+		<result column="PTITLE" property="ptitle"/>
+		<result column="PCONTENT" property="pcontent"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+		<collection property="stock" ofType="StockDTO">
+			<result column="price" property="price"></result>
+		</collection>
+	</resultMap>
+	
 	<select id="getAllList" resultType="PBDTO">
 		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc
 	</select>
@@ -33,6 +44,25 @@
 			#{i}
 		</foreach>
 	</delete>
+	
+	<select id="countBoard" resultType="int" >
+		select count(*) from p_board
+	</select>
+	
+	
+	<select id="getPagingList" resultMap="PBDTO_resultMap" parameterType="com.luna.board.dtos.PagingDTO">
+		 SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.*
+				FROM (
+						SELECT DISTINCT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE
+						FROM p_BOARD p ,IMG_FILE i,STOCK s 
+						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ 
+						ORDER BY p.pSEQ DESC 
+						) A
+				)
+		WHERE RN BETWEEN #{start} and #{end}
+	</select>
 </mapper>
 
 

@@ -155,8 +155,6 @@
 			<td><input type="file" name="imgname"></td>
 		</tr><br><br>
         <input type="hidden" name="rate" id="rate" value="5"/>
-        
- 
         <div class="review_rating">
             <div class="rating">
                 <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.PagingDTO;
 
 @Repository
 public class PBoardDAO implements IPBoardDAO{	
@@ -52,5 +53,19 @@ public class PBoardDAO implements IPBoardDAO{
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"countBoard");
+	}
+
+	@Override
+	public List<PBoardDTO> getPagingList(PagingDTO pagingDTO) {
+		// TODO Auto-generated method stub
+		List<PBoardDTO> list = sqlSession.selectList(namespace+"getPagingList", pagingDTO);
+		list.get(0).getPseq();
+		return sqlSession.selectList(namespace+"getPagingList", pagingDTO);
 	}
 }

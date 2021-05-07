@@ -210,7 +210,7 @@ public class MemberController {
     	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
     	params.add("grant_type", "authorization_code");
     	params.add("client_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
-    	params.add("redirect_uri", "http://localhost:8090/board/kakao/callback");
+    	params.add("redirect_uri", "http://localhost:8888/board/kakao/callback");
     	params.add("code", code);
 
     	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
@@ -261,7 +261,7 @@ public class MemberController {
     		kakaoProfileRequest2,
     		String.class
     		
-    			//
+    			
     	);
     	
 		return response2.getBody();

@@ -71,7 +71,7 @@
 // 		});
 // 	} -->
 	</form>
-	 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8090/board/kakao/callback&response_type=code"> 
+	 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/kakao/callback&response_type=code"> 
  	<img src="/img/kakao_login_button.png"/></a>	 
 </body>
 </html>

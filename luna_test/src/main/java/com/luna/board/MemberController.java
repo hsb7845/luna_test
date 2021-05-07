@@ -199,7 +199,7 @@ public class MemberController {
     	
     	// HttpHeader 오브젝트생성
     	HttpHeaders headers = new HttpHeaders();
-    	headers.add("Content-type","application/x-www-form-urlencoded:charset=utf-8");
+    	headers.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
    	
     	
     	// HttpBody 오브젝트생성
@@ -227,7 +227,9 @@ public class MemberController {
     	
     	
     	
-		return "카카오인증완료:코드값"+code;
+		return "code"+code +"response"+response;
+		
+
     	
     } 
 

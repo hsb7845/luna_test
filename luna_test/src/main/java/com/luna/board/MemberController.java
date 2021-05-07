@@ -205,8 +205,8 @@ public class MemberController {
     	// HttpBody 오브젝트생성
     	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
     	params.add("grant_type", "authorization_code");
-    	params.add("clined_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
-    	params.add("redirect_uri", "http://localhost:8090/board/kakao.callback");
+    	params.add("client_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
+    	params.add("redirect_uri", "http://localhost:8090/board/kakao/callback");
     	params.add("code", code);
 		System.out.println("response");
 
@@ -224,13 +224,9 @@ public class MemberController {
     			
     	);
     			
-    	
-    	
-    	
-		return "code"+code +"response"+response;
-		
-
-    	
+    
+		return "response"+response;
+	
     } 
 
 

@@ -261,7 +261,7 @@ public class MemberController {
     		kakaoProfileRequest2,
     		String.class
     		
-    			
+    			//
     	);
     	
 		return response2.getBody();

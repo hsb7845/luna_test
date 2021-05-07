@@ -29,9 +29,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.model.OAuthToken;
 import com.luna.board.service.IMemberService;
 
 @Controller
@@ -208,7 +212,6 @@ public class MemberController {
     	params.add("client_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
     	params.add("redirect_uri", "http://localhost:8090/board/kakao/callback");
     	params.add("code", code);
-		System.out.println("response");
 
     	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
     	HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest=
@@ -220,12 +223,48 @@ public class MemberController {
     		HttpMethod.POST,
     		kakaoTokenRequest,
     		String.class
+    	
+    			
+    	);
+    	
+    	ObjectMapper objectMapper = new ObjectMapper();
+    	OAuthToken oauthToken = null;
+    	try {
+    		oauthToken = objectMapper.readValue(response.getBody(),OAuthToken.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+    	
+		System.out.println(oauthToken.getAccess_token());
+
+		System.out.println("response:"+response.getBody());
+
+		RestTemplate rt2 = new RestTemplate();
+    	
+    	// HttpHeader 오브젝트생성
+    	HttpHeaders headers2 = new HttpHeaders();
+    	headers2.add("Authorization","Bearer "+oauthToken.getAccess_token());
+    	headers2.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
+   	
+    	
+    	
+    	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+    	HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2=
+    			new HttpEntity<>(headers2);
+    	
+    	//Http요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음
+    	ResponseEntity<String> response2 = rt2.exchange(
+    		"https://kapi.kakao.com/v2/user/me",
+    		HttpMethod.POST,
+    		kakaoProfileRequest2,
+    		String.class
     		
     			
     	);
-    			
-    
-		return "response"+response;
+    	
+		return response2.getBody();
 	
     } 
 

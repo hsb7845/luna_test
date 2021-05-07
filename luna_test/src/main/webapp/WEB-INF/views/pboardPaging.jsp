@@ -94,8 +94,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<input type="button" value="글쓰기" style="float: right;" onclick="location.href='/write'"><br>
-	
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
 			<a href="pboardpaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>

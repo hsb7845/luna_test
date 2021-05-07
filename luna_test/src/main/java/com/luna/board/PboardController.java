@@ -45,6 +45,7 @@ public class PboardController {
 	}
 	@RequestMapping(value = "/pboardpaging.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pboardPaging(Locale locale, Model model,PagingDTO pagingDTO,
+			@RequestParam(value="arrayNum", required=false)String arrayNum,
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws IOException {
 		
@@ -56,13 +57,15 @@ public class PboardController {
 			nowPage="1";
 		}else if(cntPerPage==null) {
 			cntPerPage = "9";
+		}else if(arrayNum==null) {
+			arrayNum="1";
 		}
 		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
 		
 		model.addAttribute("paging", pagingDTO);
 		model.addAttribute("list",list);
-	
+		model.addAttribute("arrayNum", arrayNum);
 //		if(arrayNum ==0) {
 //			
 //		}else if(arrayNum ==1) {

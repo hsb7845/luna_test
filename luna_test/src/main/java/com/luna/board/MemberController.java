@@ -196,14 +196,14 @@ public class MemberController {
     }
 
 
-    @GetMapping("/kakao/callback")
+    @RequestMapping("/kakao/callback")
     public @ResponseBody String kakaoCallback(String code) { //Data를 리턴해주는 컨트롤러 함수
     	 
     	RestTemplate rt = new RestTemplate();
     	
     	// HttpHeader 오브젝트생성
     	HttpHeaders headers = new HttpHeaders();
-    	headers.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
+    	headers.add("Content-type","application/x-www-form-urlencoded; charset=utf-8");
    	
     	
     	// HttpBody 오브젝트생성
@@ -263,7 +263,6 @@ public class MemberController {
     		
     			
     	);
-    	
 		return response2.getBody();
 	
     } 

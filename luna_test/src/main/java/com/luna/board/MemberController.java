@@ -1,5 +1,6 @@
 package com.luna.board;
 
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
@@ -35,12 +36,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.model.KakaoProfile;
 import com.luna.board.model.OAuthToken;
 import com.luna.board.service.IMemberService;
 
 @Controller
 public class MemberController {
 	
+
 	@Autowired
 	private IMemberService MemberService;
 	
@@ -197,8 +200,8 @@ public class MemberController {
 
 
     @GetMapping("/kakao/callback")
+
     public @ResponseBody String kakaoCallback(String code) { //Data를 리턴해주는 컨트롤러 함수
-    	 
     	RestTemplate rt = new RestTemplate();
     	
     	// HttpHeader 오브젝트생성
@@ -263,11 +266,27 @@ public class MemberController {
     		
     			
     	);
-    	
-		return response2.getBody();
+		
+		ObjectMapper objectMapper2 = new ObjectMapper();
+    	KakaoProfile kakaoProfile = null;
+	    	try {
+	  		kakaoProfile = objectMapper2.readValue(response2.getBody(),KakaoProfile.class);
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	System.out.println("kakaoId:"+kakaoProfile.getId()); 
+	    	System.out.println("kakaoUserName");
+	    	
+	    	
+	    	
+	    	System.out.println(response2.getBody());
+			return response2.getBody();
+			
+	    } 
 	
-    } 
-
 
 
 }

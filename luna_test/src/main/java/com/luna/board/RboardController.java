@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.IRBoardService;
@@ -39,9 +40,6 @@ public class RboardController {
 	
 	@RequestMapping(value = "/insertrboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, RBoardDTO dto, String starrank[]) {
-		dto.setStarrank(Integer.parseInt(starrank[starrank.length-1]));
-		System.out.println(dto.getStarrank()+"111111");
-		System.out.println(dto);
 		boolean isS = rBoardService.insertBoard(dto);
 		if(isS) {
 			System.out.println(dto);

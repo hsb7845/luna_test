@@ -37,7 +37,6 @@ public class QboardController {
 	
 	@RequestMapping(value = "/insertqboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, QBoardDTO dto) {
-		System.out.println(dto);
 		boolean isS = qBoardService.insertBoard(dto);
 		if(isS) {
 			return "redirect:qboard.do";

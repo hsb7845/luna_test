@@ -1,10 +1,13 @@
 package com.luna.board;
 
+import java.lang.reflect.Member;
 import java.net.URLEncoder;
+import java.nio.file.attribute.UserPrincipalLookupService;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
@@ -33,6 +36,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
 import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
@@ -199,6 +203,7 @@ public class MemberController {
     }
 
 
+    
     @GetMapping("/kakao/callback")
     public @ResponseBody String kakaoCallback(String code) { //Data를 리턴해주는 컨트롤러 함수
     	RestTemplate rt = new RestTemplate();
@@ -277,14 +282,26 @@ public class MemberController {
 			}
 	    	
 	    	System.out.println("kakaoId:"+kakaoProfile.getId()); 
-	    	System.out.println("kakaoUserName"+kakaoProfile.properties.getNickname());
+	    	System.out.println("kakaoNickName"+kakaoProfile.properties.getNickname());
 	    	
+	    	System.out.println("Id:"+kakaoProfile.getId());  
+	    	System.out.println("nickName"+kakaoProfile.getProperties().getNickname());
+	    	UUID gaPassword = UUID.randomUUID();
+	    	System.out.println("pw"+gaPassword);
+
+//
+//	    	MemberDTO dto = MemberDTO.builder()
+//	    			.pwd(gaPassword.toString())	
+//	    			.nickName(kakaoProfile.getProperties().getNickname());
+//	    			.build();
+//	    	
+//	    			
 	    	
 	    	
 	    	System.out.println(response2.getBody());
 			return response2.getBody();
 			
-	    } 
+	    }  
 
 
 

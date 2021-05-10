@@ -1,6 +1,7 @@
 package com.luna.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PagingDTO;
@@ -14,4 +15,5 @@ public interface IPBoardService {
 	boolean mulDel(String[] chk);
 	int countBoard();
 	List<PBoardDTO> getPagingList(PagingDTO pagingDTO);
+	Map<String, Object> getDetail(int pseq);
 }

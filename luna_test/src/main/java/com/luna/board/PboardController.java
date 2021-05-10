@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,9 +50,10 @@ public class PboardController {
 			@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws IOException {
 		
 		int total = pBoardService.countBoard();
-		if(nowPage ==null &&cntPerPage == null) {
+		if(nowPage ==null &&cntPerPage == null&&arrayNum==null) {
 			nowPage="1";
 			cntPerPage = "9";
+			arrayNum ="1";
 		}else if(nowPage==null) {
 			nowPage="1";
 		}else if(cntPerPage==null) {
@@ -60,6 +61,7 @@ public class PboardController {
 		}else if(arrayNum==null) {
 			arrayNum="1";
 		}
+
 		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
 		
@@ -112,6 +114,17 @@ public class PboardController {
 
 
 	}
+	
+	@RequestMapping(value = "/pboarddetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String pboardDetail(Locale locale, Model model, PBoardDTO dto) {
+		Map<String,Object> map = pBoardService.getDetail(dto.getPseq());
+		model.addAttribute("map", map);
+		return "pboardDetailPage";
+
+
+	}
+	
+	
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateboard(Locale locale, Model model,int pseq) {

@@ -13,3 +13,4 @@ public class OAuthToken {
 	private String refresh_token_expires_in;
 
 }
+

@@ -1,6 +1,7 @@
 package com.luna.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,12 @@ public class PBoardService implements IPBoardService{
 	public List<PBoardDTO> getPagingList(PagingDTO pagingDTO) {
 		// TODO Auto-generated method stub
 		return PBoardDAO.getPagingList(pagingDTO);
+	}
+
+
+	@Override
+	public Map<String, Object> getDetail(int pseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getDetail(pseq);
 	}
 }

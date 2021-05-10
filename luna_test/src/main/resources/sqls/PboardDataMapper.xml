@@ -25,9 +25,9 @@
 		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle})
 	</insert>
 	
-	<select id ="getBoard" resultType="PBDTO" parameterType="int">
-		select pseq,pcontent,pdate,ptitle from P_board
-		where pseq = #{pseq}
+	<select id ="getBoard" resultMap="PBDTO_resultMap" parameterType="int">
+		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price from P_board p,stock s
+		where p.pseq = #{pseq} and p.pseq = s.pseq
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">
@@ -77,6 +77,20 @@
 				)
 		WHERE RN BETWEEN #{start} and #{end}
 	</select>
+	
+	<select id="getImage" parameterType="int" resultType="IFDTO">
+		select imgname from img_file where pseq=#{pseq}
+	</select>
+	
+	<select id="getRboard" parameterType="int" resultType="RBDTO">
+		select * from r_board where pseq=#{pseq}
+	</select>
+	
+	<select id="getQboard" parameterType="int" resultType="QBDTO">
+		select * from q_board where pseq=#{pseq}
+	</select>
+	
+	
 </mapper>
 
 

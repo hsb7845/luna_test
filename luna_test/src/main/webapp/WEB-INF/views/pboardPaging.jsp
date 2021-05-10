@@ -85,7 +85,7 @@
 			<c:if test="${list.image.imgname !=null }">
 				<img  src="upload/img_dummy1.jpg"><br>
 			</c:if>
-				<div><a href='pboarddetail.do?seq=${list.pseq }'>${list.ptitle }</a></div><br>
+				<div><a href='pboarddetail.do?pseq=${list.pseq }'>${list.ptitle }</a></div><br>
 <%-- 				<div><fmt:formatDate value="${list.pdate }" pattern="yyyy.MM.dd"/> </div> --%>
 				<div>${list.stock.price} 원</div><div width="100px"></div>
 <%-- 			<c:if test="${sta.count%3==0 }"> --%>

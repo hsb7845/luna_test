@@ -8,8 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.ImgFileDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.QBoardDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 @Repository
 public class PBoardDAO implements IPBoardDAO{	
@@ -67,5 +70,20 @@ public class PBoardDAO implements IPBoardDAO{
 		List<PBoardDTO> list = sqlSession.selectList(namespace+"getPagingList", pagingDTO);
 		list.get(0).getPseq();
 		return sqlSession.selectList(namespace+"getPagingList", pagingDTO);
+	}
+
+	@Override
+	public Map<String, Object> getDetail(int pseq) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = new HashMap<>();
+		PBoardDTO pboard= sqlSession.selectOne(namespace+"getBoard", pseq);
+		List<ImgFileDTO> img = sqlSession.selectList(namespace+"getImage",pseq);
+		List<RBoardDTO> rboard = sqlSession.selectList(namespace+"getRboard", pseq);
+		List<QBoardDTO> qboard = sqlSession.selectList(namespace+"getQboard", pseq);
+		map.put("pboard",pboard);
+		map.put("img", img);
+		map.put("rboard",rboard);
+		map.put("qboard", qboard);
+		return map;
 	}
 }

@@ -60,22 +60,12 @@ public class PboardController {
 		}else if(arrayNum==null) {
 			arrayNum="1";
 		}
-		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
 		
 		model.addAttribute("paging", pagingDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("arrayNum", arrayNum);
-//		if(arrayNum ==0) {
-//			
-//		}else if(arrayNum ==1) {
-//			
-//		}else if(arrayNum ==2) {
-//			
-//		}
-//		
-//		List<PBoardDTO> list = pBoardService.getAllList();
-//		model.addAttribute("list",list);
 		
 		
 		return "pboardPaging";

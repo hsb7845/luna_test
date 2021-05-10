@@ -58,7 +58,21 @@
 						SELECT DISTINCT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE
 						FROM p_BOARD p ,IMG_FILE i,STOCK s 
 						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ 
-						ORDER BY p.pSEQ DESC 
+						<choose>
+							<when test="arrayNum==1">
+								ORDER BY  p.pdate DESC 
+							</when>
+							<when test="arrayNum==2">
+								ORDER BY  s.price ASC
+							</when>
+							<when test="arrayNum==3">
+								ORDER BY  s.price DESC
+							</when>
+							<when test="arrayNum==4">
+								ORDER BY  p.pseq asc
+							</when>
+						</choose>
+						
 						) A
 				)
 		WHERE RN BETWEEN #{start} and #{end}

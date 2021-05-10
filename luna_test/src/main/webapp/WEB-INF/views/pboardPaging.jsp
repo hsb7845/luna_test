@@ -55,8 +55,8 @@
 </style>
 <script>
 	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="pboardpaging.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		var sel = document.getElementById('arrayNum').value;
+		location.href="pboardpaging.do?nowPage=${paging.nowPage}&arrayNum="+sel;
 	}
 </script>
 <body>
@@ -64,15 +64,15 @@
 
 <div id="outter">
 	<div style="float:right">
-		<select id="cntPerPage" name="sel" onchange="selChange()">
-			<option value="5"
-				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
-			<option value="10"
-				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
-			<option value="15"
-				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
-			<option value="20"
-				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+		<select id="arrayNum" name="sel" onchange="selChange()">
+			<option value="1"
+				<c:if test="${arrayNum == 1}">selected</c:if>>최신순</option>
+			<option value="2"
+				<c:if test="${arrayNum == 2}">selected</c:if>>가격 낮은순</option>
+			<option value="3"
+				<c:if test="${arrayNum == 3}">selected</c:if>>가격 높은순</option>
+			<option value="4"
+				<c:if test="${arrayNum == 4}">selected</c:if>>인기순</option>
 		</select>
 	</div> <!-- 옵션선택 끝 -->
 	<br><br><br>

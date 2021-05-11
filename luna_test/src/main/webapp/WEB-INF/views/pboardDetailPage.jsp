@@ -45,7 +45,9 @@
 			<input type="submit" value="구매">
 			<input type="button" value="장바구니" onclick="incart()">
 		</div>
-	
+	<div>
+		${map.pboard.pcontent }
+	</div>
 	<br>
 	</form>
 	<div><!-- 리뷰 -->
@@ -54,20 +56,21 @@
 				<th colspan="3">리뷰</th>
 			</tr>
 			<tr>
-				
-				<c:if test="${map.rboard==null }">
+				<tr>	
+					<th>아이디</th>
+<%-- 					<c:if test="${map.rboard.img !=null }"> --%>
+<!-- 						<th>사진</th> -->
+<%-- 					</c:if> --%>
+					<th>제목</th>
+					<th>내용</th>
+				</tr>
+				<c:if test="${map.rboard=='[]'}">
 					<tr>
-						<td>작성된 리뷰가 없습니다.</td>
+						<td colspan="3">작성된 리뷰가 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${map.rboard!=null }">
-					<tr>	
-						<th>아이디</th>
-<%-- 						<c:if test="${map.rboard.img !=null }"> --%>
-<!-- 							<th>사진</th> -->
-<%-- 						</c:if> --%>
-						<th>제목</th>
-						<th>내용</th>
+			
 					<c:forEach items="${map.rboard }" var="i">
 						<tr>
 							<td>${i.id }</td>
@@ -85,18 +88,18 @@
 			<tr>
 				<th colspan="3">Q&A</th>
 			</tr>
-			
-				<c:if test="${map.qboard ==null }">
+				<tr>	
+					<th>아이디</th>
+					<th>제목</th>
+					<th>내용</th>
+				</tr>
+				<c:if test="${map.qboard=='[]' }">
 					<tr>
-						<td>작성된 Q&A가 없습니다.</td>
+						<td colspan="3">작성된 Q&A가 없습니다.</td>
 					</tr>
 				</c:if>
-				<c:if test="${map.qboard !=null }">
-					<tr>	
-						<th>아이디</th>
-
-						<th>제목</th>
-						<th>내용</th>
+				<c:if test="${map.qboard!=null }">
+					
 					<c:forEach items="${map.qboard }" var="i">
 						<tr>
 							<td>${i.id }</td>

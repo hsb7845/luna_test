@@ -19,13 +19,17 @@
 	<select id="getAllList" resultType="PBDTO">
 		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc
 	</select>
+	
+	<select id="getBoard" resultType="PBDTO" parameterType="int">
+		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc where pseq= #{pseq}
+	</select>
 
 	<insert id="insertboard" parameterType="PBDTO">
 		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
 		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle})
 	</insert>
 	
-	<select id ="getBoard" resultMap="PBDTO_resultMap" parameterType="int">
+	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
 		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price from P_board p,stock s
 		where p.pseq = #{pseq} and p.pseq = s.pseq
  	</select>

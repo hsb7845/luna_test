@@ -76,7 +76,7 @@ public class PBoardDAO implements IPBoardDAO{
 	public Map<String, Object> getDetail(int pseq) {
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<>();
-		PBoardDTO pboard= sqlSession.selectOne(namespace+"getBoard", pseq);
+		PBoardDTO pboard= sqlSession.selectOne(namespace+"getPBoard", pseq);
 		List<ImgFileDTO> img = sqlSession.selectList(namespace+"getImage",pseq);
 		List<RBoardDTO> rboard = sqlSession.selectList(namespace+"getRboard", pseq);
 		List<QBoardDTO> qboard = sqlSession.selectList(namespace+"getQboard", pseq);

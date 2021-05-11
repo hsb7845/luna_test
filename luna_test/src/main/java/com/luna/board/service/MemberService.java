@@ -56,5 +56,7 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		return MemberDAO.login(dto);
 	}
+	
+
 
 }

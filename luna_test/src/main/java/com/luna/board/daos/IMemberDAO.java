@@ -13,5 +13,6 @@ public interface IMemberDAO {
 	boolean muldelMember(String[] chks);
 	public int idChk(MemberDTO dto) throws Exception;
 	MemberDTO login(MemberDTO dto);
+	MemberDTO idSearch(MemberDTO dto);
 
 }

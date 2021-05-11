@@ -50,6 +50,13 @@
 		select id,admin from member where id=#{id} and pwd=#{pwd}
 	</select>
 	
+	<select id="idSearch" resultType="String" parameterType="String">
+		select id from member where EMAIL=#{email} and NAME=#{name}
+	</select>
+	
+	<select id="pwdSearch" resultType="MDTO" parameterType="MDTO">
+		select pwd from member where Id=#{id} and EMAIL=#{email}
+	</select>
 
 </mapper>
 

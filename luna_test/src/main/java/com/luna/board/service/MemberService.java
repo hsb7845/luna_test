@@ -1,4 +1,4 @@
-package com.luna.board.service;
+ package com.luna.board.service;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import com.luna.board.dtos.PBoardDTO;
 @Service
 public class MemberService implements IMemberService{
 	
+	private static final MemberDTO MemberDTO = null;
 	@Autowired
 	IMemberDAO MemberDAO;
 
@@ -55,6 +56,12 @@ public class MemberService implements IMemberService{
 	public MemberDTO login(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return MemberDAO.login(dto);
+	}
+
+	@Override
+	public MemberDTO getMemberByNameAndEmail(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return MemberDAO.getMemberByNameAndEmail(dto);
 	}
 	
 

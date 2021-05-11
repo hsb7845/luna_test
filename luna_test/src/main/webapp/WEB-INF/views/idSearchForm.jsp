@@ -7,7 +7,7 @@
 <title>아이디찾기</title>
 </head>
 <body>
-	<form action ="/idSearch.do" method="post">
+	<form action ="idSearch.do" method="post">
 		<div>아이디찾기</div>
 		<div>
 			<p>
@@ -16,7 +16,7 @@
 				<label>이름</label>
 				<input type="text" id="name" name="name" required>
 			</p>
-			<p>
+			<p>	
 				<input type="submit" value="아이디찾기"/>
 			</p>
 		</div>

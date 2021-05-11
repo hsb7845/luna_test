@@ -63,12 +63,13 @@ public class MemberDAO implements IMemberDAO {
 	
 		return dto;
 	}
-	
+
+
 	@Override
-	public MemberDTO idSearch(MemberDTO dto) {
+	public MemberDTO getMemberByNameAndEmail(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		dto = sqlSession.selectOne(namespace+"idSearch", dto);
 		return dto;
-	
-	
 	}
 
 }

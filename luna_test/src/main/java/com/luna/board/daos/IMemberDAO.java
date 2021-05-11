@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import com.luna.board.dtos.MemberDTO;
@@ -13,6 +14,5 @@ public interface IMemberDAO {
 	boolean muldelMember(String[] chks);
 	public int idChk(MemberDTO dto) throws Exception;
 	MemberDTO login(MemberDTO dto);
-	MemberDTO idSearch(MemberDTO dto);
-
+	MemberDTO getMemberByNameAndEmail(MemberDTO dto);
 }

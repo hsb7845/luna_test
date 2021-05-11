@@ -301,9 +301,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String idSearch(Locale locale, Model model) {
-		return "idSearch";
+	public String idSearch(Model model, MemberDTO dto) {
+		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
+		
+		if (member.getId() == null) {
+			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
+			model.addAttribute("historyBack", true);
+			return "redirect:idSearchForm.do";
+		}
+		
+		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));
+		model.addAttribute("historyBack", true);
+		return"redirect:loginForm.do";
 
+	
+		
 	}
 	
 	@RequestMapping(value = "/pwdSearchForm.do", method = {RequestMethod.GET,RequestMethod.POST})

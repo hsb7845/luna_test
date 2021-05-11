@@ -1,5 +1,6 @@
 package com.luna.board.service;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import com.luna.board.dtos.MemberDTO;
@@ -20,6 +21,8 @@ public interface IMemberService {
 	public int idChk(MemberDTO dto) throws Exception;
 
 	MemberDTO login(MemberDTO dto);
+
+	MemberDTO getMemberByNameAndEmail(MemberDTO dto);
 
 
 

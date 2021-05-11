@@ -33,13 +33,13 @@
 </body>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="<c:url value='resources/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='resources/smarteditor/js/service/HuskyEZCreator.js'/>" charset="utf-8"></script>
+<script type="text/javascript" src="<c:url value='resources/smarteditor2-2.8.2.3/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 <script>
 		var oEditors = [];
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
 			elPlaceHolder: "pcontent",
-			sSkinURI: "resources/smarteditor/SmartEditor2Skin.html",
+			sSkinURI: "resources/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
 			fCreator: "createSEditor2"
 		});
 		

@@ -13,7 +13,8 @@ import com.luna.board.dtos.MemberDTO;
 
 @Repository
 public class MemberDAO implements IMemberDAO {
-
+	
+	
 	private String namespace = "com.luna.member.";
 	
 	@Autowired
@@ -68,8 +69,14 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public MemberDTO getMemberByNameAndEmail(MemberDTO dto) {
 		// TODO Auto-generated method stub
-		dto = sqlSession.selectOne(namespace+"idSearch", dto);
-		return dto;
+		MemberDTO member = new MemberDTO();
+		member = sqlSession.selectOne(namespace+"idSearch", dto);
+		if(member!=null) {
+			boolean isS = (member.getId()==null);
+			System.out.println(isS);
+		}
+		
+		return member;
 	}
 
 }

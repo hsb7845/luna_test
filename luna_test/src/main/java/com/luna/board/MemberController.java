@@ -301,10 +301,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String idSearch(Model model, MemberDTO dto) {
+	public String idSearch(Model model, String name,String email) {
+		MemberDTO dto = new MemberDTO(email,name);
+		System.out.println(dto.getId());
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
 		
-		if (member.getId() == null) {
+		if (member == null) {
 			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
 			model.addAttribute("historyBack", true);
 			return "redirect:idSearchForm.do";

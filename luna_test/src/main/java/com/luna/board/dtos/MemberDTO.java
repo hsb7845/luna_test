@@ -172,6 +172,12 @@ public class MemberDTO {
 		this.point = point;
 	}
 
+	public MemberDTO(String email, String name) {
+		super();
+		this.email = email;
+		this.name = name;
+	}
+
 	public MemberDTO() {
 		super();
 		// TODO Auto-generated constructor stub

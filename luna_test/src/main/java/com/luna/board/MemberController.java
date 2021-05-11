@@ -12,6 +12,7 @@ import java.util.UUID;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -281,33 +282,41 @@ public class MemberController {
 				e.printStackTrace();
 			}
 	    	
-	    	System.out.println("kakaoId:"+kakaoProfile.getId()); 
 	    	System.out.println("kakaoNickName"+kakaoProfile.getProperties().getNickname());
-	    	
-	    	System.out.println("Email:"+kakaoProfile.getKakao_account().getEmail());
-	    	System.out.println("Id:"+kakaoProfile.getId());  
-	    	System.out.println("NickName:"+kakaoProfile.getProperties().getNickname());
-	    	System.out.println("Gender:"+kakaoProfile.getKakao_account().getGender());
+	    		
+	    	System.out.println("Luna's Email:"+kakaoProfile.getKakao_account().getEmail());
+	    	System.out.println("Luna's NickName:"+kakaoProfile.getProperties().getNickname());
+	    	System.out.println("Luna's Gender:"+kakaoProfile.getKakao_account().getGender());
 
 	    	UUID gaPassword = UUID.randomUUID();
-	    	System.out.println("pw"+gaPassword);
-
-//
-//	    	MemberDTO dto = MemberDTO.builder()
-//	    			.pwd(gaPassword.toString())	
-//	    			.nickName(kakaoProfile.getProperties().getNickname());
-//	    			.build();
-//	    	
-//	    			
-	    	
-	    	
-//	    	System.out.println(response2.getBody());
+	    	System.out.println("Luna's pw:"+gaPassword);
 			return response2.getBody();
 			
 	    }  
 
+	@RequestMapping(value = "/idSearchForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idSearchform(Locale locale, Model model) {
+		return "idSearchForm";
 
+	}
+	
+	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String idSearch(Locale locale, Model model) {
+		return "idSearch";
 
+	}
+	
+	@RequestMapping(value = "/pwdSearchForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String pwdSearchform(Locale locale, Model model) {
+		return "pwdSearchForm";
+
+	}
+	
+	@RequestMapping(value = "/pwdSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String pwdSearch(Locale locale, Model model) {
+		return "pwdSearch";
+
+	}
 }
 
 

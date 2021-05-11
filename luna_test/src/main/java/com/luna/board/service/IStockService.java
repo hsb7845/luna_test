@@ -12,6 +12,7 @@ public interface IStockService {
 	boolean deleteStock(int pnum);
 	boolean updateStock(StockDTO dto);
 	boolean mulDel(String[] chk);
+	boolean stockInsert(StockDTO dto);
 
 	
 }

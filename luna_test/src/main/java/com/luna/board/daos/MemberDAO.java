@@ -63,4 +63,12 @@ public class MemberDAO implements IMemberDAO {
 	
 		return dto;
 	}
+	
+	@Override
+	public MemberDTO idSearch(MemberDTO dto) {
+		return dto;
+	
+	
+	}
+
 }

@@ -131,7 +131,8 @@ $(function(){
 	%>
 	<tr>
 		<td colspan="9">
-			<a href="stockInsertForm.do">글쓰기</a>
+			<a href="stockInsertForm.do">상품입고</a>
+			<a href="stockForm.do">상품등록</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

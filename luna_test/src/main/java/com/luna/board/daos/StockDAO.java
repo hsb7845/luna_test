@@ -56,6 +56,12 @@ public class StockDAO implements IStockDAO {
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
+
+	@Override
+	public boolean stockInsert(StockDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace+"insertStock",dto)>0?true:false;
+	}
 	
 	
 }

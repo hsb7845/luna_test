@@ -51,6 +51,12 @@ public class StockService implements IStockService {
 		return StockDAO.mulDel(chk);
 	}
 
+	@Override
+	public boolean stockInsert(StockDTO dto) {
+		// TODO Auto-generated method stub
+		return StockDAO.insertStock(dto);
+	}
+
 
 	
 	

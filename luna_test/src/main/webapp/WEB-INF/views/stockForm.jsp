@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>상품등록</title>
+<!-- 관련 사이트 -->
+<!-- https://doublesprogramming.tistory.com/140 -->
 <script>
 	$(document).ready(function() {
 		// 상품 등록 유효성검사

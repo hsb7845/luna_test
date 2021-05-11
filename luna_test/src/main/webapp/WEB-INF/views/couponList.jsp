@@ -3,13 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false"%>
+    
 <!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       
 <%
    	request.setCharacterEncoding("utf-8");
-%>   
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,8 @@
     font-size: 20px;
     text-align: center;
 }
+
+
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -87,6 +90,10 @@ $(function(){
 	List<CouponDTO> list = (List<CouponDTO>) request.getAttribute("list");
 %>
 <body>
+
+<div class="container" id="badge">
+     <a class="entypo-bell"></a>
+</div>
 <p class="cls1">쿠폰함</p> 
 <form action="muldelCoupon.do" method="post">
 <!-- <table border="1"> -->
@@ -131,7 +138,7 @@ $(function(){
 	         aria-label="Office: activate to sort column ascending"
 	         style="width: 50px;">쿠폰번호</th>
 	       <th
-	         class="sorting"체
+	         class="sorting"
 	         tabindex="0"
 	         aria-controls="dataTable"
 	         rowspan="1"
@@ -162,6 +169,9 @@ $(function(){
 			} else {
 		for(int i=0;i<list.size();i++){
 			CouponDTO dto=list.get(i);
+			
+			
+			
 	%>
 		<tr align="center">
 				<td><input type="checkbox" name="chk" value="<%=dto.getCseq()%>"/></td>
@@ -183,5 +193,11 @@ $(function(){
 	</tr>
 </table>
 </form>
+
+<script>
+
+
+
+</script>
 </body>
 </html>

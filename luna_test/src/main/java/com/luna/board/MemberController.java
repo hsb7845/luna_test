@@ -282,10 +282,13 @@ public class MemberController {
 			}
 	    	
 	    	System.out.println("kakaoId:"+kakaoProfile.getId()); 
-	    	System.out.println("kakaoNickName"+kakaoProfile.properties.getNickname());
+	    	System.out.println("kakaoNickName"+kakaoProfile.getProperties().getNickname());
 	    	
+	    	System.out.println("Email:"+kakaoProfile.getKakao_account().getEmail());
 	    	System.out.println("Id:"+kakaoProfile.getId());  
-	    	System.out.println("nickName"+kakaoProfile.getProperties().getNickname());
+	    	System.out.println("NickName:"+kakaoProfile.getProperties().getNickname());
+	    	System.out.println("Gender:"+kakaoProfile.getKakao_account().getGender());
+
 	    	UUID gaPassword = UUID.randomUUID();
 	    	System.out.println("pw"+gaPassword);
 
@@ -298,7 +301,7 @@ public class MemberController {
 //	    			
 	    	
 	    	
-	    	System.out.println(response2.getBody());
+//	    	System.out.println(response2.getBody());
 			return response2.getBody();
 			
 	    }  

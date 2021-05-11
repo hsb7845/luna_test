@@ -22,6 +22,7 @@
 		<div>
 			<input type="submit" value ="로그인">
 
+<!-- 로그인 아이디 없을 시 익셉션 처리 -->
  	 
  
 		

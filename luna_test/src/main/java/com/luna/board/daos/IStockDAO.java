@@ -12,5 +12,6 @@ public interface IStockDAO {
 	boolean deleteStock(int pnum);
 	boolean updateStock(StockDTO dto);
 	boolean mulDel(String[] chk);
+	boolean stockInsert(StockDTO dto);
 
 }

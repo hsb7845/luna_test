@@ -77,4 +77,20 @@ public class StockController {
 
 	}
 	
+	@RequestMapping(value = "/stockForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String stockInsert(Locale locale, Model model) {
+		return "stockForm";
+	}
+	
+	@RequestMapping(value = "/stockInsert.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insert1(Locale locale, Model model, StockDTO dto) {
+		boolean isS = StockService.stockInsert(dto);
+		if(isS) {
+			return "redirect:stock.do";
+		} else {
+			model.addAttribute("msg", "상품재고 추가를 실패하였습니다.");
+			return "error";
+		}
+	}	
+	
 }

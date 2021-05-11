@@ -24,16 +24,18 @@
 				alert("상품 설명을 입력해주세요");
 				productDesc.focuse();
 			} else if(productPhoto == "") {
-				alert("상품 사진을 입력해주세요");
+				alert("상품 사진을 올려해주세요");
 				productPhoto.focuse();	
 			}				
 			// 상품 정보 전송	
-			document.form.action = "${path}/shop/product/insert.do";
+// 			document.form.action = "${path}/shop/product/insert.do";
+			document.form.action = "/stockInsertStock.do";
 			document.form.submit();
 		});
 		// 상품 목록이동
 		$("#listBtn").click(function(){
-			location.href='${path}/shop/product/list.do'
+// 			location.href='${path}/shop/product/list.do'
+			location.href='/stockList.do'
 		});
 	}); 	
 </script>
@@ -47,7 +49,7 @@
 </head>
 <body>
 <h1>상품등록</h1>
-<form id="form" name="form" enctype="multipart/form-data" method="post">
+<form id="form" name="form" enctype="multipart/form-data" method="post" action="insertStock.do">
 <div> 
 	<p>1차분류
 	<select>		
@@ -78,6 +80,7 @@
 		<input type="file" name="productPhoto" id="productPhoto"></p>
 	<P>상품소개  
 		<textarea clos="30" rows="5" name="productDesc" id="productDesc"></textarea></P>
+		
 	<input type="button" value="등록" id="addBtn">
 	<input type="button" value="목록" id="listBtn">
 </div>

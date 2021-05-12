@@ -198,7 +198,7 @@
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
- 	var code = "";                //이메일전송 인증번호 저장위한 코드
+ 	var code = "";                
  
 	function fn_idChk() {
 		$.ajax({

@@ -58,6 +58,10 @@
 		select pwd from member where Id=#{id} and EMAIL=#{email}
 	</select>
 
+	<update id="pwdUpdate" parameterType="MDTO">
+		update member set PWD = #{pwd} where EMAIL=#{email}
+	</update>
+
 </mapper>
 
 

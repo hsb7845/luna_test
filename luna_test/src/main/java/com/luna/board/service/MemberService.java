@@ -70,6 +70,10 @@ public class MemberService implements IMemberService{
 		return MemberDAO.getMemberByIdAndEmail(dto);
 	}
 	
+	@Override
+    public boolean pwdUpdate(MemberDTO dto) {
+		return MemberDAO.pwdUpdate(dto);
+	}
 
 
 }

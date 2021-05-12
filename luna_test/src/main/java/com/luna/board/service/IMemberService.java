@@ -26,6 +26,8 @@ public interface IMemberService {
 
 	MemberDTO getMemberByIdAndEmail(MemberDTO dto);
 
+	boolean pwdUpdate(MemberDTO dto);
+
 
 
 }

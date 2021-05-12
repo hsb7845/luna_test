@@ -79,4 +79,19 @@ public class MemberDAO implements IMemberDAO {
 		return member;
 	}
 
+	
+	
+	@Override
+	public MemberDTO getMemberByIdAndEmail(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		MemberDTO member = new MemberDTO();
+		member = sqlSession.selectOne(namespace+"pwdSearch", dto);
+		if(member!=null) {
+			boolean isS = (member.getPwd()==null);
+			System.out.println(isS);
+		}
+		
+		return member;
+	}
+
 }

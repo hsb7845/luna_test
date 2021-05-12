@@ -8,18 +8,18 @@
 <title>비밀번호찾기</title>
 </head>
 <body>
-<form method="post" class="form-signin" action="idSearch.do" name="idSearch">
+<form method="post" class="form-signin" action="pwdSearch.do" name="pwdSearch">
 		<div>
-		아이디찾기
+		비밀번호찾기
 		</div>
 		<div class="form-label-group">
-			<input type="text" id="email" name="email" class="form-control"/>
-			<label for="email">이메일</label>
+			<label for="id">아이디</label>
+				<input type="text" id="id" name="id" class="form-control"/>
 		</div>
 		
 		<div class="form-label-group">
-			<input type="text" id="name" name="name" class="form-control"/>
-			<label for="name">이름</label>
+			<label for="email">이메일</label>		
+			<input type="text" id="email" name="email" class="form-control"/>
 		</div>
 
 		<div class="form-label-group">
@@ -29,14 +29,14 @@
 
 		<c:if test="${check==1}">
 			<script>
-				opener.document.idSearch.email.value="";
-				opener.document.idSearch.name.value="";
+				opener.document.pwdSearch.id.value="";
+				opener.document.pwdSearch.email.value="";
 			</script>
 			<label>일치하는 정보가 존재하지 않습니다.</label>
 		</c:if>
 
 		<c:if test="${check==0}">
-		<label>찾으시는 아이디는'${id}' 입니다.</label>
+		<label>찾으시는 아이디는'${pwd}' 입니다.</label>
 		<div class="form-label-group">
 				<input class="btn btn-lg btn-secondary btn-block text-uppercase"
 					type="button" value="OK" onclick="closethewindow()">

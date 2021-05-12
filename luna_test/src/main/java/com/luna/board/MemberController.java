@@ -301,8 +301,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String idSearch(Model model, String name,String email) {
-		MemberDTO dto = new MemberDTO(email,name);
+	public String idSearch(Model model,  MemberDTO dto) {
+		 
 		System.out.println(dto.getId());
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
 		
@@ -324,9 +324,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/pwdSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String pwdSearch(Locale locale, Model model) {
-		return "pwdSearch";
-
+	public String pwdSearch(Model model, MemberDTO dto) {
+		
+		MemberDTO member = MemberService.getMemberByIdAndEmail(dto);
+		
+		if (member == null) {
+			model.addAttribute("check", 1);
+		} else {
+			model.addAttribute("check", 0);
+			model.addAttribute("pwd", member.getPwd());
+		}
+		return "pwdSearchForm";
+		
 	}
 }
 

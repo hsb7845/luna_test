@@ -24,6 +24,8 @@ public interface IMemberService {
 
 	MemberDTO getMemberByNameAndEmail(MemberDTO dto);
 
+	MemberDTO getMemberByIdAndEmail(MemberDTO dto);
+
 
 
 }

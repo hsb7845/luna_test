@@ -13,13 +13,14 @@
 		아이디찾기
 		</div>
 		<div class="form-label-group">
-			<input type="text" id="email" name="email" class="form-control"/>
 			<label for="email">이메일</label>
+			<input type="text" id="email" name="email" class="form-control"/>
 		</div>
 		
 		<div class="form-label-group">
+					<label for="name">이름</label>
+		
 			<input type="text" id="name" name="name" class="form-control"/>
-			<label for="name">이름</label>
 		</div>
 
 		<div class="form-label-group">

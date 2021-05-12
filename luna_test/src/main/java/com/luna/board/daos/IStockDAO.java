@@ -2,6 +2,7 @@ package com.luna.board.daos;
 
 import java.util.List;
 
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 
 public interface IStockDAO {
@@ -13,5 +14,6 @@ public interface IStockDAO {
 	boolean updateStock(StockDTO dto);
 	boolean mulDel(String[] chk);
 	boolean stockInsert(StockDTO dto);
+	int getCnum(PCategoryDTO cdto);
 
 }

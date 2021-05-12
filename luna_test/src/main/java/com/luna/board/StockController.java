@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IStockService;
 
@@ -36,7 +37,9 @@ public class StockController {
 	}
 	
 	@RequestMapping(value = "/insertStock.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, StockDTO dto) {
+	public String insert(Locale locale, Model model, StockDTO dto,PCategoryDTO cdto) {
+		int cnum = StockService.getCnum(cdto);
+		
 		boolean isS = StockService.insertStock(dto);
 		if(isS) {
 			return "redirect:stock.do";

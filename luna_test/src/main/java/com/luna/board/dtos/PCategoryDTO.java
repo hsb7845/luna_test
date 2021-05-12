@@ -53,6 +53,10 @@ public class PCategoryDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public static int insert(PCategoryDTO cdto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	
 	

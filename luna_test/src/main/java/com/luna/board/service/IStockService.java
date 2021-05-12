@@ -2,6 +2,7 @@ package com.luna.board.service;
 
 import java.util.List;
 
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 
 public interface IStockService {
@@ -13,6 +14,7 @@ public interface IStockService {
 	boolean updateStock(StockDTO dto);
 	boolean mulDel(String[] chk);
 	boolean stockInsert(StockDTO dto);
+	int getCnum(PCategoryDTO cdto);
 
 	
 }

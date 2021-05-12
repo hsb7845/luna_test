@@ -1,6 +1,5 @@
 package com.luna.board.model;
 
-import lombok.Data;
 
 
 public class OAuthToken {

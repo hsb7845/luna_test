@@ -2,9 +2,8 @@ package com.luna.board.dtos;
 
 import java.util.Date;
 
-import lombok.Builder;
-import lombok.Data;
-@Data
+
+
 
 public class MemberDTO {
 	private String id;

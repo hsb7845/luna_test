@@ -313,17 +313,7 @@ public class MemberController {
 			model.addAttribute("id", member.getId());
 		}
 		return "idSearchForm";
-//		if (member == null) {
-//			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
-//			model.addAttribute("historyBack", true);
-//			return "redirect:idSearchForm.do";
-//		} else {
-//		
-//		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));
-//		model.addAttribute("historyBack", true);
-//		return"redirect:idSearch";
-//		}
-	
+
 		
 	}
 	

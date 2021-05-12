@@ -9,6 +9,9 @@
 </head>
 <body>
 <form method="post" class="form-signin" action="idSearch.do" name="idSearch">
+		<div>
+		아이디찾기
+		</div>
 		<div class="form-label-group">
 			<input type="text" id="email" name="email" class="form-control"/>
 			<label for="email">이메일</label>

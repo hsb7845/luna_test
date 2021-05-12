@@ -10,7 +10,6 @@ public class RBoardDTO {
 	private int par_rseq;
 	private int level;
 	
-	
 	public RBoardDTO() {
 		super();
 		// TODO Auto-generated constructor stub

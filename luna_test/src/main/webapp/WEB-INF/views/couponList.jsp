@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"
     isELIgnored="false"%>
     
+    
 <!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,8 +43,9 @@
 
 
 </style>
-
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script type="text/javascript">
 // core, BOM, DOM  3가지 영역으로 나눔
 	function allSel(val){
@@ -89,6 +91,9 @@ $(function(){
 <%
 	List<CouponDTO> list = (List<CouponDTO>) request.getAttribute("list");
 %>
+<%-- <% --%>
+// 	List<CouponDTO> admin = (List<CouponDTO>) request.getAttribute("list");
+<%-- %> --%>
 <body>
 
 <div class="container" id="badge">
@@ -160,12 +165,20 @@ $(function(){
 	         rowspan="1"
 	         colspan="1"
 	         aria-label="Start date: activate to sort column ascending"
-	         style="width: 50px;">아이디</th>                                      
+	         style="width: 50px;">아이디</th>
+	      <th
+	         class="sorting"
+	         tabindex="0"
+	         aria-controls="dataTable"
+	         rowspan="1"
+	         colspan="1"
+	         aria-label="Start date: activate to sort column ascending"
+	         style="width: 50px;">조회수</th>                                       
 	 </tr>
 	
 	<%
 		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='5'>----작성된 글이 없습니다.</td></tr>");
+			out.print("<tr><td colspan='6'>----쿠폰이 없습니다.</td></tr>");
 			} else {
 		for(int i=0;i<list.size();i++){
 			CouponDTO dto=list.get(i);
@@ -179,18 +192,30 @@ $(function(){
 				<td><a href="couponUpdateForm.do?cseq=<%=dto.getCseq()%>" ><%=dto.getCcontent()%></a></td>
 				<td><%=dto.getDiscount()%></td>
 				<td><%=dto.getId()%></td>
+				<td><%=dto.getHit()%></td>
 			</tr>
 	<%
 			}
 		}
 	%>
-	<tr>
-		<td colspan="5">
-			<a href="couponInsertForm.do" >쿠폰추가</a>
-			<a href=".do">메인</a>
-			<input type="submit" value="삭제" />
-		</td>
-	</tr>
+	
+<%-- 	<% --%>
+// 		if(admin.equals("관리자")) {
+// 			out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a><a href='.do'>메인</a><input type='submit' value='삭제' /></td></tr>");
+// 		} else {
+// 			out.print("<tr><a href='.do'>메인</a></tr>");
+// 		}
+<%-- 	%> --%>
+	
+	
+	
+<!-- 	<tr> -->
+<!-- 		<td colspan="6"> -->
+<!-- 			<a href="couponInsertForm.do" >쿠폰 추가</a> -->
+<!-- 			<a href=".do">메인</a> -->
+<!-- 			<input type="submit" value="삭제" /> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
 </table>
 </form>
 

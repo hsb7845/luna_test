@@ -9,18 +9,20 @@ public class CouponDTO {
 	private String ccontent;
 	private int discount;
 	private String id;
+	private int hit;
 	
 	public CouponDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CouponDTO(int cseq, String content, int discount, String id) {
+	public CouponDTO(int cseq, String ccontent, int discount, String id, int hit) {
 		super();
 		this.cseq = cseq;
 		this.ccontent = ccontent;
 		this.discount = discount;
 		this.id = id;
+		this.hit = hit;
 	}
 
 	public int getCseq() {
@@ -54,10 +56,19 @@ public class CouponDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
 	@Override
 	public String toString() {
-		return "CouponDTO [cseq=" + cseq + ", ccontent=" + ccontent + ", discount=" + discount + ", id=" + id + "]";
+		return "CouponDTO [cseq=" + cseq + ", ccontent=" + ccontent + ", discount=" + discount + ", id=" + id + ", hit="
+				+ hit + "]";
 	}
 
 }

@@ -156,13 +156,24 @@
 			<td><textarea rows="5" name="rcontent" class="review_textarea" placeholder="10자 이상  100자 이하" onfocus="this.placeholder=''" 	onblur="this.placeholder='10자 이상 100자 이하'"></textarea></td>
 		</tr>
 		</table>
-    	<tr>
-			
-			<td><input type="file" name="imgname" id="image" accept="image/*" onchange="setThumbnail(event)" />
-			<div id="image_container" ></div>
-
-		</tr>
+    		
+<!--     		<input type="file" name="imgname" id="image" accept="image/*" onchange="setThumbnail(event);" multiple /> -->
+<!-- 			<div id="image_container" ></div> -->
 	
+			<div style="margin-top:50px">
+			    <input id="imageFile" type="file">
+			</div>
+			
+			<div style="margin-top:50px">
+			    <input type="button" value="Resize Image" onclick="ResizeImage()"/>
+			</div>
+			
+			<div style="margin-top:50px">
+			    <img src="" id="output">
+			</div>
+
+
+
 
         <input type="hidden" name="rate" id="rate" value="5" />
         <div class="review_rating">
@@ -261,49 +272,74 @@ function review1() {
     }
 }
 
-// Rating.prototype.showMessage = function(type){//경고메시지 표시
-//     switch(type){
-//         case 'rate':
-//             //안내메시지 표시
-//             document.querySelector('.review_rating .warning_msg').style.display = 'block';
-//             //지정된 시간 후 안내 메시지 감춤
-//             setTimeout(function(){
-//                 document.querySelector('.review_rating .warning_msg').style.display = 'none';
-//             },1000);            
-//             break;
-//         case 'review':
-//             //안내메시지 표시
-//             document.querySelector('.review_contents .warning_msg').style.display = 'block';
-//             //지정된 시간 후 안내 메시지 감춤
-//             setTimeout(function(){
-//                 document.querySelector('.review_contents .warning_msg').style.display = 'none';
-//             },1000);    
-//             break;
-//     }
-// }
-// function isEmpty(rate){
-
-//     if(rate == null || rate.length === 0) {
-
-//            return 5;
-
-//      } else {
-
-//             return 6;
-
-//      }
-
-// }
 
 
 function setThumbnail(event) { 
-	var reader = new FileReader(); 
-	reader.onload = function(event) { 
-		var img = document.createElement("img"); 
-		img.setAttribute("src", event.target.result); 
-		document.querySelector("div#image_container").appendChild(img);
-	}; 
-	reader.readAsDataURL(event.target.files[0]); 
+	for (var image of event.target.files) { 
+		var reader = new FileReader(); reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			document.querySelector("div#image_container").appendChild(img); 
+		}; 
+		console.log(image); 
+		reader.readAsDataURL(image); 
+	} 
+}
+
+function ResizeImage() {
+	var filesToUpload = document.getElementById('imageFile').files;
+	var file = filesToUpload[0];
+
+	 
+	// 문서내에 img 객체를 생성합니다
+	var img = document.createElement("img");
+	// 파일을 읽을 수 있는 File Reader 를 생성합니다
+	var reader = new FileReader();
+
+	// 파일이 읽혀지면 아래 함수가 실행됩니다
+	reader.onload = function(e) {
+	img.src = e.target.result;
+
+	// HTML5 canvas 객체를 생성합니다
+	var canvas = document.createElement("canvas");   
+	var ctx = canvas.getContext("2d");
+
+	// 캔버스에 업로드된 이미지를 그려줍니다
+	ctx.drawImage(img, 0, 0);
+
+	// 최대폭을 400 으로 정했다고 가정했을때
+	// 최대폭을 넘어가는 경우 canvas 크기를 변경해 줍니다.
+
+    var MAX_WIDTH = 400;
+    var MAX_HEIGHT = 400;
+    var width = img.width;
+    var height = img.height;
+
+
+    if (width > height) {
+        if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+        }
+    } else {
+        if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+        }
+    }
+    canvas.width = width;
+    canvas.height = height;
+
+    // canvas에 변경된 크기의 이미지를 다시 그려줍니다.
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+
+ 
+	// canvas 에 있는 이미지를 img 태그로 넣어줍니다
+    var dataurl = canvas.toDataURL("image/png");
+    document.getElementById('output').src = dataurl;
+    }
+reader.readAsDataURL(file);
 }
 
 

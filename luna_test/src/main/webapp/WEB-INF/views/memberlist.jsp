@@ -113,9 +113,7 @@ $(function(){
 			<a href="insertmemberform.do">회원가입</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
-			<a href="idSearchForm.do">아이디 찾기</a>
-			<a href="idSearchForm.do">비밀번호찾기</a>
-		
+	
 	
 	
 	</form>

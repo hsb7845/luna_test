@@ -29,19 +29,11 @@
 		</div>
 
 		<c:if test="${check==1}">
-			<script>
-				opener.document.idSearch.email.value="";
-				opener.document.idSearch.name.value="";
-			</script>
 			<label>일치하는 정보가 존재하지 않습니다.</label>
 		</c:if>
 
 		<c:if test="${check==0}">
-		<label>찾으시는 아이디는'${id}' 입니다.</label>
-		<div class="form-label-group">
-				<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-					type="button" value="OK" onclick="closethewindow()">
-			</div>
+			<label>찾으시는 아이디는'${id}' 입니다.</label>
 		</c:if>
 
 	</form>

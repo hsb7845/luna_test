@@ -8,6 +8,7 @@ import org.apache.ibatis.jdbc.SQL;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.luna.board.dtos.MemberDTO;
 
@@ -71,11 +72,6 @@ public class MemberDAO implements IMemberDAO {
 		// TODO Auto-generated method stub
 		MemberDTO member = new MemberDTO();
 		member = sqlSession.selectOne(namespace+"idSearch", dto);
-		if(member!=null) {
-			boolean isS = (member.getId()==null);
-			System.out.println(isS);
-		}
-		
 		return member;
 	}
 
@@ -86,12 +82,15 @@ public class MemberDAO implements IMemberDAO {
 		// TODO Auto-generated method stub
 		MemberDTO member = new MemberDTO();
 		member = sqlSession.selectOne(namespace+"pwdSearch", dto);
-		if(member!=null) {
-			boolean isS = (member.getPwd()==null);
-			System.out.println(isS);
-		}
-		
 		return member;
+	}
+
+	@Override
+	public boolean  pwdUpdate(MemberDTO dto){
+		
+		 
+		return sqlSession.update(namespace+"pwdUpdate", dto)>0?true:false;
+		
 	}
 
 }

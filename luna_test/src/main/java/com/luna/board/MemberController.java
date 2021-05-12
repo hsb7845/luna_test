@@ -185,6 +185,7 @@ public class MemberController {
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
 
         try {
             
@@ -302,10 +303,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String idSearch(Model model,  MemberDTO dto) {
-		 
-		System.out.println(dto.getId());
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
-		
 		if (member == null) {
 			model.addAttribute("check", 1);
 		} else {
@@ -325,18 +323,57 @@ public class MemberController {
 	
 	@RequestMapping(value = "/pwdSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pwdSearch(Model model, MemberDTO dto) {
-		
 		MemberDTO member = MemberService.getMemberByIdAndEmail(dto);
-		
 		if (member == null) {
 			model.addAttribute("check", 1);
 		} else {
 			model.addAttribute("check", 0);
 			model.addAttribute("pwd", member.getPwd());
+			
+			 /* 인증번호(난수) 생성 */
+	        Random random = new Random();
+	        int checkNum = random.nextInt(888888) + 111111;
+	        String pwd = checkNum+"";
+	        logger.info("임시비밀번호 " + checkNum);
+	        
+	        /* 이메일 보내기 */
+	        String setFrom = "parkjoo8715@naver.com";
+	        String toMail = dto.getEmail();
+	        String title = "임시비밀번호 입니다.";
+	        String content = 
+	                "홈페이지를 방문해주셔서 감사합니다." +
+	                "<br><br>" + 
+	                "임시비밀번호는 " + checkNum + "입니다." + 
+	                "<br>";
+			
+			
+//	        MemberDTO dto2 = new MemberDTO();
+	        dto.setPwd(pwd);
+	        
+	        
+	        boolean isS = MemberService.pwdUpdate(dto);
+	        
+
+	        try {
+	            
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	            
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+			
 		}
+		
 		return "pwdSearchForm";
+		
 		
 	}
 }
-
-
+	
+   

@@ -307,15 +307,22 @@ public class MemberController {
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
 		
 		if (member == null) {
-			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
-			model.addAttribute("historyBack", true);
-			return "redirect:idSearchForm.do";
+			model.addAttribute("check", 1);
+		} else {
+			model.addAttribute("check", 0);
+			model.addAttribute("id", member.getId());
 		}
-		
-		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));
-		model.addAttribute("historyBack", true);
-		return"redirect:loginForm.do";
-
+		return "idSearchForm";
+//		if (member == null) {
+//			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
+//			model.addAttribute("historyBack", true);
+//			return "redirect:idSearchForm.do";
+//		} else {
+//		
+//		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));
+//		model.addAttribute("historyBack", true);
+//		return"redirect:idSearch";
+//		}
 	
 		
 	}

@@ -75,5 +75,11 @@ public class MemberService implements IMemberService{
 		return MemberDAO.pwdUpdate(dto);
 	}
 
+	@Override
+	public boolean deleteMember(com.luna.board.dtos.MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return MemberDAO.deleteMember(dto);
+	}
+
 
 }

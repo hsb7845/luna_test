@@ -117,6 +117,18 @@ public class MemberController {
 
 	}
 	
+	@RequestMapping(value = "/deletemember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String delete(Locale locale, Model model, MemberDTO dto) {
+		boolean isS = MemberService.deleteMember(dto);
+		if(isS) {
+			return "redirect:member.do";
+		}else {
+			model.addAttribute("msg","회원정보삭제실패");
+			return "error";
+		}
+
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public int idChk(MemberDTO dto,ServletRequest request) throws Exception {
@@ -145,6 +157,7 @@ public class MemberController {
 		}
 		if(isS) {
 			session.setAttribute("id", dto.getId());
+			session.setAttribute("nickname", dto.getNickName());
 			session.setAttribute("admin",dto.getAdmin());
 			if(dto.getAdmin().equals("관리자")) {
 				System.out.println("admin : "+dto.getAdmin());

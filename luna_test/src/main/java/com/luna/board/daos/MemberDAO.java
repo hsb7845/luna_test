@@ -93,4 +93,10 @@ public class MemberDAO implements IMemberDAO {
 		
 	}
 
+	@Override
+	public boolean deleteMember(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(namespace+"deleteMember", dto)>0?true:false;
+	}
+
 }

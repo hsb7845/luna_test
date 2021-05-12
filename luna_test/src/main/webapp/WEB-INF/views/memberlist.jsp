@@ -86,7 +86,7 @@ $(function(){
 	
 		<tr>
 			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
-			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>
+			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a></td>
 			<td><%=dto.getPwd() %></td>
 			<td><%=dto.getEmail()%></td>
 			<td><%=dto.getAdr1()%></td>

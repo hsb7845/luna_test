@@ -28,6 +28,8 @@ public interface IMemberService {
 
 	boolean pwdUpdate(MemberDTO dto);
 
+	boolean deleteMember(MemberDTO dto);
+
 
 
 }

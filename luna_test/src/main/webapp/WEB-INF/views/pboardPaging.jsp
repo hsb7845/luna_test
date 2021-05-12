@@ -74,7 +74,8 @@
 			<option value="4"
 				<c:if test="${arrayNum == 4}">selected</c:if>>인기순</option>
 		</select>
-	</div> <!-- 옵션선택 끝 -->
+	</div>
+</div> <!-- 옵션선택 끝 -->
 	<br><br><br>
 	<div class="main_list">
 		<div class="main_title">

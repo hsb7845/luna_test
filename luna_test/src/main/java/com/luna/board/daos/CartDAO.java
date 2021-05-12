@@ -21,9 +21,9 @@ import com.luna.board.dtos.CartDTO;
 	private String[] chks;
 	
 	@Override
-	public List<CartDTO> getAllList() {
+	public List<CartDTO> getAllList(String id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"getAllList");
+		return sqlSession.selectList(namespace+"getAllList",id);
 	}
 
 	@Override

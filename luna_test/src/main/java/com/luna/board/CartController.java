@@ -3,11 +3,14 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.CartDTO;
 import com.luna.board.service.ICartService;
@@ -19,20 +22,27 @@ public class CartController {
 	private ICartService CartService;
 	
 	@RequestMapping(value = "/cart.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String cart(Locale locale, Model model) {
-		List<CartDTO> list = CartService.getAllList();
+	public String cart(Locale locale, Model model,HttpServletRequest request) {
+		String id =(String) request.getSession().getAttribute("id");
+		String msg = " ";
+		List<CartDTO> list;
+		if(id==null) {
+			msg = "비정상적인 접근입니다.";
+			return "index";
+		}else {
+			list = CartService.getAllList(id);
+		}
+		
 		model.addAttribute("list",list);
 		
 		return "cartList";
 	}
 	
-	@RequestMapping(value = "/cartInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertCart(Locale locale, Model model) {
-		return "cartInsertForm";
-	}
 	
+	
+	@ResponseBody
 	@RequestMapping(value = "/insertCart.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, CartDTO dto) {
+	public String insert(Locale locale, Model model,CartDTO dto) {
 		boolean isS = CartService.insertCart(dto);
 		if(isS) {
 			return "redirect:cart.do";

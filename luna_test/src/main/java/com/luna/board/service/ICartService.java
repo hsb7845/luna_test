@@ -6,7 +6,7 @@ import com.luna.board.dtos.CartDTO;
 
 public interface ICartService {
 
-	List<CartDTO> getAllList();
+	List<CartDTO> getAllList(String id);
 	boolean insertCart(CartDTO dto);
 	CartDTO getCart(int seq);
 	boolean deleteCart(int seq);

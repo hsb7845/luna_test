@@ -3,14 +3,16 @@
 
 <mapper namespace="com.luna.cart">
 
-	<select id="getAllList" resultType="CartDTO">
+	<select id="getAllList" resultType="CartDTO" parameterType="String">
 		SELECT SEQ, ID, PSEQ, PCOUNT 
-		FROM CART ORDER BY SEQ DESC
+		FROM CART WHERE id = #{id}
+		 ORDER BY SEQ DESC
+	
 	</select>
 
 	<insert id="insertCart" parameterType="CartDTO">
 		INSERT INTO CART (SEQ, ID, PSEQ, PCOUNT) 
-		VALUES(CART_SEQ.NEXTVAL,null, null, #{pcount})
+		VALUES(CART_SEQ.NEXTVAL,#{id}, #{pseq}, #{pcount})
 	</insert>
 	
 	<select id ="getCart" resultType="CartDTO" parameterType="int">

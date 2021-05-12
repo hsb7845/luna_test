@@ -7,6 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
+<script type="text/javascript">
+	function incart(id,pseq){
+		$.ajax({
+			url : "insertCart.do",
+			mehthod : "post",
+			dataType : "json",
+			data : { "id" : id ,"pseq" : pseq},
+			asnc:false,
+			success : function(data) {
+				if(confirm("장바구니로 이동하시겠습니까?")){
+					location.href("cart.do?id="+id);
+				}
+			}
+		})
+		
+	}
+</script>
 <style>
 	.imgmain{
 		
@@ -43,13 +61,33 @@
 	</div>
 		<div>
 			<input type="submit" value="구매">
-			<input type="button" value="장바구니" onclick="incart()">
+			<input type="button" value="장바구니" id="cart" onclick="incart(${id},${map.pboard.pseq })">
 		</div>
 	<div>
 		${map.pboard.pcontent }
 	</div>
 	<br>
 	</form>
+	<div><!-- 유사 제품 -->
+		
+	
+	</div>
+	<div><!-- 평점 -->
+		<p>${map.avgRank }
+			<ul class="ratio">
+       			<li><div style="height:30%"><em>30%</em></div></li>
+        		<li><div style="height:40%"><em>40%</em></div></li>
+        		<li><div style="height:100%"><em>50%</em></div></li>
+        		<li><div style="height:30%"><em>30%</em></div></li>
+        		<li><div style="height:40%"><em>40%</em></div></li>
+    		</ul>
+    		<span>1점</span>    		
+    		<span>2점</span>
+    		<span>3점</span>
+    		<span>4점</span>
+    		<span>5점</span>
+    		
+	</div>
 	<div><!-- 리뷰 -->
 		<table border="1">
 			<tr>
@@ -78,9 +116,10 @@
 <!-- 							<td><img class="imgmain" src="upload/img_dummy1.jpg"></td> -->
 <%-- 							</c:if> --%>
 							<td>${i.rtitle }</td>
+						</tr>
 					</c:forEach>
 				</c:if>
-			</tr>	
+				
 		</table>
 	</div>
 	<div><!-- 문의 -->
@@ -108,7 +147,6 @@
 							
 					</c:forEach>
 				</c:if>
-				
 		</table>
 	</div>
 </body>

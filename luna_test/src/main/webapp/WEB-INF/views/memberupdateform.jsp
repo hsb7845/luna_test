@@ -8,14 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="updatemember.do">
+		<h1 style = "text-align:left">회원정보수정</h1>
+		아이디 <input type="text" name="id" value="${dto.id}" readonly><br>
+		비밀번호 <input type="password" name="pwd"  value="${dto.pwd}"><br>
+		이메일 <input type="text" name="email"  value="${dto.email}"><br>
+		<input type="text" name="adr1" value="${dto.adr1}"id="sample2_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" name="adr2" value="${dto.adr2}" placeholder="주소"><br>
+		<input type="text" name="adr3" value="${dto.adr3}" placeholder="상세주소">
+		<input type="text" name="adr4" value="${dto.adr4}" placeholder="참고항목"><br>
+				<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+</div>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
- 	function deleteMem(id){
- 		if(confirm("정말 삭제하시겠습니까?")){
- 			location.href ="deletemember.do?id="+id;
- 		}
- 	}
-
-
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
 
@@ -102,24 +112,6 @@
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
     }
 </script>
-</head>
-<body>
-	<form method="post" action="updatemember.do">
-		<h1 style = "text-align:left">회원정보수정</h1>
-		아이디 <input type="text" name="id" value="${dto.id}" readonly><br>
-		비밀번호 <input type="password" name="pwd"  value="${dto.pwd}"><br>
-		이메일 <input type="text" name="email"  value="${dto.email}"><br>
-		<input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호">
-		<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="adr2" id="sample2_address" placeholder="주소"><br>
-		<input type="text" name="adr3" id="sample2_detailAddress" placeholder="상세주소">
-		<input type="text" name="adr4" id="sample2_extraAddress" placeholder="참고항목"><br>
-				<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-</div>
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 		생년월일 <input type="date" name="birthtest" value="<fmt:formatDate value="${dto.birth }" pattern="yyyy-MM-dd"/>"><br>
 		성별  <input type="text" name="sex"  value="${dto.sex}" readonly><br>
 		핸드폰 <input type="text" name="phone"  value="${dto.phone}"><br>
@@ -130,7 +122,7 @@
 		포인트 <input type="text" name="point"  value="${dto.point}" readonly><br>
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
-		<input type="button" value="회원삭제" onclick="deleteMem('${id}')">
+	
 	
 	
 	

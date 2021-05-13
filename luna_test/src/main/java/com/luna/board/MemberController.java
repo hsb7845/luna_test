@@ -318,17 +318,11 @@ public class MemberController {
 	public String idSearch(Model model,  MemberDTO dto) {
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
 		if (member == null) {
-<<<<<<< HEAD
-			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
-			model.addAttribute("historyBack", true);
-			String result="해당회원은 존재하지 않습니다";
-			return result;
-=======
+
 			model.addAttribute("check", 1);
 		} else {
 			model.addAttribute("check", 0);
 			model.addAttribute("id", member.getId());
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		}
 		return "idSearchForm";
 

@@ -20,8 +20,13 @@
 	<select id="getCnum" parameterType="PCDTO" resultType="int">
 		SELECT CNUM
 		FROM P_CATEGORY
-		where ptype=#{ptype} and pcolor=#{pcolor} and psize=#{psize}		
+		WHERE ptype=#{ptype} and pcolor=#{pcolor} and psize=#{psize}		
 	</select>
+	
+	<!--  카테고리 호출 -->
+<!-- 	<select id="category" resultType="PCDTO"> -->
+		
+<!-- 	</select> -->
 	
 	<insert id="insertStock" parameterType="StockDTO">
 		INSERT INTO STOCK

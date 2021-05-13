@@ -70,7 +70,35 @@
 // }	
 
 
-$(document).on("change", "select.category1", function(){
+// 컨트롤러에서 데이터 받기
+var jsonData = JSON.parse('${getCnum}');
+console.log(jsonData);
+
+var cate1Arr = new Array();
+var cate1Obj = new Object();
+
+// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
+for(var i = 0; i < jsonData.length; i++) {
+ 
+ if(jsonData[i].type == "1") {
+  cate1Obj = new Object();  //초기화
+  cate1Obj.cateCode = jsonData[i].cateCode;
+  cate1Obj.cateName = jsonData[i].cateName;
+  cate1Arr.push(cate1Obj);
+ }
+}
+
+// 1차 분류 셀렉트 박스에 데이터 삽입
+var cate1Select = $("select.getCnum")
+
+for(var i = 0; i < cate1Arr.length; i++) {
+ cate1Select.append("<option value='" + cate1Arr[i].ptype + "'>"
+      + cate1Arr[i].pcolor + cate1Arr[i].psize +"</option>"); 
+}
+	
+// 2차 분류
+
+$(document).on("change", "select.type", function(){
 
 	 var cate2Arr = new Array();
 	 var cate2Obj = new Object();
@@ -88,11 +116,11 @@ $(document).on("change", "select.category1", function(){
 	  }
 	 }
 	 
-	 var cate2Select = $("select.category2");
+	 var cate2Select = $("select.type");
 
 	 for(var i = 0; i < cate2Arr.length; i++) {
-	   cate2Select.append("<option value='" + cate2Arr[i].cateCode + "'>"
-	        + cate2Arr[i].cateName + "</option>");
+	   cate2Select.append("<option value='" + cate2Arr[i].ptype + "'>"
+	        + cate2Arr[i].pcolor +  cate2Arr[i].psize +"</option>");
 	 } 
 	});
 	
@@ -107,18 +135,18 @@ $(document).on("change", "select.category1", function(){
 </head>
 <body>
 <h1>상품등록</h1>
-<form id="form" name="form" method="post" action="insertStock.do">
+<form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
 <div> 
 	<p>type
 	<select name="type" id="type" onchange="handleOnChange(this)">		
-		<option>전체</option>
+		<option value="" >전체</option>
 		<option value="1">반지</option>
 		<option value="2">귀걸이</option>
 		<option value="3">목걸이</option>				
 	</select>		
 	color
 	<select name="color" id="color">
-		<option>전체</option>
+		<option value="">전체</option>
 		<option value="1_1">실버반지</option>
 		<option value="1_2">골드반지</option>
 		<option value="1_3">로즈골드반지</option>
@@ -132,10 +160,10 @@ $(document).on("change", "select.category1", function(){
 	</select>
 	size
 	<select name="size" id="size">
-		<option>전체</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
+		<option value="">전체</option>
+		<option value="9">one size</option>
+		<option value="10">11호</option>
+		<option value="11">13호</option>
 	</select>	
 	</p>
 	<div id='result'></div>

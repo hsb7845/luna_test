@@ -42,6 +42,7 @@
     }
  
 </style>
+
 </head>
 <body>
 <% 
@@ -63,6 +64,7 @@
 	        <h5><a href="#">최근 본 상품</a></h5>
 	        <h5><a href="rboard.do">내가 쓴 리뷰 보기</a></h5>
 	        <h5><a href="qboard.do">내가 쓴 문의 사항 보기</a></h5>
+	        <h7><a href="logout.do">로그아웃</a></h7>
 		</div>	
 		<div class="content"></div>
 		<div class="footer"><%@ include file="footer.jsp" %></div>

@@ -173,6 +173,13 @@ public class MemberController {
 		return "index";
 	}
 
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index";
+		
+	}
+	
 	 
     /* 이메일 인증 */
     @RequestMapping(value="/mailCheck", method=RequestMethod.GET)

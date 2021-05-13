@@ -15,5 +15,6 @@ public interface IStockDAO {
 	boolean mulDel(String[] chk);
 	boolean stockInsert(StockDTO dto);
 	int getCnum(PCategoryDTO cdto);
+	List<PCategoryDTO> getColor(String ptype);
 
 }

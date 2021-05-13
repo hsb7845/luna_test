@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IStockService;
+import com.luna.board.service.PCategoryService;
 
 @Controller
 public class StockController {
@@ -84,6 +86,16 @@ public class StockController {
 	public String stockInsert(Locale locale, Model model) {
 		return "stockForm";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getColor.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public List<PCategoryDTO> getColor(Locale locale, Model model,String ptype) {
+		
+		List<PCategoryDTO> list = StockService.getColor(ptype);
+		return list;
+	}
+	
+	
 	
 	@RequestMapping(value = "/stockInsert.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert1(Locale locale, Model model, StockDTO dto) {

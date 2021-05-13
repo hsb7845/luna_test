@@ -10,7 +10,6 @@
 
 <!-- 관련 참고 사이트 -->
 <!-- https://doublesprogramming.tistory.com/140 -->
-<!-- https://kuzuro.blogspot.com/2018/10/7.html -->
 <!-- https://start0.tistory.com/223 -->
 
 <script>
@@ -54,75 +53,26 @@
 			location.href='stock.do'
 		});
 	}); 
-// 	var t=document.getElementById("type");
-// 	var type = t.options[t.selectedIndex].value;
-
-
-// function handleOnChange(e) {
-//   // 선택된 데이터의 텍스트값 가져오기
-//   const text = e.options[e.selectedIndex].text;
-  
-//   console.log(e.options);
-  
-//   // 선택한 텍스트 출력
-//   document.getElementById('result').innerText
-// //    = text;
-// }	
-
-
-// 컨트롤러에서 데이터 받기
-var jsonData = JSON.parse('${getCnum}');
-console.log(jsonData);
-
-var cate1Arr = new Array();
-var cate1Obj = new Object();
-
-// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
-for(var i = 0; i < jsonData.length; i++) {
- 
- if(jsonData[i].type == "1") {
-  cate1Obj = new Object();  //초기화
-  cate1Obj.cateCode = jsonData[i].cateCode;
-  cate1Obj.cateName = jsonData[i].cateName;
-  cate1Arr.push(cate1Obj);
- }
-}
-
-// 1차 분류 셀렉트 박스에 데이터 삽입
-var cate1Select = $("select.getCnum")
-
-for(var i = 0; i < cate1Arr.length; i++) {
- cate1Select.append("<option value='" + cate1Arr[i].ptype + "'>"
-      + cate1Arr[i].pcolor + cate1Arr[i].psize +"</option>"); 
-}
 	
-// 2차 분류
+//1단계 . type의 값이 바뀐다.
+//2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
+//3단계 . 그 색상을 option에 추가 
 
-$(document).on("change", "select.type", function(){
+$("#type").change(function(){
+	$.ajax({
+		url : "getColor",
+		mehthod : "post",
+		dataType : "json",
+		data : { "type" : $("#type").val},
+		asnc:false,
+		success : function(data) {
+			
+		}
+	})
+})
 
-	 var cate2Arr = new Array();
-	 var cate2Obj = new Object();
-	 
-	 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
-	 for(var i = 0; i < jsonData.length; i++) {
-	  
-	  if(jsonData[i].level == "2") {
-	   cate2Obj = new Object();  //초기화
-	   cate2Obj.cateCode = jsonData[i].cateCode;
-	   cate2Obj.cateName = jsonData[i].cateName;
-	   cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
-	   
-	   cate2Arr.push(cate2Obj);
-	  }
-	 }
-	 
-	 var cate2Select = $("select.type");
 
-	 for(var i = 0; i < cate2Arr.length; i++) {
-	   cate2Select.append("<option value='" + cate2Arr[i].ptype + "'>"
-	        + cate2Arr[i].pcolor +  cate2Arr[i].psize +"</option>");
-	 } 
-	});
+
 	
 </script>
 <style>
@@ -137,33 +87,21 @@ $(document).on("change", "select.type", function(){
 <h1>상품등록</h1>
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
 <div> 
+	
 	<p>type
-	<select name="type" id="type" onchange="handleOnChange(this)">		
+	<select name="type" id="type" >		
 		<option value="" >전체</option>
-		<option value="1">반지</option>
-		<option value="2">귀걸이</option>
-		<option value="3">목걸이</option>				
+		<option value="반지">반지</option>
+		<option value="귀걸이">귀걸이</option>
+		<option value="목걸이">목걸이</option>				
 	</select>		
 	color
 	<select name="color" id="color">
 		<option value="">전체</option>
-		<option value="1_1">실버반지</option>
-		<option value="1_2">골드반지</option>
-		<option value="1_3">로즈골드반지</option>
-		<option value="2_1">실버귀걸이</option>
-		<option value="2_2">골드귀걸이</option>
-		<option value="2_3">로즈골드귀걸이</option>
-		<option value="2_4">진주귀걸이</option>
-		<option value="3_1">실버목걸이</option>
-		<option value="3_1">골드목걸이</option>
-		<option value="3_1">로즈골드목걸이</option>
 	</select>
 	size
 	<select name="size" id="size">
 		<option value="">전체</option>
-		<option value="9">one size</option>
-		<option value="10">11호</option>
-		<option value="11">13호</option>
 	</select>	
 	</p>
 	<div id='result'></div>
@@ -171,7 +109,7 @@ $(document).on("change", "select.type", function(){
 	<P>상품입고수량  <input type="text" name="scount" id="scount" ></P>
 	<P>상품원가  <input type="text" name="productCost" id="productCost" ></P>
 	<P>상품내용  
-		<textarea clos="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
+		<textarea cols="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
 	<P>상품가격  <input type="text" name="price" id="price"></P>	
 		
 	<input type="button" value="등록" id="addBtn">

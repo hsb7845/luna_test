@@ -177,7 +177,6 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 }
 	
 	

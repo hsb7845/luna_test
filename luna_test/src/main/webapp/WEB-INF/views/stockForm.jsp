@@ -10,7 +10,6 @@
 
 <!-- 관련 참고 사이트 -->
 <!-- https://doublesprogramming.tistory.com/140 -->
-<!-- https://kuzuro.blogspot.com/2018/10/7.html -->
 <!-- https://start0.tistory.com/223 -->
 
 <script>
@@ -54,21 +53,7 @@
 			location.href='stock.do'
 		});
 	}); 
-// 	var t=document.getElementById("type");
-// 	var type = t.options[t.selectedIndex].value;
-
-
-// function handleOnChange(e) {
-//   // 선택된 데이터의 텍스트값 가져오기
-//   const text = e.options[e.selectedIndex].text;
-  
-//   console.log(e.options);
-  
-//   // 선택한 텍스트 출력
-//   document.getElementById('result').innerText
-// //    = text;
-// }	
-
+	
 //1단계 . type의 값이 바뀐다.
 //2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
 //3단계 . 그 색상을 option에 추가 
@@ -86,59 +71,8 @@ $("#type").change(function(){
 	})
 })
 
-<<<<<<< HEAD
-var cate1Arr = new Array();
-var cate1Obj = new Object();
 
-// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
-for(var i = 0; i < jsonData.length; i++) {
- 
- if(jsonData[i].type == "1") {
-  cate1Obj = new Object();  //초기화
-  cate1Obj.ptype = jsonData[i].ptype;
-  cate1Obj.pcolor = jsonData[i].pcolor;
-  cate1Obj.psize = jsonData[i].psize;
-  cate1Arr.push(cate1Obj);
- }
-}
 
-// 1차 분류 셀렉트 박스에 데이터 삽입
-var cate1Select = $("select.getCnum")
-
-for(var i = 0; i < cate1Arr.length; i++) {
- cate1Select.append("<option value='" + cate1Arr[i].ptype + "'>"
-      + cate1Arr[i].pcolor + cate1Arr[i].psize +"</option>"); 
-}
-	
-// 2차 분류
-
-$(document).on("change", "select.type", function(){
-
-	 var cate2Arr = new Array();
-	 var cate2Obj = new Object();
-	 
-	 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
-	 for(var i = 0; i < jsonData.length; i++) {
-	  
-	  if(jsonData[i].level == "2") {
-	   cate2Obj = new Object();  //초기화
-	   cate2Obj.cateCode = jsonData[i].cateCode;
-	   cate2Obj.cateName = jsonData[i].cateName;
-	   cate2Obj.cateCodeRef = jsonData[i].cateCodeRef;
-	   
-	   cate2Arr.push(cate2Obj);
-	  }
-	 }
-	 
-	 var cate2Select = $("select.type");
-
-	 for(var i = 0; i < cate2Arr.length; i++) {
-	   cate2Select.append("<option value='" + cate2Arr[i].ptype + "'>"
-	        + cate2Arr[i].pcolor +  cate2Arr[i].psize +"</option>");
-	 } 
-	});
-=======
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 	
 </script>
 <style>
@@ -164,10 +98,6 @@ $(document).on("change", "select.type", function(){
 	color
 	<select name="color" id="color">
 		<option value="">전체</option>
-		<option value="골드">골드</option>
-		<option value="로즈골드">로즈골드</option>
-		<option value="실버">실버</option>
-		
 	</select>
 	size
 	<select name="size" id="size">

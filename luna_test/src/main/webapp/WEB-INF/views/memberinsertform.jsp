@@ -49,16 +49,16 @@
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
-			<input class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합">
+			<input type="password" class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합">
 		</div>
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
-		<div class ="pw_reg_fl">최소 하나이상의 특수문자를 사용해주세요.</div>
+		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
 <!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
 		</div>
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
-				<input class="pwck_input" name="pwdCheck">
+				<input type="password" class="pwck_input" name="pwdCheck">
 			</div>
 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
@@ -198,7 +198,7 @@
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
- 	var code = "";                //이메일전송 인증번호 저장위한 코드
+ 	var code = "";                
  
 	function fn_idChk() {
 		$.ajax({
@@ -281,7 +281,7 @@
 	
 	$('.pw_input').on("propertychange change keyup paste input", function(){
 		var pw = $('.pw_input').val();
-		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/;
+		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,17}$/;
 		if(check.test(pw)==true){
 			$('.pw_reg_tr').css('display','block');
 			$('.pw_reg_fl').css('display','none');

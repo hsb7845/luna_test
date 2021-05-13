@@ -61,6 +61,9 @@ public class CouponController {
 		}
 	}
 	
+	
+	
+	
 	@RequestMapping(value = "/muldelCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = CouponService.mulDel(chk);

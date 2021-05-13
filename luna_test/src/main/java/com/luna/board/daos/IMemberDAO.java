@@ -15,4 +15,8 @@ public interface IMemberDAO {
 	public int idChk(MemberDTO dto) throws Exception;
 	MemberDTO login(MemberDTO dto);
 	MemberDTO getMemberByNameAndEmail(MemberDTO dto);
+	MemberDTO getMemberByIdAndEmail(MemberDTO dto);
+    public boolean pwdUpdate(MemberDTO dto);
+	boolean deleteMember(MemberDTO dto);
+
 }

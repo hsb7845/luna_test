@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 
 @Repository
@@ -61,6 +62,12 @@ public class StockDAO implements IStockDAO {
 	public boolean stockInsert(StockDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace+"insertStock",dto)>0?true:false;
+	}
+
+	@Override
+	public int getCnum(PCategoryDTO cdto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getCnum",cdto);
 	}
 	
 	

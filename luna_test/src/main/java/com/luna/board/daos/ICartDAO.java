@@ -5,7 +5,7 @@ import java.util.List;
 import com.luna.board.dtos.CartDTO;
 
 public interface ICartDAO {
-	List<CartDTO> getAllList();
+	List<CartDTO> getAllList(String id);
 	boolean insertCart(CartDTO dto);
 	CartDTO getCart(int seq);
 	boolean deleteCart(int seq);

@@ -117,6 +117,18 @@ public class MemberController {
 
 	}
 	
+	@RequestMapping(value = "/deletemember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String delete(Locale locale, Model model, MemberDTO dto) {
+		boolean isS = MemberService.deleteMember(dto);
+		if(isS) {
+			return "redirect:member.do";
+		}else {
+			model.addAttribute("msg","회원정보삭제실패");
+			return "error";
+		}
+
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/idChk.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public int idChk(MemberDTO dto,ServletRequest request) throws Exception {
@@ -145,6 +157,7 @@ public class MemberController {
 		}
 		if(isS) {
 			session.setAttribute("id", dto.getId());
+			session.setAttribute("nickname", dto.getNickName());
 			session.setAttribute("admin",dto.getAdmin());
 			if(dto.getAdmin().equals("관리자")) {
 				System.out.println("admin : "+dto.getAdmin());
@@ -185,6 +198,7 @@ public class MemberController {
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
 
         try {
             
@@ -301,23 +315,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/idSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String idSearch(Model model, String name,String email) {
-		MemberDTO dto = new MemberDTO(email,name);
-		System.out.println(dto.getId());
+	public String idSearch(Model model,  MemberDTO dto) {
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
-		
 		if (member == null) {
+<<<<<<< HEAD
 			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
 			model.addAttribute("historyBack", true);
 			String result="해당회원은 존재하지 않습니다";
 			return result;
+=======
+			model.addAttribute("check", 1);
+		} else {
+			model.addAttribute("check", 0);
+			model.addAttribute("id", member.getId());
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		}
-		
-		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));
-		model.addAttribute("historyBack", true);
-		return"redirect:loginForm.do";
+		return "idSearchForm";
 
-	
 		
 	}
 	
@@ -328,10 +342,58 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/pwdSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String pwdSearch(Locale locale, Model model) {
-		return "pwdSearch";
+	public String pwdSearch(Model model, MemberDTO dto) {
+		MemberDTO member = MemberService.getMemberByIdAndEmail(dto);
+		if (member == null) {
+			model.addAttribute("check", 1);
+		} else {
+			model.addAttribute("check", 0);
+			model.addAttribute("pwd", member.getPwd());
+			
+			 /* 인증번호(난수) 생성 */
+	        Random random = new Random();
+	        int checkNum = random.nextInt(888888) + 111111;
+	        String pwd = checkNum+"";
+	        logger.info("임시비밀번호 " + checkNum);
+	        
+	        /* 이메일 보내기 */
+	        String setFrom = "parkjoo8715@naver.com";
+	        String toMail = dto.getEmail();
+	        String title = "임시비밀번호 입니다.";
+	        String content = 
+	                "홈페이지를 방문해주셔서 감사합니다." +
+	                "<br><br>" + 
+	                "임시비밀번호는 " + checkNum + "입니다." + 
+	                "<br>";
+			
+			
+//	        MemberDTO dto2 = new MemberDTO();
+	        dto.setPwd(pwd);
+	        
+	        
+	        boolean isS = MemberService.pwdUpdate(dto);
+	        
 
+	        try {
+	            
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	            
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+			
+		}
+		
+		return "pwdSearchForm";
+		
+		
 	}
 }
-
-
+	
+   

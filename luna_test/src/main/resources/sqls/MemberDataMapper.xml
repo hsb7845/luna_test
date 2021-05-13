@@ -26,6 +26,9 @@
 	WHERE ID=#{id}
 	</update>
 	
+	<delete id="deleteMember" parameterType="Map">
+		DELETE FROM MEMBER WHERE Id =#{id} 
+	</delete>
 
 	<delete id="muldelMember" parameterType="Map">
 		DELETE FROM MEMBER WHERE ID IN 
@@ -47,7 +50,7 @@
 	
 	
 	<select id="login" resultType="MDTO" parameterType="MDTO">
-		select id,admin from member where id=#{id} and pwd=#{pwd}
+		select id,admin, nickname from member where id=#{id} and pwd=#{pwd}
 	</select>
 	
 	<select id="idSearch" resultType="MDTO" parameterType="MDTO">
@@ -57,6 +60,10 @@
 	<select id="pwdSearch" resultType="MDTO" parameterType="MDTO">
 		select pwd from member where Id=#{id} and EMAIL=#{email}
 	</select>
+
+	<update id="pwdUpdate" parameterType="MDTO">
+		update member set PWD = #{pwd} where EMAIL=#{email}
+	</update>
 
 </mapper>
 

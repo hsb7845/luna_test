@@ -42,34 +42,31 @@
     }
  
 </style>
-<script type="text/javascript">
-	document.createElement("header");
-</script>
 </head>
 <body>
-   <div class="wrap">
-      <div class="grid1" id="header">header</a></div>
-      <div class="grid2" ><h2>관리자페이지</h2>
-         <div id="m1">
-            <h5><a href="stock.do" id="button1">재고관리</a></h5>
-            <h5><a href="member.do" id="button2">회원관리</a></h5>
-            <h5><a href="pboard.do" id="button3">게시판관리</a></h5>
-         </div>
-         <div id="m2">
-            <div><h6><a href="#" id="button4-1">귀걸이</a></h6></div>
-            <div><h6><a href="#">목걸이</a></h6></div>
-            <div><h6><a href="#">기타</a></h6></div>
-            <div><h6><a href="rboard.do">리뷰</a></h6></div>
-            <div><h6><a href="qboard.do">문의사항</a></h6></div>
-            <div><h6><a href="eboard.do">이벤트</a></h6></div>
-         </div>
-		<div id="m3">			
-				<h5><a href="buylist.do" id="button4">주문관리</a></h5>		
-		</div>
+	<div class="wrap">
+		<div class="grid1" id="header">
+      		<a href="index.do" id="main">go main</a>
+      	</div>      
+      	<div class="grid2" ><h2>관리자페이지</h2>
+			<div id="m1">
+	            <h5><a href="stock.do" id="button1">재고관리</a></h5>
+	            <h5><a href="member.do" id="button2">회원관리</a></h5>
+	            <h5><a href="pboard.do" id="button3">게시판관리</a></h5>
+	         </div>
+	         <div id="m2">
+	            <div><h6><a href="#" id="button4-1">귀걸이</a></h6></div>
+	            <div><h6><a href="#">목걸이</a></h6></div>
+	            <div><h6><a href="#">기타</a></h6></div>
+	            <div><h6><a href="rboard.do">리뷰</a></h6></div>
+	            <div><h6><a href="qboard.do">문의사항</a></h6></div>
+	            <div><h6><a href="eboard.do">이벤트</a></h6></div>
+	         </div>
+			<div id="m3">			
+					<h5><a href="buylist.do" id="button4">주문관리</a></h5>		
+			</div>
 		</div>	
 		<div class="grid3" id="container">content	</div>
-		
-		<div class="grid4" id="footer">footer</div>
 	</div>	
 </body>
 </html>

@@ -25,7 +25,6 @@ public class RboardController {
 		
 		List<RBoardDTO> list = rBoardService.getAllList();
 		model.addAttribute("list",list);
-		System.out.println("11");
 		return "rboardlist";
 		
 	}
@@ -40,9 +39,9 @@ public class RboardController {
 	
 	@RequestMapping(value = "/insertrboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, RBoardDTO dto, String starrank[]) {
+		dto.setStarrank(Integer.parseInt(starrank[starrank.length-1]));
 		boolean isS = rBoardService.insertBoard(dto);
 		if(isS) {
-			System.out.println(dto);
 			return "redirect:rboard.do";
 		} else {
 			model.addAttribute("msg", "리뷰 글 추가를 실패하였습니다.");

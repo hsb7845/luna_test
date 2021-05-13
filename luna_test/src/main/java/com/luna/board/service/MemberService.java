@@ -63,7 +63,23 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		return MemberDAO.getMemberByNameAndEmail(dto);
 	}
+
+	@Override
+	public MemberDTO getMemberByIdAndEmail(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return MemberDAO.getMemberByIdAndEmail(dto);
+	}
 	
+	@Override
+    public boolean pwdUpdate(MemberDTO dto) {
+		return MemberDAO.pwdUpdate(dto);
+	}
+
+	@Override
+	public boolean deleteMember(com.luna.board.dtos.MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return MemberDAO.deleteMember(dto);
+	}
 
 
 }

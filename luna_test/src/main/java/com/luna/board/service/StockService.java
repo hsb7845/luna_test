@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IStockDAO;
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 
@@ -55,6 +56,12 @@ public class StockService implements IStockService {
 	public boolean stockInsert(StockDTO dto) {
 		// TODO Auto-generated method stub
 		return StockDAO.insertStock(dto);
+	}
+
+	@Override
+	public int getCnum(PCategoryDTO cdto) {
+		// TODO Auto-generated method stub
+		return PCategoryDTO.insert(cdto);
 	}
 
 

@@ -12,13 +12,25 @@
 <!-- <script type="text/javascript" src="resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script> -->
 
 <link rel="stylesheet" href="<c:url value='resources/bootstrap-4.4.1-dist/css/bootstrap.min.css'/>">
-
+<script>
+	$("#addOpt").on("click"){
+		var p_option =document.getElementsById("p_option");
+		
+		
+	}
+</script>
 <body>
 	<form method="post" action="insertpboard.do">
 	<div>
 		<div>
 			<div>제목</div>
 			<div><input type="text" name="ptitle"></div>
+		</div>
+		<div><button type="button" id="addOpt"><img src="resources/upload/+.png"></button></div>
+		<div>
+			<table border="1" id="p_option">
+				
+			</table>
 		</div>
 		<div>
 			<div>내용</div>

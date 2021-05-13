@@ -11,17 +11,30 @@
 		ORDER BY PNUM DESC 
 	</select>
 	
+	<select id="getStock" resultType="StockDTO" parameterType="int">
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
+		FROM STOCK
+		WHERE pnum=#{pnum}	
+	</select>
+	
+	<select id="getCnum" parameterType="PCDTO" resultType="int">
+		SELECT CNUM
+		FROM P_CATEGORY
+		where ptype=#{ptype} and pcolor=#{pcolor} and psize=#{psize}		
+	</select>
+	
 	<insert id="insertStock" parameterType="StockDTO">
 		INSERT INTO STOCK
 		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ)
 		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null)
 	</insert>
 	
-	<select id="getStock" resultType="StockDTO" parameterType="int">
-		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
-		FROM STOCK
-		WHERE pnum=#{pnum}	
-	</select>
+	<insert id="stockInsert">
+		INSERT INTO STOCK
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null)
+	</insert>
+	
+	
 	
 	<update id ="updateStock" parameterType="StockDTO">
 		UPDATE STOCK

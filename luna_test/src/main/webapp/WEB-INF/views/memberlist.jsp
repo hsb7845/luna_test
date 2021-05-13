@@ -86,7 +86,7 @@ $(function(){
 	
 		<tr>
 			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
-			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>
+			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a></td>	
 			<td><%=dto.getPwd() %></td>
 			<td><%=dto.getEmail()%></td>
 			<td><%=dto.getAdr1()%></td>
@@ -113,9 +113,7 @@ $(function(){
 			<a href="insertmemberform.do">회원가입</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
-			<a href="idSearchForm.do">아이디 찾기</a>
-			<a href="idSearchForm.do">비밀번호찾기</a>
-		
+	
 	
 	
 	</form>

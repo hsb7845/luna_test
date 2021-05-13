@@ -94,7 +94,13 @@
 		select * from q_board where pseq=#{pseq}
 	</select>
 	
+	<select id="getAvgRank" parameterType="int" resultType="double">
+			select avg(starrank) from r_board where pseq=#{pseq}
+	</select>
 	
+	<select id="countStarrank" parameterType="int" resultType="int">
+		
+	</select>
 </mapper>
 
 

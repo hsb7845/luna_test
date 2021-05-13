@@ -44,13 +44,21 @@
 </style>
 </head>
 <body>
+<% 
+	String id = (String)session.getAttribute("id");
+	if(id!=null){
+			%>
+			<h3>${nickname}님 환영합니다.</h3>
+			<%
+		}
+	
+%>
 	<div class="wrap">
 		<div class="header"><%@ include file="header.jsp" %>header</div>
+		
 		<div class="menu" >
-			<h5>${dto.nickname} 님 <a href="coupon.do">쿠폰함</a></h5>
-			
-			
-	      	<h5><a href="#">회원정보 수정</a></h5>
+			<h5><a href="coupon.do">쿠폰함</a></h5>			
+	      	<h5><a href="updatememberForm.do?id=${id}">회원정보 수정</a></h5>
 			<h5><a href="cart.do">장바구니</a></h5>
 	        <h5><a href="#">최근 본 상품</a></h5>
 	        <h5><a href="rboard.do">내가 쓴 리뷰 보기</a></h5>

@@ -2,9 +2,8 @@ package com.luna.board.dtos;
 
 import java.util.Date;
 
-import lombok.Builder;
-import lombok.Data;
-@Data
+
+
 
 public class MemberDTO {
 	private String id;
@@ -172,11 +171,6 @@ public class MemberDTO {
 		this.point = point;
 	}
 
-	public MemberDTO(String email, String name) {
-		super();
-		this.email = email;
-		this.name = name;
-	}
 
 	public MemberDTO() {
 		super();

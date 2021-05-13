@@ -111,6 +111,10 @@ $("#type").change(function(){
 	color
 	<select name="color" id="color">
 		<option value="">전체</option>
+		<option value="골드">골드</option>
+		<option value="로즈골드">로즈골드</option>
+		<option value="실버">실버</option>
+		
 	</select>
 	size
 	<select name="size" id="size">

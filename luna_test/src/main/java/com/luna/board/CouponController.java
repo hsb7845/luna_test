@@ -45,6 +45,7 @@ public class CouponController {
 	@RequestMapping(value = "/couponUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateCoupon(Locale locale, Model model,int cseq) {
 		CouponDTO dto = CouponService.getCoupon(cseq);
+		CouponService.hitCoupon(dto);
 		System.out.println("cseq"+dto.getCseq());
 		model.addAttribute("dto", dto);
 		return "couponUpdateForm";

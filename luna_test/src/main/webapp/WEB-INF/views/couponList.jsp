@@ -201,7 +201,7 @@ $(function(){
 	
 <% 	
  	if(adminId.equals("관리자")) {
- 		out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a><a href='.do'>메인</a><input type='submit' value='삭제' /></td></tr>");
+ 		out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a>&nbsp;&nbsp;<a href='.do'>메인</a>&nbsp;&nbsp;<input type='submit' value='삭제' /></td></tr>");
  		} else {
  		out.print("<tr><td colspan='6'><a href='.do'>메인</a></td></tr>");
  		}

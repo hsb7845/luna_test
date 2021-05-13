@@ -43,6 +43,12 @@ public class CouponService implements ICouponService {
 		// TODO Auto-generated method stub
 		return CouponDAO.updateCoupon(dto);
 	}
+	
+	@Override
+	public boolean hitCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return CouponDAO.hitCoupon(dto);
+	}
 
 	@Override
 	public boolean mulDel(String[] chk) {

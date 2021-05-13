@@ -48,6 +48,12 @@ public class CouponDAO implements ICouponDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"updateCoupon", dto)>0?true:false;
 	}
+	
+	@Override
+	public boolean hitCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+"hitCoupon", dto)>0?true:false;
+	}
 
 	@Override
 	public boolean mulDel(String[] chks) {

@@ -19,13 +19,13 @@
 		WHERE cseq = #{cseq}
  	</select>
 	
-<!-- 	<update id ="updateCoupon" parameterType="CouponDTO"> -->
-<!-- 		UPDATE COUPON -->
-<!-- 		SET CCONTENT=#{ccontent}, DISCOUNT=#{discount} -->
-<!-- 		WHERE CSEQ=#{cseq} -->
-<!-- 	</update> -->
+ 	<update id ="updateCoupon" parameterType="CouponDTO"> 
+ 		UPDATE COUPON 
+ 		SET CCONTENT=#{ccontent}, DISCOUNT=#{discount} 
+ 		WHERE CSEQ=#{cseq} 
+ 	</update>
 	
-	<update id ="updateCoupon" parameterType="CouponDTO">
+	<update id ="hitCoupon" parameterType="CouponDTO">
 		UPDATE COUPON
 		SET HIT = HIT+1
 		WHERE CSEQ=#{cseq}

@@ -69,11 +69,24 @@
 // //    = text;
 // }	
 
+//1단계 . type의 값이 바뀐다.
+//2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
+//3단계 . 그 색상을 option에 추가 
 
-// 컨트롤러에서 데이터 받기
-var jsonData = JSON.parse('${getCnum}');
-console.log(jsonData);
+$("#type").change(function(){
+	$.ajax({
+		url : "getColor",
+		mehthod : "post",
+		dataType : "json",
+		data : { "type" : $("#type").val},
+		asnc:false,
+		success : function(data) {
+			
+		}
+	})
+})
 
+<<<<<<< HEAD
 var cate1Arr = new Array();
 var cate1Obj = new Object();
 
@@ -124,6 +137,8 @@ $(document).on("change", "select.type", function(){
 	        + cate2Arr[i].pcolor +  cate2Arr[i].psize +"</option>");
 	 } 
 	});
+=======
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 	
 </script>
 <style>
@@ -138,33 +153,25 @@ $(document).on("change", "select.type", function(){
 <h1>상품등록</h1>
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
 <div> 
+	
 	<p>type
-	<select name="type" id="type" onchange="handleOnChange(this)">		
+	<select name="type" id="type" >		
 		<option value="" >전체</option>
-		<option value="1">반지</option>
-		<option value="2">귀걸이</option>
-		<option value="3">목걸이</option>				
+		<option value="반지">반지</option>
+		<option value="귀걸이">귀걸이</option>
+		<option value="목걸이">목걸이</option>				
 	</select>		
 	color
 	<select name="color" id="color">
 		<option value="">전체</option>
-		<option value="1_1">실버반지</option>
-		<option value="1_2">골드반지</option>
-		<option value="1_3">로즈골드반지</option>
-		<option value="2_1">실버귀걸이</option>
-		<option value="2_2">골드귀걸이</option>
-		<option value="2_3">로즈골드귀걸이</option>
-		<option value="2_4">진주귀걸이</option>
-		<option value="3_1">실버목걸이</option>
-		<option value="3_1">골드목걸이</option>
-		<option value="3_1">로즈골드목걸이</option>
+		<option value="골드">골드</option>
+		<option value="로즈골드">로즈골드</option>
+		<option value="실버">실버</option>
+		
 	</select>
 	size
 	<select name="size" id="size">
 		<option value="">전체</option>
-		<option value="9">one size</option>
-		<option value="10">11호</option>
-		<option value="11">13호</option>
 	</select>	
 	</p>
 	<div id='result'></div>
@@ -172,7 +179,7 @@ $(document).on("change", "select.type", function(){
 	<P>상품입고수량  <input type="text" name="scount" id="scount" ></P>
 	<P>상품원가  <input type="text" name="productCost" id="productCost" ></P>
 	<P>상품내용  
-		<textarea clos="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
+		<textarea cols="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
 	<P>상품가격  <input type="text" name="price" id="price"></P>	
 		
 	<input type="button" value="등록" id="addBtn">

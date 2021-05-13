@@ -65,6 +65,7 @@
 		<th>이미지 파일 번호</th>
 		<th>파일 사이즈</th>
 		<th>실제 이름</th>
+		<th>이미지</th>
 		<th>아이디</th>
 		<th>상품 게시글 번호</th>
 		<th>리뷰 게시글 번호</th>
@@ -82,6 +83,8 @@
 					<td><%=dto.getImgnum()%></td>
 					<td><a href="download.do?imgnum=<%=dto.getImgnum() %>"><%=dto.getImgname()%></a></td>
 					<td><%=dto.getFilesize()%></td>
+<td><img src="<%=request.getSession().getServletContext().getRealPath("upload") %>\<%=dto.getImgname()%>"></td>
+					
 					<td><%=dto.getId()%></td>
 					<td><%=dto.getPseq()%></td>
 					<td><%=dto.getRseq()%></td>

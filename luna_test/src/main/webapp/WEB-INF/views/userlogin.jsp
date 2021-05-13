@@ -76,5 +76,7 @@
  	<img src="upload/kakao_login_button.png"/></a>	<br> 
 			<a href="idSearchForm.do">아이디 찾기</a>
 			<a href="pwdSearchForm.do">비밀번호찾기</a>
+			<a href="insertmemberform.do">회원가입</a>
+			
 </body>
 </html>

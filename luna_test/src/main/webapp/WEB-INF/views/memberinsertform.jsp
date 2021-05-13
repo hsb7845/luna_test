@@ -31,6 +31,7 @@
 	color :red;
 }
 
+
 </style>
 
 </head>
@@ -82,7 +83,7 @@
 		</div>
 
 
-
+주소<br>
 <input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호">
 <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
 <input type="text" name="adr2" id="sample2_address" placeholder="주소"><br>
@@ -184,9 +185,9 @@
 </script>
 		
 		생년월일<br> <input type="date" name="birthtest"><br>
-		성별
-		남<input type="checkbox" name="sex"  value="남" >
-		여<input type="checkbox" name="sex"  value="여" ><br>
+		성별<br>
+		남<input type="checkbox" name="sex" onclick="checkOnly(this);" value="남" >
+		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
 		핸드폰 <br><input type="text" name="phone">
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
   		 <input type="hidden" name="admin"><br>  
@@ -296,6 +297,16 @@
 // 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
 	
 
+function checkOnly(chk){
+
+   var obj = document.getElementsByName("sex");
+
+      for(var i=0; i<obj.length; i++){
+            if(obj[i] != chk){
+                  obj[i].checked = false;
+                  }
+            }
+    }
 
 
 

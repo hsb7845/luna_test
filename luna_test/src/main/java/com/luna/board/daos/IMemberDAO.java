@@ -20,5 +20,6 @@ public interface IMemberDAO {
 	MemberDTO getMemberByIdAndEmail(MemberDTO dto);
     public boolean pwdUpdate(MemberDTO dto);
 	boolean deleteMember(MemberDTO dto);
+	boolean insertKMember(MemberDTO dto);
 
 }

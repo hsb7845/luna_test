@@ -89,6 +89,11 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		return MemberDAO.deleteMember(dto);
 	}
+	
+	@Override
+	public boolean insertKMember(MemberDTO dto) {
+		return MemberDAO.insertKMember(dto);
+	}
 
 
 }

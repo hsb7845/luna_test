@@ -59,8 +59,9 @@ public class MemberDAO implements IMemberDAO {
 	public MemberDTO login(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		dto = sqlSession.selectOne(namespace+"login", dto);
-		System.out.println(dto.getAdmin());
 		return dto;
+		
+		
 	}
 
 	@Override
@@ -94,5 +95,10 @@ public class MemberDAO implements IMemberDAO {
 		return sqlSession.delete(namespace+"deleteMember", dto)>0?true:false;
 	}
 
+	@Override
+	public boolean insertKMember(MemberDTO dto) {
+		return sqlSession.insert(namespace+"insertKMember", dto)>0? true:false;
+		
+	}
 		
 }

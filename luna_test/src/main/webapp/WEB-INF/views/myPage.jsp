@@ -67,6 +67,7 @@
 	        <h7><a href="logout.do">로그아웃</a></h7>
 		</div>	
 		<div class="content"></div>
+		<div class="content"><a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp">우체국 배송조회</a></div>
 		<div class="footer"><%@ include file="footer.jsp" %></div>
 	</div>	
 </body>

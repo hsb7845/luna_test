@@ -64,6 +64,12 @@ public class StockService implements IStockService {
 		return PCategoryDTO.insert(cdto);
 	}
 
+	@Override
+	public List<PCategoryDTO> getColor(String ptype) {
+		// TODO Auto-generated method stub
+		return PCategoryDTO.getColor(ptype);
+	}
+
 
 	
 	

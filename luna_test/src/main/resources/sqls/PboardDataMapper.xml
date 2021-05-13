@@ -98,8 +98,8 @@
 			select avg(starrank) from r_board where pseq=#{pseq}
 	</select>
 	
-	<select id="countStarrank" parameterType="int" resultType="int">
-		
+	<select id="countStarrank" parameterType="int" resultType="Integer">
+		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK 
 	</select>
 </mapper>
 

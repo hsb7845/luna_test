@@ -74,10 +74,16 @@ public class PBoardDAO implements IPBoardDAO{
 
 	@Override
 	public Map<String, Object> getDetail(int pseq) {
+
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<>();
+		System.out.println(pseq);
 		PBoardDTO pboard= sqlSession.selectOne(namespace+"getPBoard", pseq);
-		double avgRank = sqlSession.selectOne(namespace+"getAvgRank", pseq);
+		String avg = sqlSession.selectOne(namespace+"getAvgRank", pseq);
+		double avgRank = 0;
+		if(avg!=null) {
+			avgRank = Double.parseDouble(avg);
+		}
 		List<ImgFileDTO> img = sqlSession.selectList(namespace+"getImage",pseq);
 		List<RBoardDTO> rboard = sqlSession.selectList(namespace+"getRboard", pseq);
 		List<QBoardDTO> qboard = sqlSession.selectList(namespace+"getQboard", pseq);

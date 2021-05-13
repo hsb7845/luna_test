@@ -10,6 +10,14 @@
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
 	function incart(id,pseq){
+		if(id==null){
+			if(confirm("로그인이 필요한 작업입니다. \n 이동하시겠습니까?")){
+				location.href = "login.do";
+			}else{
+				return;
+			}
+		}
+		
 		$.ajax({
 			url : "insertCart.do",
 			mehthod : "post",
@@ -18,7 +26,7 @@
 			asnc:false,
 			success : function(data) {
 				if(confirm("장바구니로 이동하시겠습니까?")){
-					location.href("cart.do?id="+id);
+					location.href ="cart.do?id="+id;
 				}
 			}
 		})
@@ -61,7 +69,7 @@
 	</div>
 		<div>
 			<input type="submit" value="구매">
-			<input type="button" value="장바구니" id="cart" onclick="incart(${id},${map.pboard.pseq })">
+			<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })">
 		</div>
 	<div>
 		${map.pboard.pcontent }

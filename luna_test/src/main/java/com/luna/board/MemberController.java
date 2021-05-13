@@ -173,11 +173,15 @@ public class MemberController {
 		return "index";
 	}
 
-	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
-	public String logout(HttpSession session) {
+	@RequestMapping(value="/logout.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public String logout(Locale locale, Model model, MemberDTO dto, HttpServletRequest request) {
+		boolean isS = false;
+		HttpSession session = request.getSession();
+		if (session != null) { 
+		System.out.println("세션 정보삭제 완료");
 		session.invalidate();
-		return "index";
-		
+		}
+		return "userlogin"; 
 	}
 	
 	 

@@ -8,6 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+ 	function deleteMem(id){
+ 		if(confirm("정말 삭제하시겠습니까?")){
+ 			location.href ="deletemember.do?id="+id;
+ 		}
+ 	}
+</script>
 </head>
 <body>
 	<form method="post" action="updatemember.do">
@@ -122,6 +129,8 @@
 		포인트 <input type="text" name="point"  value="${dto.point}" readonly><br>
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
+		<input type="button" value="회원삭제" onclick="deleteMem('${id}')">
+		
 	
 	
 	

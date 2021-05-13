@@ -58,13 +58,15 @@
 		<div class="header"><%@ include file="header.jsp" %>header</div>
 		
 		<div class="menu" >
+		<a href="index.do" id="main">go main</a><br><br>
+		
 			<h5><a href="coupon.do">쿠폰함</a></h5>			
 	      	<h5><a href="updatememberForm.do?id=${id}">회원정보 수정</a></h5>
 			<h5><a href="cart.do">장바구니</a></h5>
 	        <h5><a href="#">최근 본 상품</a></h5>
 	        <h5><a href="rboard.do">내가 쓴 리뷰 보기</a></h5>
 	        <h5><a href="qboard.do">내가 쓴 문의 사항 보기</a></h5>
-	        <h7><a href="logout.do">로그아웃</a></h7>
+	        <h5><a href="logout.do">로그아웃</a></h5>
 		</div>	
 		<div class="content"></div>
 		<div class="content"><a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp">우체국 배송조회</a></div>

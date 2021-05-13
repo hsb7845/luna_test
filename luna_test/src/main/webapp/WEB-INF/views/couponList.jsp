@@ -91,9 +91,9 @@ $(function(){
 <%
 	List<CouponDTO> list = (List<CouponDTO>) request.getAttribute("list");
 %>
-<%-- <% --%>
-// 	List<CouponDTO> admin = (List<CouponDTO>) request.getAttribute("list");
-<%-- %> --%>
+<%
+	String adminId = (String)session.getAttribute("admin");
+%>
 <body>
 
 <div class="container" id="badge">
@@ -199,14 +199,13 @@ $(function(){
 		}
 	%>
 	
-<%-- 	<% --%>
-// 		if(admin.equals("관리자")) {
-// 			out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a><a href='.do'>메인</a><input type='submit' value='삭제' /></td></tr>");
-// 		} else {
-// 			out.print("<tr><a href='.do'>메인</a></tr>");
-// 		}
-<%-- 	%> --%>
-	
+<% 	
+ 	if(adminId.equals("관리자")) {
+ 		out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a><a href='.do'>메인</a><input type='submit' value='삭제' /></td></tr>");
+ 		} else {
+ 		out.print("<tr><td colspan='6'><a href='.do'>메인</a></td></tr>");
+ 		}
+%> 
 	
 	
 <!-- 	<tr> -->

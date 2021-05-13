@@ -82,8 +82,9 @@ for(var i = 0; i < jsonData.length; i++) {
  
  if(jsonData[i].type == "1") {
   cate1Obj = new Object();  //초기화
-  cate1Obj.cateCode = jsonData[i].cateCode;
-  cate1Obj.cateName = jsonData[i].cateName;
+  cate1Obj.ptype = jsonData[i].ptype;
+  cate1Obj.pcolor = jsonData[i].pcolor;
+  cate1Obj.psize = jsonData[i].psize;
   cate1Arr.push(cate1Obj);
  }
 }

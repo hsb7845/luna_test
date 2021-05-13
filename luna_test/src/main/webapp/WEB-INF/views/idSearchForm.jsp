@@ -38,10 +38,5 @@
 
 	</form>
 	
-	<script type="text/javascript">
-		function closethewindow(){
-			self.close();
-		}
-	</script>
 </body>
 </html>

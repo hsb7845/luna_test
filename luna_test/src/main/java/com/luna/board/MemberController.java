@@ -309,7 +309,8 @@ public class MemberController {
 		if (member == null) {
 			model.addAttribute("msg", String.format("해당회원은 존재하지 않습니다."));
 			model.addAttribute("historyBack", true);
-			return "redirect:idSearchForm.do";
+			String result="해당회원은 존재하지 않습니다";
+			return result;
 		}
 		
 		model.addAttribute("msg", String.format("아이디 : $s", member.getId() ));

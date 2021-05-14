@@ -149,7 +149,7 @@ public class MemberController {
 					System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
-					return "myPage";
+					return "redirect:myPage.do";
 				}				
 			}else {
 				msg="아이디나 비밀번호가 틀렸습니다.";

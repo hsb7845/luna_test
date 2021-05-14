@@ -63,4 +63,10 @@ public class CouponDAO implements ICouponDAO {
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
 	}
 
+	@Override
+	public CouponDTO ringCoupon() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"ringCoupon");
+	}
+
 }

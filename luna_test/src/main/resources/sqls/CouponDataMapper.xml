@@ -31,6 +31,11 @@
 		WHERE CSEQ=#{cseq}
 	</update>
 	
+	<select id="ringCoupon" resultType="CouponDTO">		
+		SELECT COUNT(*) as hit
+		FROM COUPON	
+		WHERE HIT = 0
+	</select>
 	
 	<delete id ="deleteCoupon" parameterType="int">
 		DELETE FROM COUPON

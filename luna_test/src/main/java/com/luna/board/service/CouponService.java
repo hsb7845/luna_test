@@ -55,5 +55,11 @@ public class CouponService implements ICouponService {
 		// TODO Auto-generated method stub
 		return CouponDAO.mulDel(chk);
 	}
+	
+	@Override
+	public CouponDTO ringCoupon() {
+		// TODO Auto-generated method stub
+		return CouponDAO.ringCoupon();
+	}
 
 }

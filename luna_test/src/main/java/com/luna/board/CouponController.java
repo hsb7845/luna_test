@@ -51,6 +51,15 @@ public class CouponController {
 		return "couponUpdateForm";
 	}
 	
+
+	@RequestMapping(value = "/myPage.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String ring(Locale locale, Model model) {
+		CouponDTO dto = CouponService.ringCoupon();
+		model.addAttribute("dto", dto);
+		return "myPage";
+	}
+	
+	
 	@RequestMapping(value = "/updateCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String update(Locale locale, Model model, CouponDTO dto) {
 		boolean isS = CouponService.updateCoupon(dto);
@@ -63,8 +72,6 @@ public class CouponController {
 	}
 	
 	
-	
-	
 	@RequestMapping(value = "/muldelCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {
 		boolean isS = CouponService.mulDel(chk);
@@ -75,5 +82,4 @@ public class CouponController {
 			return "error";
 		}
 	}
-
 }

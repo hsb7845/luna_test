@@ -42,7 +42,7 @@
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호<br></div>
 		<div class="pw_input_box">
-			<input type="password" class="pw_input" name="pwd"  value="${dto.pwd}">
+			<input type="password" class="pw_input" name="pwd"  value="${dto.pwd}" required>
 		</div>
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
 		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
@@ -50,7 +50,7 @@
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
-				<input type="password" class="pwck_input" name="pwdCheck">
+				<input type="password" class="pwck_input" name="pwdCheck" required>
 			</div>
 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>

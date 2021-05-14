@@ -75,6 +75,22 @@ $(function(){
  			}
  		}
  	}
+ 	
+		$("#stockInsertForm").click(function(){
+//			location.href='${path}/shop/product/list.do'
+		location.href='stockInsertForm.do'
+		});
+ 	
+ 		$("#main").click(function(){
+// 				location.href='${path}/shop/product/list.do'
+ 			location.href='.do'
+ 		});
+ 		
+ 		$("#stockForm").click(function(){
+//				location.href='${path}/shop/product/list.do'
+			location.href='stockForm.do'
+		});
+
 })
 	
 </script>
@@ -129,12 +145,17 @@ $(function(){
 			}
 		}
 	%>
+</table>
+<table>	
 	<tr>
-		<td colspan="9">
-			<a href="stockInsertForm.do">상품입고</a>
-			<a href="stockForm.do">상품등록</a>
-			<a href=".do">메인</a>
+		<td colspan="9"  >
+			<input type="button" value="상품입고" id="stockInsertForm">
+			<input type="button" value="상품등록" id="stockForm">
+			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
+<!-- 			<a href="stockInsertForm.do">상품입고</a> -->			
+<!-- 			<a href="stockForm.do">상품등록</a> -->			
+<!-- 			<a href=".do">메인</a> -->
 		</td>
 	</tr>
 </table>

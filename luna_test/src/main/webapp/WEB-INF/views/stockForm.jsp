@@ -54,6 +54,7 @@
 // 			location.href='${path}/shop/product/list.do'
 			location.href='stock.do'
 		});
+		
 		//1단계 . type의 값이 바뀐다.
 		//2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
 		//3단계 . 그 색상을 option에 추가 

@@ -91,7 +91,7 @@ $(function(){
 <p class="cls1">장바구니리스트</p> 
 <form action="muldelCart.do" method="post">
 
-<!-- <table border="1"> -->
+<!-- <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse"> -->
 <%-- 	<col width="50px"> --%>
 <%-- 	<col width="150px"> --%>
 <%-- 	<col width="150px"> --%>

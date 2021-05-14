@@ -86,7 +86,7 @@ $(function(){
 <!-- <h1>상품재고현황</h1> -->
 <p class="cls1">상품재고현황</p> 
 <form action="muldelStock.do" method="post">
-<table border="1">
+<table  border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="100px">
 	<col width="300px">
@@ -95,7 +95,7 @@ $(function(){
 	<col width="150px">
 	<col width="500px">
 	<col width="100px">
-	<col width="100px">
+	<col width="150px">
 	<tr>
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>상품번호</th>

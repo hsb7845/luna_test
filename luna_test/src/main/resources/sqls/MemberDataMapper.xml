@@ -17,7 +17,7 @@
 	
 	<insert id="insertKMember" parameterType="MDTO">
 		INSERT INTO MEMBER(id, pwd, email, adr1, adr2, adr3, adr4, birth, sex, phone, joinDate, admin, nickName, name, point)
-		VALUES(#{id},null,#{email}, null, null, null, null, null, #{sex}, null, sysdate, 'kakao', #{nickName}, null, 0)
+		VALUES(#{id},null,#{email}, null, null, null, null, null, #{sex}, null, sysdate, 'kakao', #{nickName}, #{name}, 0)
 	</insert>
 	
 	<select id="getMember" resultType="MDTO" parameterType="STRING">

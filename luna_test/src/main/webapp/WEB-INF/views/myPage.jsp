@@ -67,6 +67,8 @@
 	        <h5><a href="rboard.do">내가 쓴 리뷰 보기</a></h5>
 	        <h5><a href="qboard.do">내가 쓴 문의 사항 보기</a></h5>
 	        <h5><a href="logout.do">로그아웃</a></h5>
+	       	<h5><a href="kLogout.do">카카오로그아웃</a></h5>
+	        
 		</div>	
 		<div class="content"></div>
 		<div class="content"><a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp">우체국 배송조회</a></div>

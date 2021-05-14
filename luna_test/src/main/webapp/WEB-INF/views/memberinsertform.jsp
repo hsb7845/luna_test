@@ -32,7 +32,7 @@
 }
 
 
-</style>	
+</style>
 
 </head>
 
@@ -196,6 +196,9 @@
 		 <input type="hidden" name="point"><br><br>
 		<input type="submit" value="회원가입">
 		<input type="reset" value="다시입력">
+	<c:if test="${msg == 'insertFail'}">
+		<p>회원가입이실패했습니다.입력항목을 재 확인 해주세요.</p>
+	</c:if>
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
@@ -317,3 +320,5 @@ function checkOnly(chk){
 
 </body>
 </html>
+
+

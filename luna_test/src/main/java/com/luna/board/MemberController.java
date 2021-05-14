@@ -5,9 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.UUID;
 
-import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -289,6 +287,7 @@ public class MemberController {
 	    	dto.setId(kakaoProfile.getKakao_account().getEmail());
 	    	dto.setEmail(kakaoProfile.getKakao_account().getEmail());
 	    	dto.setNickName(kakaoProfile.getProperties().getNickname());
+	    	dto.setName(kakaoProfile.getProperties().getNickname());
 	    	dto.setSex(kakaoProfile.getKakao_account().getGender());
 	      	
     		int result = MemberService.idChk(dto);

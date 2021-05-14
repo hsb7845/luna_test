@@ -32,12 +32,9 @@
 }
 
 
-</style>	
+</style>
 
 </head>
-
-
-
 
 <body> 		
 	<form method="post" action="insertmember.do">
@@ -94,6 +91,24 @@
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
+
+		생년월일<br> <input type="date" name="birthtest"><br>
+		성별<br>
+		남<input type="checkbox" name="sex" onclick="checkOnly(this);" value="남" >
+		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
+		핸드폰 <br><input type="text" name="phone">
+<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
+  		 <input type="hidden" name="admin"><br>  
+		닉네임 <br><input type="text" name="nickName"><br>
+		이름<br>	<input type="text" name="name">
+		 <input type="hidden" name="point"><br><br>
+		<input type="submit" value="회원가입">
+		<input type="reset" value="다시입력">
+	<c:if test="${msg == 'insertFail'}">
+		<p>회원가입이실패했습니다.입력항목을 재 확인 해주세요.</p>
+	</c:if>
+	</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -184,20 +199,6 @@
     }
 </script>
 		
-		생년월일<br> <input type="date" name="birthtest"><br>
-		성별<br>
-		남<input type="checkbox" name="sex" onclick="checkOnly(this);" value="남" >
-		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
-		핸드폰 <br><input type="text" name="phone">
-<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
-  		 <input type="hidden" name="admin"><br>  
-		닉네임 <br><input type="text" name="nickName"><br>
-		이름<br>	<input type="text" name="name">
-		 <input type="hidden" name="point"><br><br>
-		<input type="submit" value="회원가입">
-		<input type="reset" value="다시입력">
-	</form>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
  <script type="text/javascript">
  	var code = "";                
  
@@ -308,12 +309,11 @@ function checkOnly(chk){
             }
     }
 
-
-
-	
  </script>
 
 
 
 </body>
 </html>
+
+

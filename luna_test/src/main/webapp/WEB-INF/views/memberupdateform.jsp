@@ -76,7 +76,7 @@
 		이름<br>	<input type="text" name="name"  value="${dto.name}" readonly><br><br>
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
-		<input type="button" value="회원삭제" onclick="deleteMem('${id}')">
+		<input type="button" value="회원탈퇴" onclick="deleteMem('${id}')">
 	</form>
 </body>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -201,7 +201,7 @@
 </script>
 <script>
  	function deleteMem(id){
- 		if(confirm("정말 삭제하시겠습니까?")){
+ 		if(confirm("정말 탈퇴하시겠습니까?")){
  			location.href ="deletemember.do?id="+id;
  		}
  	}

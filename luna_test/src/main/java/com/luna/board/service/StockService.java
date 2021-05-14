@@ -61,18 +61,31 @@ public class StockService implements IStockService {
 	@Override
 	public int getCnum(PCategoryDTO cdto) {
 		// TODO Auto-generated method stub
-		return PCategoryDTO.insert(cdto);
+		return StockDAO.getCnum(cdto);
 	}
 
 	@Override
 	public List<PCategoryDTO> getColor(String ptype) {
 		// TODO Auto-generated method stub
-		return PCategoryDTO.getColor(ptype);
+		return StockDAO.getColor(ptype);
+	}
+
+	@Override
+	public List<String> getPtype() {
+		// TODO Auto-generated method stub
+		return StockDAO.getPtype();
+	}
+
+	@Override
+	public List<PCategoryDTO> getSize(String ptype) {
+		// TODO Auto-generated method stub
+		return StockDAO.getSize(ptype);
 	}
 
 
+
 	
-	
+
 	
 	
 

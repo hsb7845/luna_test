@@ -55,17 +55,6 @@ public class PCategoryDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public static int insert(PCategoryDTO cdto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	public static List<PCategoryDTO> getColor(String ptype2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-
-	
-	
 	
 }

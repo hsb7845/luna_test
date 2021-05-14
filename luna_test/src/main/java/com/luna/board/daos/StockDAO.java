@@ -73,8 +73,19 @@ public class StockDAO implements IStockDAO {
 	@Override
 	public List<PCategoryDTO> getColor(String ptype) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"getColor",ptype);
+		return sqlSession.selectList(namespace+"getColor",ptype);
 	}
-	
+
+	@Override
+	public List<String> getPtype() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getPtype");
+	}
+
+	@Override
+	public List<PCategoryDTO> getSize(String ptype) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getSize",ptype);
+	}
 	
 }

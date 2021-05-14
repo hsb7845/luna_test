@@ -1,3 +1,5 @@
+<%@page import="com.luna.board.dtos.StockDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -52,28 +54,46 @@
 // 			location.href='${path}/shop/product/list.do'
 			location.href='stock.do'
 		});
+		//1단계 . type의 값이 바뀐다.
+		//2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
+		//3단계 . 그 색상을 option에 추가 
+		$("#ptype").change(function(){
+			$.ajax({
+				url : "getColor.do",
+				mehthod : "post",
+				dataType : "json",
+				data : { "ptype" : $("#ptype").val()},
+				asnc:false,
+				success : function(data) {
+// 					alert(data["list"][0]["pcolor"]);
+
+					var list = data["list"];
+					var colorOption = "<option value=''>전체</option>";
+					for(var i=0; i<list.length; i++) {					
+						colorOption += '<option value="'+list[i]["pcolor"]+'"> '+list[i]["pcolor"]+'</option>'
+					}				
+					$("#pcolor").html(colorOption);
+				}
+			});			
+		});
+		$("#ptype").change(function(){
+			$.ajax({
+				url : "getSize.do",
+				mehthod : "post",
+				dataType : "json",
+				data : { "ptype" : $("#ptype").val()},
+				asnc:false,
+				success : function(data) {
+					var list = data["list"];
+					var sizeOption = "<option value=''>전체</option>";
+					for(var i=0; i<list.length; i++) {					
+						sizeOption += '<option value="'+list[i]["psize"]+'"> '+list[i]["psize"]+'</option>'
+					}				
+					$("#psize").html(sizeOption);
+				}
+			});			
+		});		
 	}); 
-	
-//1단계 . type의 값이 바뀐다.
-//2단계 . 그 타입이 가지고 있는 색상을 DB에서 가져온다. -> ajax 처리
-//3단계 . 그 색상을 option에 추가 
-
-$("#type").change(function(){
-	$.ajax({
-		url : "getColor",
-		mehthod : "post",
-		dataType : "json",
-		data : { "type" : $("#type").val},
-		asnc:false,
-		success : function(data) {
-			
-		}
-	})
-})
-
-
-
-	
 </script>
 <style>
 	textarea {
@@ -83,24 +103,40 @@ $("#type").change(function(){
 }
 </style>
 </head>
+<%
+	List<String> list = (List<String>)request.getAttribute("list");
+%>
+
 <body>
 <h1>상품등록</h1>
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
 <div> 
 	
 	<p>type
-	<select name="type" id="type" >		
+	<select name="ptype" id="ptype" >		
 		<option value="" >전체</option>
-		<option value="반지">반지</option>
-		<option value="귀걸이">귀걸이</option>
-		<option value="목걸이">목걸이</option>				
+		<%
+			if(list==null||list.size()==0){
+				out.print("<tr><td colspan='3'>----작성된 글이 없습니다.</td></tr>");
+				}else{
+			for(int i=0;i<list.size();i++){			
+		%>
+		<option value="<%=list.get(i) %>"><%=list.get(i)%></option>
+			<%
+			}
+		}
+	%>
+		
+<!-- 		<option value="반지">반지</option> -->
+<!-- 		<option value="귀걸이">귀걸이</option> -->
+<!-- 		<option value="목걸이">목걸이</option>				 -->
 	</select>		
 	color
-	<select name="color" id="color">
+	<select name="pcolor" id="pcolor" >
 		<option value="">전체</option>
 	</select>
 	size
-	<select name="size" id="size">
+	<select name="psize" id="psize">
 		<option value="">전체</option>
 	</select>	
 	</p>

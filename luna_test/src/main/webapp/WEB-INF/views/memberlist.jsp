@@ -11,46 +11,7 @@
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-// core, BOM, DOM  3가지 영역으로 나눔
-	function allSel(val){
-		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
-//		alert(val.tagName);
-//		alert(val);
-	// getElementById(), getElementsByTagName(), ...className ....등 
-		var chks=document.getElementsByName("chk");//[chk,chk,chk...]
-		for(var i=0;i<chks.length;i++){
-			chks[i].checked=val.checked;
-		}
-//		val.parentNode.style.backgroundColor="red";
-	}
-	//form 태그에서 submit 이벤트가 발생하면 함수실행 
-$(function(){
-	$("form").submit(function(){
-		var bool = true;
-		var count=$(this).find("input[name=chk]:checked").length;
-		if(count==0){
-			alert('최소 하나이상 체크하세요!!!');
-			bool= false;
-		}else if(confirm("정말 삭제하시겠습니까?")==false){
-			bool = false;
-		}
-		return bool
-		
-	});
-	var chks = document.getElementsByName("chk");
- 	for(var i=0;i<chks.length;i++){
- 		chks[i].onclick =function(){//체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
- 			var checkdObjs = document.querySelectorAll("input[name=chk]:checked");
- 			if(checkedObjs.length ==chks.length){
- 				document.getElementsByName("all")[0].checked=true;
- 			}else{
- 				document.getElementsByName("all")[0].checked=false;
- 			}
- 		}
- 	}
-})</script>
+
 <%
 	List<MemberDTO> list= (List<MemberDTO>) request.getAttribute("list");
 %>
@@ -117,6 +78,45 @@ $(function(){
 	
 	
 	</form>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+// core, BOM, DOM  3가지 영역으로 나눔
+	function allSel(val){
+		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
+//		alert(val.tagName);
+//		alert(val);
+	// getElementById(), getElementsByTagName(), ...className ....등 
+		var chks=document.getElementsByName("chk");//[chk,chk,chk...]
+		for(var i=0;i<chks.length;i++){
+			chks[i].checked=val.checked;
+		}
+//		val.parentNode.style.backgroundColor="red";
+	}
+	//form 태그에서 submit 이벤트가 발생하면 함수실행 
+$(function(){
+	$("form").submit(function(){
+		var bool = true;
+		var count=$(this).find("input[name=chk]:checked").length;
+		if(count==0){
+			alert('최소 하나이상 체크하세요!!!');
+			bool= false;
+		}else if(confirm("정말 삭제하시겠습니까?")==false){
+			bool = false;
+		}
+		return bool
+		
+	});
+	var chks = document.getElementsByName("chk");
+ 	for(var i=0;i<chks.length;i++){
+ 		chks[i].onclick =function(){//체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
+ 			var checkdObjs = document.querySelectorAll("input[name=chk]:checked");
+ 			if(checkedObjs.length ==chks.length){
+ 				document.getElementsByName("all")[0].checked=true;
+ 			}else{
+ 				document.getElementsByName("all")[0].checked=false;
+ 			}
+ 		}
+ 	}
+})</script>
 </body>
 </html>

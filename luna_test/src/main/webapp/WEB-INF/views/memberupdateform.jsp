@@ -8,13 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
- 	function deleteMem(id){
- 		if(confirm("정말 삭제하시겠습니까?")){
- 			location.href ="deletemember.do?id="+id;
- 		}
- 	}
-</script>
 
 <style type="text/css">
 
@@ -206,4 +199,12 @@
 	});
 	
 </script>
+<script>
+ 	function deleteMem(id){
+ 		if(confirm("정말 삭제하시겠습니까?")){
+ 			location.href ="deletemember.do?id="+id;
+ 		}
+ 	}
+</script>
+
 </html>

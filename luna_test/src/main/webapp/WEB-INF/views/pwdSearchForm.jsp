@@ -18,6 +18,7 @@
 body,button,input{font-family: "GyeonggiBatang";
  		font-weight: bold;
  		line-height: 20px;}
+ 
  		
  </style>
 <title>비밀번호찾기</title>
@@ -40,7 +41,7 @@ body,button,input{font-family: "GyeonggiBatang";
 
 		<div class="form-label-group">
 			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-				type="submit" value="check">
+				type="submit"style="width:50 px; height:30px; font-size:17px;" value="찾기">
 		</div>
 
 		<c:if test="${check==1}">

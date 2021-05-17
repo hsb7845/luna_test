@@ -24,11 +24,8 @@
 	}
 %>
 
-
 	<a href="pboard.do">상품게시판보기</a><br>
-
-	<a href="pboardpaging.do">상품게시판보기(페이징)</a><br>
-	
+	<a href="pboardpaging.do">상품게시판보기(페이징)</a><br>	
 	<a href="stock.do">상품재고보기(stock)</a><br>
 	<a href="rboard.do">리뷰 게시판 보기</a><br>
 	<a href="member.do">회원목록보기</a><br>
@@ -42,7 +39,6 @@
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
-	<a href="adminMain.do">adminMain</a><br>
-
+	<a href="header.do">header</a><br>
 </body>
 </html>

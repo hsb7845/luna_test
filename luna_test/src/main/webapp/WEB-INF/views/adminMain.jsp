@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <title>관리자 메인페이지</title>
 <style type="text/css">
+
    .wrap{
       display : grid;
       grid-template-rows: 50px 500px 50px;
+      font-family: 'GyeonggiBatang';      
    }
     .wrap > div {margin: 1px; padding: 10px; font-size: 20px;}
     .grid1 { 
@@ -46,7 +48,7 @@
 <body>
 	<div class="wrap">
 		<div class="grid1" id="header">
-<%-- 			<%@ include file="header.do"  %> --%>
+<%-- 			<%@ include file="header.jsp"  %> --%>
       		<a href="index.do" id="main">go main</a>
       	</div>      
       	<div class="grid2" ><h2>관리자페이지</h2>

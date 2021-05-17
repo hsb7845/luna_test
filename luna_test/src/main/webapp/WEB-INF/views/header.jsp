@@ -18,6 +18,7 @@
 	*{
 		margin : 0 auto;
 		width: 1024px;	
+		font-family: 'GyeonggiBatang';      
 	}
 	#m1 {
 		font-size: 10px;
@@ -32,9 +33,9 @@
 </head>
 <body>
 <header id="header">
-<table >
+<table border="0" cellpadding="1" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr id="menu1">
-		<td><a herf="../upload/logo.png"></a></td>
+		<td ><a herf="index.do">luna</a></td>
 		<td id="m1" colspan="6">
 			<a href="userlogin.do">로그인</a>
 			<a href="">회원가입</a>
@@ -44,7 +45,7 @@
 		</td>
 	</tr>	
 	<tr></tr>
-	<tr id="menu2">
+	<tr id="menu2" >
 		<td><a href="">신상품</a></td>
 		<td><a href="">귀걸이</a></td>
 		<td><a href="">목걸이</a></td>

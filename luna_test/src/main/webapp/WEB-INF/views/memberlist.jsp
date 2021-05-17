@@ -8,9 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+
+@font-face {
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,button,input{font-family: "GyeonggiBatang";
+ 		font-weight: bold;}
+ 		
+ </style>
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
 <%
 	List<MemberDTO> list= (List<MemberDTO>) request.getAttribute("list");

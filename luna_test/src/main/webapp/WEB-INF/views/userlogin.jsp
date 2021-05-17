@@ -4,34 +4,50 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<style type="text/css">
+
+
+@font-face {
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body,input{font-family: "GyeonggiBatang";
+ 		font-weight: bold;}
+
+</style>
 
 <meta charset="UTF-8">
 <title>Luna 로그인페이지</title>
 </head>
 <body>
 	<form action="login.do" method="post">
+		<h3>로그인</h3>
+		<div>
+			<input type="text" name="id" placeholder="아이디입력" style="width:190px; height:20px; font-size:15px;" ><br>
+		</div>
 		<div>	
-		아이디 :
-			<input type="text" name="id" >
+			<input type="password" name="pwd" placeholder="비밀번호입력" style="width:190px; height:20px;font-size:15px;"><br>
 		</div>
-			<div>	
-		비밀번호 :
-			<input type="password" name="pwd" >
+		<div>
+			<input type="submit" value ="로그인" style="width:195px; height:30px; font-size:17px;">
 		</div>
-			<input type="submit" value ="로그인">
-			<br>
+		
 	<c:if test="${msg == 'loginfail'}">
 		<p>아이디 또는 비밀번호가일치하지  않습니다.</p>
 	</c:if>
 
 	</form>
-	 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/callback&response_type=code"> 
- 	<img src="upload/kakao_login_button.png"/></a>	<br> 
+
 			<a href="idSearchForm.do">아이디 찾기</a>
-			<a href="pwdSearchForm.do">비밀번호찾기</a>
+			<a href="pwdSearchForm.do">비밀번호찾기</a><br>
+					 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/callback&response_type=code"> 
+ 	<img src="upload/kakao_login.png"></a>	<br> 
 			<a href="insertmemberform.do">회원가입</a>
+			    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 			
 </body>
 

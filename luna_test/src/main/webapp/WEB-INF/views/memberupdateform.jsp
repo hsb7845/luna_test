@@ -12,6 +12,16 @@
 <style type="text/css">
 
 
+@font-face {
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,button,input{font-family: "GyeonggiBatang";
+ 		font-weight: bold;}
+ 		
 
 .pwck_input_re_1{
         color : green;
@@ -52,7 +62,7 @@
 			<div class="pwck_input_box">
 				<input type="password" class="pwck_input" name="pwdCheck" required>
 			</div>
-		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
+<!-- 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span> -->
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>

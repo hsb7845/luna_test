@@ -10,6 +10,17 @@
 <style type="text/css">
 
 
+@font-face {
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,button,input{font-family: "GyeonggiBatang";
+ 		font-weight: bold;}
+ 
+
 
 .pwck_input_re_1{
         color : green;
@@ -30,6 +41,7 @@
 	display:  none;
 	color :red;
 }
+
 
 
 </style>
@@ -58,7 +70,7 @@
 			<div class="pwck_input_box">
 				<input type="password" class="pwck_input" name="pwdCheck">
 			</div>
-		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
+<!-- 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span> -->
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>
@@ -104,9 +116,6 @@
 		 <input type="hidden" name="point"><br><br>
 		<input type="submit" value="회원가입">
 		<input type="reset" value="다시입력">
-	<c:if test="${msg == 'insertFail'}">
-		<p>회원가입이실패했습니다.입력항목을 재 확인 해주세요.</p>
-	</c:if>
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 

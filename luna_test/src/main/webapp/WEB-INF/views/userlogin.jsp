@@ -16,7 +16,9 @@
     font-style: normal;
 }
 body,input{font-family: "GyeonggiBatang";
- 		font-weight: bold;}
+ 		font-weight: bold;
+ 		 line-height: 30px;}
+ 		  		
 
 </style>
 
@@ -33,11 +35,11 @@ body,input{font-family: "GyeonggiBatang";
 			<input type="password" name="pwd" placeholder="비밀번호입력" style="width:190px; height:20px;font-size:15px;"><br>
 		</div>
 		<div>
-			<input type="submit" value ="로그인" style="width:195px; height:30px; font-size:17px;">
+			<input type="submit" value ="로그인" style="width:198px; height:30px; font-size:17px;">
 		</div>
 		
 	<c:if test="${msg == 'loginfail'}">
-		<p>아이디 또는 비밀번호가일치하지  않습니다.</p>
+		<p><font color="red">아이디 또는 비밀번호가 일치하지 않습니다</font></p>
 	</c:if>
 
 	</form>

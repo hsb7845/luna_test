@@ -18,7 +18,8 @@
 }
 
 body,button,input{font-family: "GyeonggiBatang";
- 		font-weight: bold;}
+ 		font-weight: bold;
+ 		line-height: 20px;}
  
 
 

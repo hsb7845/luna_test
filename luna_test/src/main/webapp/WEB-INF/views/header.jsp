@@ -9,8 +9,7 @@
 
 	*{
 		margin : 0 auto;
-		width: 1024px;
-	
+		width: 1024px;	
 	}
 	#m1 {
 		font-size: 10px;
@@ -28,7 +27,7 @@
 
 <table >
 	<tr id="menu1">
-		<td><a herf="">luna logo</a></td>
+		<td><a herf="../upload/logo.png"></a></td>
 		<td id="m1" colspan="6">
 			<a href="">로그인</a>
 			<a href="">회원가입</a>

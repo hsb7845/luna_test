@@ -66,7 +66,9 @@
 					<h5><a href="buylist.do" id="button4">주문관리</a></h5>		
 			</div>
 		</div>	
-		<div class="grid3" id="container">content	</div>
+<!-- 		<div class="grid3" id="container">content	</div> -->
+
+
 	</div>	
 </body>
 </html>

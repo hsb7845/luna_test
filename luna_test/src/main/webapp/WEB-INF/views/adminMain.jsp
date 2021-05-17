@@ -46,6 +46,7 @@
 <body>
 	<div class="wrap">
 		<div class="grid1" id="header">
+<%-- 			<%@ include file="header.do"  %> --%>
       		<a href="index.do" id="main">go main</a>
       	</div>      
       	<div class="grid2" ><h2>관리자페이지</h2>

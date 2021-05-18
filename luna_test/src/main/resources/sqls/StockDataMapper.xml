@@ -69,4 +69,11 @@
 		WHERE ptype=#{ptype}
 	</select>
 	
+	<select id="getSelectedList" resultType="StockDTO" parameterType="map">
+		select *
+		from stock
+		WHERE pnum IN 
+		<foreach close=")" open="(" separator="," item="i" collection="chk">#{i} </foreach>
+	</select>
+	
 </mapper>

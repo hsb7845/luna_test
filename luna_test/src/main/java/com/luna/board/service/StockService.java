@@ -82,6 +82,12 @@ public class StockService implements IStockService {
 		return StockDAO.getSize(ptype);
 	}
 
+	@Override
+	public List<StockDTO> getSelectedList(String[] chk_arr) {
+		// TODO Auto-generated method stub
+		return StockDAO.getSelectedList(chk_arr);
+	}
+
 
 
 	

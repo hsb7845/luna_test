@@ -4,22 +4,29 @@ package com.luna.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IPBoardService;
+import com.luna.board.service.IStockService;
 
 /**
  * Handles requests for the application home page.
@@ -34,6 +41,8 @@ public class PboardController {
 	 */
 	@Autowired
 	private  IPBoardService pBoardService;
+	@Autowired
+	private IStockService stockService;
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(Locale locale, Model model) {
@@ -103,10 +112,19 @@ public class PboardController {
 	public String insertboard(Locale locale, Model model) {
 		return "pboardinsertform";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(value = "/insertpboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, PBoardDTO dto) {
-		boolean isS = pBoardService.insertBoard(dto);
+	public String insert(Locale locale, Model model ,String jsondata ) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		System.out.println("웨않되");
+		System.out.println(jsondata);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		//jsonDataJSONObject jsonObject = JSONObject.fromObject(jsonData);
+		PBoardDTO dto = new PBoardDTO();
+		int[] pnum = {};
+		
+		boolean isS = pBoardService.insertBoard(dto,pnum);
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {
@@ -159,6 +177,33 @@ public class PboardController {
 		}
 
 	}
-
+	@ResponseBody
+	@RequestMapping(value = "/getselectedstock.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,Object> getselectedstock(Locale locale, Model model,String[] chk_arr){
+		List<StockDTO> list =  stockService.getSelectedList(chk_arr);
+		Map<String,Object> map = new HashMap<>();
+		map.put("list",list);
+		return map;
+	}
+	
+	
+	
+	@RequestMapping(value = "/selectstock.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String selectStock(Locale locale, Model model) {
+		List<StockDTO> list =  stockService.getAllList();
+		model.addAttribute("list", list);
+		return "selectStockList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getCategory.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,Object> getCategory(Locale locale, Model model,String[] chk_arr){
+		List<PCategoryDTO> list =  pBoardService.getCategory(chk_arr);
+		Map<String,Object> map = new HashMap<>();
+		map.put("category",list);
+		return map;
+	}
+	
+	
 }
 

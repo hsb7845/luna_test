@@ -1,5 +1,6 @@
 <%-------------------------------------------------------------------------------- * 화면명 : Smart Editor 2.8 에디터 - 다중 파일 업로드 처리 * 파일명 : /SE2/sample/photo_uploader/file_uploader_html5.jsp --------------------------------------------------------------------------------%>
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+ <%@page import="com.luna.board.daos.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
  <%@ page import="java.util.List"%> 
  <%@ page import="java.util.UUID"%> 
  <%@ page import="java.io.File"%> 
@@ -10,6 +11,7 @@
    <%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
     <%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%> 
     <% // 로컬경로에 파일 저장하기 ============================================ 
+    
     String sFileInfo = ""; 
     // 파일명 - 싱글파일업로드와 다르게 멀티파일업로드는 HEADER로 넘어옴 
     String name = request.getHeader("file-name"); 
@@ -23,7 +25,7 @@
     if(!file.exists()) { file.mkdirs(); } 
     String realname = UUID.randomUUID().toString() + "." + ext;
     InputStream is = request.getInputStream();
-    OutputStream os = new FileOutputStream(path + realname); 
+    OutputStream os = new FileOutputStream(path + name); 
     int numRead; 
     // 파일쓰기 
     byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
@@ -32,7 +34,7 @@
     os.flush();
     os.close();
     System.out.println("path : "+path); 
-    System.out.println("realname : "+realname);
+    System.out.println("name : "+name);
     // 파일 삭제 
     //File f1 = new File(path, realname); 
     // if (!f1.isDirectory()) { 

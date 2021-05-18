@@ -18,6 +18,5 @@ public interface IStockService {
 	List<PCategoryDTO> getColor(String ptype);	
 	List<String> getPtype();
 	List<PCategoryDTO> getSize(String ptype);
-
-
+	List<StockDTO> getSelectedList(String[] chk_arr);
 }

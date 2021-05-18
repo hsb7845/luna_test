@@ -101,6 +101,15 @@
 	<select id="countStarrank" parameterType="int" resultType="Integer">
 		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK 
 	</select>
+	
+	<update id="updateStock" parameterType="Map">
+		UPDATE STOCK SET pseq=p_board_seq.currval
+		WHERE pnum in <foreach close=")" open="(" separator="," item="i" collection="pnum">#{i} </foreach>
+	</update>
+	
+	<select id="getCategory" parameterType="map" resultType="PCDTO">
+		select * from p_category where cnum in <foreach close=")" open="(" separator="," item="i" collection="chk">#{i} </foreach>
+	</select>
 </mapper>
 
 

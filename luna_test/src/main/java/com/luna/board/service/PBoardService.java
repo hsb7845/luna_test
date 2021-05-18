@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IPBoardDAO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.StockDTO;
 
 @Service
 
@@ -19,9 +21,9 @@ public class PBoardService implements IPBoardService{
 
 
 	@Override
-	public boolean insertBoard(PBoardDTO dto) {
+	public boolean insertBoard(PBoardDTO dto,int[] pnum) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.insertBoard(dto);
+		return PBoardDAO.insertBoard(dto, pnum);
 	}
 
 
@@ -78,5 +80,12 @@ public class PBoardService implements IPBoardService{
 	public Map<String, Object> getDetail(int pseq) {
 		// TODO Auto-generated method stub
 		return PBoardDAO.getDetail(pseq);
+	}
+
+
+	@Override
+	public List<PCategoryDTO> getCategory(String[] chk_arr) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getCategory(chk_arr);
 	}
 }

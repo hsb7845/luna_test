@@ -60,11 +60,10 @@
 <!-- 		<td colspan="3" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a></td> -->
 		<tr></tr>
 		<td id="m1" colspan="7">		
-			<a href="userlogin.do">로그인</a>
-			<a href="">회원가입</a>
+			<a href="loginForm.do">로그인</a>
+			<a href="insertmemberform.do">회원가입</a>
 			<a href="adminMain.do">마이페이지</a>
 			<a href="buylist.do">장바구니</a>
-			<a href="">관리자 로그인</a>
 		</td>
 	</tr>	
 	<tr></tr>

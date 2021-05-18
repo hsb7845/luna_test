@@ -46,7 +46,12 @@
                 font-size: 20px;
                 text-align: center;
             }
-            
+            #m1{
+            	text-align: center;
+            }
+            #m2{
+            	text-align: center;
+            }
         </style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -114,7 +119,7 @@ $(function(){
 <body>
 <!-- <h1>상품재고현황</h1> -->
 <p class="cls1">상품재고현황</p> 
-<form action="muldelStock.do" method="post">
+<form action="muldelStock.do" method="post" class="woocommerce-ordering">
 <table  border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" 
 id="site-navigation" class="main-navigation">
 	<col width="50px">
@@ -127,15 +132,15 @@ id="site-navigation" class="main-navigation">
 	<col width="100px">
 	<col width="150px">
 	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>상품번호</th>
-		<th>상품명</th>
-		<th>상품재고수량</th>
-		<th>원가</th>
-		<th>카테고리번호</th>
-		<th>상품내용</th>
-		<th>판매가</th>
-		<th>상품게시글번호</th>
+		<th  id="m1"><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th  id="m1">상품번호</th>
+		<th  id="m1">상품명</th>
+		<th  id="m1">상품재고수량</th>
+		<th  id="m1">원가</th>
+		<th  id="m1">카테고리번호</th>
+		<th  id="m1">상품내용</th>
+		<th  id="m1">판매가</th>
+		<th  id="m1">상품게시글번호</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -144,16 +149,16 @@ id="site-navigation" class="main-navigation">
 		for(int i=0;i<list.size();i++){
 			StockDTO dto=list.get(i);
 	%>
-				<tr align="center">
-					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
-					<td><%=dto.getPnum()%></td>
-					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
-					<td><%=dto.getScount()%></td>
-					<td><%=dto.getCost()%></td>
-					<td><%=dto.getCnum()%></td>
-					<td><%=dto.getPcontent()%></td>
-					<td><%=dto.getPrice()%></td>					
-					<td><%=dto.getPseq() %></td>
+				<tr align="center" >
+					<td id="m2"><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
+					<td id="m2"><%=dto.getPnum()%></td>
+					<td id="m2"><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
+					<td id="m2"><%=dto.getScount()%></td>
+					<td id="m2"><%=dto.getCost()%></td>
+					<td id="m2"><%=dto.getCnum()%></td>
+					<td id="m2"><%=dto.getPcontent()%></td>
+					<td id="m2"><%=dto.getPrice()%></td>					
+					<td id="m2"><%=dto.getPseq() %></td>
 				</tr>
 	<%
 			}
@@ -171,8 +176,13 @@ id="site-navigation" class="main-navigation">
 <!-- 			<a href="stockForm.do">상품등록</a> -->			
 <!-- 			<a href=".do">메인</a> -->
 		</td>
-	</tr>
+	</tr>	
 </table>
 </form>
+<!-- #page -->
+<script src='resources/luna/js/jquery.js'></script>
+<script src='resources/luna/js/plugins.js'></script>
+<script src='resources/luna/js/scripts.js'></script>
+<script src='resources/luna/js/masonry.pkgd.min.js'></script>
 </body>
 </html>

@@ -4,47 +4,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>헤더</title>
-<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/> -->
-<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/> -->
-<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/> -->
-<!-- <link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/> -->
-<!-- <link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/> -->
-<!-- <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/> -->
-<!-- <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+<title>헤더</title>
 <style>
 
 	*{
 		margin : 0 auto;
-		width: 1024px;	
+/* 		width: 1024px;	 */
 		font-family: 'GyeonggiBatang';      
 	}
 	#m1 {
 		font-size: 12px;
         text-align: right;        
 	}
-	#menu1 {
-		
-	}
-
-	#menu3 { 
+	#menu3 { 		
 		background-color: lightgray;
-		text-align: center;		
+/* 		text-align: center;		 */
+/* 		font-size: 13px; */
 	}	
+	#m2{
+		text-transform; capitalize;
+		color: darkmagenta;
+		font-weight: bolder;
+		text-align: center;		
+		font-size: 15px;
+	}
 	
 </style>
 </head>
-<body>
+<body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
 <header id="header">
-<table border="0" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr id="menu1">
-		<td colspan="7" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a></td>
+		<td colspan="7"><a herf="index.do">
+			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a>
+		</td>
 	</tr>
 	<tr id="menu2">		
 <!-- 		<td colspan="3" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a></td> -->
 		<tr></tr>
-		<td id="m1" colspan="7" rowspan="1">		
+		<td id="m1" colspan="7">		
 			<a href="userlogin.do">로그인</a>
 			<a href="">회원가입</a>
 			<a href="adminMain.do">마이페이지</a>
@@ -54,13 +64,13 @@
 	</tr>	
 	<tr></tr>
 	<tr id="menu3" >
-		<td><a href="">신상품</a></td>
-		<td><a href="">귀걸이</a></td>
-		<td><a href="">목걸이</a></td>
-		<td><a href="">반지</a></td>
-		<td><a href="">팔찌</a></td>
-		<td><a href="">기타</a></td>
-		<td><a href="">이벤트</a></td>
+		<td id="m2"><a href="">신상품</a></td>
+		<td  id="m2"><a href="">귀걸이</a></td>
+		<td  id="m2"><a href="">목걸이</a></td>
+		<td  id="m2"><a href="">반지</a></td>
+		<td  id="m2"><a href="">팔찌</a></td>
+		<td  id="m2"><a href="">기타</a></td>
+		<td  id="m2"><a href="">이벤트</a></td>
 	</tr>	
 </table>
 </header>

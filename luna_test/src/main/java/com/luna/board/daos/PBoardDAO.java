@@ -96,11 +96,4 @@ public class PBoardDAO implements IPBoardDAO{
 		map.put("countRank", countRank);
 		return map;
 	}
-
-	@Override
-	public boolean viewCount(PBoardDTO dto) {
-		return sqlSession.update(namespace+"viewCount",dto)>0? true:false;
-		// TODO Auto-generated method stub
-		
-	}
 }

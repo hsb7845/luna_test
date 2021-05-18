@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+    
+    
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      
+<%
+   	request.setCharacterEncoding("utf-8");
+%>  
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +33,7 @@
 <body>
 <form method="post" action="insertCoupon.do">
 <table>	
+	<h1>쿠폰 추가</h1>
 	<tr>
 		<th>쿠폰내용</th>
 		<td><input type="text" name="ccontent"></td>
@@ -34,6 +45,7 @@
 	<tr>
 		<td><input type="submit" value="추가"></td>
 	</tr>
+	<%@ include file="footer.jsp" %>
 </table>
 </form>
 </body>

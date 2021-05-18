@@ -35,6 +35,7 @@
 		<tr>
 			<td colspan="2"><input type="submit" value="작성"></td>
 		</tr>
+		<%@ include file="footer.jsp" %>
 	</table>
 	</form>
 </body>

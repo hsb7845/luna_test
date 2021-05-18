@@ -36,7 +36,7 @@
 <form method="post" action="updateCoupon.do">
 <input type="hidden" name="cseq" value="${dto.cseq}">
 <table>	
-
+<h1>쿠폰 수정</h1>
 
 	
 <% 	
@@ -76,6 +76,7 @@
 			<%
 			}
 %>
+<%@ include file="footer.jsp" %>
 		</table>	
 </form>
 </body>

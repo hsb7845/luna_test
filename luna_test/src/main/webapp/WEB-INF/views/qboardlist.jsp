@@ -109,6 +109,7 @@
 		}
 	}
 %>
+
 <tr>
 	<td colspan="6">
 		<a href="insertqboardform.do">문의 사항 작성</a>
@@ -116,6 +117,7 @@
 		<input type="submit" value="삭제" />
 	</td>
 </tr>
+<%@ include file="footer.jsp" %>
 </table>
 </form>
 </body>

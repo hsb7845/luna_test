@@ -49,6 +49,7 @@
 		<tr>
 			<td colspan="3"><input type="submit" value="수정"></td>
 		</tr>
+		<%@ include file="footer.jsp" %>
 	</table>
 	</form>
 </body>

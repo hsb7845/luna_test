@@ -113,6 +113,7 @@ $(function(){
 <div class="container" id="badge">
      <a class="entypo-bell"></a>
 </div>
+
 <p class="cls1">쿠폰함</p> 
 <form action="muldelCoupon.do" method="post">
 <!-- <table border="1"> -->
@@ -221,7 +222,7 @@ $(function(){
  		}
 %> 
 	
-	
+<%@ include file="footer.jsp" %>
 <!-- 	<tr> -->
 <!-- 		<td colspan="6"> -->
 <!-- 			<a href="couponInsertForm.do" >쿠폰 추가</a> -->
@@ -238,4 +239,6 @@ $(function(){
 
 </script>
 </body>
+
 </html>
+

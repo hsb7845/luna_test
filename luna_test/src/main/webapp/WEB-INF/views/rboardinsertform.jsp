@@ -211,7 +211,7 @@
         
     </form>
 	</div>
-	
+<%@ include file="footer.jsp" %>
 
 <!-- #page -->
 <script src='js/jquery.js'></script>

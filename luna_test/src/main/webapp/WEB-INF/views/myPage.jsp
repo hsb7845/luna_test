@@ -60,6 +60,7 @@
 
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <% 
 	String id = (String)session.getAttribute("id");
 	if(id!=null){
@@ -75,7 +76,7 @@
 %>
 
 	<div class="wrap">
-		<div class="header"><%@ include file="header.jsp" %>header</div>
+		
 		
 		<div class="menu" >
 		<a href="index.do" id="main">go main</a><br><br>
@@ -104,9 +105,9 @@
 		</div>	
 		<div class="content"></div>
 		<div class="content"><a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp">우체국 배송조회</a></div>
-		<div class="footer"><%@ include file="footer.jsp" %></div>
+		
 	</div>
-	
+	<%@ include file="footer.jsp" %>
 <script>
 
  

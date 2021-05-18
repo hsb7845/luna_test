@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.ImgFileDTO;
 import com.luna.board.dtos.PBoardDTO;
+import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.PagingDTO;
 import com.luna.board.dtos.QBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
+import com.luna.board.dtos.StockDTO;
 
 @Repository
 public class PBoardDAO implements IPBoardDAO{	
@@ -22,8 +24,17 @@ public class PBoardDAO implements IPBoardDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Override
-	public boolean insertBoard(PBoardDTO dto) {
-		return sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
+	public boolean insertBoard(PBoardDTO dto,int[] pnum) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("pnum", pnum);
+		boolean isS = sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
+		boolean isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
+		boolean isS3 = false;
+		if(isS&&isS2) {
+			isS3 = true;
+		}
+		
+		return isS3;
 	}
 
 	@Override
@@ -95,5 +106,14 @@ public class PBoardDAO implements IPBoardDAO{
 		map.put("qboard", qboard);
 		map.put("countRank", countRank);
 		return map;
+	}
+	
+	@Override
+	public List<PCategoryDTO> getCategory(String[] chk_arr) {
+		// TODO Auto-generated method stub
+		Map<String,String[]> map = new HashMap<>();
+		map.put("chk", chk_arr);
+		
+		return sqlSession.selectList(namespace+"getCategory", map);
 	}
 }

@@ -13,13 +13,13 @@
 
 
 @font-face {
-    font-family: 'GyeonggiBatang';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-family: 'BinggraeSamanco-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
-body,button,input{font-family: "GyeonggiBatang";
+body,button,input{font-family: 'BinggraeSamanco-Bold';
  		font-weight: bold;
  		 line-height: 20px;}
  		

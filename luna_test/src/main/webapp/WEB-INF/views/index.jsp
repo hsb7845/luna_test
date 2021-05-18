@@ -58,11 +58,11 @@
 	</tr>
 	<tr id="menu2">		
 <!-- 		<td colspan="3" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a></td> -->
-		<tr></tr>
+		<tr>
 		<td id="m1" colspan="7">		
-			<a href="loginForm.do">로그인</a>
+ 			<a href="loginForm.do">로그인</a> 
 			<a href="insertmemberform.do">회원가입</a>
-			<a href="adminMain.do">마이페이지</a>
+			<a href="myPage.do">마이페이지</a>
 			<a href="buylist.do">장바구니</a>
 		</td>
 	</tr>	
@@ -84,21 +84,13 @@
 
 <% 
 	String id = (String)session.getAttribute("id");
-	String admin =(String)session.getAttribute("admin");
-	System.out.println("jsp admin = "+admin);
 	if(id!=null){
-		if(admin.equals("관리자")){
 			%>
-			<h1>관리자 <%=id %>님 환영합니다.</h1>
-			<%
-		}else{
-			%>
-			<h1><%=id %>님 환영합니다.</h1>
+			<h3>${nickname}님 환영합니다.</h3>
 			<%
 		}
-	}
+	
 %>
-
 	<a href="pboard.do">상품게시판보기</a><br>
 	<a href="pboardpaging.do">상품게시판보기(페이징)</a><br>	
 	<a href="stock.do">상품재고보기(stock)</a><br>
@@ -114,6 +106,8 @@
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
+	<a href="logout.do">로그아웃</a>
+	
 	<a href="header.do">header</a><br>
 
 </body>

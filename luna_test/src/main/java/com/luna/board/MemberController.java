@@ -147,7 +147,7 @@ public class MemberController {
 					System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
-					return "redirect:myPage.do";
+					return "redirect:index.do";
 				}				
 			}else {
 				msg="아이디나 비밀번호가 틀렸습니다.";
@@ -297,8 +297,7 @@ public class MemberController {
     	
     			session.setAttribute("id", dto.getId());
     			session.setAttribute("nickname", dto.getNickName());
-    			session.setAttribute("admin",dto.getAdmin());
-    			return "myPage";
+    			return "index";
     		}
     		
 			boolean isS = MemberService.insertKMember(dto);
@@ -308,8 +307,7 @@ public class MemberController {
 		    	
     			session.setAttribute("id", dto.getId());
     			session.setAttribute("nickname", dto.getNickName());
-    			session.setAttribute("admin",dto.getAdmin());
-    			return "myPage";
+    			return "index";
     		
 			} else {
 				return "loginForm";

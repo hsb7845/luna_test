@@ -48,7 +48,7 @@ body,input{font-family: 'BinggraeSamanco-Bold';
 			<a href="pwdSearchForm.do">비밀번호찾기</a><br>
 					 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/callback&response_type=code"> 
  	<img src="upload/kakao_login.png"></a>	<br> 
-			<a href="insertmemberform.do">회원가입</a>
+			<a href="insertmemberform.do">회원가입</a>	
 			    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 			
 </body>

@@ -21,10 +21,14 @@
 		font-family: 'GyeonggiBatang';      
 	}
 	#m1 {
-		font-size: 10px;
-        text-align: right;
+		font-size: 12px;
+        text-align: right;        
 	}
-	#menu2 { 
+	#menu1 {
+		
+	}
+
+	#menu3 { 
 		background-color: lightgray;
 		text-align: center;		
 	}	
@@ -33,10 +37,14 @@
 </head>
 <body>
 <header id="header">
-<table border="0" cellpadding="1" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+<table border="0" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr id="menu1">
-		<td ><a herf="index.do">luna</a></td>
-		<td id="m1" colspan="6">
+		<td colspan="7" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a></td>
+	</tr>
+	<tr id="menu2">		
+<!-- 		<td colspan="3" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a></td> -->
+		<tr></tr>
+		<td id="m1" colspan="7" rowspan="1">		
 			<a href="userlogin.do">로그인</a>
 			<a href="">회원가입</a>
 			<a href="adminMain.do">마이페이지</a>
@@ -45,7 +53,7 @@
 		</td>
 	</tr>	
 	<tr></tr>
-	<tr id="menu2" >
+	<tr id="menu3" >
 		<td><a href="">신상품</a></td>
 		<td><a href="">귀걸이</a></td>
 		<td><a href="">목걸이</a></td>
@@ -55,44 +63,7 @@
 		<td><a href="">이벤트</a></td>
 	</tr>	
 </table>
-</header>	
-
-<!-- <header id="masthead" class="site-header"> -->
-<!-- 		<div class="site-branding"> -->
-<!-- 			<h1 class="site-title"><a href="index.html" rel="home">Moschino</a></h1>			 -->
-<!-- 		</div> -->
-<!-- 		<div id="menu1"> -->
-<!-- 			<a href="">로그인</a>  -->
-<!-- 			<a href="">회원가입</a> -->
-<!-- 			<a href="">마이페이지</a> -->
-<!-- 			<a href="">장바구니</a> -->
-<!-- 			<a href="">관리자 로그인</a>  -->
-<!-- 		</div> -->
-<!-- 		<nav id="site-navigation" class="main-navigation"> -->
-<!-- 		<button class="menu-toggle">Menu</button> -->
-<!-- 		<a class="skip-link screen-reader-text" href="#content">Skip to content</a> -->
-<!-- 		<div class="menu-menu-1-container"> -->
-<!-- 			<ul id="menu-menu-1" class="menu nav-menu"> -->
-<!-- 				<li><a href="">신상품</a></li> -->
-<!-- 				<li><a href="">귀걸이</a></li> -->
-<!-- 				<li><a href="">목걸이</a></li> -->
-<!-- 				<li><a href="">반지</a></li> -->
-<!-- 				<li><a href="">팔찌</a></li> -->
-<!-- 				<li><a href="">기타</a></li> -->
-<!-- 				<li><a href="">이벤트</a></li> -->
-<!-- 				<li><a href="#">Pages</a> -->
-<!-- 				<ul class="sub-menu"> -->
-<!-- 					<li><a href="portfolio-item.html">Portfolio Item</a></li> -->
-<!-- 					<li><a href="blog-single.html">Blog Article</a></li> -->
-<!-- 					<li><a href="shop-single.html">Shop Item</a></li> -->
-<!-- 					<li><a href="portfolio-category.html">Portfolio Category</a></li> -->
-<!-- 				</ul> -->
-<!-- 				</li> -->
-<!-- 				<li><a href="contact.html">Contact</a></li> -->
-<!-- 			</ul> -->
-<!-- 		</div> -->
-<!-- 		</nav> -->
-<!-- </header> -->
+</header>
 
 </body>
 </html>

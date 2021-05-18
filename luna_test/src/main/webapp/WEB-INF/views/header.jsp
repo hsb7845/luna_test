@@ -47,7 +47,7 @@
 <header id="header">
 <table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr id="menu1">
-		<td colspan="7"><a herf="index.do">
+		<td colspan="7"><a href="index.do">
 			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a>
 		</td>
 	</tr>

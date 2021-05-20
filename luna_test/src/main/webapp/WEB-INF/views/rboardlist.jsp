@@ -32,7 +32,23 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
-
+<style>
+            .cls1 {
+                font-size: 40px;
+                text-align: center;
+            }
+            .cls2 {
+                font-size: 20px;
+                text-align: center;
+            }
+            #m1{
+            	text-align: center;
+            }
+            #m2{
+            	text-align: center;
+            }
+        </style>
+        
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
@@ -66,6 +82,14 @@
 	 			}
 	 		}
 	 	}
+	 	
+	 	$("#insertrboardform").click(function(){
+			location.href='insertrboardform.do'
+		});
+ 	
+ 		$("#main").click(function(){
+ 			location.href='.do'
+ 		});
 	})
 
 </script>
@@ -74,7 +98,8 @@
 	List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>리뷰 게시판 글 목록</h1>
+<%@ include file="header.jsp" %>
+<p class="cls1">리뷰 목록</p> 
 <form action="muldelRboard.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -126,9 +151,13 @@
 %>
 <tr>
 	<td colspan="8">
-		<a href="insertrboardform.do">리뷰 작성</a>
-		<a href=".do">메인</a>
+		<input type="button" value="리뷰 등록" id="insertrboardform" />
+		<input type="button" value="메인" id="main">
 		<input type="submit" value="삭제" />
+		
+		
+<!-- 		<a href=".do">메인</a> -->
+<!-- 		<a href="insertrboardform.do">리뷰 작성</a>  -->
 	</td>
 </tr>
 <%@ include file="footer.jsp" %>

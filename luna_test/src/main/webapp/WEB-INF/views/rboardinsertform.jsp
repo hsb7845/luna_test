@@ -1,5 +1,11 @@
+<%@page import="com.luna.board.dtos.RBoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +27,10 @@
 
 </head>
 <style>
-
-
-
-
-
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
 
 	.rating .rate_radio + label {
 	    position: relative;
@@ -128,9 +133,16 @@
 	}
 
 </style>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#main").click(function(){
+		location.href='.do'
+	});
+})
+</script>
 <body>
-
+<%@ include file="header.jsp" %>
 
 <div class="star-box">
   <span class="star star_left"></span>
@@ -153,7 +165,7 @@
 	<div class="wrap">
     
     <form method="post" action="insertrboard.do" onsubmit="return review1()">
-    <h1>리뷰 쓰기</h1>
+    <p class="cls1">리뷰 쓰기</p>
     <table>
     
     	<tr>
@@ -206,7 +218,6 @@
         <div class="cmd">
             <input type="submit" value="등록">
             <input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/rboard.do'">
-
         </div>
         
     </form>

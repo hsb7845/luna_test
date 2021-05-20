@@ -28,19 +28,37 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
+<style>
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
+</style>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#main").click(function(){
+		location.href='.do'
+	});
+})
+</script>
+
 </head>
 <%
 	String adminId = (String)session.getAttribute("admin");
 %>
 <body>
+<%@ include file="header.jsp" %>
 <form method="post" action="updateCoupon.do">
 <input type="hidden" name="cseq" value="${dto.cseq}">
 <table>	
-<h1>쿠폰 수정</h1>
+
 
 	
 <% 	
  	if(adminId.equals("관리자")) { %>
+ 		<p class="cls1">쿠폰 수정</p>
 			<tr>
 				<th>쿠폰내용</th>
 				<td><input type='text' name='ccontent' value='${dto.ccontent }'></td>
@@ -51,26 +69,26 @@
 					value='${dto.discount }'></td>
 			</tr>
 			<tr>
-				<td><input type='submit' value='수정'>
-				<a href='.do'>메인</a>
-				<input type='submit' value='삭제' />
+				<td>
+					<input type='submit' value='수정'>
+					<input type="button" value="메인" id="main">
+					<input type='submit' value='삭제' />
 				</td>
 			</tr>
 			<% 
 			} else { 
 			%>
+			<p class="cls1">쿠폰 확인</p>
 			<tr>
 				<th>쿠폰내용</th>
-				<td><input type='text' name='ccontent' value='${dto.ccontent }'
-					readonly></td>
+				<td><input type='text' name='ccontent' value='${dto.ccontent }'	readonly></td>
 			</tr>
 			<tr>
 				<th>할인금액</th>
-				<td><input type='number' name='discount'
-					value='${dto.discount }' readonly></td>
+				<td><input type='number' name='discount' value='${dto.discount }' readonly></td>
 			</tr>
 			<tr>
-				<td><a href='.do'>메인</a>&nbsp;&nbsp;<input type='button'
+				<td><input type="button" value="메인" id="main"></a>&nbsp;&nbsp;<input type='button'
 					value='뒤로 가기' onclick='history.back(-1);'></td>
 			</tr>
 			<%

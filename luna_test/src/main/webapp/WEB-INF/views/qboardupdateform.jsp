@@ -1,6 +1,10 @@
+<%@page import="com.luna.board.dtos.QBoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -25,12 +29,30 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 
+<style>
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
+</style>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#main").click(function(){
+		location.href='.do'
+	});
+})
+</script>
+
+
 </head>
 <body>
+<%@ include file="header.jsp" %>
 	<form method="post" action="updateqboard.do">
 	<input type="hidden" name="qseq" value="${dto.qseq}">
 	<table>
-	<h1>문의 사항 수정</h1>
+	<p class="cls1">문의 사항 수정</p>
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="qtitle" value="${dto.qtitle }"></td>

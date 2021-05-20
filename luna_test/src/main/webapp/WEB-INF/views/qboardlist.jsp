@@ -24,6 +24,13 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
+<style>
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
+</style>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
@@ -57,7 +64,17 @@
 	 			}
 	 		}
 	 	}
+	 	$("#insertqboardform").click(function(){
+			location.href='insertqboardform.do'
+		});
+	 	
+	 	$("#main").click(function(){
+	 		location.href='.do'
+	 	});
+	 	
 	})
+	
+		
 
 </script>
 </head>
@@ -65,7 +82,8 @@
 	List<QBoardDTO> list= (List<QBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>문의 게시판 글 목록</h1>
+<%@ include file="header.jsp" %>
+<p class="cls1">문의 게시판 글 목록</p> 
 <form action="muldelQboard.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -112,9 +130,12 @@
 
 <tr>
 	<td colspan="6">
-		<a href="insertqboardform.do">문의 사항 작성</a>
-		<a href=".do">메인</a>
+		<input type="button" value="문의 등록" id="insertqboardform">
+		<input type="button" value="메인" id="main">
 		<input type="submit" value="삭제" />
+		
+<!-- 		<a href="insertqboardform.do">문의 사항 작성</a> -->
+<!-- 		<a href=".do">메인</a> -->
 	</td>
 </tr>
 <%@ include file="footer.jsp" %>

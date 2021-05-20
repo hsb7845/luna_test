@@ -35,15 +35,16 @@
 #m2{
 	text-align: center;
 }
-@font-face {
-    font-family: 'BinggraeSamanco-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body,button,input{font-family: 'BinggraeSamanco-Bold';font-family: 'BinggraeSamanco-Bold';
- 		font-weight: bold;}
+	@font-face {
+	    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
  		
  </style>
 </head>

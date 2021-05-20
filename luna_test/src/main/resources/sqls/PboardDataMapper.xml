@@ -31,7 +31,7 @@
 	</insert>
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
-		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price from P_board p,stock s,p.hit
+		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit from P_board p,stock s
 		where p.pseq = #{pseq} and p.pseq = s.pseq
  	</select>
 	

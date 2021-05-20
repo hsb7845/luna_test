@@ -2,15 +2,39 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
 <style type="text/css">
-
-
+ .cls1 {
+	font-size: 40px;
+	text-align: center;
+}
+#m1{
+	text-align: center;
+}
+#m2{
+	text-align: center;
+}
 @font-face {
     font-family: 'BinggraeSamanco-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
@@ -29,26 +53,26 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';font-family: 'BinggraeSama
 	List<MemberDTO> list= (List<MemberDTO>) request.getAttribute("list");
 %>
 <body>
-<p class="cls1">회원목록</p>
+<p class="cls1">회 원 목 록</p>
 	<form action="muldelmember.do" method="post">
-	<table border = "1">
+	<table border = "1" >
 	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>아이디</th>
-		<th>비밀번호</th>
-		<th>이메일</th>
-		<th>우편번호</th>
-		<th>주소</th>
-		<th>상세주소</th>
-		<th>참고주소</th>
-		<th>생년월일</th>
-		<th>성별</th>
-		<th>핸드폰</th>
-		<th>가입일</th>
-		<th>관리자</th>
-		<th>닉네임</th>
-		<th>이름</th>
-		<th>포인트</th>
+		<th id="m1"><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th id="m1">아이디</th>
+		<th id="m1">비밀번호</th>
+		<th id="m1">이메일</th>
+		<th id="m1">우편번호</th>
+		<th id="m1">주소</th>
+		<th id="m1">상세주소</th>
+		<th id="m1">참고주소</th>
+		<th id="m1">생년월일</th>
+		<th id="m1">성별</th>
+		<th id="m1">핸드폰</th>
+		<th id="m1">가입일</th>
+		<th id="m1">관리자</th>
+		<th id="m1">닉네임</th>
+		<th id="m1">이름</th>
+		<th id="m1">포인트</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -59,23 +83,23 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';font-family: 'BinggraeSama
 	%>
 	
 		<tr>
-			<td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
-			<td><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a></td>	
-			<td><%=dto.getPwd() %></td>
-			<td><%=dto.getEmail()%></td>
-			<td><%=dto.getAdr1()%></td>
-			<td><%=dto.getAdr2()%></td>
-			<td><%=dto.getAdr3()%></td>
-			<td><%=dto.getAdr4()%></td>
+			<td id="m2"><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
+			<td id="m2"><a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a></td>	
+			<td id="m2"><%=dto.getPwd() %></td>
+			<td id="m2"><%=dto.getEmail()%></td>
+			<td id="m2"><%=dto.getAdr1()%></td>
+			<td id="m2"><%=dto.getAdr2()%></td>
+			<td id="m2"><%=dto.getAdr3()%></td>
+			<td id="m2"><%=dto.getAdr4()%></td>
 			
-			<td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>			
-			<td><%=dto.getSex()%></td>
-			<td><%=dto.getPhone()%></td>
-			<td><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
-			<td><%=dto.getAdmin()%></td>
-			<td><%=dto.getNickName()%></td>
-			<td><%=dto.getName()%></td>
-			<td><%=dto.getPoint()%></td>
+			<td id="m2"><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>			
+			<td id="m2"><%=dto.getSex()%></td>
+			<td id="m2"><%=dto.getPhone()%></td>
+			<td id="m2"><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
+			<td id="m2"><%=dto.getAdmin()%></td>
+			<td id="m2"><%=dto.getNickName()%></td>
+			<td id="m2"><%=dto.getName()%></td>
+			<td id="m2"><%=dto.getPoint()%></td>
 		</tr>
 			
 	<%
@@ -83,10 +107,11 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';font-family: 'BinggraeSama
 		}
 	%>
 	</table>
-		
+<!-- 			<input type="button" value="회원가입" id="insertmemberform"> -->
 			<a href="insertmemberform.do">회원가입</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
+			
 	
 	
 	
@@ -130,6 +155,10 @@ $(function(){
  			}
  		}
  	}
-})</script>
+})
+// $("#insertmemberform").click(function(){
+// location.href='insertmemberform.do'
+// });
+	</script>
 </body>
 </html>

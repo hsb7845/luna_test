@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.luna.board.dtos.ImgFileDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
+import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
 import com.luna.board.dtos.QBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
@@ -24,11 +25,15 @@ public class PBoardDAO implements IPBoardDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Override
-	public boolean insertBoard(PBoardDTO dto,int[] pnum) {
+	public boolean insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("pnum", pnum);
 		boolean isS = sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
 		boolean isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
+		for(int i=0;i<optionList.size();i++) {
+			System.out.println(optionList.get(i).getOvalue());
+			isS2= sqlSession.insert(namespace+"insertoption", optionList.get(i))>0? true:false;
+		}
 		boolean isS3 = false;
 		if(isS&&isS2) {
 			isS3 = true;
@@ -99,12 +104,18 @@ public class PBoardDAO implements IPBoardDAO{
 		List<RBoardDTO> rboard = sqlSession.selectList(namespace+"getRboard", pseq);
 		List<QBoardDTO> qboard = sqlSession.selectList(namespace+"getQboard", pseq);
 		List<Integer> countRank = sqlSession.selectList(namespace+"countStarrank", pseq);
+		List<POptionDTO> option= sqlSession.selectList(namespace+"getOption", pseq);
+		for(int i=0;i<option.size();i++) {
+			option.get(i).setOconArr(option.get(i).getOcontent().split("/"));
+			option.get(i).setOvalArr(option.get(i).getOvalue().split("/"));
+		}
 		map.put("avgRank",avgRank);
 		map.put("pboard",pboard);
 		map.put("img", img);
 		map.put("rboard",rboard);
 		map.put("qboard", qboard);
 		map.put("countRank", countRank);
+		map.put("option", option);
 		return map;
 	}
 	
@@ -115,5 +126,18 @@ public class PBoardDAO implements IPBoardDAO{
 		map.put("chk", chk_arr);
 		
 		return sqlSession.selectList(namespace+"getCategory", map);
+	}
+
+	@Override
+	public boolean uploadImg(ImgFileDTO dto) {
+		// TODO Auto-generated method stub
+		boolean isS = sqlSession.insert(namespace+"insertimgFile", dto)>0?true:false;
+		return isS;
+	}
+
+	@Override
+	public void boardHit(int pseq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"boardHit", pseq);
 	}
 }

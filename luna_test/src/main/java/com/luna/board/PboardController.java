@@ -4,6 +4,7 @@ package com.luna.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -11,8 +12,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +24,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
+import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IPBoardService;
 import com.luna.board.service.IStockService;
+
 
 /**
  * Handles requests for the application home page.
@@ -113,18 +126,41 @@ public class PboardController {
 		return "pboardinsertform";
 	}
 	
+
+	
 	@ResponseBody
 	@RequestMapping(value = "/insertpboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model ,String jsondata ) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		System.out.println("웨않되");
-		System.out.println(jsondata);
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		//jsonDataJSONObject jsonObject = JSONObject.fromObject(jsonData);
-		PBoardDTO dto = new PBoardDTO();
-		int[] pnum = {};
+	public String insert(Locale locale, Model model ,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent ,HttpServletRequest request) {
+		List<POptionDTO> optionList = new ArrayList<>();
+		POptionDTO optDto = new POptionDTO();
+		JSONParser  parser = new JSONParser();
 		
-		boolean isS = pBoardService.insertBoard(dto,pnum);
+		try {
+			Object obj = parser.parse(realObject);
+			JSONObject jsonObj = (JSONObject) obj;
+			//System.out.println("jsonObj.toJSONString()"+jsonObj.get("opt1").toString());
+			
+		//	System.out.println(optjson.get("otitle"));
+			for(int i=1;i<=optNum;i++) {
+				optDto = new POptionDTO();
+				JSONObject optjson = (JSONObject) jsonObj.get("opt"+i);
+				System.out.println(optjson.toJSONString());
+				optDto.setOtitle((String) optjson.get("otitle"));
+				optDto.setOcontent((String) optjson.get("ocontent"));
+				optDto.setOvalue((String) optjson.get("ovalue"));
+				optDto.setNecessary((String) optjson.get("necessary"));
+				optionList.add(optDto);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PBoardDTO dto = new PBoardDTO();
+		dto.setPtitle(ptitle);
+		dto.setPcontent(pcontent);
+		int[] pnum = pnum_arr;
+		
+		boolean isS = pBoardService.insertBoard(dto,pnum,optionList);
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {
@@ -194,6 +230,10 @@ public class PboardController {
 		model.addAttribute("list", list);
 		return "selectStockList";
 	}
+	@RequestMapping(value = "/inputTest.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String inputTest(Locale locale, Model model) {
+		return "inputTest";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/getCategory.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -204,6 +244,27 @@ public class PboardController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/uploadimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public boolean uploadimgfile(Locale locale, Model model,HttpServletRequest request){
+		boolean isS =  pBoardService.uploadImg(request);
+		return isS;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadimgfileTest.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,Object> uploadimgfileTest(Locale locale, Model model,MultipartFile[] uploadFiles,HttpServletRequest request){
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		boolean fileUpload =  pBoardService.uploadFile(uploadFiles,request);
+		if(fileUpload) {
+			resultMap.put("result", "success");
+		}else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
 	
 }
 

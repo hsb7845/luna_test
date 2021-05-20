@@ -13,6 +13,7 @@
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="<c:url value='resources/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
 <script>
+var chk_arr =[];
 function setThumbnail(event) {
 	for (var image of event.target.files) { 
 		var reader = new FileReader(); 
@@ -20,8 +21,7 @@ function setThumbnail(event) {
 			var img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result);
 			document.querySelector("div#image_container").appendChild(img); 
-			}; 
-		console.log(image); 
+			};
 		reader.readAsDataURL(image); 
 	} 
 }
@@ -33,10 +33,12 @@ function setThumbnail(event) {
 		 var cell2 = row.insertCell(1);
 		 var cell3 = row.insertCell(2);
 		 var cell4 = row.insertCell(3);
-		 cell1.innerHTML = "";
+		 var cell5 = row.insertCell(4);
+		 cell1.innerHTML = "항목";
 		 cell2.innerHTML = "<input type='text' name='ocontent"+tbody+"'>";
-		 cell3.innerHTML = "<input type='text' name='ovalue"+tbody+"'>";
-		 cell4.innerHTML = "<input type='button' onclick='delcon(\""+tbody+"\")' value='삭제'>";
+		 cell3.innerHTML = "상품실제내용";
+		 cell4.innerHTML = "<input type='text' name='ovalue"+tbody+"'>";
+		 cell5.innerHTML = "<input type='button' onclick='delcon(\""+tbody+"\")' value='항목제거'>";
 	}
 	
 	function delcon(table){
@@ -46,7 +48,10 @@ function setThumbnail(event) {
 		}
 		
 	}
-	
+
+	function necc(){
+		
+	}
 
 $(document).ready(function(){
 	var optNum = 0;
@@ -55,6 +60,8 @@ $(document).ready(function(){
 		window.open("selectstock.do","팝업","width = 1200, height = 1200, top = 100, left = 200, location = no");
 	});
 	
+	
+	
 	var $input = $("#stock");
 	$("#stcok").on('input',function(){
 		console.log("input text changed!"+$(this).val());
@@ -62,10 +69,10 @@ $(document).ready(function(){
 	
 	$("#addOpt").click(function(){		
 		optNum++;
-		var table = "<table border='1' ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th>항목명<input type='button' onclick='addcon("+optNum+")' value='+'></th><th>상품실제내용</th><th>삭제</th></tr></thead>";
-		table += "<tbody id='opt"+optNum+"'><tr><td></td>";
-		table += "<td><input type='text' name='ocontent"+optNum+"' ></td><td><input type='text' name='ovalue"+optNum+"' ></td>";
-		table += "<td><input type='button' onclick='delcon("+optNum+")' value='삭제'></td></tr></tbody></table>"
+		var table = "<table border='1'  ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th>옵션제거</th></tr></thead>";
+		table += "<tbody id='opt"+optNum+"'><tr><th>항목<input type='button' onclick='addcon("+optNum+")' value='+'></th>";
+		table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품실제내용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
+		table += "<td><input type='button' onclick='delcon("+optNum+")' value='항목제거'></td></tr></tbody></table>"
 		$("#opt").append(table);	
 	})
 
@@ -76,8 +83,16 @@ $(document).ready(function(){
 		sSkinURI: "resources/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
+	 $("#insert").on("click", 'input:checkbox', function() {
+	      $("#log").prepend( $(this).val() + " / " + $(this).is(":checked") + " 체크박스가 클릭되었습니다.<br/>");
+	});
 	
 	$(".btn").on("click", function() {
+		var pnum_arr = [];
+		$("input[name='pnum']").each(function(){
+			var pnum = $(this).val();
+			pnum_arr.push(pnum);
+		});
 		oEditors.getById["pcontent"].exec("UPDATE_CONTENTS_FIELD", []);
 		var value = document.getElementById("pcontent").value;
 		if(optNum>1){
@@ -85,6 +100,13 @@ $(document).ready(function(){
 				var ocontent = "";
 				var ovalue = "";
 				var otitle = $("#otitle"+i).val();
+				if($("input[name ='necessary"+i+"']").prop("checked")){
+					necessary = "true";
+					alert(necessary);
+				}else{
+					necessary = "false";
+					alert(necessary);
+				}
 				 $("input[name=ocontent"+i+"]").each(function(index, item){
 					 if(index==0){
 						 ocontent = $(this).val();
@@ -99,11 +121,19 @@ $(document).ready(function(){
 						  ovalue += "/"+$(this).val();
 					  }
 				   });
-				jsondata["opt"+i] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue};
+				jsondata["opt"+i] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
 			} 	
 		}else if(optNum==1){
 			var otitle =  $("#otitle"+1).val();
 			 var ocontent ="";
+			var necessary = "";
+			if($("input[name=necessary"+1).is(":checked")){
+				necessary = "true";
+				alert(necessary );
+			}else{
+				necessary = "false";
+				alert(necessary );
+			}
 			 $("input[name=ocontent"+1+"]").each(function(index, item){
 				  if(index==0){
 					 ocontent = $(this).val();
@@ -118,20 +148,39 @@ $(document).ready(function(){
 					  ovalue += "/"+$(this).val();
 				  }
 			   });
-			 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue};
+			 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
 		}
+		var realObject = JSON.stringify(jsondata);
  		$.ajax({
  			url : "insertpboard.do",
  			mehthod : "post",
- 			dataType : "json",
+ 			dataType : "json", 
  			traditional : true,
- 			data : { "jsondata" :jsondata},
+ 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr},
  			asnc:false,
 			success : function(data) {
 				alert("성공!");
 			}
  		});	
-
+ 		var formData = new FormData();
+ 		var inputFile = $("#imgname");
+ 		var files = inputFile[0].files;
+ 		formData.append('key1','value1');
+ 		formData.append('key2','value2');
+ 		for(var i=0;i<files.length;i++){
+ 			formData.append('uploadFiles',files[i]);
+ 		}
+ 		$.ajax({
+ 			url : "uploadimgfileTest.do",
+ 			type : "post",
+ 			processData: false,
+            contentType: false,
+ 			data : formData,
+			success : function(data) {
+				alert("성공!");
+				location.href = "pboard.do";
+			}
+ 		});	
 	});
 })
 	
@@ -157,7 +206,8 @@ $(document).ready(function(){
 		</div>
 		<br><br>
 		<div><!-- 이미지 추가 -->
-		<span><input type='file' multiple="multiple" onchange="setThumbnail(event);" ></span>
+		
+		<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
 		<div id="image_container"></div>
 		</div>
 		<br><br>
@@ -184,6 +234,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 	</form>
+	<div id="log"></div>
 </body>
 
 <script type="text/javascript" src="<c:url value='resources/smarteditor2-2.8.2.3/js/HuskyEZCreator.js'/>" charset="utf-8"></script>

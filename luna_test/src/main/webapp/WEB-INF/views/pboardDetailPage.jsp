@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false"%>
@@ -9,6 +10,7 @@
 <title>Insert title here</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
+
 	function incart(id,pseq){
 		if(id==null){
 			if(confirm("로그인이 필요한 작업입니다. \n 이동하시겠습니까?")){
@@ -32,6 +34,20 @@
 		})
 		
 	}
+	$(document).ready(function(){
+		$("input[name='buy']").click(function(){
+			var id = ${id};
+			if(id==null){
+				alert("login 하셈");
+			}
+			if ( $("name='necc'").val().length==0) {
+			 alert("너 이거 선택해야돼");
+			  return;
+			}
+		});
+	});
+	
+	
 </script>
 <style>
 	.imgmain{
@@ -67,10 +83,25 @@
 		<h1>${map.pboard.ptitle}</h1>
 		<h2>판매가 : ${map.pboard.stock.price }</h2>
 	</div>
-		<div>
-			<input type="submit" value="구매">
-			<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })">
-		</div>
+	<div>
+		<c:if test="${map.option !=null }">
+			<c:forEach items="${map.option }" var="i">
+				${i.otitle }<select name=<c:if test="${i.necessary =='true' }">"necc"</c:if><c:if test="${i.necessary =='false' }">"nope"</c:if> >
+				<option value="" >선택</option>
+				<option value="" disabled="disabled">-----------</option>
+				<c:forEach items="${i.oconArr }" var="k" varStatus="status">
+				<option value="${i.ovalArr[status.index]}">${k }</option>
+				</c:forEach>
+				</select>
+				<br>
+			</c:forEach>
+		</c:if>
+	</div>
+	<div>
+		<input type="button" name="buy" value="구매">
+		<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })"> 
+		
+	</div>
 	<div>
 		${map.pboard.pcontent }
 	</div>
@@ -108,7 +139,8 @@
 <!-- 						<th>사진</th> -->
 <%-- 					</c:if> --%>
 					<th>제목</th>
-					<th>내용</th>
+					<th>평점</th>
+					
 				</tr>
 				<c:if test="${map.rboard=='[]'}">
 					<tr>
@@ -124,8 +156,10 @@
 <!-- 							<td><img class="imgmain" src="upload/img_dummy1.jpg"></td> -->
 <%-- 							</c:if> --%>
 							<td>${i.rtitle }</td>
+							<td>${i.starrank }</td>
 						</tr>
 					</c:forEach>
+					<tr><td colspan="3"><button type="button" id="review" >리뷰작성하기</button></td></tr>
 				</c:if>
 				
 		</table>
@@ -152,9 +186,10 @@
 							<td>${i.id }</td>
 
 							<td>${i.qtitle }</td>
-							
+						</tr>
 					</c:forEach>
 				</c:if>
+				<tr><td colspan="3"><button type="button" id="question" >상품문의하기</button></td></tr>
 		</table>
 	</div>
 </body>

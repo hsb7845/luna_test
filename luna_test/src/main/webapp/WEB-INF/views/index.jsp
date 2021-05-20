@@ -107,7 +107,6 @@
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
 	<a href="logout.do">로그아웃</a>
-	
 	<a href="header.do">header</a><br>
 
 </body>

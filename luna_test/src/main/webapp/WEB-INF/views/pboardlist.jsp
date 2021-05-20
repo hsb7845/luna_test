@@ -68,6 +68,7 @@
 		<th>제목</th>
 		<th>내용</th>
 		<th>작성일</th>
+		<th>조회수</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -82,6 +83,7 @@
 					<td><a href="updatePboardForm.do?pseq=<%=dto.getPseq() %>"><%=dto.getPtitle()%></a> </td>
 					<td><%=dto.getPcontent()%></td>
 					<td><fmt:formatDate value="<%=dto.getPdate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
+					<td><%=dto.getHit() %></td>
 				</tr>
 	<%
 			}

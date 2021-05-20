@@ -10,7 +10,16 @@ public class PBoardDTO {
 	private String ptitle;
 	private ImgFileDTO image;
 	private StockDTO stock;
+	private int hit;
 	
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
 	public StockDTO getStock() {
 		return stock;
 	}

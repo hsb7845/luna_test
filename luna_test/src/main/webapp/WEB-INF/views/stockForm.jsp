@@ -126,7 +126,7 @@
 	    text-align: center;
 	}
 	#form {
-		padding: 10px 670px;
+		padding: 10px 400px;
 		
 	}
 	body,button,input{

@@ -7,6 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+<title>Insert title
 <title>상품등록</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 
@@ -49,10 +62,16 @@
 //			document.form.submit();
 			
 		});
-		// 상품 목록이동s
+		// 상품 목록이동
 		$("#listBtn").click(function(){
 // 			location.href='${path}/shop/product/list.do'
 			location.href='stock.do'
+		});
+		
+		// 다시입력
+		$("#resetBtn").click(function(){
+// 			location.href='${path}/shop/product/list.do'
+			location.href='stockForm.do'
 		});
 		
 		//1단계 . type의 값이 바뀐다.
@@ -101,7 +120,20 @@
 		width: 250px;
 		height: 100px;
 		resize:none; /* 크기고정 */
-}
+	}
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	#form {
+		padding: 10px 670px;
+		
+	}
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;		
+	}
+
 </style>
 </head>
 <%
@@ -109,7 +141,8 @@
 %>
 
 <body>
-<h1>상품등록</h1>
+<!-- <h1>상품등록</h1> -->
+<p class="cls1">상품등록</p> 
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
 <div> 
 	
@@ -151,7 +184,9 @@
 		
 	<input type="button" value="등록" id="addBtn">
 	<input type="button" value="목록" id="listBtn">
+	<input type="button" value="다시입력" id="resetBtn">
 </div>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

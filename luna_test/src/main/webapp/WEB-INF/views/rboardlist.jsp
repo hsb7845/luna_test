@@ -18,12 +18,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>리뷰 목록 창</title>
-
-
-
-
-
-
 <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
 <link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
@@ -69,12 +63,36 @@
 	})
 
 </script>
+<style type="text/css">
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	#m1{
+		text-align: center;
+	}
+	#m2{
+		text-align: center;
+	}
+	@font-face {
+    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
+
+</style>
 </head>
 <%
 	List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>리뷰 게시판 글 목록</h1>
+<!-- <h1>리뷰 게시판 글 목록</h1> -->
+<p class="cls1">리뷰 게시판 글 목록</p> 
 <form action="muldelRboard.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -86,14 +104,14 @@
 	<col width="100px">
 	<col width="200px">
 	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>리뷰 게시글 번호</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>상품 게시글 번호</th>
-		<th>아이디</th>
-		<th>별점</th>
-		<th>부모글 번호</th>
+		<th id="m1" ><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th id="m1" >리뷰 게시글 번호</th>
+		<th id="m1" >제목</th>
+		<th id="m1" >내용</th>
+		<th id="m1" >상품 게시글 번호</th>
+		<th id="m1" >아이디</th>
+		<th id="m1" >별점</th>
+		<th id="m1" >부모글 번호</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -103,9 +121,9 @@
 			RBoardDTO dto=list.get(i);
 	%>
 			<tr>
-				<td><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
-				<td><%=dto.getRseq()%></td>
-				<td>
+				<td id="m2" ><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
+				<td id="m2" ><%=dto.getRseq()%></td>
+				<td id="m2" >
 				<%
 				if(dto.getLevel()>1){				
 				%>
@@ -114,11 +132,11 @@
 					}	
 				%>
 				<a href="updaterboardForm.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
-				<td><%=dto.getRcontent()%></td>
-				<td><%=dto.getPseq()%></td>
-				<td><%=dto.getId()%></td>
-				<td><%=dto.getStarrank()%></td>
-				<td><%=dto.getPar_rseq()%></td>
+				<td id="m2" ><%=dto.getRcontent()%></td>
+				<td id="m2" ><%=dto.getPseq()%></td>
+				<td id="m2" ><%=dto.getId()%></td>
+				<td id="m2" ><%=dto.getStarrank()%></td>
+				<td id="m2" ><%=dto.getPar_rseq()%></td>
 			</tr>
 <%
 		}

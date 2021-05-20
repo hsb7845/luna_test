@@ -111,9 +111,6 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';font-family: 'BinggraeSama
 			<a href="insertmemberform.do">회원가입</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
-			
-	
-	
 	
 	</form>
 <script src="http://code.jquery.com/jquery-latest.js"></script>

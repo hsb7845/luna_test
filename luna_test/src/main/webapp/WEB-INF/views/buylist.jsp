@@ -7,6 +7,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -49,12 +61,37 @@
 	 	}
 	})
 </script>
+<style>
+
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	#m1{
+		text-align: center;
+	}
+	#m2{
+		text-align: center;
+	}
+	
+	@font-face {
+	    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
+</style>
 </head>
 <%
 	List<BuyListDTO> list= (List<BuyListDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>구매현황</h1>
+<!-- <h1>구매현황</h1> -->
+<p class="cls1">구매현황</p>
 <form action="buyListMulDel.do" method="post">
 <table border="1">
 	<col width="50px">
@@ -63,36 +100,36 @@
 	<col width="300px">
 	<col width="200px">
 	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>번호</th>
-		<th>아이디</th>
-		<th>배송현황</th>
-		<th>운송장번호</th>
-		<th>받는이</th>
-		<th>주소</th>
-		<th>전화번호</th>
-		<th>총 금액</th>
-		<th>구매날짜</th>
+		<th id="m1" ><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th id="m1" >번호</th>
+		<th id="m1" >아이디</th>
+		<th id="m1" >배송현황</th>
+		<th id="m1" >운송장번호</th>
+		<th id="m1" >받는이</th>
+		<th id="m1" >주소</th>
+		<th id="m1" >전화번호</th>
+		<th id="m1" >총 금액</th>
+		<th id="m1" >구매날짜</th>
 		
 	</tr>
 	<%
 		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='5'>----작성된 글이 없습니다.</td></tr>");
+			out.print("<tr><td colspan='10'>----작성된 글이 없습니다.</td></tr>");
 			}else{
 		for(int i=0;i<list.size();i++){
 			BuyListDTO dto=list.get(i);
 	%>
 				<tr>
-					<td><input type="checkbox" name="chk" value="<%=dto.getBseq()%>"/></td>
-					<td><%=dto.getBseq()%></td>
-					<td><%=dto.getId()%></td>
-					<td><a href="buyListUpdateForm.do?bseq=<%=dto.getBseq() %>"><%=dto.getDelStatus()%></a> </td>
-					<td><a href="https://www.epost.go.kr/" target="_blank"><%=dto.getTrackingNum()%></a></td>
-					<td><%=dto.getName()%></td>
-					<td><%=dto.getAddress()%></td>
-					<td><%=dto.getPhone()%></td>
-					<td>₩<%=dto.getTotalPrice()%>원</td>
-					<td><fmt:formatDate value="<%=dto.getBuyDate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
+					<td id="m2" ><input type="checkbox" name="chk" value="<%=dto.getBseq()%>"/></td>
+					<td id="m2"><%=dto.getBseq()%></td>
+					<td id="m2"><%=dto.getId()%></td>
+					<td id="m2"><a href="buyListUpdateForm.do?bseq=<%=dto.getBseq() %>"><%=dto.getDelStatus()%></a> </td>
+					<td id="m2"><a href="https://www.epost.go.kr/" target="_blank"><%=dto.getTrackingNum()%></a></td>
+					<td id="m2"><%=dto.getName()%></td>
+					<td id="m2"><%=dto.getAddress()%></td>
+					<td id="m2"><%=dto.getPhone()%></td>
+					<td id="m2">₩<%=dto.getTotalPrice()%>원</td>
+					<td id="m2"><fmt:formatDate value="<%=dto.getBuyDate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
 				</tr>
 	<%
 			}

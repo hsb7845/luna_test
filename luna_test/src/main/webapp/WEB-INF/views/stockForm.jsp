@@ -126,7 +126,7 @@
 	    text-align: center;
 	}
 	#form {
-		padding: 10px 400px;
+		padding: 10px 850px;
 		
 	}
 	body,button,input{
@@ -141,6 +141,7 @@
 %>
 
 <body>
+
 <!-- <h1>상품등록</h1> -->
 <p class="cls1">상품등록</p> 
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">

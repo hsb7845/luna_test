@@ -53,46 +53,37 @@ public class RboardController {
 		}
 	}
 	
-//	@RequestMapping(value = "/rreplyForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String updateboard(Locale locale, Model model,int rseq) {
-//		RBoardDTO dto = rBoardService.getBoard(rseq);
-//		System.out.println("rtitle"+dto.getRtitle());
-//		model.addAttribute("dto", dto);
-//		
-//		
-//		
-//	}
+	@RequestMapping(value = "/insertrreply.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String reply(Locale locale, Model model, RBoardDTO dto, int par_rseq) {
+		dto.setPar_rseq(par_rseq);
+		boolean isS = rBoardService.insertBoard(dto);
+		if(isS) {
+			return "redirect:rboard.do";
+		} else {
+			model.addAttribute("msg", "댓글 등록을 실패하였습니다.");
+			return "error";
+		}
+	}
+	
+	@RequestMapping(value = "/updaterboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateboard(Locale locale, Model model,int rseq) {
+		RBoardDTO dto = rBoardService.getBoard(rseq);
+		System.out.println("rtitle"+dto.getRtitle());
+		model.addAttribute("dto", dto);
+		return "rboardupdateform";
+	}
 
-//	@RequestMapping(value = "/insertrreply.do", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String update(Locale locale, Model model, RBoardDTO dto) {
-//		boolean isS = rBoardService.updateBoard(dto);
-//		if(isS) {
-//			return "redirect:rboard.do";
-//		} else {
-//			model.addAttribute("msg","댓글 수정을 실패하였습니다.");
-//			return "error";
-//		}
-	
-	
-//	@RequestMapping(value = "/updaterboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String updateboard(Locale locale, Model model,int rseq) {
-//		RBoardDTO dto = rBoardService.getBoard(rseq);
-//		System.out.println("rtitle"+dto.getRtitle());
-//		model.addAttribute("dto", dto);
-//		return "rboardupdateform";
-//	}
-//
-//	@RequestMapping(value = "/updaterboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String update(Locale locale, Model model, RBoardDTO dto) {
-//		boolean isS = rBoardService.updateBoard(dto);
-//		if(isS) {
-//			return "redirect:rboard.do";
-//		} else {
-//			model.addAttribute("msg","리뷰 글 수정을 실패하였습니다.");
-//			return "error";
-//		}
-//
-//	}
+	@RequestMapping(value = "/updaterboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String update(Locale locale, Model model, RBoardDTO dto) {
+		boolean isS = rBoardService.updateBoard(dto);
+		if(isS) {
+			return "redirect:rboard.do";
+		} else {
+			model.addAttribute("msg","리뷰 글 수정을 실패하였습니다.");
+			return "error";
+		}
+
+	}
 	
 	@RequestMapping(value = "/muldelRboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String muldel(Locale locale, Model model, String[] chk) {

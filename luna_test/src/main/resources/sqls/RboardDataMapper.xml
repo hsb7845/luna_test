@@ -14,7 +14,7 @@
 
 	<insert id="insertboard" parameterType="RBDTO">
 		INSERT INTO R_BOARD(rseq, rtitle, rcontent, pseq, id, starrank, par_rseq)
-		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, NULL, NULL, #{starrank}, #{par_rseq})
+		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, NULL, #{id}, #{starrank}, #{par_rseq})
 	</insert>
 	
 	<select id ="getBoard" resultType="RBDTO" parameterType="int">
@@ -23,14 +23,11 @@
  	</select>
  	
  	<!-- 댓글 입력 -->
-	<insert id="insertReply" parameterType="RBDTO">
-		insert into R_BOARD values(R_BOARD_SEQ.nextval, #{board_no}, #{id}, sysdate, #{reply_content})
+	<insert id="insertreply" parameterType="RBDTO">
+		INSERT INTO R_BOARD(rseq, rtitle, rcontent, pseq, id, STARRANK, par_rseq)
+		VALUES(R_BOARD_SEQ.nextval, '#{rtitle}', '#{rcontent}', NULL, #{id}, NULL, #{par_rseq})
 	</insert>
  	
- 	select LEVEL, qseq, par_qseq, LPAD(' ', 4*(LEVEL-1)) || qtitle qtitle, qcontent, pseq, id from Q_board
-		start with par_qseq=0
-		connect by prior qseq=par_qseq
-		order siblings by qseq DESC
  	
  	
 	<update id ="updateBoard" parameterType="RBDTO">

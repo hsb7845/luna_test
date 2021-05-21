@@ -42,11 +42,16 @@
 	    font-size: 40px;
 	    text-align: center;
 	}
-	#m1{
+	.m1{
 		text-align: center;
+		font-size: 18px;
 	}
-	#m2{
+	.m2{
 		text-align: center;
+		font-size: 15px;
+	}
+	.m3 {
+		font-size: 13px;
 	}
          
 	@font-face {
@@ -126,7 +131,6 @@ $(function(){
 <body>
 	<%@ include file="header.jsp" %>
 <!-- <h1>상품재고현황</h1> -->
-
 <p class="cls1">상품재고현황</p> 
 <form action="muldelStock.do" method="post" >
 <table  border="1" >
@@ -139,16 +143,16 @@ $(function(){
 	<col width="500px">
 	<col width="100px">
 	<col width="150px">
-	<tr>
-		<th  id="m1"><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th  id="m1">상품번호</th>
-		<th  id="m1">상품명</th>
-		<th  id="m1">상품재고수량</th>
-		<th  id="m1">원가</th>
-		<th  id="m1">카테고리번호</th>
-		<th  id="m1">상품내용</th>
-		<th  id="m1">판매가</th>
-		<th  id="m1">상품게시글번호</th>
+	<tr align="center" class="m1" >
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>상품번호</th>
+		<th>상품명</th>
+		<th>상품재고수량</th>
+		<th>원가</th>
+		<th>카테고리번호</th>
+		<th>상품내용</th>
+		<th>판매가</th>
+		<th>상품게시글번호</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -157,16 +161,16 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			StockDTO dto=list.get(i);
 	%>
-				<tr align="center" >
-					<td id="m2"><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
-					<td id="m2"><%=dto.getPnum()%></td>
-					<td id="m2"><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
-					<td id="m2"><%=dto.getScount()%></td>
-					<td id="m2"><%=dto.getCost()%></td>
-					<td id="m2"><%=dto.getCnum()%></td>
-					<td id="m2"><%=dto.getPcontent()%></td>
-					<td id="m2"><%=dto.getPrice()%></td>					
-					<td id="m2"><%=dto.getPseq() %></td>
+				<tr align="center" class="m2" >
+					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
+					<td><%=dto.getPnum()%></td>
+					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
+					<td><%=dto.getScount()%></td>
+					<td><%=dto.getCost()%></td>
+					<td><%=dto.getCnum()%></td>
+					<td><%=dto.getPcontent()%></td>
+					<td><%=dto.getPrice()%></td>					
+					<td><%=dto.getPseq() %></td>
 				</tr>
 	<%
 			}
@@ -175,7 +179,7 @@ $(function(){
 </table>
 <table>	
 	<tr>
-		<td colspan="9"  >
+		<td colspan="9"  class="m3">
 			<input type="button" value="상품입고" id="stockInsertForm">
 			<input type="button" value="상품등록" id="stockForm">
 			<input type="button" value="메인" id="main">

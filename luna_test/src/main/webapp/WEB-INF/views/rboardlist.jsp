@@ -155,7 +155,7 @@
 				<%
 					}	
 				%>
-				<a href="updaterboardForm.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
+				<a href="insertrreply.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
 				<td id="m2" ><%=dto.getRcontent()%></td>
 				<td id="m2" ><%=dto.getPseq()%></td>
 				<td id="m2" ><%=dto.getId()%></td>

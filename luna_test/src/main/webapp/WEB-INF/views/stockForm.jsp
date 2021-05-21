@@ -20,6 +20,7 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <title>Insert title
+	<%@ include file="header.jsp" %>
 <title>상품등록</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 

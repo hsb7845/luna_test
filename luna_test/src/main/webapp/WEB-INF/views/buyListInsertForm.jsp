@@ -1,13 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구매 추가</title>
+
+<style>
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#main").click(function(){
+		location.href='.do'
+	});
+})
+</script>
+
 </head>
 <body>
-	<h1>구매 추가</h1>
+<%@ include file="header.jsp" %>
+<p class="cls1">구매 추가</p>
 	<form method="post" action="buyListInsert.do">
 	<table>
 		<tr>
@@ -40,8 +58,12 @@
 		</tr>
 
 		<tr>
-			<td colspan="2"><input type="submit" value="작성"></td>
+			<td colspan="2">
+				<input type="submit" value="작성">
+				<input type="button" value="메인" id="main">
+			</td>
 		</tr>
+		<%@ include file="footer.jsp" %>
 	</table>
 	</form>
 </body>

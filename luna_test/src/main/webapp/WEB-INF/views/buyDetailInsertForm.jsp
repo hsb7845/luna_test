@@ -28,7 +28,7 @@
 	}
 	.cls1 {
 	    font-size: 40px;
-	    text-align: left;
+	    text-align: center;
 	}
 	
 	.detail {
@@ -516,6 +516,7 @@ h1, h2, h3, h4, h5, h6 {
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <!-- 	<h1>구매 추가</h1> -->
 	<p class="cls1">구매 추가</p> 
 	<form method="post" action="buyDetailInsert.do">
@@ -538,6 +539,7 @@ h1, h2, h3, h4, h5, h6 {
 				<input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/buydetail.do'">
 			</td>
 		</tr>
+		<%@ include file="footer.jsp" %>
 	</table>
 	</form>
 </body>

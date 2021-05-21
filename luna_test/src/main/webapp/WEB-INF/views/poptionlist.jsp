@@ -46,12 +46,32 @@
 	})
 
 </script>
+
+<style type="text/css">
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	@font-face {
+	    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
+
+</style>
 </head>
 <%
 	List<POptionDTO> list= (List<POptionDTO>) request.getAttribute("list");
 %>
 <body>
-<h1>옵션 목록</h1>
+<%@ include file="header.jsp" %>
+<!-- <h1>옵션 목록</h1> -->
+<p class="cls1">옵션 목록</p> 
 <form action="muldelpoption.do" method="post">
 <table border="1">
 	<col width="30px">
@@ -93,5 +113,6 @@
 </tr>
 </table>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

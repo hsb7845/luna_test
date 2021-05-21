@@ -126,13 +126,14 @@
 	    font-size: 40px;
 	    text-align: center;
 	}
-	#form {
-		padding: 10px 850px;
-		
-	}
+
 	body,button,input{
 		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
 		font-weight: bold;		
+	}
+	
+	div#stockForm{
+ 	text-align: center;  		
 	}
 
 </style>
@@ -146,7 +147,7 @@
 <!-- <h1>상품등록</h1> -->
 <p class="cls1">상품등록</p> 
 <form id="form" name="form" method="post" action="insertStock.do" autocomplete="off">
-<div> 
+<div id="stockForm"> 
 	
 	<p>type
 	<select name="ptype" id="ptype" >		

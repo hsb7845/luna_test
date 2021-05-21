@@ -184,9 +184,9 @@ $(function(){
 <!-- 			<a href="stockForm.do">상품등록</a> -->			
 <!-- 			<a href=".do">메인</a> -->
 		</td>
-	</tr>	
-	<%@ include file="footer.jsp" %>
+	</tr>		
 </table>
 </form>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

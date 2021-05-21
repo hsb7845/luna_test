@@ -115,13 +115,10 @@
 	List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
 %>
 <body>
-<<<<<<< HEAD
 <%@ include file="header.jsp" %>
 <p class="cls1">리뷰 목록</p> 
-=======
 <!-- <h1>리뷰 게시판 글 목록</h1> -->
 <p class="cls1">리뷰 게시판 글 목록</p> 
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 <form action="muldelRboard.do" method="post">
 <table border="1">
 	<col width="50px">

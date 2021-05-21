@@ -18,8 +18,10 @@
 body,input{font-family: 'BinggraeSamanco-Bold';
  		font-weight: bold;
  		 line-height: 30px;}
- 		  		
-
+ 	
+div#loginPage{
+ 	text-align: center;  		
+}
 </style>
 
 <meta charset="UTF-8">
@@ -27,30 +29,32 @@ body,input{font-family: 'BinggraeSamanco-Bold';
 </head>
 <body>
 	<form action="login.do" method="post">
-		<h3>로그인</h3>
-		<div>
-			<input type="text" name="id" placeholder="아이디입력" style="width:190px; height:20px; font-size:15px;" ><br>
-		</div>
-		<div>	
-			<input type="password" name="pwd" placeholder="비밀번호입력" style="width:190px; height:20px;font-size:15px;"><br>
-		</div>
-		<div>
-			<input type="submit" value ="로그인" style="width:198px; height:30px; font-size:17px;">
-		</div>
+	<div id = "loginPage">
+		<h3>Login Luna</h3>
+			<div>
+				<input type="text" name="id" placeholder="아이디를입력해주세요" style="width:190px; height:35px; font-size:18px;" ><br>
+			</div>
+			<div>	
+				<input type="password" name="pwd" placeholder="비밀번호를입력해주세요" style="width:190px; height:35px;font-size:18px;"><br>
+			</div>
+			<div>
+				<input type="submit" value ="로그인" style="width:198px; height:35px; font-size:18px;">
+			</div>
 		
-	<c:if test="${msg == 'loginfail'}">
-		<p><font color="red">아이디 또는 비밀번호가 일치하지 않습니다</font></p>
-	</c:if>
+		<c:if test="${msg == 'loginfail'}">
+			<p><font color="red">아이디 또는 비밀번호가 일치하지 않습니다</font></p>
+		</c:if>
 
-	</form>
-
+	
+			<a href="insertmemberform.do">회원가입</a>	
 			<a href="idSearchForm.do">아이디 찾기</a>
 			<a href="pwdSearchForm.do">비밀번호찾기</a><br>
-					 	<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/callback&response_type=code"> 
- 	<img src="upload/kakao_login.png"></a>	<br> 
-			<a href="insertmemberform.do">회원가입</a>	
-			    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=818ca9a80599f4fc6a4c915c35fbe0fb&redirect_uri=http://localhost:8888/board/callback&response_type=code"> 
+ 			<img src="upload/kakao_login_long.png"></a>	<br> 
+			<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 			
+		</div>
+	</form>
 </body>
 
 </html>

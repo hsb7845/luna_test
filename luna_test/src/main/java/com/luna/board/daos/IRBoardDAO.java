@@ -10,6 +10,7 @@ public interface IRBoardDAO {
 	List<RBoardDTO> getAllList();
 	RBoardDTO getBoard(int rseq);
 	boolean deleteBoard(int rseq);
-	boolean updateBoard(RBoardDTO dto);
+//	boolean updateBoard(RBoardDTO dto);
 	boolean mulDel(String[] chk);
+	boolean insertReply(RBoardDTO dto);
 }

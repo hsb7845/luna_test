@@ -40,15 +40,27 @@ public class RBoardService implements IRBoardService {
 		return RBoardDAO.deleteBoard(rseq);
 	}
 
-	@Override
-	public boolean updateBoard(RBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return RBoardDAO.updateBoard(dto);
-	}
+//	@Override
+//	public boolean updateBoard(RBoardDTO dto) {
+//		// TODO Auto-generated method stub
+//		return RBoardDAO.updateBoard(dto);
+//	}
 
+	@Override
+	public boolean insertReply(RBoardDTO dto) {
+		// TODO Auto-generated method stub
+		return RBoardDAO.insertReply(dto);
+	}
+	
 	@Override
 	public boolean mulDel(String[] chk) {
 		// TODO Auto-generated method stub
 		return RBoardDAO.mulDel(chk);
+	}
+
+	@Override
+	public boolean updateBoard(RBoardDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

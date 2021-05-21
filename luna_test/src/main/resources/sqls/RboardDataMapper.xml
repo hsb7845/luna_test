@@ -22,6 +22,17 @@
 		where rseq = #{rseq}
  	</select>
  	
+ 	<!-- 댓글 입력 -->
+	<insert id="insertReply" parameterType="RBDTO">
+		insert into R_BOARD values(R_BOARD_SEQ.nextval, #{board_no}, #{id}, sysdate, #{reply_content})
+	</insert>
+ 	
+ 	select LEVEL, qseq, par_qseq, LPAD(' ', 4*(LEVEL-1)) || qtitle qtitle, qcontent, pseq, id from Q_board
+		start with par_qseq=0
+		connect by prior qseq=par_qseq
+		order siblings by qseq DESC
+ 	
+ 	
 	<update id ="updateBoard" parameterType="RBDTO">
 		UPDATE R_BOARD SET RCONTENT=#{rcontent},  RTITLE=#{rtitle} , STARRANK=#{starrank} WHERE RSEQ=#{rseq}
 	</update>

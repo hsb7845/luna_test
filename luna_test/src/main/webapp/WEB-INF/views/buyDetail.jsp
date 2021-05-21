@@ -59,6 +59,12 @@
 	 			}
 	 		}
 	 	}
+	 	$("#buyDetailInsertForm").click(function(){
+			location.href='buyDetailInsertForm.do'
+		});
+		$("#main").click(function(){
+			location.href='.do'
+		});
 	})
 </script>
 <style type="text/css">
@@ -82,11 +88,14 @@
 		text-align: center;
 	}
 </style>
+
+
 </head>
 <%
 	List<BuyDetailDTO> list= (List<BuyDetailDTO>) request.getAttribute("list");
 %>
 <body>
+<%@ include file="header.jsp" %>
 <!-- <h1>구매현황</h1> -->
 <p class="cls1">구매현황</p> 
 <form action="buyDetailMulDel.do" method="post">
@@ -124,8 +133,8 @@
 	%>
 	<tr>
 		<td colspan="10">
-			<a href="buyDetailInsertForm.do">글쓰기</a>
-			<a href="index.do">메인</a>
+			<input type="button" value="글쓰기" id="buyDetailInsertForm" />
+			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
 		</td>		
 	</tr>

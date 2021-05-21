@@ -6,9 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<!-- 		<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/> -->
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <style type="text/css">
-
 
 @font-face {
     font-family: 'BinggraeSamanco-Bold';
@@ -16,45 +27,37 @@
     font-weight: normal;
     font-style: normal;
 }
-
-body,button,input{font-family: 'BinggraeSamanco-Bold';
- 		font-weight: bold;
- 		line-height: 20px;}
- 
-
-
+body,button,input{
+	font-family: 'BinggraeSamanco-Bold';
+	font-weight: bold;
+	line-height: 20px;
+ }
 .pwck_input_re_1{
-        color : green;
-        display : none;    
+	color : green;
+	display : none;    
 }
 .pwck_input_re_2{
-        color : red;
-        display : none;    
+	color : red;
+	display : none;    
 }    
-
-
 .pw_reg_tr{
 	display :none;
 	color : green;
 }
-
 .pw_reg_fl{
 	display:  none;
 	color :red;
 }
 
-
-
 </style>
-
 </head>
 
 <body> 		
-	<form method="post" action="insertmember.do">
+	<form method="post" action="insertmember.do" id="join">
 		<h1 style = "text-align:left">회원가입</h1>
-		<div>
+		<div id="id" >
 			<label for="id">아이디</label><br>
-			<input type="text" name="id" id="id" required/>
+			<input type="text" name="id" id="id" required />
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
 		<div class="pw_wrap">

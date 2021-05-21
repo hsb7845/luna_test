@@ -15,44 +15,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>상품재고리스트</title>
  <!-- Custom fonts for this template -->
-        <link
-            href="vendor/fontawesome-free/css/all.min.css"
-            rel="stylesheet"
-            type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+<link
+    href="vendor/fontawesome-free/css/all.min.css"
+    rel="stylesheet"
+    type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this page -->
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        
-        <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
-		<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-		<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
-		<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
-		<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
-		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-		<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<!-- Custom styles for this page -->
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-        <style>
-            .cls1 {
-                font-size: 40px;
-                text-align: center;
-            }
-            .cls2 {
-                font-size: 20px;
-                text-align: center;
-            }
-            #m1{
-            	text-align: center;
-            }
-            #m2{
-            	text-align: center;
-            }
-        </style>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+<style>
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	#m1{
+		text-align: center;
+	}
+	#m2{
+		text-align: center;
+	}
+         
+	@font-face {
+    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
+</style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -177,12 +184,8 @@ id="site-navigation" class="main-navigation">
 <!-- 			<a href=".do">메인</a> -->
 		</td>
 	</tr>	
+	<%@ include file="footer.jsp" %>
 </table>
 </form>
-<!-- #page -->
-<script src='resources/luna/js/jquery.js'></script>
-<script src='resources/luna/js/plugins.js'></script>
-<script src='resources/luna/js/scripts.js'></script>
-<script src='resources/luna/js/masonry.pkgd.min.js'></script>
 </body>
 </html>

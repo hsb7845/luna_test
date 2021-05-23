@@ -36,7 +36,7 @@ function setThumbnail(event) {
 		 var cell5 = row.insertCell(4);
 		 cell1.innerHTML = "항목";
 		 cell2.innerHTML = "<input type='text' name='ocontent"+tbody+"'>";
-		 cell3.innerHTML = "상품실제내용";
+		 cell3.innerHTML = "상품추가비용";
 		 cell4.innerHTML = "<input type='text' name='ovalue"+tbody+"'>";
 		 cell5.innerHTML = "<input type='button' onclick='delcon(\""+tbody+"\")' value='항목제거'>";
 	}
@@ -48,7 +48,20 @@ function setThumbnail(event) {
 		}
 		
 	}
-
+	
+	function checkOnlyOne(element) {
+		  
+		  const checkboxes 
+		      = document.getElementsByName("main");
+		  
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+		  
+		  element.checked = true;
+		}
+	
+	
 	function necc(){
 		
 	}
@@ -71,7 +84,7 @@ $(document).ready(function(){
 		optNum++;
 		var table = "<table border='1'  ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th>옵션제거</th></tr></thead>";
 		table += "<tbody id='opt"+optNum+"'><tr><th>항목<input type='button' onclick='addcon("+optNum+")' value='+'></th>";
-		table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품실제내용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
+		table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품추가비용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
 		table += "<td><input type='button' onclick='delcon("+optNum+")' value='항목제거'></td></tr></tbody></table>"
 		$("#opt").append(table);	
 	})
@@ -83,16 +96,32 @@ $(document).ready(function(){
 		sSkinURI: "resources/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
 		fCreator: "createSEditor2"
 	});
-	 $("#insert").on("click", 'input:checkbox', function() {
-	      $("#log").prepend( $(this).val() + " / " + $(this).is(":checked") + " 체크박스가 클릭되었습니다.<br/>");
+
+	 $(".praBtn").on("click", function() {
+		 	var mainNum = 0;
+			$("input[name='main']").each(function(){
+				if($(this).is(":checked")){
+					mainNum = $(this).val();
+				}
+			});
 	});
 	
+	 
+	 
 	$(".btn").on("click", function() {
 		var pnum_arr = [];
 		$("input[name='pnum']").each(function(){
 			var pnum = $(this).val();
 			pnum_arr.push(pnum);
 		});
+		var mainNum = 0;
+		$("input[name='main']").each(function(){
+			if($(this).is(":checked")){
+				mainNum = $(this).val();
+				//alert(mainNum);
+			}
+		});
+		
 		oEditors.getById["pcontent"].exec("UPDATE_CONTENTS_FIELD", []);
 		var value = document.getElementById("pcontent").value;
 		if(optNum>1){
@@ -114,7 +143,7 @@ $(document).ready(function(){
 						 ocontent += "/"+$(this).val();
 					  }
 				   });
-				 $("input[name=ovalue"+i+"]").each(function(index, item){
+				 $("input[name=ovalue"+i+"]").each(function(index, item){	
 					  if(index==0){
 						 ovalue = $(this).val();
 					  }else{
@@ -156,10 +185,10 @@ $(document).ready(function(){
  			mehthod : "post",
  			dataType : "json", 
  			traditional : true,
- 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr},
+ 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr,"mainNum":mainNum},
  			asnc:false,
 			success : function(data) {
-				alert("성공!");
+				//alert("성공!");
 			}
  		});	
  		var formData = new FormData();
@@ -177,7 +206,7 @@ $(document).ready(function(){
             contentType: false,
  			data : formData,
 			success : function(data) {
-				alert("성공!");
+				//alert("성공!");
 				location.href = "pboard.do";
 			}
  		});	
@@ -231,6 +260,7 @@ $(document).ready(function(){
 		</div>
 		<div>
 			<div><input type="button" value="작성" class="btn"></div>
+			<input type="button" value="연습" class="praBtn">
 		</div>
 	</div>
 	</form>

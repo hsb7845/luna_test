@@ -128,8 +128,20 @@ public class MemberController {
 	}
 		
 	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String loginForm(Locale locale, Model model) {
-		return "userlogin";
+	public String loginForm(Locale locale, Model model,String returnUrl) {
+		if(returnUrl==null) {
+			return "userlogin";
+		}else if (returnUrl.equals("buyform")) {
+			
+			return "userlogin";
+		}else if(returnUrl.equals("cart")) {
+
+			return "userlogin";
+		}else {
+			return "userlogin";
+		}
+		
+	
 	}
 	
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})

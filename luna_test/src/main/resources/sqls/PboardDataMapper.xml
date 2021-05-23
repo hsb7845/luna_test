@@ -32,7 +32,7 @@
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
 		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit from P_board p,stock s
-		where p.pseq = #{pseq} and p.pseq = s.pseq
+		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true'
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">
@@ -60,9 +60,9 @@
 		FROM (
 			SELECT ROWNUM RN, A.*
 				FROM (
-						SELECT DISTINCT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE,p.hit
+						SELECT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE,p.hit
 						FROM p_BOARD p ,IMG_FILE i,STOCK s 
-						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ 
+						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ  AND s.main = 'true'
 						<choose>
 							<when test="arrayNum==1">
 								ORDER BY  p.pdate DESC 
@@ -105,9 +105,10 @@
 	</select>
 	
 	<update id="updateStock" parameterType="Map">
-		UPDATE STOCK SET pseq=p_board_seq.currval
-		WHERE pnum in <foreach close=")" open="(" separator="," item="i" collection="pnum">#{i} </foreach>
+		UPDATE STOCK SET pseq=p_board_seq.currval , main = #{main}
+				WHERE pnum = #{pnum}
 	</update>
+	
 	
 	<select id="getCategory" parameterType="map" resultType="PCDTO">
 		select * from p_category where cnum in <foreach close=")" open="(" separator="," item="i" collection="chk">#{i} </foreach>

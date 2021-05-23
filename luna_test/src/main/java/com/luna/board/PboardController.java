@@ -130,11 +130,11 @@ public class PboardController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertpboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model ,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent ,HttpServletRequest request) {
+	public String insert(Locale locale, Model model ,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum ,HttpServletRequest request) {
 		List<POptionDTO> optionList = new ArrayList<>();
 		POptionDTO optDto = new POptionDTO();
 		JSONParser  parser = new JSONParser();
-		
+		System.out.println(mainNum);
 		try {
 			Object obj = parser.parse(realObject);
 			JSONObject jsonObj = (JSONObject) obj;
@@ -144,7 +144,7 @@ public class PboardController {
 			for(int i=1;i<=optNum;i++) {
 				optDto = new POptionDTO();
 				JSONObject optjson = (JSONObject) jsonObj.get("opt"+i);
-				System.out.println(optjson.toJSONString());
+				//System.out.println(optjson.toJSONString());
 				optDto.setOtitle((String) optjson.get("otitle"));
 				optDto.setOcontent((String) optjson.get("ocontent"));
 				optDto.setOvalue((String) optjson.get("ovalue"));
@@ -160,7 +160,7 @@ public class PboardController {
 		dto.setPcontent(pcontent);
 		int[] pnum = pnum_arr;
 		
-		boolean isS = pBoardService.insertBoard(dto,pnum,optionList);
+		boolean isS = pBoardService.insertBoard(dto,pnum,optionList,mainNum);
 		if(isS) {
 			return "redirect:pboard.do";
 		}else {

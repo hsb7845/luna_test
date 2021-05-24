@@ -6,7 +6,14 @@ public class PagingDTO {
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
 	private int arrayNum =1;
+	private int sorting = 1;
 	
+	public int getSorting() {
+		return sorting;
+	}
+	public void setSorting(int sorting) {
+		this.sorting = sorting;
+	}
 	public int getArrayNum() {
 		return arrayNum;
 	}
@@ -15,15 +22,17 @@ public class PagingDTO {
 	}
 	public PagingDTO() {
 	}
-	public PagingDTO(int total, int nowPage, int cntPerPage,int arrayNum) {
+	public PagingDTO(int total, int nowPage, int cntPerPage,int arrayNum,int sorting) {
 		setNowPage(nowPage);
 		setCntPerPage(cntPerPage);
 		setTotal(total);
 		setArrayNum(arrayNum);
+		setSorting(sorting);
 		calcLastPage(getTotal(), getCntPerPage());
 		calcStartEndPage(getNowPage(), cntPage);
 		calcStartEnd(getNowPage(), getCntPerPage());
 	}
+	
 	// 제일 마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
 		setLastPage((int) Math.ceil((double)total / (double)cntPerPage));

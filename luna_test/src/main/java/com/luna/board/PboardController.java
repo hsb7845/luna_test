@@ -68,12 +68,13 @@ public class PboardController {
 		return "index";
 	}
 	@RequestMapping(value = "/pboardpaging.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String pboardPaging(Locale locale, Model model,PagingDTO pagingDTO,
+	public String pboardPaging(Locale locale, Model model,PagingDTO pagingDTO,@RequestParam(value="sorting",required=false)String sorting,
 			@RequestParam(value="arrayNum", required=false)String arrayNum,
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws IOException {
-		
+		//System.out.println(sorting);
 		int total = pBoardService.countBoard();
+		//System.out.println(sorting);
 		if(nowPage ==null &&cntPerPage == null&&arrayNum==null) {
 			nowPage="1";
 			cntPerPage = "12";
@@ -84,15 +85,30 @@ public class PboardController {
 			cntPerPage = "12";
 		}else if(arrayNum==null) {
 			arrayNum="1";
+		}else if(sorting==null) {
+			sorting="1";
 		}
-
-		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum));
+		/* sorting =1 -> 신상 2 ->귀걸이 3-> 목걸이 4-> 반지 5->팔찌 6->귀걸이
+		 * 
+		 * */
+	
+		System.out.println("total:"+total);
+		System.out.println("nowPage:"+nowPage);
+		System.out.println("cntPerPage:"+cntPerPage);
+		System.out.println("arrayNum:"+arrayNum);
+		System.out.println("sorting:"+sorting);
+		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum),Integer.parseInt(sorting));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
-		
+		System.out.println("sorting :"+pagingDTO.getSorting());
 		model.addAttribute("paging", pagingDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("arrayNum", arrayNum);
-		
+		String msg= "";
+		if(list==null) {
+			msg="해당 페이지에 아직 글이없습니다.";
+			model.addAttribute("msg",msg);
+			return "error";
+		}
 		
 		return "pboardPaging";
 	}

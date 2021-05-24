@@ -66,10 +66,12 @@
 	text-align: center;
 }
 </style>
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script>
 	function selChange() {
 		var sel = document.getElementById('arrayNum').value;
-		location.href="pboardpaging.do?nowPage=${paging.nowPage}&arrayNum="+sel;
+		var sorting = $("input[name='sorting']").val();
+		location.href="pboardpaging.do?nowPage=${paging.nowPage}&arrayNum="+sel+"&sorting="+sorting;
 	}
 </script>
 <body>
@@ -89,7 +91,7 @@
 	</div>
 </div> <!-- 옵션선택 끝 -->
 	<br><br><br>
-	
+	<input type="hidden" name='sorting' value="${paging.sorting }">
 	<div class="main_list">
 	
 		<div class="main_title">

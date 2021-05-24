@@ -53,61 +53,10 @@
 <title>Insert title here</title>
 </head>
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
-<header id="header">
-<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-	<tr id="menu1">
-		<td colspan="7"><a href="index.do">
-			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a>
-		</td>
-	</tr>
 
-	<tr id="menu2">		
-<!-- 		<td colspan="3" rowspan="1"><a herf="index.do"> -->
-<!-- 			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a> -->
-<!-- 		</td> -->
-		<tr></tr>
-		<td id="m1" colspan="7">
-<!-- 			<a href="loginForm.do">로그인</a> -->
-<!-- 			<a href="insertmemberform.do">회원가입</a> -->
-<!-- 			<a href="myPage.do">마이페이지</a> -->
-<!-- 			<a href="buylist.do">장바구니</a> -->
-<!-- 			<a href="logout.do">로그아웃</a> -->
+<%@ include file="header.jsp" %>
 
-<%
-	String custid="";
-	if(session.getAttribute("id") != null){
-		custid = (String)session.getAttribute("id");
-	}
-%>
-		<a href="insertmemberform.do">회원가입</a> &nbsp;
 
-<% 	
-	if(custid.equals("admin")){
-%>
-		<a href="myPage.do">마이페이지</a> &nbsp;
-		<a href="buylist.do">장바구니</a> &nbsp; 
-		<a href=logout.do>로그아웃</a> &nbsp; 
-<% 
-	}else{
-%>	
-		<a href="loginForm.do">로그인</a> &nbsp;
-<%		
-	}
-%>	
-		</td>
-	</tr>	
-	<tr></tr>
-	<tr id="menu3" >
-		<td id="m2"><a href="pboardpaging.do?sorting=1">신상품</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=2">귀걸이</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=3">목걸이</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=4">반지</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=5">팔찌</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=6">기타</a></td>
-		<td  id="m2"><a href="pboardpaging.do?sorting=7">이벤트</a></td>
-	</tr>	
-</table>
-</header>
 <% 
 	String id = (String)session.getAttribute("id");
 	if(id!=null){		

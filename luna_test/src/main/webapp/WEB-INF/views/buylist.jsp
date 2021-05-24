@@ -74,11 +74,16 @@
 	    font-size: 40px;
 	    text-align: center;
 	}
-	#m1{
+	.buylistT{
 		text-align: center;
+		font-size: 15px;
 	}
-	#m2{
+	.buylistM{
 		text-align: center;
+		font-size: 13px;
+	}
+	.buylistD {
+		font-size: 12px;
 	}
 	
 	@font-face {
@@ -107,17 +112,17 @@
 	<col width="100px">
 	<col width="300px">
 	<col width="200px">
-	<tr>
-		<th id="m1" ><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th id="m1" >번호</th>
-		<th id="m1" >아이디</th>
-		<th id="m1" >배송현황</th>
-		<th id="m1" >운송장번호</th>
-		<th id="m1" >받는이</th>
-		<th id="m1" >주소</th>
-		<th id="m1" >전화번호</th>
-		<th id="m1" >총 금액</th>
-		<th id="m1" >구매날짜</th>
+	<tr align="center" class="buylistT" >
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>번호</th>
+		<th>아이디</th>
+		<th>배송현황</th>
+		<th>운송장번호</th>
+		<th>받는이</th>
+		<th>주소</th>
+		<th>전화번호</th>
+		<th>총 금액</th>
+		<th>구매날짜</th>
 		
 	</tr>
 	<%
@@ -127,15 +132,15 @@
 		for(int i=0;i<list.size();i++){
 			BuyListDTO dto=list.get(i);
 	%>
-				<tr>
-					<td id="m2" ><input type="checkbox" name="chk" value="<%=dto.getBseq()%>"/></td>
-					<td id="m2"><%=dto.getBseq()%></td>
-					<td id="m2"><%=dto.getId()%></td>
-					<td id="m2"><a href="buyListUpdateForm.do?bseq=<%=dto.getBseq() %>"><%=dto.getDelStatus()%></a> </td>
-					<td id="m2"><a href="https://www.epost.go.kr/" target="_blank"><%=dto.getTrackingNum()%></a></td>
-					<td id="m2"><%=dto.getName()%></td>
-					<td id="m2"><%=dto.getAddress()%></td>
-					<td id="m2"><%=dto.getPhone()%></td>
+				<tr align="center" class="buylistM">
+					<td><input type="checkbox" name="chk" value="<%=dto.getBseq()%>"/></td>
+					<td><%=dto.getBseq()%></td>
+					<td><%=dto.getId()%></td>
+					<td><a href="buyListUpdateForm.do?bseq=<%=dto.getBseq() %>"><%=dto.getDelStatus()%></a> </td>
+					<td><a href="https://www.epost.go.kr/" target="_blank"><%=dto.getTrackingNum()%></a></td>
+					<td><%=dto.getName()%></td>
+					<td><%=dto.getAddress()%></td>
+					<td><%=dto.getPhone()%></td>
 					<td id="m2">₩<%=dto.getTotalPrice()%>원</td>
 					<td id="m2"><fmt:formatDate value="<%=dto.getBuyDate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
 				</tr>
@@ -144,7 +149,7 @@
 		}
 	%>
 	<tr>
-		<td colspan="10">
+		<td colspan="10" class="buylistD">
 			<input type="button" value="구매 등록" id="buyListInsertForm" />
 			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
@@ -152,9 +157,9 @@
 <!-- 			<a href="buyListInsertForm.do">글쓰기</a> -->
 <!-- 			<a href="index.do">메인</a> -->
 		</td>
-	</tr>
-	<%@ include file="footer.jsp" %>
+	</tr>	
 </table>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

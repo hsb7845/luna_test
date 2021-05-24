@@ -81,11 +81,16 @@
 	    font-size: 40px;
 	    text-align: center;
 	}
-	#m1{
+	.detailT {
 		text-align: center;
+		font-size: 15px;
 	}
-	#m2{
+	.detailM{
 		text-align: center;
+		font-size: 13px;
+	}
+	.detailD {
+		font-size: 12px;
 	}
 </style>
 
@@ -105,12 +110,12 @@
 	<col width="200px">
 	<col width="200px">
 	<col width="200px">
-	<tr>
-		<th id="m1" ><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th id="m1" >번호</th>
-		<th id="m1" >상품번호</th>
-		<th id="m1" >수량</th>
-		<th id="m1" >구매번호</th>
+	<tr align="center" class="detailT">
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>번호</th>
+		<th>상품번호</th>
+		<th>수량</th>
+		<th>구매번호</th>
 		
 	</tr>
 	<%
@@ -120,26 +125,27 @@
 		for(int i=0;i<list.size();i++){
 			BuyDetailDTO dto=list.get(i);
 	%>
-				<tr>
-					<td id="m2" ><input type="checkbox" name="chk" value="<%=dto.getBdseq()%>"/></td>
-					<td id="m2" ><%=dto.getBdseq()%></td>
-					<td id="m2" ><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPnum()%></a> </td>
-					<td id="m2" ><%=dto.getPcount()%>개</td>
-					<td id="m2" ><%=dto.getBseq() %>
+				<tr align="center" class="detailM">
+					<td><input type="checkbox" name="chk" value="<%=dto.getBdseq()%>"/></td>
+					<td><%=dto.getBdseq()%></td>
+					<td ><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPnum()%></a> </td>
+					<td><%=dto.getPcount()%>개</td>
+					<td><%=dto.getBseq() %>
 				</tr>
 	<%
 			}
 		}
 	%>
 	<tr>
-		<td colspan="10">
+		<td colspan="10" class="detailD">
 			<input type="button" value="글쓰기" id="buyDetailInsertForm" />
 			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
 		</td>		
 	</tr>
-	<%@ include file="footer.jsp" %>
+	
 </table>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

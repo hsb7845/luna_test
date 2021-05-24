@@ -52,6 +52,15 @@
 	    font-size: 40px;
 	    text-align: center;
 	}
+	.optionT {
+		font-size: 15px;
+	}
+	.optionM {
+		font-size: 12px;
+	}
+	.optionD {
+		font-size: 12px;
+	}
 	@font-face {
 	    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
 	    font-weight: normal;
@@ -70,7 +79,6 @@
 %>
 <body>
 <%@ include file="header.jsp" %>
-<!-- <h1>옵션 목록</h1> -->
 <p class="cls1">옵션 목록</p> 
 <form action="muldelpoption.do" method="post">
 <table border="1">
@@ -79,7 +87,7 @@
 	<col width="100px">
 	<col width="200px">
 	<col width="300px">
-	<tr>
+	<tr align="center" class="optionT" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>옵션번호</th>
 		<th>상품게시글번호</th>
@@ -93,7 +101,7 @@
 		for(int i=0;i<list.size();i++){
 			POptionDTO dto=list.get(i);
 	%>
-			<tr>
+			<tr align="center" class="optionM" >
 				<td><input type="checkbox" name="chks" value="<%=dto.getOseq()%>"/></td>
 				<td><%=dto.getOseq()%></td>
 				<td><%=dto.getPseq() %>
@@ -105,7 +113,7 @@
 	}
 %>
 <tr>
-	<td colspan="5">
+	<td colspan="5" class="optionD" >
 		<a href="insertpoptionform.do">옵션추가</a>
 		<a href=".do">메인</a>
 		<input type="submit" value="삭제" />

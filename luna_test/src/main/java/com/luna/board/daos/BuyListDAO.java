@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.PBoardDTO;
 
 
 @Repository
@@ -62,7 +63,10 @@ public class BuyListDAO implements IBuyListDAO {
 	@Override
 	public Map<String, Object> getPBoard(int pseq) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("com.luna.pboard.getPBoard", pseq);
+		Map<String,Object> map = new HashMap<>();
+		PBoardDTO dto = sqlSession.selectOne("com.luna.pboard.getPBoard", pseq);
+		map.put("dto", dto);
+		return map;
 	}
 	
 }

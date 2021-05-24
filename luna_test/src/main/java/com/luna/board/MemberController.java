@@ -11,6 +11,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +135,15 @@ public class MemberController {
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
+			JSONParser  parser = new JSONParser();
+			try {
+				Object obj = parser.parse(request.getParameter("selOpt"));
+				JSONObject jsonObj = (JSONObject) obj;
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			model.addAttribute("pseq", request.getParameter("pseq"));
 			System.out.println(request.getParameter("pseq"));
 			model.addAttribute("selOpt", request.getParameter("selOpt"));
@@ -163,6 +175,7 @@ public class MemberController {
 					return "adminMain";
 				}else {
 					if(request.getParameter("returnUrl").equals("buyform")) {
+						
 						model.addAttribute("pseq", request.getParameter("pseq"));
 						model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
 						System.out.println("여기:"+request.getParameter("selOpt"));

@@ -42,6 +42,8 @@ public class BuyListController {
 		int pseq =  Integer.parseInt(request.getParameter("pseq"));
 		Map<String,Object> map = new HashMap<String, Object>();
 		map = buyListService.getPboard(pseq);
+		model.addAttribute("dto",map.get("dto"));
+		model.addAttribute("selOpt",request.getParameter("selOpt"));
 		System.out.println(request.getParameter("pseq"));
 		System.out.println(request.getParameter("selOpt"));
 		return "buyForm";

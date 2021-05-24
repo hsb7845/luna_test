@@ -56,21 +56,43 @@
 		<tr></tr>
 		<td id="m1" colspan="7">		
 <!-- 			<a href="loginForm.do">로그인</a> -->
-			<a href="insertmemberform.do">회원가입</a>
-			<a href="myPage.do">마이페이지</a>
-			<a href="buylist.do">장바구니</a>
-			<a href="logout.do">로그아웃</a>
+<!-- 			<a href="insertmemberform.do">회원가입</a> -->
+<!-- 			<a href="myPage.do">마이페이지</a> -->
+<!-- 			<a href="buylist.do">장바구니</a> -->
+<!-- 			<a href="logout.do">로그아웃</a> -->
+			
+		<%
+		String custid="";
+		if(session.getAttribute("id") != null){
+			custid = (String)session.getAttribute("id");
+		}
+	%>
+			<a href="insertmemberform.do">회원가입</a> &nbsp;
+	
+	<% 	
+		if(custid.equals("admin")){
+	%>
+			<a href="myPage.do">마이페이지</a> &nbsp;
+			<a href="buylist.do">장바구니</a> &nbsp; 
+			<a href=logout.do>로그아웃</a> &nbsp; 
+	<% 
+		}else{
+	%>	
+			<a href="loginForm.do">로그인</a> &nbsp;
+	<%		
+		}
+	%>					
 		</td>
 	</tr>	
 	<tr></tr>
 	<tr id="menu3" >
-		<td id="m2"><a href="">신상품</a></td>
-		<td  id="m2"><a href="">귀걸이</a></td>
-		<td  id="m2"><a href="">목걸이</a></td>
-		<td  id="m2"><a href="">반지</a></td>
-		<td  id="m2"><a href="">팔찌</a></td>
-		<td  id="m2"><a href="">기타</a></td>
-		<td  id="m2"><a href="">이벤트</a></td>
+		<td id="m2"><a href="pboardpaging.do?sorting=1">신상품</a></td>
+		<td  id="m2"><a href="pboardpaging.do?sorting=2">귀걸이</a></td>
+		<td  id="m2"><a href="pboardpaging.do?sorting=3">목걸이</a></td>
+		<td  id="m2"><a href="pboardpaging.do?sorting=4">반지</a></td>
+		<td  id="m2"><a href="pboardpaging.do?sorting=5">팔찌</a></td>
+		<td  id="m2"><a href="pboardpaging.do?sorting=6">기타</a></td>
+		<td  id="m2"><a href="eboard.do">이벤트</a></td>
 	</tr>	
 </table>
 </header>

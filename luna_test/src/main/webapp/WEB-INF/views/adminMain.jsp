@@ -64,6 +64,16 @@
 </style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+<% 
+	String id = (String)session.getAttribute("id");
+	if(id!=null){
+			%>
+			<h3>${nickname}님 환영합니다.</h3>
+			<%
+		}	
+%>
+
 	<div class="wrap">
 <!-- 		<div class="grid1" id="header"> -->
 <%-- 			<%@ include file="header.jsp"  %> --%>
@@ -94,5 +104,6 @@
       	</div>      
 
 	</div>	
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

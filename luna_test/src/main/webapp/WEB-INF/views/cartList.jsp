@@ -14,6 +14,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+
 <title>장바구니 리스트 </title>
 <!-- Custom fonts for this template -->
         <link
@@ -29,17 +42,24 @@
 
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <style>
-            .cls1 {
-                font-size: 40px;
-                text-align: center;
-            }
-            .cls2 {
-                font-size: 20px;
-                text-align: center;
-            }
-            
-        </style>
+<style>
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	
+	.cartT {
+		font-size: 15px;
+	}
+	.cartM {
+		font-size: 13px;
+	}
+
+	#cartD {
+		font-size: 10px;
+	}
+
+</style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -88,78 +108,23 @@ $(function(){
 	List<CartDTO> list = (List<CartDTO>) request.getAttribute("list");
 %>
 <body>
+<%@ include file="header.jsp" %>
 <p class="cls1">장바구니리스트</p> 
 <form action="muldelCart.do" method="post">
 
-<!-- <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse"> -->
-<%-- 	<col width="50px"> --%>
-<%-- 	<col width="150px"> --%>
-<%-- 	<col width="150px"> --%>
-<%-- 	<col width="150px"> --%>
-<%-- 	<col width="150px"> --%>
-<!-- 	<tr> -->
-<!-- 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th> -->
-<!-- 		<th>장바구니번호</th> -->
-<!-- 		<th>아이디</th> -->
-<!-- 		<th>상품게시글번호</th> -->
-<!-- 		<th>상품수량</th> -->
-<!-- 	</tr> -->
-
-
-<table	
-	border="1"
-	class="table table-bordered dataTable"
-	id="dataTable"
-	width="100%"
-	cellspacing="0"
-	role="grid"
-	aria-describedby="dataTable_info"
-	style="width: 100%;">
-	<tr role="row">
-	     <th
-	         class="sorting_asc"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-sort="ascending"
-	         aria-label="Name: activate to sort column descending"
-	         style="width: 5px;">
-	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-	    
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Office: activate to sort column ascending"
-	         style="width: 49px;">장바구니번호</th>
-	       <th
-	         class="sorting"체
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Position: activate to sort column ascending"
-	         style="width: 72px;">아이디</th>
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Age: activate to sort column ascending"
-	         style="width: 31px;">상품게시글번호</th>
-	     <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Start date: activate to sort column ascending"
-	         style="width: 69px;">상품수량</th>                                      
-	 </tr>
+<table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+	<col width="50px">
+	<col width="150px">
+	<col width="150px">
+	<col width="150px">
+	<col width="150px">
+	<tr align="center" class="cartT" >
+		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+		<th>장바구니번호</th>
+		<th>아이디</th>
+		<th>상품게시글번호</th>
+		<th>상품수량</th>
+	</tr>
 	
 	<%
 		if(list==null||list.size()==0){
@@ -168,7 +133,7 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			CartDTO dto=list.get(i);
 	%>
-		<tr align="center">
+		<tr align="center" class="cartM">
 				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
 				<td><%=dto.getSeq()%></td>
 				<td><a href="cartUpdateForm.do?seq=<%=dto.getSeq()%>" ><%=dto.getId()%></a></td>
@@ -180,13 +145,14 @@ $(function(){
 		}
 	%>
 	<tr>
-		<td colspan="5">
-			<a href="cartInsertForm.do">장바구니 추가하기</a><br>
-			<a href=".do">메인</a><br>
+		<td colspan="5" id="cartD" >
+			<a href="cartInsertForm.do">장바구니 추가하기</a>
+			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>
 </table>
 </form>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

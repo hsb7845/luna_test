@@ -50,7 +50,35 @@
 </head>
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
 
-<%@ include file="header.jsp" %>
+<header id="header">
+<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+	<tr id="menu1">
+		<td colspan="7"><a href="index.do">
+			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a>
+		</td>
+	</tr>
+	<tr id="menu2">		
+<!-- 		<td colspan="3" rowspan="1"><a herf="index.do"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:100px; vertical-align: middle;' /> </a></td> -->
+		<tr></tr>
+		<td id="m1" colspan="7">		
+			<a href="loginForm.do">로그인</a>
+			<a href="insertmemberform.do">회원가입</a>
+			<a href="myPage.do">마이페이지</a>
+			<a href="buylist.do">장바구니</a>
+		</td>
+	</tr>	
+	<tr></tr>
+	<tr id="menu3" >
+		<td id="m2"><a href="">신상품</a></td>
+		<td  id="m2"><a href="">귀걸이</a></td>
+		<td  id="m2"><a href="">목걸이</a></td>
+		<td  id="m2"><a href="">반지</a></td>
+		<td  id="m2"><a href="">팔찌</a></td>
+		<td  id="m2"><a href="">기타</a></td>
+		<td  id="m2"><a href="">이벤트</a></td>
+	</tr>	
+</table>
+</header>
 
 <% 
 	String id = (String)session.getAttribute("id");

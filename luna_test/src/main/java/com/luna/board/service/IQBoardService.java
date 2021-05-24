@@ -18,4 +18,6 @@ public interface IQBoardService {
 
 	boolean mulDel(String[] chk);
 
+	boolean insertReply(QBoardDTO dto);
+
 }

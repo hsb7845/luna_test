@@ -118,7 +118,7 @@
 				<%
 					}	
 				%>
-				<a href="updateqboardForm.do?qseq=<%=dto.getQseq() %>"><%=dto.getQtitle()%></a> </td>
+				<a href="qreply.do?qseq=<%=dto.getQseq() %>"><%=dto.getQtitle()%></a> </td>
 				<td><%=dto.getQcontent()%></td>
 				<td><%=dto.getPseq()%></td>
 				<td><%=dto.getId()%></td>

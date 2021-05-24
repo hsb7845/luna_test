@@ -41,12 +41,18 @@ public class QBoardDAO implements IQBoardDAO{
 		return sqlSession.delete(namespace+"deleteBoard",qseq)>0?true:false;
 	}
 
-	@Override
-	public boolean updateBoard(QBoardDTO dto) {
-		// TODO Auto-generated method stub
-		return sqlSession.update(namespace+"updateBoard",dto)>0? true:false;
-	}
+//	@Override
+//	public boolean updateBoard(QBoardDTO dto) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.update(namespace+"updateBoard",dto)>0? true:false;
+//	}
 
+	@Override
+	public boolean insertReply(QBoardDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace+"insertReply",dto)>0? true:false;
+	}
+	
 	@Override
 	public boolean mulDel(String[] chks) {
 		Map<String, String[]> map = new HashMap<String, String[]>();

@@ -35,13 +35,24 @@ public class QBoardService implements IQBoardService {
 		return QBoardDAO.deleteBoard(qseq);
 	}
 
-	@Override
-	public boolean updateBoard(QBoardDTO dto) {
-		return QBoardDAO.updateBoard(dto);
-	}
+//	@Override
+//	public boolean updateBoard(QBoardDTO dto) {
+//		return QBoardDAO.updateBoard(dto);
+//	}
 
 	@Override
 	public boolean mulDel(String[] chk) {
 		return QBoardDAO.mulDel(chk);
+	}
+
+	@Override
+	public boolean insertReply(QBoardDTO dto) {
+		return QBoardDAO.insertReply(dto);
+	}
+
+	@Override
+	public boolean updateBoard(QBoardDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

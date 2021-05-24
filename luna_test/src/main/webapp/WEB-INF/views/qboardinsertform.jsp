@@ -44,19 +44,21 @@ $(function(){
 <body>
 <%@ include file="header.jsp" %>
 	<form method="post" action="insertqboard.do">
-	<table>
 	<p class="cls1">문의 사항 작성</p>
+	<table>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="qtitle"></td>
+			<td><input type="text" name="qtitle" required="required"
+			placeholder="제목을 입력하세요" onfocus="this.placeholder=''" 
+			onblur="this.placeholder='제목을 입력하세요'" name="search"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea name="qcontent"></textarea></td>
+			<td><textarea rows="5" name="qcontent"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="작성">
+				<input type="submit" value="등록">
 				<input type="button" value="메인" id="main">
 			</td>
 		</tr>

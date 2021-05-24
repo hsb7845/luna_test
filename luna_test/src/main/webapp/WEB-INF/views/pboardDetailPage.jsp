@@ -13,11 +13,7 @@
 
 	function incart(id,pseq){
 		if(id==null){
-			if(confirm("로그인이 필요한 작업입니다. \n 이동하시겠습니까?")){
-				location.href = "login.do";
-			}else{
-				return;
-			}
+			location.href = "loginForm.do?";
 		}
 		
 		$.ajax({
@@ -35,19 +31,98 @@
 		
 	}
 	$(document).ready(function(){
+		var selectedOptNum = 1;
+		var price= $("#price").val();
+		var ptitle = $("#ptitle").val();
 		$("input[name='buy']").click(function(){
-			var id = ${id};
-			if(id==null){
-				alert("login 하셈");
+			var id = '${id}';
+			if(id==""){
+				location.href = "loginForm.do";
 			}
-			if ( $("name='necc'").val().length==0) {
-			 alert("너 이거 선택해야돼");
-			  return;
+			
+			
+			
+		});
+		
+		$("input[name='selOpt']").click(function(){
+			var optNum = $('input[name="optNum"]').val();
+			
+			var selectedOpt = "";
+			if(optNum==1){
+				var necc = $("#opt1").attr("name");
+				var optval = $("#opt1 option:selected").val();
+				var optname = $("#opt1 option:selected").attr("value2");
+				price = parseInt(price)+parseInt(optval)
+				if(optval==" "&&necc=="true"){
+					alert("필수 옵션을 선택해주세요!!");
+					return;
+				}else if(optval!=" "){
+					selectedOpt = optname;
+					var innerText= "";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
+					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
+					$("#optContainer").append(innerText);
+					changeTotalPrice();
+					selectedOptNum++;
+				}
+			}else if (optNum>1){
+				for(var i=1;i<optNum;i++){
+					var necc = $('#opt'+optNum).attr('name');
+					
+				}
 			}
 		});
+		
+		
 	});
 	
+	var sell_price;
+	var amount;
+
+	function init () {
+		 sell_price = document.form.sell_price.value;
+		 amount = document.form.amount.value;
+		 document.form.sum.value = sell_price;
+		 
+	}
+
+	function add (i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		amount++;
+		 $("input[name='amount"+i+"']").val(amount);
+		 change(i);
+	}
+
+	function del (i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		if(amount==1){
+			
+		}else{
+			amount--;
+			$("input[name='amount"+i+"']").val(amount);
+			change(i);
+		}
+		
+	}
+
+	function change(i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		var price = $("input[name='price"+i+"']").val();
+		var sum = amount*price;
+		$("#sum"+i).val(sum)
+		$('#sumText'+i).text(sum);
+		changeTotalPrice();
+	}  
 	
+	
+	function changeTotalPrice(){
+		var totalPrice = 0;
+		 $("input[name=sumPrice]").each(function(index, item){
+			  totalPrice += parseInt($(this).val());
+		   });
+		 $("#totalprice").text(totalPrice+"원");
+	}
 </script>
 <style>
 	.imgmain{
@@ -80,27 +155,44 @@
 		</div>
 	</div>
 	<div>
-		<h1>${map.pboard.ptitle}</h1>
-		<h2>판매가 : ${map.pboard.stock.price }</h2>
+		<h1>${map.pboard.ptitle}</h1><input type="hidden" id ="ptitle" value="${map.pboard.ptitle}"/>
+		<h2>판매가 : ${map.pboard.stock.price }원</h2><input type="hidden" value="${map.pboard.stock.price }" id="price">
 	</div>
 	<div>
 		<c:if test="${map.option !=null }">
-			<c:forEach items="${map.option }" var="i">
-				${i.otitle }<select name=<c:if test="${i.necessary =='true' }">"necc"</c:if><c:if test="${i.necessary =='false' }">"nope"</c:if> >
-				<option value="" >선택</option>
+			<c:forEach items="${map.option }" var="i" varStatus="j">
+				<c:if test="${i.necessary =='true' }"><b>필수</b></c:if><c:if test="${i.necessary =='false' }"><b>선택</b></c:if>
+				&nbsp;&nbsp; ${i.otitle }
+				<select name="${i.necessary }" id="opt${j.count}">
+				<option value=" " >선택</option>
 				<option value="" disabled="disabled">-----------</option>
 				<c:forEach items="${i.oconArr }" var="k" varStatus="status">
-				<option value="${i.ovalArr[status.index]}">${k }</option>
+				<option value="${i.ovalArr[status.index]}" value2="${k }">${k }</option>
 				</c:forEach>
 				</select>
 				<br>
+				<c:set var="optNum" value="${j.count }" scope="request"/>
+				
 			</c:forEach>
+			<input type="hidden" name ="optNum" value="${optNum }"/>
+			<input type="button" name="selOpt"  value="옵션선택">
 		</c:if>
+		
+	</div>
+	<div ><!-- 옵션 및 총 금액 -->
+		<table border='1'>
+			<tr>
+				<th>선택상품</th>
+				<th>수량</th>
+				<th>가격</th>
+			</tr>
+			<tbody id="optContainer"></tbody>
+		<tfoot><tr><td colspan='2'>총 금액 :</td><td id="totalprice"></td></tr></tfoot>
+		</table>
 	</div>
 	<div>
-		<input type="button" name="buy" value="구매">
 		<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })"> 
-		
+		<input type="button" name="buy" value="바로구매">
 	</div>
 	<div>
 		${map.pboard.pcontent }
@@ -159,7 +251,7 @@
 							<td>${i.starrank }</td>
 						</tr>
 					</c:forEach>
-					<tr><td colspan="3"><button type="button" id="review" >리뷰작성하기</button></td></tr>
+					<tr><td colspan="3"><a href="insertReview.do?pseq=${map.pboard.pseq }">리뷰작성하기</a></td></tr>
 				</c:if>
 				
 		</table>
@@ -189,7 +281,7 @@
 						</tr>
 					</c:forEach>
 				</c:if>
-				<tr><td colspan="3"><button type="button" id="question" >상품문의하기</button></td></tr>
+				<tr><td colspan="3"><a href="insertQuestion.do?pseq=${map.pboard.pseq }">문의작성하기</a></td></tr>
 		</table>
 	</div>
 </body>

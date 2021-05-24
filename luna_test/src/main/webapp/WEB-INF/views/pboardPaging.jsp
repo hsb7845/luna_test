@@ -100,7 +100,7 @@
 			<c:if test="${list.image.imgname !=null }">
 				<img  src="upload/img_dummy1.jpg"><br>
 			</c:if>
-				<div class="li	st_in">
+				<div class="list_in">
 					<div><a href='pboarddetail.do?pseq=${list.pseq }'>${list.ptitle }</a></div><br>
 	<%-- 				<div><fmt:formatDate value="${list.pdate }" pattern="yyyy.MM.dd"/> </div> --%>
 					<div>${list.stock.price} 원</div><div width="100px"></div>

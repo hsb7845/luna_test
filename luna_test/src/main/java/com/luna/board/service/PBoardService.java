@@ -100,10 +100,10 @@ public class PBoardService implements IPBoardService{
 
 
 	@Override
-	public boolean insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList) {
+	public boolean insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList,int mainNum) {
 		// TODO Auto-generated method stub
 		boolean isS =false;
-		isS = PBoardDAO.insertBoard(dto, pnum,optionList);
+		isS = PBoardDAO.insertBoard(dto, pnum,optionList,mainNum);
 		return isS;
 	}
 
@@ -118,7 +118,7 @@ public class PBoardService implements IPBoardService{
 			//요청파일 가져오기
 			//MultipartFile multiFile=multi.getFile("filename");//하나 업로드
 			List<MultipartFile> multiFiles=multi.getFiles("filename");//여러개 업로드
-			System.out.println("파일개수:"+multiFiles.size());
+			//System.out.println("파일개수:"+multiFiles.size());
 			boolean isS=false;
 			for(MultipartFile multiFile:multiFiles) {
 					System.out.println("test");

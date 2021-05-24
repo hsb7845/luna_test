@@ -25,11 +25,26 @@ public class PBoardDAO implements IPBoardDAO{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Override
-	public boolean insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList) {
+	public boolean insertBoard(PBoardDTO dto, int[] pnum_arr, List<POptionDTO> optionList,int mainNum) {
 		Map<String,Object> map = new HashMap<>();
-		map.put("pnum", pnum);
 		boolean isS = sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
-		boolean isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
+		boolean isS2 = false;
+		String main ="";
+		for(int i=0;i<pnum_arr.length;i++) {
+			if(pnum_arr[i]==mainNum) {
+				main = "true";
+				
+			}else {
+				main = "false";
+			}
+			map.put("pnum", pnum_arr[i]);
+			map.put("main", main);
+			isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
+		}
+ 		
+ 		
+	
+		
 		for(int i=0;i<optionList.size();i++) {
 			System.out.println(optionList.get(i).getOvalue());
 			isS2= sqlSession.insert(namespace+"insertoption", optionList.get(i))>0? true:false;

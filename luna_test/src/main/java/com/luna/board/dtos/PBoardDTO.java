@@ -12,6 +12,9 @@ public class PBoardDTO {
 	private StockDTO stock;
 	private int hit;
 	
+	
+
+
 	public int getHit() {
 		return hit;
 	}

@@ -6,26 +6,26 @@
 <mapper namespace="com.luna.stock">
 
 	<select id="getAllList" resultType="StockDTO">
-		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ,MAIN
 		FROM STOCK
 		ORDER BY PNUM DESC 
 	</select>
 	
 	<select id="getStock" resultType="StockDTO" parameterType="int">
-		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ,,MAIN
 		FROM STOCK
 		WHERE pnum=#{pnum}	
 	</select>
 	
 	<insert id="insertStock" parameterType="StockDTO">
 		INSERT INTO STOCK
-		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ)
-		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null)
+		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ,MAIN)
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null,null)
 	</insert>
 	
 	<insert id="stockInsert">
 		INSERT INTO STOCK
-		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null)
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null,null)
 	</insert>
 	
 	<update id ="updateStock" parameterType="StockDTO">

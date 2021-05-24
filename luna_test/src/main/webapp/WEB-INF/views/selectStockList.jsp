@@ -72,10 +72,10 @@
 				asnc:false,
 				success : function(data) {
 					var list = data["list"];
-					var stockTable = "<table border='1'><tr><th>상품번호</th><th>상품명</th><th>상품재고수량</th><th>원가</th><th>카테고리번호</th><th>상품내용</th><th>판매가</th></tr>";
+					var stockTable = "<table border='1'><tr><th>메인</th><th>상품번호</th><th>상품명</th><th>상품재고수량</th><th>원가</th><th>카테고리번호</th><th>상품내용</th><th>판매가</th></tr>";
 					for(var i=0; i<list.length; i++) {					
 						stockTable += '<tr>';
-						stockTable += "<td><input type='hidden' name='pnum' value='"+list[i]["pnum"]+"'>"+list[i]["pnum"]+'</td>';
+						stockTable += "<td><input type='checkbox' name='main' value='"+list[i]["pnum"]+"' onclick='checkOnlyOne(this)'></td><td><input type='hidden' name='pnum' value='"+list[i]["pnum"]+"'>"+list[i]["pnum"]+'</td>';
 						stockTable += "<td>"+list[i]["pname"]+'</td>';
 						stockTable += '<td>'+list[i]["scount"]+'</td>';
 						stockTable += '<td>'+list[i]["cost"]+'</td>';

@@ -59,6 +59,7 @@
 			<a href="insertmemberform.do">회원가입</a>
 			<a href="myPage.do">마이페이지</a>
 			<a href="buylist.do">장바구니</a>
+			<a href="logout.do">로그아웃</a>
 		</td>
 	</tr>	
 	<tr></tr>

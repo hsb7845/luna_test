@@ -182,15 +182,15 @@ $(function(){
 	
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="rtitle" value="${dto.rtitle }" readonly></td>
+			<td><input type="text" name="par_rtitle" value="${dto.rtitle }" readonly></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea name="rcontent" readonly>${dto.rcontent}</textarea></td>
+			<td><textarea name="par_rcontent" readonly>${dto.rcontent}</textarea></td>
 		</tr>
 		<tr>
 			<th>별점</th>
-			<td><input type="number" name="starrank" value="${dto.starrank}" readonly></td>
+			<td><input type="number" name="par_starrank" value="${dto.starrank}" readonly></td>
 		</tr>
 	</table>
 	<table>

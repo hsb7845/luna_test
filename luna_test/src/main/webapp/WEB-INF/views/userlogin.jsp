@@ -29,6 +29,15 @@ div#loginPage{
 </head>
 <body>
 	<form action="login.do" method="post">
+	<c:if test="${returnUrl!=null }" >
+		<c:choose>
+			<c:when test="${returnUrl=='buyform' }">
+				<input type="hidden" name="returnUrl" value="${returnUrl }">
+				<input type="hidden" name="pseq" value="${pseq }">
+				<input type="hidden" name="selOpt" value='${selOpt }'>
+			</c:when>
+		</c:choose>
+	</c:if>
 	<div id = "loginPage">
 		<h3>Login Luna</h3>
 			<div>

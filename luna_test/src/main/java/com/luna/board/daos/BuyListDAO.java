@@ -58,5 +58,11 @@ public class BuyListDAO implements IBuyListDAO {
 
 		return sqlSession.insert(namespace+"mulDelBoard",map)>0?true:false;
 	}
+
+	@Override
+	public Map<String, Object> getPBoard(int pseq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.luna.pboard.getPBoard", pseq);
+	}
 	
 }

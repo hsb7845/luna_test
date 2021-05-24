@@ -25,7 +25,7 @@
  	<!-- 댓글 입력 -->
 	<insert id="insertReply" parameterType="RBDTO">
 		INSERT INTO R_BOARD(rseq, rtitle, rcontent, pseq, id, STARRANK, par_rseq)
-		VALUES(R_BOARD_SEQ.nextval, '#{rtitle}', '#{rcontent}', NULL, 'admin', NULL, #{par_rseq})
+		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, NULL, 'admin', NULL, #{par_rseq})
 	</insert>
  	
  	

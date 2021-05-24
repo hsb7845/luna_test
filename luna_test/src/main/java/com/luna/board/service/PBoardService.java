@@ -174,7 +174,8 @@ public class PBoardService implements IPBoardService{
 	            try {
 	               String fileName=multipartFile.getOriginalFilename();
 	               String path2=request.getSession().getServletContext().getRealPath("upload");
-	                File tmp=new File(path2+fileName);
+	               System.out.println(path2);
+	                File tmp=new File(path2+"/"+fileName);
 	                int fileSize=(int)multipartFile.getSize();
 	                fileMap.put("fileName", fileName);
 	                fileMap.put("fileSize", multipartFile.getSize());

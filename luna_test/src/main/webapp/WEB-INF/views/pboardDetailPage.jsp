@@ -31,24 +31,78 @@
 		
 	}
 	$(document).ready(function(){
-		var selectedOptNum = 1;
+		var selectedOptNum = 0;
+		var selectedOpt = "";
+		var pseq = $("input[name='pseq']").val();
 		var price= $("#price").val();
 		var ptitle = $("#ptitle").val();
+		var selOpt = {};
+		selOpt = {"ptitle":ptitle,"pseq":pseq};
 		$("input[name='buy']").click(function(){
 			var id = '${id}';
-			if(id==""){
-				location.href = "loginForm.do";
+			if(selectedOptNum==1){
+				var amount  = $("input[name='amount"+1+"']").val();
+				var optname = $("#opt"+1+" option:selected").attr("value2");
+				var optval = $("#opt"+1+" option:selected").val();
+				price = parseInt(price)+parseInt(optval);
+				selOpt[1] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+			}else{
+				for(var i=1;i<selectedOptNum;i++){
+					var amount  = $("input[name='amount"+i+"']").val();
+					var optname = $("#opt"+i+" option:selected").attr("value2");
+					var optval = $("#opt"+i+" option:selected").val();
+					price = parseInt(price)+parseInt(optval);
+					selOpt[i] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+				}
 			}
-			
-			
-			
+			selOpt = JSON.stringify(selOpt);
+			if(id==""){
+				var newForm = document.createElement('form');
+				newForm.name= "newForm";
+				newForm.method = 'post'; 
+				newForm.action = 'loginForm.do'; 
+				var input1 = document.createElement('input'); 
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				input1.setAttribute("type", "hidden"); 
+				input1.setAttribute("name", "returnUrl"); 
+				input1.setAttribute("value", "buyform");
+				input2.setAttribute("type", "hidden"); 
+				input2.setAttribute("name", "pseq"); 
+				input2.setAttribute("value", pseq);
+				input3.setAttribute("type", "hidden"); 
+				input3.setAttribute("name", "selOpt"); 
+				input3.setAttribute("value", selOpt);
+				newForm.appendChild(input1); 
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				document.body.appendChild(newForm); 
+				newForm.submit();
+				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
+			}else{
+				var newForm = document.createElement('form');
+				newForm.name= "newForm";
+				newForm.method = 'post'; 
+				newForm.action = 'buyForm.do'; 
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				input2.setAttribute("type", "hidden"); 
+				input2.setAttribute("name", "pseq"); 
+				input2.setAttribute("value", pseq);
+				input3.setAttribute("type", "hidden"); 
+				input3.setAttribute("name", "selOpt"); 
+				input3.setAttribute("value", selOpt);
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				document.body.appendChild(newForm); 
+				newForm.submit();
+			}
 		});
 		
 		$("input[name='selOpt']").click(function(){
 			var optNum = $('input[name="optNum"]').val();
-			
-			var selectedOpt = "";
 			if(optNum==1){
+				selectedOptNum++;
 				var necc = $("#opt1").attr("name");
 				var optval = $("#opt1 option:selected").val();
 				var optname = $("#opt1 option:selected").attr("value2");
@@ -67,14 +121,32 @@
 					selectedOptNum++;
 				}
 			}else if (optNum>1){
-				for(var i=1;i<optNum;i++){
-					var necc = $('#opt'+optNum).attr('name');
+				selectedOptNum++;
+				var necc ="";
+				var optval = "";
+				var optname = "";
+				price = $("#price").val();
+				for(var i=1;i<=optNum;i++){
+					necc = $('#opt'+i).attr('name');
+					optval = $("#opt"+i+" option:selected").val();
+					if(optval==" "&&necc=="true"){
+						alert("필수 옵션을 선택해주세요!!");
+						return;
+					}
+					optname += $("#opt"+i+" option:selected").attr("value2")+"/";
+					price = parseInt(price)+parseInt(optval);
 					
 				}
-			}
-		});
-		
-		
+					selectedOpt = optname;
+					var innerText= "";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
+					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
+					$("#optContainer").append(innerText);
+					changeTotalPrice();
+					
+				}
+		});	
 	});
 	
 	var sell_price;
@@ -153,6 +225,7 @@
 				<img class="imgsub" src="upload/img_dummy1.jpg">
 			</c:forEach>
 		</div>
+		<input type="hidden" name="pseq" value="${map.pboard.pseq }"/>
 	</div>
 	<div>
 		<h1>${map.pboard.ptitle}</h1><input type="hidden" id ="ptitle" value="${map.pboard.ptitle}"/>

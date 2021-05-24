@@ -62,7 +62,8 @@ public class RboardController {
 	
 	@RequestMapping(value = "/insertrreply.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String reply(Locale locale, Model model, RBoardDTO dto, int par_rseq) {
-		dto.setPar_rseq(par_rseq);
+		dto.setPar_rseq(dto.getRseq());
+		System.out.println(dto.getRcontent());
 		boolean isS = rBoardService.insertReply(dto);
 		if(isS) {
 			return "redirect:rboard.do";

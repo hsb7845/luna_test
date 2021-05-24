@@ -128,14 +128,17 @@ public class MemberController {
 	}
 		
 	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String loginForm(Locale locale, Model model,String returnUrl) {
+	public String loginForm(Locale locale, Model model,String returnUrl,HttpServletRequest request) {
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
-			
+			model.addAttribute("pseq", request.getParameter("pseq"));
+			System.out.println(request.getParameter("pseq"));
+			model.addAttribute("selOpt", request.getParameter("selOpt"));
+			model.addAttribute("returnUrl",returnUrl);
+			System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
 			return "userlogin";
 		}else if(returnUrl.equals("cart")) {
-
 			return "userlogin";
 		}else {
 			return "userlogin";
@@ -159,6 +162,12 @@ public class MemberController {
 					System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
+					if(request.getParameter("returnUrl").equals("buyform")) {
+						model.addAttribute("pseq", request.getParameter("pseq"));
+						model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
+						System.out.println("여기:"+request.getParameter("selOpt"));
+						return "redirect:buyform.do";
+					}
 					return "redirect:index.do";
 				}				
 			}else {

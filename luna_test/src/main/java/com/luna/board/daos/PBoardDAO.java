@@ -145,8 +145,9 @@ public class PBoardDAO implements IPBoardDAO{
 
 	@Override
 	public boolean uploadImg(ImgFileDTO dto) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stu
 		boolean isS = sqlSession.insert(namespace+"insertimgFile", dto)>0?true:false;
+	
 		return isS;
 	}
 

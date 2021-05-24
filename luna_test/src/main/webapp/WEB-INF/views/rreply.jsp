@@ -134,21 +134,17 @@
 		size: 50px;
 	}
 </style>
-
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script>
-function fn_reply_form(url, par_rseq){
-	 var form = document.createElement("form");
-	 form.setAttribute("method", "post");
-	 form.setAttribute("action", url);
-    var par_rseqInput = document.createElement("input");
-    par_rseqInput.setAttribute("type","hidden");
-    par_rseqInput.setAttribute("name","par_rseq");
-    par_rseqInput.setAttribute("value", par_rseq);
-	 
-    form.appendChild(par_rseqInput);
-    document.body.appendChild(form);
-	 form.submit();
-}
+$(function(){
+	$(".replyWriteBtn").on("click", function(){
+		//버튼 클릭 했는데 안될때는 alert 으로 확인 해보면 편해요 
+		//alert("여기 오니?");
+		var formObj = $("form[name='replyForm']"); // <- 여기  새로만드는게 아니라 원래 있는거 가져오는 코드 인데 name 설정 안해서 작동안함 
+		formObj.submit();
+	});
+})
+
 </script>
 
 </head>
@@ -176,13 +172,14 @@ function fn_reply_form(url, par_rseq){
 
 
 
-	<form method="post" action="insertrreply.do">
+	<form method="post" name="replyForm" action="insertrreply.do">
 	<input type="hidden" name="rseq" value="${dto.rseq}">
+	<input type="hidden" name="par_rseq" value="${dto.par_rseq}">
 	
 	
-	
-	<table>
 	<p class="cls1">리뷰 상세보기</p>	
+	<table>
+	
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="rtitle" value="${dto.rtitle }" readonly></td>
@@ -194,19 +191,33 @@ function fn_reply_form(url, par_rseq){
 		<tr>
 			<th>별점</th>
 			<td><input type="number" name="starrank" value="${dto.starrank}" readonly></td>
-			
-			
-			
 		</tr>
+	</table>
+	<table>
+		<p2>댓글 달기</p2>
+		<tr>
+			<th>제목</th>
+			<td><input type="text" name="rtitle"></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea name="rcontent"></textarea></td>
+		</tr>	
+		
 		<tr>
 			<td colspan="3">
 <!-- 				<input type="submit" value="수정"> -->
             	<input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/rboard.do'">
-            	<input type=button value="답글 쓰기"  onClick="fn_reply_form('${contextPath}/board/replyForm.do', ${dto.rseq})">
+            	<input type="button" value="답글 쓰기" class="replyWriteBtn">
 			</td>
 		</tr>
+	
 		
-	</table>
+</table>
+</form>
+		
+
+	
 	
 	
 <!-- 	<input type="hidden" name="rate" id="rate" value="5" /> -->

@@ -41,13 +41,10 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';
 
 		<div class="form-label-group">
 			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-<<<<<<< HEAD
 				type="submit" value="check">
 				<a href="loginForm.do">로그인</a><br>
 				
-=======
-				type="submit"style="width:50 px; height:30px; font-size:17px;" value="찾기">
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
+
 		</div>
 
 		<c:if test="${check==1}">
@@ -56,11 +53,8 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';
 		</c:if>
 
 		<c:if test="${check==0}">
-<<<<<<< HEAD
 		<label>가입하신이메일로임시비밀번호가전송되었습니다</label> 
-=======
 		<label><font color="blue">가입하신이메일로임시비밀번호가전송되었습니다.</font></label> 
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		</c:if>
 
 	</form>

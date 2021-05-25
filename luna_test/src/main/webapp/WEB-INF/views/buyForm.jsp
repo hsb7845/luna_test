@@ -33,7 +33,7 @@
 		<tr>
 			<th>배송지 정보</th>
 			<td><input type="radio" name="fruit" value="sameInfo" /> 구매자와 동일정보
-				<input type="radio" name="fruit" value="newInfo" checked="checked" /> 새로 입력</td>
+				<input type="radio" name="fruit"onclick="sample2_execDaumPostcode()" value="newInfo" checked="checked" /> 새주소 입력</td>
 		</tr>
 		<tr>
 			<th>받는 이</th>
@@ -46,7 +46,6 @@
 		<tr>
 			<th>주소</th>
 		<td><input type="text" name="adr1" value="${dto.adr1}"id="sample2_postcode" placeholder="우편번호"></td>
-		<td><input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br></td>
 		<td><input type="text" name="adr2" value="${dto.adr2}" placeholder="주소"><br></td>
 		<td><input type="text" name="adr3" value="${dto.adr3}" placeholder="상세주소"></td>
 		<td><input type="text" name="adr4" value="${dto.adr4}" placeholder="참고항목"></td></tr>

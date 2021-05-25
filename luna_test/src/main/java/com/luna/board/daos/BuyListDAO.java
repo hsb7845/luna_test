@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 
 
@@ -67,6 +68,12 @@ public class BuyListDAO implements IBuyListDAO {
 		PBoardDTO dto = sqlSession.selectOne("com.luna.pboard.getPBoard", pseq);
 		map.put("dto", dto);
 		return map;
+	}
+
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getMember", id);
 	}
 	
 }

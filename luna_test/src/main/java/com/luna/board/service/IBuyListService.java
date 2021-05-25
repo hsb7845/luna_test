@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.MemberDTO;
 
 
 public interface IBuyListService {
@@ -14,4 +15,5 @@ public interface IBuyListService {
 	boolean updateBoard(BuyListDTO dto);
 	boolean mulDel(String[] chk);
 	Map<String, Object> getPboard(int pseq);
+	MemberDTO getMember(String id);
 }

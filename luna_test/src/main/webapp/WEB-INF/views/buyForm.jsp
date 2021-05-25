@@ -28,34 +28,36 @@
 			<th>이미지</th><th>상품명</th><th>판매가</th><th>수량</th><th>합계</th>
 		</tr>
 		<c:if test="${dto!=null }">
-			
+			<tr>
+				<td>이미지</td><td>${dto.ptitle }</td><td>${dto.stock.price}</td><td></td><td></td>
+			</tr>
 		</c:if>		
 		<tr>
 			<th>배송지 정보</th>
-			<td><input type="radio" name="fruit" value="sameInfo" /> 구매자와 동일정보
-				<input type="radio" name="fruit"onclick="sample2_execDaumPostcode()" value="newInfo" checked="checked" /> 새주소 입력</td>
+			<td><input type="radio" name="fruit" value="sameInfo" checked="checked" /> 구매자와 동일정보
+				<input type="radio" name="fruit"onclick="sample2_execDaumPostcode()" value="newInfo"  /> 새주소 입력</td>
 		</tr>
 		<tr>
 			<th>받는 이</th>
-			<td><input type="text" name="addressee"></td>
+			<td><input type="text" name="addressee" value="${mdto.name }"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td><input type="number" name="phone"></td>
+			<td><input type="number" name="phone" value="${mdto.phone }"></td>
 		</tr>
 		<tr>
 			<th>주소</th>
-		<td><input type="text" name="adr1" value="${dto.adr1}"id="sample2_postcode" placeholder="우편번호"></td>
-		<td><input type="text" name="adr2" value="${dto.adr2}" placeholder="주소"><br></td>
-		<td><input type="text" name="adr3" value="${dto.adr3}" placeholder="상세주소"></td>
-		<td><input type="text" name="adr4" value="${dto.adr4}" placeholder="참고항목"></td></tr>
+		<td><input type="text" name="adr1" value="${mdto.adr1}"id="sample2_postcode" placeholder="우편번호"></td>
+		<td><input type="text" name="adr2" value="${mdto.adr2}" placeholder="주소"><br></td>
+		<td><input type="text" name="adr3" value="${mdto.adr3}" placeholder="상세주소"></td>
+		<td><input type="text" name="adr4" value="${mdto.adr4}" placeholder="참고항목"></td></tr>
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 	</div>	
 		<tr>
 			<th>결제 방법</th>
-			<td><input type="radio" name="pay" value="noBankbook" /> 무통장 입금
-				<input type="radio" name="pay" value="cardPayment" checked="checked" /> 카드결제</td>
+			<td><input type="radio" name="pay" value="noBankbook" checked="checked" /> 무통장 입금
+				<input type="radio" name="pay" value="cardPayment"  /> 카드결제</td>
 		</tr>
 		<tr>
 			<th>적립 포인트 및 쿠폰</th>

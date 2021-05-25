@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IBuyListDAO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.MemberDTO;
 
 @Service
 public class BuyListService implements IBuyListService {
@@ -57,6 +58,12 @@ public class BuyListService implements IBuyListService {
 	public Map<String, Object> getPboard(int pseq) {
 		// TODO Auto-generated method stub
 		return buyListDAO.getPBoard(pseq);
+	}
+
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getMember(id);
 	}
 	
 }

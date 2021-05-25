@@ -134,6 +134,14 @@ public class MemberController {
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
+			
+			model.addAttribute("pseq", request.getParameter("pseq"));
+			System.out.println(request.getParameter("pseq"));
+			model.addAttribute("selOpt", request.getParameter("selOpt"));
+			model.addAttribute("returnUrl",returnUrl);
+			System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
+			return "userlogin";
+		}else if(returnUrl.equals("cart")) {
 			JSONParser  parser = new JSONParser();
 			try {
 				Object obj = parser.parse(request.getParameter("selOpt"));
@@ -147,9 +155,6 @@ public class MemberController {
 			System.out.println(request.getParameter("pseq"));
 			model.addAttribute("selOpt", request.getParameter("selOpt"));
 			model.addAttribute("returnUrl",returnUrl);
-			System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
-			return "userlogin";
-		}else if(returnUrl.equals("cart")) {
 			return "userlogin";
 		}else {
 			return "userlogin";
@@ -175,11 +180,14 @@ public class MemberController {
 				}else {
 					if(request.getParameter("returnUrl")!=null) {
 						if(request.getParameter("returnUrl").equals("buyform")) {
-							
 							model.addAttribute("pseq", request.getParameter("pseq"));
 							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
 							System.out.println("여기:"+request.getParameter("selOpt"));
 							return "redirect:buyform.do";
+						}else if ( request.getParameter("returnUrl").equals("cart")) {
+							model.addAttribute("pseq", request.getParameter("pseq"));
+							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
+							return "redirect:inCart.do";
 						}
 					}
 					

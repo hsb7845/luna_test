@@ -36,6 +36,9 @@
 		</foreach>
 	</delete>
 	
+	<select id="getMember" parameterType="String" resultType="MDTO">
+		select * from member where id =#{id}
+	</select>
 	
 	
 </mapper>

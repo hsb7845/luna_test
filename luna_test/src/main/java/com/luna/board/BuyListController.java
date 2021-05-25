@@ -6,7 +6,11 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.service.IBuyListService;
 
 
@@ -41,7 +46,21 @@ public class BuyListController {
 	public String buytForm(Locale locale, Model model,HttpServletRequest request) {
 		int pseq =  Integer.parseInt(request.getParameter("pseq"));
 		Map<String,Object> map = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		JSONParser  parser = new JSONParser();
+		try {
+			Object obj = parser.parse(request.getParameter("selOpt"));
+			JSONObject jsonObj = (JSONObject) obj;
+			System.out.println(jsonObj.toJSONString());
+			System.out.println("jsonObj.get(1)"+jsonObj.get(1));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MemberDTO mdto = buyListService.getMember(id);
 		map = buyListService.getPboard(pseq);
+		model.addAttribute("mdto",mdto);
 		model.addAttribute("dto",map.get("dto"));
 		model.addAttribute("selOpt",request.getParameter("selOpt"));
 		System.out.println(request.getParameter("pseq"));

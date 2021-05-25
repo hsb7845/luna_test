@@ -1,6 +1,7 @@
 package com.luna.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,12 @@ public class BuyListService implements IBuyListService {
 	public boolean mulDel(String[] chk) {
 		// TODO Auto-generated method stub
 		return buyListDAO.mulDel(chk);
+	}
+
+	@Override
+	public Map<String, Object> getPboard(int pseq) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getPBoard(pseq);
 	}
 	
 }

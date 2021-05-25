@@ -11,4 +11,5 @@ public interface IRBoardService {
 	boolean deleteBoard(int rseq);
 	boolean updateBoard(RBoardDTO dto);
 	boolean mulDel(String[] chk);
+	boolean insertReply(RBoardDTO dto);
 }

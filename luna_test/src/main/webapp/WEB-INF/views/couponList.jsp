@@ -16,7 +16,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쿠폰함 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>쿠폰 목록</title>
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
 <!-- Custom fonts for this template -->
 <link
     href="vendor/fontawesome-free/css/all.min.css"
@@ -84,6 +98,12 @@ $(function(){
 	 			}
 	 		}
 	 	}
+	 	$("#main").click(function(){
+			location.href='.do'
+		});
+		$("#couponInsertForm").click(function(){
+		location.href='couponInsertForm.do'
+		});
 	})
 	
 </script>
@@ -91,14 +111,15 @@ $(function(){
 <%
 	List<CouponDTO> list = (List<CouponDTO>) request.getAttribute("list");
 %>
-<%-- <% --%>
-// 	List<CouponDTO> admin = (List<CouponDTO>) request.getAttribute("list");
-<%-- %> --%>
+<%
+	String adminId = (String)session.getAttribute("admin");
+%>
 <body>
-
+<%@ include file="header.jsp" %>
 <div class="container" id="badge">
      <a class="entypo-bell"></a>
 </div>
+
 <p class="cls1">쿠폰함</p> 
 <form action="muldelCoupon.do" method="post">
 <!-- <table border="1"> -->
@@ -124,7 +145,10 @@ $(function(){
 	aria-describedby="dataTable_info"
 	style="width: 100%;">
 	<tr role="row">
-	     <th
+	     <% 	
+			 	if(adminId.equals("관리자")) {
+			 %>
+			 <th
 	         class="sorting_asc"
 	         tabindex="0"
 	         aria-controls="dataTable"
@@ -133,7 +157,13 @@ $(function(){
 	         aria-sort="ascending"
 	         aria-label="Name: activate to sort column descending"
 	         style="width: 10px;">
-	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>	    
+	         <input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+			 <%
+			 		} else {
+			
+					}
+			 %> 
+	     	    
 	     <th
 	         class="sorting"
 	         tabindex="0"
@@ -187,7 +217,15 @@ $(function(){
 			
 	%>
 		<tr align="center">
-				<td><input type="checkbox" name="chk" value="<%=dto.getCseq()%>"/></td>
+			<% 	
+			 	if(adminId.equals("관리자")) {
+			 %>
+			 <td><input type="checkbox" name="chk" value="<%=dto.getCseq()%>"/></td>
+			 <%
+			 		} else {
+			
+					}
+			 %> 
 				<td><%=dto.getCseq()%></td>
 				<td><a href="couponUpdateForm.do?cseq=<%=dto.getCseq()%>" ><%=dto.getCcontent()%></a></td>
 				<td><%=dto.getDiscount()%></td>
@@ -199,16 +237,27 @@ $(function(){
 		}
 	%>
 	
-<%-- 	<% --%>
-// 		if(admin.equals("관리자")) {
-// 			out.print("<tr><td colspan='6'><a href='couponInsertForm.do' >쿠폰 추가</a><a href='.do'>메인</a><input type='submit' value='삭제' /></td></tr>");
-// 		} else {
-// 			out.print("<tr><a href='.do'>메인</a></tr>");
-// 		}
-<%-- 	%> --%>
+<% 	
+ 	if(adminId.equals("관리자")) {
+%>
+ 		<tr>
+ 			<td colspan="6">
+ 				<input type="button" value="쿠폰 추가" id="couponInsertForm">&nbsp;&nbsp;
+ 				<input type="button" value="메인" id="main">&nbsp;&nbsp;
+ 				<input type="submit" value="삭제" /></td></tr>
+<% 		
+	} else {
+%> 
+ 		<tr>
+ 			<td colspan="6">
+ 				<input type="button" value="메인" id="main">
+ 			</td>
+ 		</tr>
+<%
+ 	}
+%> 
 	
-	
-	
+<%@ include file="footer.jsp" %>
 <!-- 	<tr> -->
 <!-- 		<td colspan="6"> -->
 <!-- 			<a href="couponInsertForm.do" >쿠폰 추가</a> -->
@@ -225,4 +274,6 @@ $(function(){
 
 </script>
 </body>
+
 </html>
+

@@ -2,6 +2,10 @@
 
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +61,11 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		return MemberDAO.login(dto);
 	}
+	
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
 
 	@Override
 	public MemberDTO getMemberByNameAndEmail(MemberDTO dto) {
@@ -76,9 +85,14 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
-	public boolean deleteMember(com.luna.board.dtos.MemberDTO dto) {
+	public boolean deleteMember(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		return MemberDAO.deleteMember(dto);
+	}
+	
+	@Override
+	public boolean insertKMember(MemberDTO dto) {
+		return MemberDAO.insertKMember(dto);
 	}
 
 

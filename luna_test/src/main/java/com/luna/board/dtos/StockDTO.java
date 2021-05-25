@@ -17,7 +17,17 @@ public class StockDTO {
 	private String pcontent;
 	private int price;
 	private int pseq;
+	private String main;
 	
+	
+	public String getMain() {
+		return main;
+	}
+
+	public void setMain(String main) {
+		this.main = main;
+	}
+
 	public StockDTO() {
 		super();
 		// TODO Auto-generated constructor stub

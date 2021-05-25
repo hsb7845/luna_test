@@ -15,6 +15,8 @@ public interface IStockService {
 	boolean mulDel(String[] chk);
 	boolean stockInsert(StockDTO dto);
 	int getCnum(PCategoryDTO cdto);
-
-	
+	List<PCategoryDTO> getColor(String ptype);	
+	List<String> getPtype();
+	List<PCategoryDTO> getSize(String ptype);
+	List<StockDTO> getSelectedList(String[] chk_arr);
 }

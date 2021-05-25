@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     isELIgnored="false"%>
@@ -9,7 +10,12 @@
 <title>Insert title here</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
+
 	function incart(id,pseq){
+		if(id==null){
+			location.href = "loginForm.do?";
+		}
+		
 		$.ajax({
 			url : "insertCart.do",
 			mehthod : "post",
@@ -18,11 +24,176 @@
 			asnc:false,
 			success : function(data) {
 				if(confirm("장바구니로 이동하시겠습니까?")){
-					location.href("cart.do?id="+id);
+					location.href ="cart.do?id="+id;
 				}
 			}
 		})
 		
+	}
+	$(document).ready(function(){
+		var selectedOptNum = 0;
+		var selectedOpt = "";
+		var pseq = $("input[name='pseq']").val();
+		var price= $("#price").val();
+		var ptitle = $("#ptitle").val();
+		var selOpt = {};
+		selOpt = {"ptitle":ptitle,"pseq":pseq};
+		$("input[name='buy']").click(function(){
+			var id = '${id}';
+			if(selectedOptNum==1){
+				var amount  = $("input[name='amount"+1+"']").val();
+				var optname = $("#opt"+1+" option:selected").attr("value2");
+				var optval = $("#opt"+1+" option:selected").val();
+				price = parseInt(price)+parseInt(optval);
+				selOpt[1] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+			}else{
+				for(var i=1;i<selectedOptNum;i++){
+					var amount  = $("input[name='amount"+i+"']").val();
+					var optname = $("#opt"+i+" option:selected").attr("value2");
+					var optval = $("#opt"+i+" option:selected").val();
+					price = parseInt(price)+parseInt(optval);
+					selOpt[i] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+				}
+			}
+			selOpt = JSON.stringify(selOpt);
+			if(id==""){
+				var newForm = document.createElement('form');
+				newForm.name= "newForm";
+				newForm.method = 'post'; 
+				newForm.action = 'loginForm.do'; 
+				var input1 = document.createElement('input'); 
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				input1.setAttribute("type", "hidden"); 
+				input1.setAttribute("name", "returnUrl"); 
+				input1.setAttribute("value", "buyform");
+				input2.setAttribute("type", "hidden"); 
+				input2.setAttribute("name", "pseq"); 
+				input2.setAttribute("value", pseq);
+				input3.setAttribute("type", "hidden"); 
+				input3.setAttribute("name", "selOpt"); 
+				input3.setAttribute("value", selOpt);
+				newForm.appendChild(input1); 
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				document.body.appendChild(newForm); 
+				newForm.submit();
+				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
+			}else{
+				var newForm = document.createElement('form');
+				newForm.name= "newForm";
+				newForm.method = 'post'; 
+				newForm.action = 'buyForm.do'; 
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				input2.setAttribute("type", "hidden"); 
+				input2.setAttribute("name", "pseq"); 
+				input2.setAttribute("value", pseq);
+				input3.setAttribute("type", "hidden"); 
+				input3.setAttribute("name", "selOpt"); 
+				input3.setAttribute("value", selOpt);
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				document.body.appendChild(newForm); 
+				newForm.submit();
+			}
+		});
+		
+		$("input[name='selOpt']").click(function(){
+			var optNum = $('input[name="optNum"]').val();
+			if(optNum==1){
+				selectedOptNum++;
+				var necc = $("#opt1").attr("name");
+				var optval = $("#opt1 option:selected").val();
+				var optname = $("#opt1 option:selected").attr("value2");
+				price = parseInt(price)+parseInt(optval)
+				if(optval==" "&&necc=="true"){
+					alert("필수 옵션을 선택해주세요!!");
+					return;
+				}else if(optval!=" "){
+					selectedOpt = optname;
+					var innerText= "";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
+					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
+					$("#optContainer").append(innerText);
+					changeTotalPrice();
+					selectedOptNum++;
+				}
+			}else if (optNum>1){
+				selectedOptNum++;
+				var necc ="";
+				var optval = "";
+				var optname = "";
+				price = $("#price").val();
+				for(var i=1;i<=optNum;i++){
+					necc = $('#opt'+i).attr('name');
+					optval = $("#opt"+i+" option:selected").val();
+					if(optval==" "&&necc=="true"){
+						alert("필수 옵션을 선택해주세요!!");
+						return;
+					}
+					optname += $("#opt"+i+" option:selected").attr("value2")+"/";
+					price = parseInt(price)+parseInt(optval);
+					
+				}
+					selectedOpt = optname;
+					var innerText= "";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
+					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
+					$("#optContainer").append(innerText);
+					changeTotalPrice();
+					
+				}
+		});	
+	});
+	
+	var sell_price;
+	var amount;
+
+	function init () {
+		 sell_price = document.form.sell_price.value;
+		 amount = document.form.amount.value;
+		 document.form.sum.value = sell_price;
+		 
+	}
+
+	function add (i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		amount++;
+		 $("input[name='amount"+i+"']").val(amount);
+		 change(i);
+	}
+
+	function del (i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		if(amount==1){
+			
+		}else{
+			amount--;
+			$("input[name='amount"+i+"']").val(amount);
+			change(i);
+		}
+		
+	}
+
+	function change(i) {
+		var amount = $("input[name='amount"+i+"']").val();
+		var price = $("input[name='price"+i+"']").val();
+		var sum = amount*price;
+		$("#sum"+i).val(sum)
+		$('#sumText'+i).text(sum);
+		changeTotalPrice();
+	}  
+	
+	
+	function changeTotalPrice(){
+		var totalPrice = 0;
+		 $("input[name=sumPrice]").each(function(index, item){
+			  totalPrice += parseInt($(this).val());
+		   });
+		 $("#totalprice").text(totalPrice+"원");
 	}
 </script>
 <style>
@@ -54,15 +225,48 @@
 				<img class="imgsub" src="upload/img_dummy1.jpg">
 			</c:forEach>
 		</div>
+		<input type="hidden" name="pseq" value="${map.pboard.pseq }"/>
 	</div>
 	<div>
-		<h1>${map.pboard.ptitle}</h1>
-		<h2>판매가 : ${map.pboard.stock.price }</h2>
+		<h1>${map.pboard.ptitle}</h1><input type="hidden" id ="ptitle" value="${map.pboard.ptitle}"/>
+		<h2>판매가 : ${map.pboard.stock.price }원</h2><input type="hidden" value="${map.pboard.stock.price }" id="price">
 	</div>
-		<div>
-			<input type="submit" value="구매">
-			<input type="button" value="장바구니" id="cart" onclick="incart(${id},${map.pboard.pseq })">
-		</div>
+	<div>
+		<c:if test="${map.option !=null }">
+			<c:forEach items="${map.option }" var="i" varStatus="j">
+				<c:if test="${i.necessary =='true' }"><b>필수</b></c:if><c:if test="${i.necessary =='false' }"><b>선택</b></c:if>
+				&nbsp;&nbsp; ${i.otitle }
+				<select name="${i.necessary }" id="opt${j.count}">
+				<option value=" " >선택</option>
+				<option value="" disabled="disabled">-----------</option>
+				<c:forEach items="${i.oconArr }" var="k" varStatus="status">
+				<option value="${i.ovalArr[status.index]}" value2="${k }">${k }</option>
+				</c:forEach>
+				</select>
+				<br>
+				<c:set var="optNum" value="${j.count }" scope="request"/>
+				
+			</c:forEach>
+			<input type="hidden" name ="optNum" value="${optNum }"/>
+			<input type="button" name="selOpt"  value="옵션선택">
+		</c:if>
+		
+	</div>
+	<div ><!-- 옵션 및 총 금액 -->
+		<table border='1'>
+			<tr>
+				<th>선택상품</th>
+				<th>수량</th>
+				<th>가격</th>
+			</tr>
+			<tbody id="optContainer"></tbody>
+		<tfoot><tr><td colspan='2'>총 금액 :</td><td id="totalprice"></td></tr></tfoot>
+		</table>
+	</div>
+	<div>
+		<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })"> 
+		<input type="button" name="buy" value="바로구매">
+	</div>
 	<div>
 		${map.pboard.pcontent }
 	</div>
@@ -100,7 +304,8 @@
 <!-- 						<th>사진</th> -->
 <%-- 					</c:if> --%>
 					<th>제목</th>
-					<th>내용</th>
+					<th>평점</th>
+					
 				</tr>
 				<c:if test="${map.rboard=='[]'}">
 					<tr>
@@ -116,8 +321,10 @@
 <!-- 							<td><img class="imgmain" src="upload/img_dummy1.jpg"></td> -->
 <%-- 							</c:if> --%>
 							<td>${i.rtitle }</td>
+							<td>${i.starrank }</td>
 						</tr>
 					</c:forEach>
+					<tr><td colspan="3"><a href="insertReview.do?pseq=${map.pboard.pseq }">리뷰작성하기</a></td></tr>
 				</c:if>
 				
 		</table>
@@ -144,9 +351,10 @@
 							<td>${i.id }</td>
 
 							<td>${i.qtitle }</td>
-							
+						</tr>
 					</c:forEach>
 				</c:if>
+				<tr><td colspan="3"><a href="insertQuestion.do?pseq=${map.pboard.pseq }">문의작성하기</a></td></tr>
 		</table>
 	</div>
 </body>

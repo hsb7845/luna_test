@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,11 @@
 	<form method="post" action=".do">
 	<table>
 		<tr>
-			<th>판매글 이름</th><th>상품명</th><th>수량</th><th>총 금액</th>
+			<th>이미지</th><th>상품명</th><th>판매가</th><th>수량</th><th>합계</th>
 		</tr>
+		<c:if test="${dto!=null }">
+			
+		</c:if>		
 		<tr>
 			<th>배송지 정보</th>
 			<td><input type="radio" name="fruit" value="sameInfo" /> 구매자와 동일정보

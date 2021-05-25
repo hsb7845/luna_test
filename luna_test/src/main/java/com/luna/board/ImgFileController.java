@@ -41,16 +41,16 @@ public class ImgFileController {
 	
 	
 	
-	@RequestMapping(value = "/uploadimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(MultipartHttpServletRequest request,Locale locale, Model model) {
-		boolean isS = imgFileService.insertBoard(request);
-		if(isS) {
-			return "redirect:imgfile.do";
-		} else {
-			model.addAttribute("msg", "이미지 파일 추가를 실패하였습니다.");
-			return "error";
-		}
-	}
+//	@RequestMapping(value = "/uploadimgfile.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String insert(MultipartHttpServletRequest request,Locale locale, Model model) {
+//		boolean isS = imgFileService.insertBoard(request);
+//		if(isS) {
+//			return "redirect:imgfile.do";
+//		} else {
+//			model.addAttribute("msg", "이미지 파일 추가를 실패하였습니다.");
+//			return "error";
+//		}
+//	}
 	
 	
 //	@RequestMapping(value = "/updateimgfileForm.do", method = {RequestMethod.GET,RequestMethod.POST})

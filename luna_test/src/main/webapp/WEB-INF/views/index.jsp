@@ -1,34 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+
+<!-- 참고 사이트 -->
+<!-- https://velog.io/@yseonjin/JSP-%EC%87%BC%ED%95%91%EB%AA%B0-%EA%B4%80%EB%A6%AC%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%97%B0%EC%8A%B5-8 -->
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+<style>
+
+	*{
+		margin : 0 auto;
+/* 		width: 1024px;	 */
+		font-family: 'GyeonggiBatang';      
+	}
+	#m1 {
+		font-size: 12px;
+        text-align: right;        
+	}
+	#menu3 { 		
+		background-color: lightgray;
+/* 		text-align: center;		 */
+/* 		font-size: 13px; */
+	}	
+	#m2{
+		text-transform; capitalize;
+		color: darkmagenta;
+		font-weight: bolder;
+		text-align: center;		
+		font-size: 15px;
+	}
+	
+</style>
 <title>Insert title here</title>
 </head>
-<body>
+<body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
+
+<%@ include file="header.jsp" %>
+
+
 <% 
 	String id = (String)session.getAttribute("id");
-	String admin =(String)session.getAttribute("admin");
-	System.out.println("jsp admin = "+admin);
-	if(id!=null){
-		if(admin.equals("관리자")){
+	if(id!=null){		
 			%>
-			<h1>관리자 <%=id %>님 환영합니다.</h1>
+			
+			<h3>${nickname}님 환영합니다.</h3>
 			<%
-		}else{
-			%>
-			<h1><%=id %>님 환영합니다.</h1>
-			<%
-		}
-	}
+		}	
 %>
 
-
 	<a href="pboard.do">상품게시판보기</a><br>
-
-	<a href="pboardpaging.do">상품게시판보기(페이징)</a><br>
-	
+	<a href="pboardpaging.do">상품게시판보기(페이징)</a><br>	
 	<a href="stock.do">상품재고보기(stock)</a><br>
 	<a href="rboard.do">리뷰 게시판 보기</a><br>
 	<a href="member.do">회원목록보기</a><br>
@@ -42,7 +82,7 @@
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
-	<a href="adminMain.do">adminMain</a><br>
-
+	<a href="logout.do">로그아웃</a>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

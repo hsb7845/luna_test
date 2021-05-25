@@ -1,7 +1,9 @@
 package com.luna.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.mybatis.logging.LoggerFactory;
 import org.slf4j.Logger;
@@ -10,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IStockService;
+import com.luna.board.service.PCategoryService;
 
 @Controller
 public class StockController {
@@ -82,8 +86,11 @@ public class StockController {
 	
 	@RequestMapping(value = "/stockForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String stockInsert(Locale locale, Model model) {
+		
+		List<String> list = StockService.getPtype();
+		model.addAttribute("list",list);
 		return "stockForm";
-	}
+	}	
 	
 	@RequestMapping(value = "/stockInsert.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert1(Locale locale, Model model, StockDTO dto) {
@@ -96,4 +103,22 @@ public class StockController {
 		}
 	}	
 	
+	@ResponseBody
+	@RequestMapping(value = "/getColor.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,List<PCategoryDTO>>getColor(Locale locale, Model model,String ptype) {
+		Map<String,List<PCategoryDTO>> map = new HashMap<String, List<PCategoryDTO>>();
+		List<PCategoryDTO> list = StockService.getColor(ptype);
+		map.put("list", list); 
+		System.out.println("list.size"+list.size());
+		return map;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getSize.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,List<PCategoryDTO>>getSize(Locale locale, Model model,String ptype) {
+		Map<String,List<PCategoryDTO>> map = new HashMap<String, List<PCategoryDTO>>();
+		List<PCategoryDTO> list = StockService.getSize(ptype);
+		map.put("list", list); 
+		System.out.println("list.size"+list.size());
+		return map;
+	}
 }

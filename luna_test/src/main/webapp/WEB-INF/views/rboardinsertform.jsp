@@ -1,5 +1,11 @@
+<%@page import="com.luna.board.dtos.RBoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +13,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>리뷰 입력 창</title>
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
 </head>
 <style>
-
-
-
-
-
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
 
 	.rating .rate_radio + label {
 	    position: relative;
@@ -30,7 +46,7 @@
 	    background-color: #f0f0f0;
 	}
 	.rating .rate_radio:checked + label {
-	    background-color: red;
+	    background-color: lightcoral;
 	}
 	
 	
@@ -56,7 +72,7 @@
 	    opacity: 0.001;
 	    width: 60px;
 	    height: 60px;
-	    background-color: red;
+	    background-color: lightcoral;
 	    cursor: pointer;
 	    vertical-align: top;
 	    display: none;
@@ -75,7 +91,7 @@
 	    background-color: #f0f0f0;
 	}
 	.rating .rate_radio:checked + label {
-	    background-color: red;
+	    background-color: lightcoral;
 	}
 	
 	.warning_msg {
@@ -117,9 +133,16 @@
 	}
 
 </style>
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#main").click(function(){
+		location.href='.do'
+	});
+})
+</script>
 <body>
-
+<%@ include file="header.jsp" %>
 
 <div class="star-box">
   <span class="star star_left"></span>
@@ -142,7 +165,7 @@
 	<div class="wrap">
     
     <form method="post" action="insertrboard.do" onsubmit="return review1()">
-    <h1>리뷰 쓰기</h1>
+    <p class="cls1">리뷰 쓰기</p>
     <table>
     
     	<tr>
@@ -194,13 +217,18 @@
         
         <div class="cmd">
             <input type="submit" value="등록">
-            <input type="button" value="뒤로 가기" onclick="history.back(-1);">
+            <input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/rboard.do'">
         </div>
         
     </form>
 	</div>
-	
-	
+<%@ include file="footer.jsp" %>
+
+<!-- #page -->
+<script src='js/jquery.js'></script>
+<script src='js/plugins.js'></script>
+<script src='js/scripts.js'></script>
+<script src='js/masonry.pkgd.min.js'></script>
 
 	
 <script>

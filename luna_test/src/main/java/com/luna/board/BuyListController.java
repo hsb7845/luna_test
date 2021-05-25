@@ -1,7 +1,11 @@
 package com.luna.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +35,18 @@ public class BuyListController {
 		
 
 		return "buyListInsertForm";
+	}
+	
+	@RequestMapping(value = "/buyform.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String buytForm(Locale locale, Model model,HttpServletRequest request) {
+		int pseq =  Integer.parseInt(request.getParameter("pseq"));
+		Map<String,Object> map = new HashMap<String, Object>();
+		map = buyListService.getPboard(pseq);
+		model.addAttribute("dto",map.get("dto"));
+		model.addAttribute("selOpt",request.getParameter("selOpt"));
+		System.out.println(request.getParameter("pseq"));
+		System.out.println(request.getParameter("selOpt"));
+		return "buyForm";
 	}
 	
 	@RequestMapping(value = "/buyListInsert.do", method = {RequestMethod.GET,RequestMethod.POST})

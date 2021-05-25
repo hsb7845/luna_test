@@ -24,7 +24,8 @@ public class RBoardDAO implements IRBoardDAO {
 	public boolean insertBoard(RBoardDTO dto) {
 		return sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
 	}
-
+	
+	
 	@Override
 	public List<RBoardDTO> getAllList() {
 		return sqlSession.selectList(namespace+"getAllList");
@@ -42,10 +43,16 @@ public class RBoardDAO implements IRBoardDAO {
 		return sqlSession.delete(namespace+"deleteBoard",rseq)>0?true:false;
 	}
 
+//	@Override
+//	public boolean updateBoard(RBoardDTO dto) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.update(namespace+"updateBoard",dto)>0? true:false;
+//	}
+	
 	@Override
-	public boolean updateBoard(RBoardDTO dto) {
+	public boolean insertReply(RBoardDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace+"updateBoard",dto)>0? true:false;
+		return sqlSession.insert(namespace+"insertReply",dto)>0? true:false;
 	}
 
 	@Override

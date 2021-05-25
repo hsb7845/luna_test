@@ -8,6 +8,7 @@
 		<result column="PDATE" property="pdate"/>
 		<result column="PTITLE" property="ptitle"/>
 		<result column="PCONTENT" property="pcontent"/>
+		<result column="HIT" property="hit"/>
 		<collection property="image"  ofType="IFDTO">
 			<result column="imgname" property="imgname"></result>
 		</collection>
@@ -17,21 +18,21 @@
 	</resultMap>
 	
 	<select id="getAllList" resultType="PBDTO">
-		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc
+		select pseq,pcontent,pdate,ptitle,hit from P_board order by pseq desc
 	</select>
 	
 	<select id="getBoard" resultType="PBDTO" parameterType="int">
-		select pseq,pcontent,pdate,ptitle from P_board order by pseq desc where pseq= #{pseq}
+		select pseq,pcontent,pdate,ptitle,phit from P_board order by pseq desc where pseq= #{pseq}
 	</select>
 
 	<insert id="insertboard" parameterType="PBDTO">
-		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE)
-		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle})
+		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE,hit)
+		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle},0)
 	</insert>
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
-		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price from P_board p,stock s
-		where p.pseq = #{pseq} and p.pseq = s.pseq
+		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit from P_board p,stock s
+		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true'
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">
@@ -59,9 +60,29 @@
 		FROM (
 			SELECT ROWNUM RN, A.*
 				FROM (
-						SELECT DISTINCT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE
-						FROM p_BOARD p ,IMG_FILE i,STOCK s 
-						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ 
+						SELECT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE,p.hit
+						FROM p_BOARD p ,IMG_FILE i,STOCK s ,p_category c
+						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ  AND s.main = 'true' AND s.cnum = c.cnum 
+						<choose>
+							<when test="sorting==1">
+								AND to_char(pdate,'MM') >= to_Char(sysdate,'MM') -1
+							</when>
+							<when test="sorting==2">
+								AND s.cnum = c.cnum AND c.ptype = '귀걸이'
+							</when>
+							<when test="sorting==3">
+								AND s.cnum = c.cnum AND c.ptype = '목걸이'
+							</when>
+							<when test="sorting==4">
+								AND s.cnum = c.cnum AND c.ptype = '반지'
+							</when>
+							<when test="sorting==5">
+								AND s.cnum = c.cnum AND c.ptype = '팔찌'
+							</when>
+							<when test="sorting==6">
+								AND s.cnum = c.cnum AND c.ptype = '기타'
+							</when>
+						</choose>
 						<choose>
 							<when test="arrayNum==1">
 								ORDER BY  p.pdate DESC 
@@ -73,8 +94,9 @@
 								ORDER BY  s.price DESC
 							</when>
 							<when test="arrayNum==4">
-								ORDER BY  p.pseq asc
+								ORDER BY  p.hit desc
 							</when>
+							
 						</choose>
 						
 						) A
@@ -98,9 +120,39 @@
 			select avg(starrank) from r_board where pseq=#{pseq}
 	</select>
 	
-	<select id="countStarrank" parameterType="int" resultType="int">
-		
+	<select id="countStarrank" parameterType="int" resultType="Integer">
+		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK 
 	</select>
+	
+	<update id="updateStock" parameterType="Map">
+		UPDATE STOCK SET pseq=p_board_seq.currval , main = #{main}
+				WHERE pnum = #{pnum}
+	</update>
+	
+	
+	<select id="getCategory" parameterType="map" resultType="PCDTO">
+		select * from p_category where cnum in <foreach close=")" open="(" separator="," item="i" collection="chk">#{i} </foreach>
+	</select>
+	
+	<select id="getOption" parameterType="int" resultType="PODTO">
+		 select * from p_option where pseq=#{pseq}
+	</select>
+	
+	<insert id="insertoption" parameterType="PODTO">
+		INSERT INTO P_OPTION VALUES(P_OPTION_SEQ.NEXTVAL,P_BOARD_SEQ.CURRVAL,#{otitle},#{ocontent},#{ovalue},#{necessary})
+	</insert>
+	
+	<insert id="insertimgFile" parameterType="IFDTO">
+		INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
+		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin',P_BOARD_SEQ.CURRVAL,0,0)	
+	</insert>
+	
+	<update id="boardHit" parameterType="int">
+		update P_BOARD set
+		HIT = HIT+1
+		where pseq = #{pseq}
+	</update>
+	
 </mapper>
 
 

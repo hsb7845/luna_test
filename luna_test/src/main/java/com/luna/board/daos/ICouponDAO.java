@@ -11,6 +11,8 @@ public interface ICouponDAO {
 	CouponDTO getCoupon(int cseq);
 	boolean deleteCoupon(int cseq);
 	boolean updateCoupon(CouponDTO dto);
+	boolean hitCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
+	CouponDTO ringCoupon();
 	
 }

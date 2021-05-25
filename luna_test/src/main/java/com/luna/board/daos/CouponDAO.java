@@ -48,6 +48,12 @@ public class CouponDAO implements ICouponDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update(namespace+"updateCoupon", dto)>0?true:false;
 	}
+	
+	@Override
+	public boolean hitCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+"hitCoupon", dto)>0?true:false;
+	}
 
 	@Override
 	public boolean mulDel(String[] chks) {
@@ -55,6 +61,12 @@ public class CouponDAO implements ICouponDAO {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
+	}
+
+	@Override
+	public CouponDTO ringCoupon() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"ringCoupon");
 	}
 
 }

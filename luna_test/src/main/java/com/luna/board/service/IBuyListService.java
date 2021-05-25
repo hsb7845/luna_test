@@ -1,6 +1,7 @@
 package com.luna.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.luna.board.dtos.BuyListDTO;
 
@@ -12,4 +13,5 @@ public interface IBuyListService {
 	boolean deleteBoard(int bseq);
 	boolean updateBoard(BuyListDTO dto);
 	boolean mulDel(String[] chk);
+	Map<String, Object> getPboard(int pseq);
 }

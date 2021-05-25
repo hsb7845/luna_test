@@ -1,20 +1,19 @@
 package com.luna.board;
 
-import java.lang.reflect.Member;
-import java.net.URLEncoder;
-import java.nio.file.attribute.UserPrincipalLookupService;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
-import com.luna.board.PCategoryController.AdminController;
 import com.luna.board.dtos.MemberDTO;
-import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.model.KakaoProfile;
 import com.luna.board.model.OAuthToken;
 import com.luna.board.service.IMemberService;
@@ -54,8 +50,7 @@ public class MemberController {
 	
 	 @Autowired
 	 private JavaMailSender mailSender;
-	
-	 private static final Logger logger = LoggerFactory.getLogger(PboardController.class);
+		 private static final Logger logger = LoggerFactory.getLogger(PboardController.class);
 
 	@RequestMapping(value = "/member.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String member(Locale locale, Model model) {
@@ -104,7 +99,6 @@ public class MemberController {
 			model.addAttribute("msg","회원정보수정실패");
 			return "error";
 		}
-
 	}
 	
 	@RequestMapping(value = "/muldelmember.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -116,7 +110,6 @@ public class MemberController {
 			model.addAttribute("msg","회원정보삭제실패");
 			return "error";
 		}
-
 	}
 	
 	@RequestMapping(value = "/deletemember.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -128,7 +121,6 @@ public class MemberController {
 			model.addAttribute("msg","회원정보삭제실패");
 			return "error";
 		}
-
 	}
 	
 	@ResponseBody
@@ -139,13 +131,34 @@ public class MemberController {
 		int result = MemberService.idChk(dto);
 		return result;
 	}
-	
-	
-	
+		
 	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String loginForm(Locale locale, Model model) {
-		return "userlogin";
-
+	public String loginForm(Locale locale, Model model,String returnUrl,HttpServletRequest request) {
+		if(returnUrl==null) {
+			return "userlogin";
+		}else if (returnUrl.equals("buyform")) {
+			JSONParser  parser = new JSONParser();
+			try {
+				Object obj = parser.parse(request.getParameter("selOpt"));
+				JSONObject jsonObj = (JSONObject) obj;
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			model.addAttribute("pseq", request.getParameter("pseq"));
+			System.out.println(request.getParameter("pseq"));
+			model.addAttribute("selOpt", request.getParameter("selOpt"));
+			model.addAttribute("returnUrl",returnUrl);
+			System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
+			return "userlogin";
+		}else if(returnUrl.equals("cart")) {
+			return "userlogin";
+		}else {
+			return "userlogin";
+		}
+		
+	
 	}
 	
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -154,28 +167,45 @@ public class MemberController {
 		boolean isS = false;
 		HttpSession session = request.getSession();
 		dto=MemberService.login(dto);
-		if(dto.getId()!=null) {
-			isS=true;
-		}
-		if(isS) {
-			session.setAttribute("id", dto.getId());
-			session.setAttribute("nickname", dto.getNickName());
-			session.setAttribute("admin",dto.getAdmin());
-			if(dto.getAdmin().equals("관리자")) {
-				System.out.println("admin : "+dto.getAdmin());
-				return "adminMain";
+		if(dto !=null) {
+			if(dto.getId()!=null) {
+				session.setAttribute("id", dto.getId());
+				session.setAttribute("nickname", dto.getNickName());
+				session.setAttribute("admin",dto.getAdmin());
+				if(dto.getAdmin().equals("관리자")) {
+					System.out.println("admin : "+dto.getAdmin());
+					return "adminMain";
+				}else {
+					if(request.getParameter("returnUrl").equals("buyform")) {
+						
+						model.addAttribute("pseq", request.getParameter("pseq"));
+						model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
+						System.out.println("여기:"+request.getParameter("selOpt"));
+						return "redirect:buyform.do";
+					}
+					return "redirect:index.do";
+				}				
 			}else {
-				return "myPage";
+				msg="아이디나 비밀번호가 틀렸습니다.";
+				model.addAttribute("msg",msg);
+				return "loginForm";
 			}
-			
 		}else {
 			msg="아이디나 비밀번호가 틀렸습니다.";
+			model.addAttribute("msg", "loginfail");
+			return "userlogin";
 		}
-		model.addAttribute("msg",msg);
-		return "index";
+	
 	}
 
-	 
+	@RequestMapping(value="/logout.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public String logout(Locale locale, Model model, MemberDTO dto, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println("세션 정보삭제 완료");
+		session.invalidate();
+		return "userlogin"; 
+	}
+		 
     /* 이메일 인증 */
     @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
     @ResponseBody
@@ -201,9 +231,7 @@ public class MemberController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
         
-
         try {
-            
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
             helper.setFrom(setFrom);
@@ -218,23 +246,19 @@ public class MemberController {
         String num = Integer.toString(checkNum);
 		return num;
     }
-
-
     
-    @GetMapping("/kakao/callback")
-    public @ResponseBody String kakaoCallback(String code) { //Data를 리턴해주는 컨트롤러 함수
+    @RequestMapping("/callback")
+    public String kakaoCallback(String code, HttpServletRequest request) throws Exception { //Data를 리턴해주는 컨트롤러 함수
     	RestTemplate rt = new RestTemplate();
     	
     	// HttpHeader 오브젝트생성
     	HttpHeaders headers = new HttpHeaders();
     	headers.add("Content-type","application/x-www-form-urlencoded; charset=utf-8");
-   	
-    	
-    	// HttpBody 오브젝트생성
+   	    	    	// HttpBody 오브젝트생성
     	MultiValueMap<String, String>params=new LinkedMultiValueMap<>();
     	params.add("grant_type", "authorization_code");
     	params.add("client_id" ,"818ca9a80599f4fc6a4c915c35fbe0fb");
-    	params.add("redirect_uri", "http://localhost:8888/board/kakao/callback");
+    	params.add("redirect_uri", "http://localhost:8888/board/callback");
     	params.add("code", code);
 
     	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
@@ -246,9 +270,7 @@ public class MemberController {
     		"https://kauth.kakao.com/oauth/token",
     		HttpMethod.POST,
     		kakaoTokenRequest,
-    		String.class
-    	
-    			
+    		String.class    	   			
     	);
     	
     	ObjectMapper objectMapper = new ObjectMapper();
@@ -260,21 +282,16 @@ public class MemberController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-    	
-		System.out.println(oauthToken.getAccess_token());
-
+    	System.out.println(oauthToken.getAccess_token());
 		System.out.println("response:"+response.getBody());
-
 		RestTemplate rt2 = new RestTemplate();
     	
     	// HttpHeader 오브젝트생성
     	HttpHeaders headers2 = new HttpHeaders();
     	headers2.add("Authorization","Bearer "+oauthToken.getAccess_token());
     	headers2.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
-   	
-    	
-    	
-    	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
+   	    
+       	//HttpHeader와 HttpBody를 하나의 오브젝트에 담기
     	HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest2=
     			new HttpEntity<>(headers2);
     	
@@ -284,8 +301,6 @@ public class MemberController {
     		HttpMethod.POST,
     		kakaoProfileRequest2,
     		String.class
-    		
-    			
     	);
 		
 		ObjectMapper objectMapper2 = new ObjectMapper();
@@ -298,16 +313,42 @@ public class MemberController {
 				e.printStackTrace();
 			}
 	    	
-	    	System.out.println("kakaoNickName"+kakaoProfile.getProperties().getNickname());
-	    		
-	    	System.out.println("Luna's Email:"+kakaoProfile.getKakao_account().getEmail());
-	    	System.out.println("Luna's NickName:"+kakaoProfile.getProperties().getNickname());
-	    	System.out.println("Luna's Gender:"+kakaoProfile.getKakao_account().getGender());
+	    	
+				
+	     	System.out.println("KEmail:"+kakaoProfile.getKakao_account().getEmail());
+	    	System.out.println("KNickName:"+kakaoProfile.getProperties().getNickname());
+	    	System.out.println("KGender:"+kakaoProfile.getKakao_account().getGender());
 
-	    	UUID gaPassword = UUID.randomUUID();
-	    	System.out.println("Luna's pw:"+gaPassword);
-			return response2.getBody();
-			
+	    	MemberDTO dto = new MemberDTO();
+	    	dto.setId(kakaoProfile.getKakao_account().getEmail());
+	    	dto.setEmail(kakaoProfile.getKakao_account().getEmail());
+	    	dto.setNickName(kakaoProfile.getProperties().getNickname());
+	    	dto.setName(kakaoProfile.getProperties().getNickname());
+	    	dto.setSex(kakaoProfile.getKakao_account().getGender());
+	      	
+    		int result = MemberService.idChk(dto);
+    		if (result>=1) {
+    			HttpSession session = request.getSession();	
+    		
+    	
+    			session.setAttribute("id", dto.getId());
+    			session.setAttribute("nickname", dto.getNickName());
+    			return "index";
+    		}
+    		
+			boolean isS = MemberService.insertKMember(dto);
+			if(isS) {
+				HttpSession session = request.getSession();	
+	    		
+		    	
+    			session.setAttribute("id", dto.getId());
+    			session.setAttribute("nickname", dto.getNickName());
+    			return "index";
+    		
+			} else {
+				return "loginForm";
+			}
+	    
 	    }  
 
 	@RequestMapping(value = "/idSearchForm.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -320,20 +361,18 @@ public class MemberController {
 	public String idSearch(Model model,  MemberDTO dto) {
 		MemberDTO member = MemberService.getMemberByNameAndEmail(dto);
 		if (member == null) {
+
 			model.addAttribute("check", 1);
 		} else {
 			model.addAttribute("check", 0);
 			model.addAttribute("id", member.getId());
 		}
 		return "idSearchForm";
-
-		
 	}
 	
 	@RequestMapping(value = "/pwdSearchForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pwdSearchform(Locale locale, Model model) {
 		return "pwdSearchForm";
-
 	}
 	
 	@RequestMapping(value = "/pwdSearch.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -362,17 +401,9 @@ public class MemberController {
 	                "임시비밀번호로 로그인 후 비밀번호를 변경해주세요" + 
 
 	                "<br>";
-			
-			
-//	        MemberDTO dto2 = new MemberDTO();
 	        dto.setPwd(pwd);
-	        
-	        
-	        boolean isS = MemberService.pwdUpdate(dto);
-	        
-
+	        	        
 	        try {
-	            
 	            MimeMessage message = mailSender.createMimeMessage();
 	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 	            helper.setFrom(setFrom);
@@ -380,15 +411,11 @@ public class MemberController {
 	            helper.setSubject(title);
 	            helper.setText(content,true);
 	            mailSender.send(message);
-	            
 	        }catch(Exception e) {
 	            e.printStackTrace();
 	        }
-			
-		}
-		
+		}		
 		return "pwdSearchForm";
-		
 		
 	}
 }

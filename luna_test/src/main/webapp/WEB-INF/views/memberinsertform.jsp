@@ -6,50 +6,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+		<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<!-- 		<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/> -->
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+		<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <style type="text/css">
 
-
-
+@font-face {
+    font-family: 'BinggraeSamanco-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body,button,input{
+	font-family: 'BinggraeSamanco-Bold';
+	font-weight: bold;
+	line-height: 20px;
+ }
 .pwck_input_re_1{
-        color : green;
-        display : none;    
+	color : green;
+	display : none;    
 }
 .pwck_input_re_2{
-        color : red;
-        display : none;    
+	color : red;
+	display : none;    
 }    
-
-
 .pw_reg_tr{
 	display :none;
 	color : green;
 }
-
 .pw_reg_fl{
 	display:  none;
 	color :red;
 }
 
 </style>
-
 </head>
 
-
-
-
 <body> 		
-	<form method="post" action="insertmember.do">
+	<form method="post" action="insertmember.do" id="join">
 		<h1 style = "text-align:left">회원가입</h1>
-		<div>
+		<div id="id" >
 			<label for="id">아이디</label><br>
-			<input type="text" name="id" id="id"/>
+			<input type="text" name="id" id="id" required />
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
-			<input type="password" class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합">
+			<input type="password" class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합"required>
 		</div>
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
 		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
@@ -58,20 +72,20 @@
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
-				<input type="password" class="pwck_input" name="pwdCheck">
+				<input type="password" class="pwck_input" name="pwdCheck"required>
 			</div>
-		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span>
+<!-- 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span> -->
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>
 		<div class="mail_wrap">
 			<div class="email">이메일</div>
 			<div class="mail_input_box">
-			<input class="mail_input" name="email">
+			<input class="mail_input" name="email"required>
 			</div>
 			<div class="mail_check_wrap">
 			<div class="mail_check_input_box" id="mail_check_input_box_false">	
-					인증번호<br><input class="mail_check_input" disabled="disabled">
+					인증번호<br><input class="mail_check_input" disabled="disabled"required>
 			</div>
 			<div class="mail_check_button">
 				<span><input type="button" value="인증번호 전송"></span>
@@ -82,17 +96,32 @@
 		</div>
 
 
-
-<input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호">
+주소<br>
+<input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호"required>
 <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="adr2" id="sample2_address" placeholder="주소"><br>
-<input type="text" name="adr3" id="sample2_detailAddress" placeholder="상세주소">
-<input type="text" name="adr4" id="sample2_extraAddress" placeholder="참고항목"><br>
+<input type="text" name="adr2" id="sample2_address" placeholder="주소"required><br>
+<input type="text" name="adr3" id="sample2_detailAddress" placeholder="상세주소"required>
+<input type="text" name="adr4" id="sample2_extraAddress" placeholder="참고항목"required><br>
 
 <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
+
+		생년월일<br> <input type="date" name="birthtest"required><br>
+		성별<br>
+		남<input type="checkbox" name="sex" required onclick="checkOnly(this);" value="남" >
+		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
+		핸드폰 <br><input type="text" name="phone"required>
+<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
+  		 <input type="hidden" name="admin"><br>  
+		닉네임 <br><input type="text" name="nickName"required><br>
+		이름<br>	<input type="text" name="name"required>
+		 <input type="hidden" name="point"><br><br>
+		<input type="submit" value="회원가입">
+		<input type="reset" value="다시입력">
+	</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -183,6 +212,7 @@
     }
 </script>
 		
+<<<<<<< HEAD
 		생년월일<br> <input type="date" name="birthtest"><br>
 		성별
 		남<input type="checkbox" name="sex"  value="남" >
@@ -196,6 +226,8 @@
 		<input type="reset" value="다시입력">
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+=======
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
  <script type="text/javascript">
  	var code = "";                
  
@@ -295,13 +327,28 @@
 // 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
 	
 
+function checkOnly(chk){
 
+   var obj = document.getElementsByName("sex");
 
+      for(var i=0; i<obj.length; i++){
+            if(obj[i] != chk){
+                  obj[i].checked = false;
+                  }
+            }
+    }
 
-	
+function check() {
+	if ($("input:checkbox[name='sex']").is(":checked")==false) {
+		alert("성별을 선택하여 주십시오.");
+		return;
+	}
+}
  </script>
 
 
 
 </body>
 </html>
+
+

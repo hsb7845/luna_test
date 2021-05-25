@@ -10,31 +10,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>상품재고리스트</title>
  <!-- Custom fonts for this template -->
-        <link
-            href="vendor/fontawesome-free/css/all.min.css"
-            rel="stylesheet"
-            type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+<link
+    href="vendor/fontawesome-free/css/all.min.css"
+    rel="stylesheet"
+    type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this page -->
-        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <style>
-            .cls1 {
-                font-size: 40px;
-                text-align: center;
-            }
-            .cls2 {
-                font-size: 20px;
-                text-align: center;
-            }
-        </style>
+<!-- Custom styles for this page -->
+<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
+<style>
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	.m1{
+		text-align: center;
+		font-size: 18px;
+	}
+	.m2{
+		text-align: center;
+		font-size: 15px;
+	}
+	.m3 {
+		font-size: 13px;
+	}
+         
+	@font-face {
+    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	body,button,input{
+		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+		font-weight: bold;
+	}
+</style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -75,6 +105,22 @@ $(function(){
  			}
  		}
  	}
+ 	
+		$("#stockInsertForm").click(function(){
+//			location.href='${path}/shop/product/list.do'
+		location.href='stockInsertForm.do'
+		});
+ 	
+ 		$("#main").click(function(){
+// 				location.href='${path}/shop/product/list.do'
+ 			location.href='.do'
+ 		});
+ 		
+ 		$("#stockForm").click(function(){
+//				location.href='${path}/shop/product/list.do'
+			location.href='stockForm.do'
+		});
+
 })
 	
 </script>
@@ -83,10 +129,11 @@ $(function(){
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
 <body>
+	<%@ include file="header.jsp" %>
 <!-- <h1>상품재고현황</h1> -->
 <p class="cls1">상품재고현황</p> 
-<form action="muldelStock.do" method="post">
-<table border="1">
+<form action="muldelStock.do" method="post" >
+<table  border="1" >
 	<col width="50px">
 	<col width="100px">
 	<col width="300px">
@@ -95,8 +142,8 @@ $(function(){
 	<col width="150px">
 	<col width="500px">
 	<col width="100px">
-	<col width="100px">
-	<tr>
+	<col width="150px">
+	<tr align="center" class="m1" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>상품번호</th>
 		<th>상품명</th>
@@ -114,7 +161,7 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			StockDTO dto=list.get(i);
 	%>
-				<tr align="center">
+				<tr align="center" class="m2" >
 					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
 					<td><%=dto.getPnum()%></td>
 					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
@@ -129,15 +176,21 @@ $(function(){
 			}
 		}
 	%>
+</table>
+<table>	
 	<tr>
-		<td colspan="9">
-			<a href="stockInsertForm.do">상품입고</a>
-			<a href="stockForm.do">상품등록</a>
-			<a href=".do">메인</a>
+		<td colspan="9"  class="m3">
+			<input type="button" value="상품입고" id="stockInsertForm">
+			<input type="button" value="상품등록" id="stockForm">
+			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
+<!-- 			<a href="stockInsertForm.do">상품입고</a> -->			
+<!-- 			<a href="stockForm.do">상품등록</a> -->			
+<!-- 			<a href=".do">메인</a> -->
 		</td>
-	</tr>
+	</tr>		
 </table>
 </form>
+	<%@ include file="footer.jsp" %>
 </body>
 </html>

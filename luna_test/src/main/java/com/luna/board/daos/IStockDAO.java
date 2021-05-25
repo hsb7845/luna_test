@@ -15,5 +15,9 @@ public interface IStockDAO {
 	boolean mulDel(String[] chk);
 	boolean stockInsert(StockDTO dto);
 	int getCnum(PCategoryDTO cdto);
-
+	List<PCategoryDTO> getColor(String ptype);
+//	             반환타입                       메서드에 전달하는 값의 타입(파라미터)
+	List<String> getPtype();
+	List<PCategoryDTO> getSize(String ptype);
+	List<StockDTO> getSelectedList(String[] chk_arr);
 }

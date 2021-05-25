@@ -5,7 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+
+
+@font-face {
+    font-family: 'BinggraeSamanco-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,button,input{font-family: 'BinggraeSamanco-Bold';
+ 		font-weight: bold;
+ 		line-height: 20px;}
+ 
+ 		
+ </style>
 <title>비밀번호찾기</title>
+
 </head>
 <body>
 <form method="post" class="form-signin" action="pwdSearch.do" name="pwdSearch">
@@ -14,28 +31,36 @@
 		</div>
 		<div class="form-label-group">
 			<label for="id">아이디</label>
-					<input type="text" id="id" name="id" class="form-control"/>
+					<input type="text" id="id" name="id" class="form-control" style="width:190px; height:20px; font-size:15px;"/>
 		</div>
 		
 		<div class="form-label-group">
 			<label for="email">이메일</label>		
-			<input type="text" id="email" name="email" class="form-control"/>
+			<input type="text" id="email" name="email" class="form-control" style="width:190px; height:20px; font-size:15px;"/>
 		</div>
 
 		<div class="form-label-group">
 			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
+<<<<<<< HEAD
 				type="submit" value="check">
 				<a href="loginForm.do">로그인</a><br>
 				
+=======
+				type="submit"style="width:50 px; height:30px; font-size:17px;" value="찾기">
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		</div>
 
 		<c:if test="${check==1}">
 	
-			<label>일치하는 정보가 존재하지 않습니다.</label>
+			<label><font color="red">일치하는 정보가 존재하지 않습니다.</font></label>
 		</c:if>
 
 		<c:if test="${check==0}">
+<<<<<<< HEAD
 		<label>가입하신이메일로임시비밀번호가전송되었습니다</label> 
+=======
+		<label><font color="blue">가입하신이메일로임시비밀번호가전송되었습니다.</font></label> 
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 		</c:if>
 
 	</form>

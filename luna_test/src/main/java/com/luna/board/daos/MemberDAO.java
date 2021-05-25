@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.jdbc.SQL;
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.luna.board.dtos.MemberDTO;
 
@@ -41,7 +41,6 @@ public class MemberDAO implements IMemberDAO {
 		return sqlSession.update(namespace+"updateMember", dto)>0? true:false;
 	}
 	
-
 	@Override
 	public boolean muldelMember(String[] chks) {
 		// TODO Auto-generated method stub
@@ -54,19 +53,21 @@ public class MemberDAO implements IMemberDAO {
 	public int idChk(MemberDTO dto) throws Exception {
 		int result= sqlSession.selectOne(namespace+"idChk", dto);
 		return result;
-				
 	}
 
 	@Override
 	public MemberDTO login(MemberDTO dto) {
 		// TODO Auto-generated method stub
 		dto = sqlSession.selectOne(namespace+"login", dto);
-		System.out.println(dto.getAdmin());
-	
 		return dto;
+		
+		
 	}
 
-
+	@Override
+	public void logout(HttpSession session) {
+		// TODO Auto-generated method stub
+	}
 	@Override
 	public MemberDTO getMemberByNameAndEmail(MemberDTO dto) {
 		// TODO Auto-generated method stub
@@ -75,8 +76,6 @@ public class MemberDAO implements IMemberDAO {
 		return member;
 	}
 
-	
-	
 	@Override
 	public MemberDTO getMemberByIdAndEmail(MemberDTO dto) {
 		// TODO Auto-generated method stub
@@ -87,10 +86,7 @@ public class MemberDAO implements IMemberDAO {
 
 	@Override
 	public boolean  pwdUpdate(MemberDTO dto){
-		
-		 
 		return sqlSession.update(namespace+"pwdUpdate", dto)>0?true:false;
-		
 	}
 
 	@Override
@@ -99,4 +95,10 @@ public class MemberDAO implements IMemberDAO {
 		return sqlSession.delete(namespace+"deleteMember", dto)>0?true:false;
 	}
 
+	@Override
+	public boolean insertKMember(MemberDTO dto) {
+		return sqlSession.insert(namespace+"insertKMember", dto)>0? true:false;
+		
+	}
+		
 }

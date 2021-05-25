@@ -153,7 +153,10 @@ $(function(){
  			}
  		}
  	}
-})</script>
-
+})
+// $("#insertmemberform").click(function(){
+// location.href='insertmemberform.do'
+// });
+	</script>
 </body>
 </html>

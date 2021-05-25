@@ -27,7 +27,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,9 +67,7 @@ public class MemberController {
 	public String insert(Locale locale, Model model, MemberDTO dto,String birthtest) {
 		System.out.println("birthtest : "+birthtest);
 		Timestamp ts= Timestamp.valueOf(birthtest+" 00:00:00");
-		dto.setAdmin("일반회원");
 		dto.setBirth(ts);
-		System.out.println("id:"+dto.getId());
 		boolean isS = MemberService.insertMember(dto);
 		if(isS) {
 			return "redirect:member.do";
@@ -397,9 +394,7 @@ public class MemberController {
 	        String content = 
 	                "홈페이지를 방문해주셔서 감사합니다." +
 	                "<br><br>" + 
-	                "임시비밀번호는 " + checkNum + "입니다. <br>"+ 
-	                "임시비밀번호로 로그인 후 비밀번호를 변경해주세요" + 
-
+	                "임시비밀번호는 " + checkNum + "입니다." + 
 	                "<br>";
 	        dto.setPwd(pwd);
 	        	        

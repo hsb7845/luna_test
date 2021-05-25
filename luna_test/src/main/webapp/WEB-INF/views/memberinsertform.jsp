@@ -212,22 +212,6 @@ body,button,input{
     }
 </script>
 		
-<<<<<<< HEAD
-		생년월일<br> <input type="date" name="birthtest"><br>
-		성별
-		남<input type="checkbox" name="sex"  value="남" >
-		여<input type="checkbox" name="sex"  value="여" ><br>
-		핸드폰 <br><input type="text" name="phone">
-<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
-  		 <input type="hidden" name="admin"><br>  
-		닉네임 <br><input type="text" name="nickName"><br>
-		이름<br>	<input type="text" name="name">
-		<input type="submit" value="회원가입">
-		<input type="reset" value="다시입력">
-	</form>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-=======
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
  <script type="text/javascript">
  	var code = "";                
  
@@ -312,7 +296,7 @@ body,button,input{
 	
 	$('.pw_input').on("propertychange change keyup paste input", function(){
 		var pw = $('.pw_input').val();
-		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,15}$/;
+		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,17}$/;
 		if(check.test(pw)==true){
 			$('.pw_reg_tr').css('display','block');
 			$('.pw_reg_fl').css('display','none');

@@ -41,10 +41,7 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';
 
 		<div class="form-label-group">
 			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-				type="submit" value="check">
-				<a href="loginForm.do">로그인</a><br>
-				
-
+				type="submit"style="width:50 px; height:30px; font-size:17px;" value="찾기">
 		</div>
 
 		<c:if test="${check==1}">
@@ -53,7 +50,6 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';
 		</c:if>
 
 		<c:if test="${check==0}">
-		<label>가입하신이메일로임시비밀번호가전송되었습니다</label> 
 		<label><font color="blue">가입하신이메일로임시비밀번호가전송되었습니다.</font></label> 
 		</c:if>
 

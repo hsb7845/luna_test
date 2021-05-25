@@ -29,7 +29,7 @@ public class BuyListController {
 	private IBuyListService buyListService;
 	
 	@RequestMapping(value = "/buylist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getAllBuyList(Locale locale, Model model) {
+	public String getAllBuyList(Locale locale, Model model, HttpServletRequest request) {
 		List<BuyListDTO> list = buyListService.getAllList();
 		model.addAttribute("list",list);
 		return "buylist";

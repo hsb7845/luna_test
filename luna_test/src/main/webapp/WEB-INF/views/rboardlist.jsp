@@ -27,21 +27,21 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <style>
-            .cls1 {
-                font-size: 40px;
-                text-align: center;
-            }
-            .cls2 {
-                font-size: 20px;
-                text-align: center;
-            }
-            #m1{
-            	text-align: center;
-            }
-            #m2{
-            	text-align: center;
-            }
-        </style>
+	.cls1 {
+	    font-size: 40px;
+	    text-align: center;
+	}
+	.cls2 {
+	    font-size: 20px;
+	    text-align: center;
+	}
+	#m1{
+		text-align: center;
+	}
+	#m2{
+		text-align: center;
+	}
+</style>
         
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">

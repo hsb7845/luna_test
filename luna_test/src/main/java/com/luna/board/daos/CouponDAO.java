@@ -20,7 +20,7 @@ public class CouponDAO implements ICouponDAO {
 	private String[] chks;
 	
 	@Override
-	public List<CouponDTO> getAllList() {
+	public List<CouponDTO> getAllList(CouponDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getAllList");
 	}

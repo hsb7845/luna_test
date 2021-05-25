@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.IRBoardService;
+import com.luna.board.service.RBoardService;
 
 @Controller
 public class RboardController {
@@ -25,13 +26,21 @@ public class RboardController {
 	
 	
 	@RequestMapping(value = "/rboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String rboard(Locale locale, Model model) {
+	public String rboard(Locale locale, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String admin = (String)session.getAttribute("admin");
 		
-		List<RBoardDTO> list = rBoardService.getAllList();
-		model.addAttribute("list",list);
-		return "rboardlist";
-		
-	}
+		if(admin.equals("관리자")) {
+			List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO());
+			model.addAttribute("list",list);
+			return "rboardlist";
+			} else {
+				List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO(id));
+				model.addAttribute("list",list);
+				return "rboardlist";
+			}
+		}
 	
 	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model) {

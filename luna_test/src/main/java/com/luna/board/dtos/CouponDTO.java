@@ -25,6 +25,11 @@ public class CouponDTO {
 		this.hit = hit;
 	}
 
+	public CouponDTO(String id) {
+		super();
+		this.id = id;
+	}
+
 	public int getCseq() {
 		return cseq;
 	}

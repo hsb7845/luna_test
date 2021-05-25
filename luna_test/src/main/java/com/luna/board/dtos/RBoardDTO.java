@@ -16,6 +16,12 @@ public class RBoardDTO {
 	}
 	
 	
+	public RBoardDTO(String id) {
+		super();
+		this.id = id;
+	}
+
+
 	public RBoardDTO(int rseq, String rtitle, String rcontent, int pseq, String id, int starrank, int par_rseq, int level) {
 		super();
 		this.rseq = rseq;

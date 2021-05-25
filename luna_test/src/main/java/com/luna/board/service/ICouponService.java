@@ -3,10 +3,10 @@ package com.luna.board.service;
 import java.util.List;
 
 import com.luna.board.dtos.CouponDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 public interface ICouponService {
 
-	List<CouponDTO> getAllList();
 	boolean insertCoupon(CouponDTO dto);
 	CouponDTO getCoupon(int cseq);
 	boolean deleteCoupon(int cseq);
@@ -14,4 +14,5 @@ public interface ICouponService {
 	boolean hitCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
 	CouponDTO ringCoupon();
+	List<CouponDTO> getAllList(CouponDTO couponDTO);
 }

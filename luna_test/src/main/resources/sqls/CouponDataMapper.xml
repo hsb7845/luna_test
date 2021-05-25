@@ -3,14 +3,17 @@
 
 <mapper namespace="com.luna.coupon">
 
-	<select id="getAllList" resultType="CouponDTO">		
+	<select id="getAllList" resultType="CouponDTO" parameterType="CouponDTO">		
 		SELECT CSEQ, CCONTENT, DISCOUNT, ID, HIT
 		FROM COUPON	order by cseq desc	
+		<if test="id!=null">
+		where id = #{id}
+		</if>
 	</select>
 	
 	<insert id="insertCoupon" parameterType="CouponDTO">
 		INSERT INTO COUPON (CSEQ, CCONTENT, DISCOUNT, ID, HIT)
-		VALUES(COUPON_SEQ.NEXTVAL, #{ccontent}, #{discount}, null, 0)		
+		VALUES(COUPON_SEQ.NEXTVAL, #{ccontent}, #{discount}, #{id}, 0)		
 	</insert>
 	
 	<select id ="getCoupon" resultType="CouponDTO" parameterType="int">

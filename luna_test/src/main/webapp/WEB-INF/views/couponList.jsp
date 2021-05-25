@@ -79,7 +79,7 @@ $(function(){
 		var bool = true;
 		var count=$(this).find("input[name=chk]:checked").length;
 		if(count==0){
-			alert('최소 하나이상 체크하세요!!!');
+			alert('최소 하나 이상 체크하세요!!!');
 			bool= false;
 		}else if(confirm("정말 삭제하시겠습니까?")==false){
 			bool = false;

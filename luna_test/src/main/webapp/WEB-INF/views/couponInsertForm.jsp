@@ -30,10 +30,23 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 </head>
+
+<style>
+	.cls1 {
+		font-size: 40px;
+		text-align: center;
+	}
+</style>
+
 <body>
 <form method="post" action="insertCoupon.do">
+<input type="hidden" name="id"  value="${dto.id}" >
 <table>	
-	<h1>쿠폰 추가</h1>
+	<p class="cls1">쿠폰 추가</p>
+	<tr>
+		<th>아이디</th>
+		<td><input type="text" name="id"></td>
+	</tr>
 	<tr>
 		<th>쿠폰내용</th>
 		<td><input type="text" name="ccontent"></td>

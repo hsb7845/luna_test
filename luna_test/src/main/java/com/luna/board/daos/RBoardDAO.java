@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 
@@ -27,8 +28,8 @@ public class RBoardDAO implements IRBoardDAO {
 	
 	
 	@Override
-	public List<RBoardDTO> getAllList() {
-		return sqlSession.selectList(namespace+"getAllList");
+	public List<RBoardDTO> getAllList(RBoardDTO dto) {
+		return sqlSession.selectList(namespace+"getAllList", dto);
 	}
 	
 	@Override
@@ -60,5 +61,25 @@ public class RBoardDAO implements IRBoardDAO {
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
+	}
+	
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getMember", id);
+	}
+
+
+	@Override
+	public List<RBoardDTO> getAllList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<RBoardDTO> getAllList(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

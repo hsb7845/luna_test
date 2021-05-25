@@ -3,6 +3,9 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.CouponDTO;
+import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.ICouponService;
 
 @Controller
@@ -19,12 +23,29 @@ public class CouponController {
 	private ICouponService CouponService;
 	
 	@RequestMapping(value = "/coupon.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String coupon(Locale locale, Model model) {
-		List<CouponDTO> list = CouponService.getAllList();
-		model.addAttribute("list",list);
+	public String coupon(Locale locale, Model model, HttpServletRequest request) {
 		
-		return "couponList";
-	}
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String admin = (String)session.getAttribute("admin");
+		
+		if(admin.equals("관리자")) {
+			List<CouponDTO> list = CouponService.getAllList(new CouponDTO());
+			model.addAttribute("list",list);
+			return "couponList";
+			} else {
+				List<CouponDTO> list = CouponService.getAllList(new CouponDTO(id));
+				model.addAttribute("list",list);
+				return "couponList";
+			}
+		}
+		
+		
+//		List<CouponDTO> list = CouponService.getAllList();
+//		model.addAttribute("list",list);
+//		
+//		return "couponList";
+//	}
 	
 	@RequestMapping(value = "/couponInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertCoupon(Locale locale, Model model) {

@@ -5,6 +5,9 @@
 	<select id="getAllList" resultType="BLDTO">
 		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
 		FROM BUY_LIST
+		<if test="id!=null">
+		where id = #{id}
+		</if>
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultType="BLDTO">

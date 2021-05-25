@@ -6,7 +6,6 @@ import com.luna.board.dtos.CouponDTO;
 
 public interface ICouponDAO {
 
-	List<CouponDTO> getAllList();
 	boolean insertCoupon(CouponDTO dto);
 	CouponDTO getCoupon(int cseq);
 	boolean deleteCoupon(int cseq);
@@ -14,5 +13,6 @@ public interface ICouponDAO {
 	boolean hitCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
 	CouponDTO ringCoupon();
+	List<CouponDTO> getAllList(CouponDTO dto);
 	
 }

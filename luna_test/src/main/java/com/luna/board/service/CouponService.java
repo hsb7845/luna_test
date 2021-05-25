@@ -15,9 +15,9 @@ public class CouponService implements ICouponService {
 	ICouponDAO CouponDAO;
 
 	@Override
-	public List<CouponDTO> getAllList() {
+	public List<CouponDTO> getAllList(CouponDTO dto) {
 		// TODO Auto-generated method stub
-		return CouponDAO.getAllList();
+		return CouponDAO.getAllList(dto);
 	}
 
 	@Override

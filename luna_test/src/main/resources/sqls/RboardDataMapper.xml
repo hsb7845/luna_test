@@ -5,8 +5,12 @@
 
 <mapper namespace="com.luna.rboard">
 
-	<select id="getAllList" resultType="RBDTO">
-		select LEVEL, rseq, par_rseq, LPAD(' ', 4*(LEVEL-1)) || rtitle rtitle, rcontent, pseq, id, starrank from R_board
+	<select id="getAllList" resultType="RBDTO" parameterType="RBDTO">
+		select LEVEL, rseq, par_rseq, LPAD(' ', 4*(LEVEL-1)) || rtitle rtitle, rcontent, pseq, id, starrank 
+		from R_board
+		<if test="id!=null">
+		where id = #{id}
+		</if>
 		start with par_rseq=0
 		connect by prior rseq=par_rseq
 		order siblings by rseq desc

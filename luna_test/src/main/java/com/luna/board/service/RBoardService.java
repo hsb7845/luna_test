@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.IRBoardDAO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 
@@ -22,9 +23,9 @@ public class RBoardService implements IRBoardService {
 	}
 	
 	@Override
-	public List<RBoardDTO> getAllList() {
+	public List<RBoardDTO> getAllList(RBoardDTO dto) {
 		// TODO Auto-generated method stub
-		return RBoardDAO.getAllList();
+		return RBoardDAO.getAllList(dto);
 	}
 
 	
@@ -63,4 +64,11 @@ public class RBoardService implements IRBoardService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return RBoardDAO.getMember(id);
+	}
+
 }

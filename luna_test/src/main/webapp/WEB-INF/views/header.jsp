@@ -62,26 +62,21 @@
 <!-- 			<a href="logout.do">로그아웃</a> -->
 			
 		<%
-		String custid="";
-		if(session.getAttribute("id") != null){
-			custid = (String)session.getAttribute("id");
-		}
+		if(session.getAttribute("id") == null){
 	%>
 			<a href="insertmemberform.do">회원가입</a> &nbsp;
-	
+			<a href="loginForm.do">로그인</a> &nbsp;
 	<% 	
-		if(custid.equals("admin")){
+		} else {
 	%>
 			<a href="myPage.do">마이페이지</a> &nbsp;
 			<a href="buylist.do">장바구니</a> &nbsp; 
 			<a href=logout.do>로그아웃</a> &nbsp; 
 	<% 
-		}else{
-	%>	
-			<a href="loginForm.do">로그인</a> &nbsp;
-	<%		
 		}
-	%>					
+	%>	
+			
+				
 		</td>
 	</tr>	
 	<tr></tr>

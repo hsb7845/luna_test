@@ -71,7 +71,7 @@ $(function(){
 		<th>성별</th>
 		<th>핸드폰</th>
 		<th>가입일</th>
-		<th>관리자</th>
+		<th>회원구분</th>
 		<th>닉네임</th>
 		<th>이름</th>
 		<th>포인트</th>

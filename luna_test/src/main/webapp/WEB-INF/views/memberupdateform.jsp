@@ -6,11 +6,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style type="text/css">
+
+
+
+.pwck_input_re_1{
+        color : green;
+        display : none;    
+}
+.pwck_input_re_2{
+        color : red;
+        display : none;    
+}    
+
+
+.pw_reg_tr{
+	display :none;
+	color : green;
+}
+
+.pw_reg_fl{
+	display:  none;
+	color :red;
+}
+
+</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
  	function deleteMem(id){
- 		if(confirm("정말 삭제하시겠습니까?")){
+ 		if(confirm("정말 탈퇴하시겠습니까?")){
  			location.href ="deletemember.do?id="+id;
  		}
  	}
@@ -106,14 +133,32 @@
 <body>
 	<form method="post" action="updatemember.do">
 		<h1 style = "text-align:left">회원정보수정</h1>
-		아이디 <input type="text" name="id" value="${dto.id}" readonly><br>
-		비밀번호 <input type="password" name="pwd"  value="${dto.pwd}"><br>
-		이메일 <input type="text" name="email"  value="${dto.email}"><br>
-		<input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호">
+		아이디 <br><input type="text" name="id" value="${dto.id}" readonly><br>
+		<div class="pw_name=">비밀번호</div>
+		<div class="pw_input_box">
+			<input type="password" class="pw_input" name="pwd" value="${dto.pwd}" placeholder="영문자+숫자+특수문자 조합">
+		</div>
+		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
+		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
+<!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
+		</div>
+		<div class="pwck_wrap">
+			<div class="pwck_name">비밀번호확인</div>
+			<div class="pwck_input_box">
+				<input type="password" class="pwck_input" name="pwdCheck">
+			</div>
+		<span class="final_pwck_ck">비밀번호 확인</span>
+		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
+		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
+		</div>
+		
+		
+		이메일<br><input type="text" name="email"  value="${dto.email}"><br>
+		<input type="text" name="adr1" value="${dto.adr1}" id="sample2_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="adr2" id="sample2_address" placeholder="주소"><br>
-		<input type="text" name="adr3" id="sample2_detailAddress" placeholder="상세주소">
-		<input type="text" name="adr4" id="sample2_extraAddress" placeholder="참고항목"><br>
+		<input type="text" name="adr2"  value="${dto.adr2}"id="sample2_address" placeholder="주소"><br>
+		<input type="text" name="adr3"  value="${dto.adr3}"id="sample2_detailAddress" placeholder="상세주소">
+		<input type="text" name="adr4"  value="${dto.adr4}"id="sample2_extraAddress" placeholder="참고항목"><br>
 				<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -127,10 +172,9 @@
 	<%--   		관리자 <input type="hidden" name="admin"  value="${dto.admin}" readonly><br>   --%>
 		닉네임 <input type="text" name="nickName"  value="${dto.nickName}"><br>
 		이름	<input type="text" name="name"  value="${dto.name}" readonly><br>
-		포인트 <input type="text" name="point"  value="${dto.point}" readonly><br>
 		<input type="submit" value="등록">
 		<input type="reset" value="다시입력">
-		<input type="button" value="회원삭제" onclick="deleteMem('${id}')">
+		<input type="button" value="회원탈퇴" onclick="deleteMem('${id}')">
 	
 	
 	
@@ -142,5 +186,39 @@
 	
 	
 	</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <script type="text/javascript">
+	/* 비밀번호 확인 일치 유효성 검사 */
+ 
+	$('.pwck_input').on("propertychange change keyup paste input", function(){
+	 
+	    var pw = $('.pw_input').val();
+	    var pwck = $('.pwck_input').val();
+	    $('.final_pwck_ck').css('display', 'none');
+	        
+	    if(pw == pwck){
+	        $('.pwck_input_re_1').css('display','block');
+	        $('.pwck_input_re_2').css('display','none');
+	        pwckcorCheck = true;
+	    }else{
+	        $('.pwck_input_re_1').css('display','none');
+	        $('.pwck_input_re_2').css('display','block');
+	        pwckcorCheck = false;
+	    }  
+	});    
+	
+	$('.pw_input').on("propertychange change keyup paste input", function(){
+		var pw = $('.pw_input').val();
+		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,15}$/;
+		if(check.test(pw)==true){
+			$('.pw_reg_tr').css('display','block');
+			$('.pw_reg_fl').css('display','none');
+		}else{
+			$('.pw_reg_tr').css('display','none');
+			$('.pw_reg_fl').css('display','block');
+		}
+	});
+ 
+ </script>
 </body>
 </html>

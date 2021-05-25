@@ -25,6 +25,8 @@
 		<div class="form-label-group">
 			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
 				type="submit" value="check">
+				<a href="loginForm.do">로그인</a><br>
+				
 		</div>
 
 		<c:if test="${check==1}">
@@ -34,8 +36,6 @@
 
 		<c:if test="${check==0}">
 		<label>가입하신이메일로임시비밀번호가전송되었습니다</label> 
-		실행을하라는 명령이없는듯=? how?
-<!-- 비밀번호가 pwd일떄 -> pwdUpdate 쿼리가 실행되어- 랜덤 비밀번호 생성-설정된 비밀번호 변경-> 변경된 임시번호 이메일로 전송 -> 변경된 비밀번호로 로그인 후 -> 비밀번호 원하는 거로 변경 -->
 		</c:if>
 
 	</form>

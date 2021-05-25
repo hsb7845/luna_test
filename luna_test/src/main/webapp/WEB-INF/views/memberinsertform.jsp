@@ -192,7 +192,6 @@
   		 <input type="hidden" name="admin"><br>  
 		닉네임 <br><input type="text" name="nickName"><br>
 		이름<br>	<input type="text" name="name">
-		 <input type="hidden" name="point"><br><br>
 		<input type="submit" value="회원가입">
 		<input type="reset" value="다시입력">
 	</form>
@@ -281,7 +280,7 @@
 	
 	$('.pw_input').on("propertychange change keyup paste input", function(){
 		var pw = $('.pw_input').val();
-		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,17}$/;
+		var check= /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{7,15}$/;
 		if(check.test(pw)==true){
 			$('.pw_reg_tr').css('display','block');
 			$('.pw_reg_fl').css('display','none');

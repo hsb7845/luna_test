@@ -174,13 +174,16 @@ public class MemberController {
 					System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
-					if(request.getParameter("returnUrl").equals("buyform")) {
-						
-						model.addAttribute("pseq", request.getParameter("pseq"));
-						model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
-						System.out.println("여기:"+request.getParameter("selOpt"));
-						return "redirect:buyform.do";
+					if(request.getParameter("returnUrl")!=null) {
+						if(request.getParameter("returnUrl").equals("buyform")) {
+							
+							model.addAttribute("pseq", request.getParameter("pseq"));
+							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
+							System.out.println("여기:"+request.getParameter("selOpt"));
+							return "redirect:buyform.do";
+						}
 					}
+					
 					return "redirect:index.do";
 				}				
 			}else {

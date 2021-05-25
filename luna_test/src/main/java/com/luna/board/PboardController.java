@@ -75,10 +75,11 @@ public class PboardController {
 		//System.out.println(sorting);
 		int total = pBoardService.countBoard();
 		//System.out.println(sorting);
-		if(nowPage ==null &&cntPerPage == null&&arrayNum==null) {
+		if(nowPage ==null &&cntPerPage == null&&arrayNum==null&&sorting==null) {
 			nowPage="1";
 			cntPerPage = "12";
 			arrayNum ="1";
+			sorting ="1";
 		}else if(nowPage==null) {
 			nowPage="1";
 		}else if(cntPerPage==null) {

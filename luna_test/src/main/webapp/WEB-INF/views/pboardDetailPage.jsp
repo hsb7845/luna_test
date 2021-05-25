@@ -83,7 +83,7 @@
 				var newForm = document.createElement('form');
 				newForm.name= "newForm";
 				newForm.method = 'post'; 
-				newForm.action = 'buyForm.do'; 
+				newForm.action = 'buyform.do'; 
 				var input2 = document.createElement('input');
 				var input3 = document.createElement('input');
 				input2.setAttribute("type", "hidden"); 

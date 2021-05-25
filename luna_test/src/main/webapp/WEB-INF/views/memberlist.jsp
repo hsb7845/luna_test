@@ -26,7 +26,10 @@
 
 <style type="text/css">
 
-   
+   html, body {
+    height: 100%;
+    }
+    
  .cls1 {
 	font-size: 40px;
 	text-align: center;

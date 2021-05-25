@@ -18,7 +18,9 @@
 
 <title>헤더</title>
 <style>
-
+html, body {
+    height: 100%;
+    }
 	*{
 		margin : 0 auto;
 /* 		width: 1024px;	 */
@@ -48,7 +50,7 @@
 <table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr id="menu1">
 		<td colspan="7"><a href="index.do">
-			<img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a>
+			<p style="text-align:center;"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a></p>
 		</td>
 	</tr>
 	<tr id="menu2">		

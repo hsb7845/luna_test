@@ -25,6 +25,8 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <style type="text/css">
+
+   
  .cls1 {
 	font-size: 40px;
 	text-align: center;

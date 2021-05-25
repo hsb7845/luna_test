@@ -8,11 +8,13 @@
 </head>
 
 <style>
+
 	table{
 		width: 100%;
 		border-collapse: collapse;
 		margin-bottom: 20px;
-		font-size : 10px;
+		font-size : 10px;	
+/* 		background-color: black; */
 	}
 </style>
 

@@ -3,67 +3,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- tag라이브러리 : tag모음.. JAVA코드를 치환하는 역할. -->
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>상품재고리스트</title>
- <!-- Custom fonts for this template -->
-<link
-    href="vendor/fontawesome-free/css/all.min.css"
-    rel="stylesheet"
-    type="text/css">
-<link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-<!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/> -->
+<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/> -->
+<!-- <link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/> -->
+<!-- <link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/> -->
+<!-- <link rel='stylesheet' href='resources/luna/style.css' type='text/css' media='all'/> -->
+<!-- <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/> -->
+<!-- <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 
 <style>
 	.cls1 {
 	    font-size: 40px;
 	    text-align: center;
 	}
-	.m1{
-		text-align: center;
-		font-size: 18px;
-	}
-	.m2{
+	.stockT{
 		text-align: center;
 		font-size: 15px;
 	}
-	.m3 {
+	.stockM{
+		text-align: center;
+		font-size: 13px;
+	}
+	.stockD {
 		font-size: 13px;
 	}
          
-	@font-face {
-    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
-    font-weight: normal;
-    font-style: normal;
-	}
+/* 	@font-face { */
+/*     font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; */
+/*     font-weight: normal; */
+/*     font-style: normal; */
+/* 	} */
 	
-	body,button,input{
-		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
-		font-weight: bold;
-	}
+/* 	body,button,input{ */
+/* 		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; */
+/* 		font-weight: bold; */
+/* 	} */
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -133,7 +115,7 @@ $(function(){
 <!-- <h1>상품재고현황</h1> -->
 <p class="cls1">상품재고현황</p> 
 <form action="muldelStock.do" method="post" >
-<table  border="1" >
+<table border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="100px">
 	<col width="300px">
@@ -143,7 +125,7 @@ $(function(){
 	<col width="500px">
 	<col width="100px">
 	<col width="150px">
-	<tr align="center" class="m1" >
+	<tr align="center" class="stockT" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>상품번호</th>
 		<th>상품명</th>
@@ -161,7 +143,7 @@ $(function(){
 		for(int i=0;i<list.size();i++){
 			StockDTO dto=list.get(i);
 	%>
-				<tr align="center" class="m2" >
+				<tr align="center" class="stockM" >
 					<td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
 					<td><%=dto.getPnum()%></td>
 					<td><a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>" ><%=dto.getPname()%></a></td>
@@ -177,10 +159,9 @@ $(function(){
 		}
 	%>
 </table>
-<table>	
 	<tr>
-		<td colspan="9"  class="m3">
-			<input type="button" value="상품입고" id="stockInsertForm">
+		<td colspan="9"  class="stockD">
+<!-- 			<input type="button" value="상품입고" id="stockInsertForm"> -->
 			<input type="button" value="상품등록" id="stockForm">
 			<input type="button" value="메인" id="main">
 			<input type="submit" value="삭제" />
@@ -189,7 +170,6 @@ $(function(){
 <!-- 			<a href=".do">메인</a> -->
 		</td>
 	</tr>		
-</table>
 </form>
 	<%@ include file="footer.jsp" %>
 </body>

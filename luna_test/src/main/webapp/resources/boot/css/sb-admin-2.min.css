@@ -486,6 +486,7 @@ pre code {
     padding-left: 0.75rem;
     margin-right: auto;
     margin-left: auto;
+    background-color: white;
 }
 @media (min-width:576px) {
     .container,
@@ -518,7 +519,8 @@ pre code {
     }
 }
 .row {
-    display: flex;
+/*     display: flex; */
+	background-color: white;
     flex-wrap: wrap;
     margin-right: -.75rem;
     margin-left: -.75rem;

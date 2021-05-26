@@ -1,8 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
-<%--     pageEncoding="UTF-8"%> --%>
-<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
-<%--     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
-
 <%@page import="com.luna.board.dtos.StockDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,8 +94,16 @@
 
                     })
                 </script>
-            </head>
-            <%
+	<style type="text/css">
+		#content {
+			background-color: white;
+		}
+		.container-fluid {
+			background-color: white;
+		}
+	</style>
+</head>
+<%
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
     
@@ -229,7 +232,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="eboard.do">
+            <a class="nav-link" href="buylist.do">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>

@@ -53,8 +53,10 @@
 <title>Insert title here</title>
 </head>
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
-
-<%@ include file="header.jsp" %>
+<div>
+	<%@ include file="header.jsp" %>
+</div>
+<div>
 
 
 <% 
@@ -83,6 +85,9 @@
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
 	<a href="logout.do">로그아웃</a>
+</div>
+<div>
 	<%@ include file="footer.jsp" %>
+</div>	
 </body>
 </html>

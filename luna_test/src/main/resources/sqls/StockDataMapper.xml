@@ -12,20 +12,20 @@
 	</select>
 	
 	<select id="getStock" resultType="StockDTO" parameterType="int">
-		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ,,MAIN
+		SELECT PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ, MAIN
 		FROM STOCK
-		WHERE pnum=#{pnum}	
+		WHERE PNUM=#{pnum}	
 	</select>
 	
 	<insert id="insertStock" parameterType="StockDTO">
 		INSERT INTO STOCK
 		(PNUM, PNAME, SCOUNT, COST, CNUM, PCONTENT, PRICE, PSEQ,MAIN)
-		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null,null)
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost},#{cnum}, #{pcontent}, #{price}, null,null)
 	</insert>
 	
 	<insert id="stockInsert">
 		INSERT INTO STOCK
-		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, null, #{pcontent}, #{price}, null,null)
+		VALUES(STOCK_SEQ.NEXTVAL, #{pname}, #{scount}, #{cost}, #{cnum}, #{pcontent}, #{price}, null,null)
 	</insert>
 	
 	<update id ="updateStock" parameterType="StockDTO">

@@ -95,5 +95,11 @@ public class StockDAO implements IStockDAO {
 		map.put("chk", chk_arr);
 		return sqlSession.selectList(namespace+"getSelectedList",map);
 	}
+
+	@Override
+	public List<PCategoryDTO> getCnum(int cnum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getCnum",cnum);
+	}
 	
 }

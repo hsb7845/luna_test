@@ -32,6 +32,7 @@
 	}
 	$(document).ready(function(){
 		var selectedOptNum = 0;
+		
 		var selectedOpt = "";
 		var pseq = $("input[name='pseq']").val();
 		var price= $("#price").val();
@@ -39,6 +40,7 @@
 		var selOpt = {};
 		selOpt = {"ptitle":ptitle,"pseq":pseq};
 		$("input[name='buy']").click(function(){
+			//alert(selectedOptNum);
 			var id = '${id}';
 			if(selectedOptNum==1){
 				var amount  = $("input[name='amount"+1+"']").val();
@@ -108,6 +110,7 @@
 		});
 		
 		$("input[name='selOpt']").click(function(){
+			//alert(selectedOptNum);
 			var optNum = $('input[name="optNum"]').val();
 			if(optNum==1){
 				selectedOptNum++;
@@ -121,12 +124,11 @@
 				}else if(optval!=" "){
 					selectedOpt = optname;
 					var innerText= "";
-					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span id='selectedOpt"+selectedOptNum+"'>"+selectedOpt+"</span></td>";
 					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
 					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
 					$("#optContainer").append(innerText);
 					changeTotalPrice();
-					selectedOptNum++;
 				}
 			}else if (optNum>1){
 				selectedOptNum++;

@@ -48,6 +48,7 @@ public class BuyListController {
 	public String buytForm(Locale locale, Model model,HttpServletRequest request) {
 		int pseq =  Integer.parseInt(request.getParameter("pseq"));
 		System.out.println("구매폼  : "+request.getParameter("selOptNum"));
+		
 		int selOptNum = Integer.parseInt(request.getParameter("selOptNum"));
 		System.out.println("selOptNum"+selOptNum);
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -67,6 +68,7 @@ public class BuyListController {
 			for(int i=1;i<=selOptNum;i++) {
 					SelectedOptionDTO optDTO = new SelectedOptionDTO();
 					JSONObject jsonObj1  = (JSONObject)jsonObj.get(i+"");
+					System.out.println("구매폼  : "+jsonObj1.toJSONString());
 					optDTO.setAmount((int) jsonObj1.get("amount"));
 					optDTO.setOptName((String) jsonObj1.get("optName"));
 					optDTO.setPrice((int) jsonObj1.get("price"));

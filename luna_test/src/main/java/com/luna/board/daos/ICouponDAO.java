@@ -3,6 +3,7 @@ package com.luna.board.daos;
 import java.util.List;
 
 import com.luna.board.dtos.CouponDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 public interface ICouponDAO {
 
@@ -13,6 +14,7 @@ public interface ICouponDAO {
 	boolean hitCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
 	CouponDTO ringCoupon();
+	List<CouponDTO> getAllList(String id);
 	List<CouponDTO> getAllList(CouponDTO dto);
 	
 }

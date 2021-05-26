@@ -5,10 +5,11 @@
 
 	<select id="getAllList" resultType="CouponDTO" parameterType="CouponDTO">		
 		SELECT CSEQ, CCONTENT, DISCOUNT, ID, HIT
-		FROM COUPON	order by cseq desc	
+		FROM COUPON	
 		<if test="id!=null">
 		where id = #{id}
 		</if>
+		order by cseq desc	
 	</select>
 	
 	<insert id="insertCoupon" parameterType="CouponDTO">

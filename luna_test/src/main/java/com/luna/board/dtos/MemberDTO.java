@@ -15,7 +15,7 @@ public class MemberDTO {
 	private String adr4;
 	private Date birth;
 	private String sex;
-	private int phone;
+	private String phone;
 	private Date joindate;
 	private String admin;
 	private String nickName;
@@ -102,11 +102,11 @@ public class MemberDTO {
 		this.sex = sex;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -151,7 +151,7 @@ public class MemberDTO {
 	}
 
 	public MemberDTO(String id, String pwd, String email, String adr1, String adr2, String adr3,
-			String adr4, Date birth, String sex, int phone, Date joindate, String admin, String nickName, String name,
+			String adr4, Date birth, String sex, String phone, Date joindate, String admin, String nickName, String name,
 			int point) {
 		super();
 		this.id = id;

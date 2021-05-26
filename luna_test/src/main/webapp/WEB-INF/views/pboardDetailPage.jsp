@@ -42,17 +42,15 @@
 			var id = '${id}';
 			if(selectedOptNum==1){
 				var amount  = $("input[name='amount"+1+"']").val();
-				var optname = $("#opt"+1+" option:selected").attr("value2");
-				var optval = $("#opt"+1+" option:selected").val();
-				price = parseInt(price)+parseInt(optval);
-				selOpt[1] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+				var optname = $("#selectedOpt1").text();
+				price = $("input[name='price1']").val();
+				selOpt[1] = {"amount":amount,"optName":optname,"price":price};
 			}else{
-				for(var i=1;i<selectedOptNum;i++){
+				for(var i=1;i<=selectedOptNum;i++){
 					var amount  = $("input[name='amount"+i+"']").val();
-					var optname = $("#opt"+i+" option:selected").attr("value2");
-					var optval = $("#opt"+i+" option:selected").val();
-					price = parseInt(price)+parseInt(optval);
-					selOpt[i] = {"amount":amount,"optName":optname,"optVal":optval,"price":price};
+					var optname = $("#selectedOpt"+i).text();
+					price =  $("input[name='price"+i+"']").val();
+					selOpt[i] = {"amount":amount,"optName":optname,"price":price};
 				}
 			}
 			selOpt = JSON.stringify(selOpt);
@@ -64,6 +62,7 @@
 				var input1 = document.createElement('input'); 
 				var input2 = document.createElement('input');
 				var input3 = document.createElement('input');
+				var input4 = document.createElement('input');
 				input1.setAttribute("type", "hidden"); 
 				input1.setAttribute("name", "returnUrl"); 
 				input1.setAttribute("value", "buyform");
@@ -73,9 +72,13 @@
 				input3.setAttribute("type", "hidden"); 
 				input3.setAttribute("name", "selOpt"); 
 				input3.setAttribute("value", selOpt);
+				input4.setAttribute("type", "hidden"); 
+				input4.setAttribute("name", "selOptNum"); 
+				input4.setAttribute("value", selectedOptNum);
 				newForm.appendChild(input1); 
 				newForm.appendChild(input2);
 				newForm.appendChild(input3);
+				newForm.appendChild(input4);
 				document.body.appendChild(newForm); 
 				newForm.submit();
 				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
@@ -86,14 +89,19 @@
 				newForm.action = 'buyform.do'; 
 				var input2 = document.createElement('input');
 				var input3 = document.createElement('input');
+				var input4 = document.createElement('input');
 				input2.setAttribute("type", "hidden"); 
 				input2.setAttribute("name", "pseq"); 
 				input2.setAttribute("value", pseq);
 				input3.setAttribute("type", "hidden"); 
 				input3.setAttribute("name", "selOpt"); 
 				input3.setAttribute("value", selOpt);
+				input4.setAttribute("type", "hidden"); 
+				input4.setAttribute("name", "selOptNum"); 
+				input4.setAttribute("value", selectedOptNum);
 				newForm.appendChild(input2);
 				newForm.appendChild(input3);
+				newForm.appendChild(input4);
 				document.body.appendChild(newForm); 
 				newForm.submit();
 			}
@@ -139,7 +147,7 @@
 				}
 					selectedOpt = optname;
 					var innerText= "";
-					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span id='selectedOpt"+selectedOptNum+"'>"+selectedOpt+"</span></td>";
 					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
 					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
 					$("#optContainer").append(innerText);

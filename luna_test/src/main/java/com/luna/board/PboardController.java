@@ -32,6 +32,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
@@ -240,6 +241,17 @@ public class PboardController {
 		map.put("list",list);
 		return map;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getAdr.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,Object> getAdr(Locale locale, Model model,String id){
+		MemberDTO mdto = pBoardService.getMember(id);
+		Map<String,Object> map = new HashMap<>();
+		map.put("mdto",mdto);
+		return map;
+	}
+	
+	
 	
 	
 	

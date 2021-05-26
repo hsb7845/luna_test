@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
@@ -23,5 +24,6 @@ public interface IPBoardDAO {
 	List<PCategoryDTO> getCategory(String[] chk_arr);
 	boolean uploadImg(ImgFileDTO dto);
 	void boardHit(int pseq);
+	MemberDTO getMember(String id);
 	
 }

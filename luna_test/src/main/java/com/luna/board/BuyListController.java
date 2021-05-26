@@ -1,5 +1,6 @@
 package com.luna.board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.BuyListDTO;
 import com.luna.board.dtos.MemberDTO;
+import com.luna.board.dtos.SelectedOptionDTO;
 import com.luna.board.service.IBuyListService;
 
 
@@ -29,7 +31,7 @@ public class BuyListController {
 	private IBuyListService buyListService;
 	
 	@RequestMapping(value = "/buylist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getAllBuyList(Locale locale, Model model, HttpServletRequest request) {
+	public String getAllBuyList(Locale locale, Model model,HttpServletRequest request) {
 		List<BuyListDTO> list = buyListService.getAllList();
 		model.addAttribute("list",list);
 		return "buylist";
@@ -45,26 +47,65 @@ public class BuyListController {
 	@RequestMapping(value = "/buyform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buytForm(Locale locale, Model model,HttpServletRequest request) {
 		int pseq =  Integer.parseInt(request.getParameter("pseq"));
+		System.out.println("구매폼  : "+request.getParameter("selOptNum"));
+		int selOptNum = Integer.parseInt(request.getParameter("selOptNum"));
+		System.out.println("selOptNum"+selOptNum);
 		Map<String,Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		JSONParser  parser = new JSONParser();
-		try {
-			Object obj = parser.parse(request.getParameter("selOpt"));
-			JSONObject jsonObj = (JSONObject) obj;
-			System.out.println(jsonObj.toJSONString());
-			System.out.println("jsonObj.get(1)"+jsonObj.get(1));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(id==null) {
+			String msg = "자동 로그아웃 되었습니다.";
+			return "redirect:loginForm.do";
 		}
+		JSONParser  parser = new JSONParser();
+		List<SelectedOptionDTO> list = new ArrayList<>();
+		if(selOptNum>1) {
+			
+			try {
+				Object obj = parser.parse(request.getParameter("selOpt"));
+				JSONObject jsonObj = (JSONObject) obj;
+			for(int i=1;i<=selOptNum;i++) {
+					SelectedOptionDTO optDTO = new SelectedOptionDTO();
+					JSONObject jsonObj1  = (JSONObject)jsonObj.get(i+"");
+					optDTO.setAmount((int) jsonObj1.get("amount"));
+					optDTO.setOptName((String) jsonObj1.get("optName"));
+					optDTO.setPrice((int) jsonObj1.get("price"));
+					list.add(optDTO);
+					//System.out.println(jsonObj.toJSONString());
+					//System.out.println("jsonObj.get(1)"+jsonObj.get("1"));
+				}
+				model.addAttribute("list",list);
+			} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}else {
+			SelectedOptionDTO optDTO = new SelectedOptionDTO();
+			try {
+				Object obj = parser.parse(request.getParameter("selOpt"));
+				JSONObject jsonObj = (JSONObject) obj;
+				JSONObject jsonObj1  = (JSONObject)jsonObj.get("1");
+				System.out.println(jsonObj1.toJSONString());
+				optDTO.setAmount(Integer.parseInt((String) jsonObj1.get("amount")));
+				String optName = (String) jsonObj1.get("optName");
+				optName = optName.substring(0,optName.length()-1);
+				optDTO.setOptName(optName);
+				optDTO.setPrice(Integer.parseInt((String) jsonObj1.get("price")));
+				list.add(optDTO);
+				model.addAttribute("list",list);
+				//System.out.println(jsonObj.toJSONString());
+				//System.out.println("jsonObj.get(1)"+jsonObj.get("1"));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		MemberDTO mdto = buyListService.getMember(id);
 		map = buyListService.getPboard(pseq);
 		model.addAttribute("mdto",mdto);
 		model.addAttribute("dto",map.get("dto"));
-		model.addAttribute("selOpt",request.getParameter("selOpt"));
-		System.out.println(request.getParameter("pseq"));
-		System.out.println(request.getParameter("selOpt"));
 		return "buyForm";
 	}
 	

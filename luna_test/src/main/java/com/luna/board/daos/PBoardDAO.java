@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
@@ -155,5 +156,11 @@ public class PBoardDAO implements IPBoardDAO{
 	public void boardHit(int pseq) {
 		// TODO Auto-generated method stub
 		sqlSession.update(namespace+"boardHit", pseq);
+	}
+
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"getAdr", id);
 	}
 }

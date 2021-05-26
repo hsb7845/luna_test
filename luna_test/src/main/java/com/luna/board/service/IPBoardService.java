@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
@@ -26,4 +27,5 @@ public interface IPBoardService {
 	List<PCategoryDTO> getCategory(String[] chk_arr);
 	boolean uploadImg(HttpServletRequest request);
 	boolean uploadFile(MultipartFile[] uploadFiles, HttpServletRequest request);
+	MemberDTO getMember(String id);
 }

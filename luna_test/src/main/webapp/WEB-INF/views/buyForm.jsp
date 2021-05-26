@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>구매/결제 페이지</title>
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <style>
 .cmd{
 	    max-width: 480px;
@@ -19,41 +20,75 @@
 	
 	}
 </style>
+<script>
+	function newAdd(){
+		
+		$("input[name='memAdr']").attr("checked", false);
+		$("input[type='text']").val('');
+	}
+	
+	$(document).ready(function(){
+		$("input[name='memAdr']").click(function(){
+			$("input[name='newAdr']").attr("checked", false);
+			var id = $("input[name='id']").val();
+			$.ajax({
+				url : "getAdr.do",
+				mehthod : "post",
+				dataType : "json",
+				data : { "id" : id },
+				asnc:false,
+				success : function(data) {
+					var mdto = data["mdto"];
+					$("input[name='address']").val(mdto["name"]);
+					$("input[name='phone']").val(mdto["phone"]);
+					$("input[name='adr1']").val(mdto["adr1"]);
+					$("input[name='adr2']").val(mdto["adr2"]);
+					$("input[name='adr3']").val(mdto["adr3"]);
+					$("input[name='adr4']").val(mdto["adr4"]);
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>구매/결제</h1>
 	<form method="post" action=".do">
-	<table>
+		<input type="hidden" value="${mdto.id }" name="id" >
+	<table border="1">
 		<tr>
 			<th>이미지</th><th>상품명</th><th>판매가</th><th>수량</th><th>합계</th>
 		</tr>
-		<c:if test="${dto!=null }">
+		<c:if test="${list!=null }">
+			<c:forEach items="${list }" var="i">
 			<tr>
-				<td>이미지</td><td>${dto.ptitle }</td><td>${dto.stock.price}</td><td></td><td></td>
+				<td>이미지</td><td>${dto.ptitle }<br>${i.optName }</td><td>${i.price}</td><td>${i.amount}</td><td>${i.amount * i.price }</td>
 			</tr>
-		</c:if>		
+			</c:forEach>
+		</c:if>
 		<tr>
 			<th>배송지 정보</th>
-			<td><input type="radio" name="fruit" value="sameInfo" checked="checked" /> 구매자와 동일정보
-				<input type="radio" name="fruit"onclick="sample2_execDaumPostcode()" value="newInfo"  /> 새주소 입력</td>
+			<td><input type="radio" name="memAdr" value="sameInfo" checked="checked" /> 구매자와 동일정보
+				<input type="radio" name="newAdr" onclick="newAdd()"  /> 새주소 입력</td>
 		</tr>
 		<tr>
 			<th>받는 이</th>
-			<td><input type="text" name="addressee" value="${mdto.name }"></td>
+			<td><input type="text" name="address" value="${mdto.name }"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
-			<td><input type="number" name="phone" value="${mdto.phone }"></td>
+			<td><input type="text" name="phone" value="${mdto.phone }"></td>
 		</tr>
 		<tr>
 			<th>주소</th>
 		<td><input type="text" name="adr1" value="${mdto.adr1}"id="sample2_postcode" placeholder="우편번호"></td>
 		<td><input type="text" name="adr2" value="${mdto.adr2}" placeholder="주소"><br></td>
 		<td><input type="text" name="adr3" value="${mdto.adr3}" placeholder="상세주소"></td>
-		<td><input type="text" name="adr4" value="${mdto.adr4}" placeholder="참고항목"></td></tr>
+		<td><input type="text" name="adr4" value="${mdto.adr4}" placeholder="참고항목"></td>
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 	</div>	
+		</tr>
 		<tr>
 			<th>결제 방법</th>
 			<td><input type="radio" name="pay" value="noBankbook" checked="checked" /> 무통장 입금

@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -134,12 +135,13 @@ public class MemberController {
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
-			
+			System.out.println("로그인폼  : "+request.getParameter("selOptNum"));
+			model.addAttribute("selOptNum",request.getParameter("selOptNum"));
 			model.addAttribute("pseq", request.getParameter("pseq"));
-			System.out.println(request.getParameter("pseq"));
+			//System.out.println(request.getParameter("pseq"));
 			model.addAttribute("selOpt", request.getParameter("selOpt"));
 			model.addAttribute("returnUrl",returnUrl);
-			System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
+			//System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
 			return "userlogin";
 		}else if(returnUrl.equals("cart")) {
 			JSONParser  parser = new JSONParser();
@@ -152,7 +154,7 @@ public class MemberController {
 				e.printStackTrace();
 			}
 			model.addAttribute("pseq", request.getParameter("pseq"));
-			System.out.println(request.getParameter("pseq"));
+			System.out.println("로그인  : "+request.getParameter("selOptNum"));
 			model.addAttribute("selOpt", request.getParameter("selOpt"));
 			model.addAttribute("returnUrl",returnUrl);
 			return "userlogin";
@@ -164,7 +166,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request) {
+	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request,HttpServletResponse response) {
 		String msg= "";
 		boolean isS = false;
 		HttpSession session = request.getSession();
@@ -175,14 +177,16 @@ public class MemberController {
 				session.setAttribute("nickname", dto.getNickName());
 				session.setAttribute("admin",dto.getAdmin());
 				if(dto.getAdmin().equals("관리자")) {
-					System.out.println("admin : "+dto.getAdmin());
+					//System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
 					if(request.getParameter("returnUrl")!=null) {
 						if(request.getParameter("returnUrl").equals("buyform")) {
+							System.out.println("로그인  : "+request.getParameter("selOptNum"));
+							model.addAttribute("selOptNum",request.getParameter("selOptNum"));
 							model.addAttribute("pseq", request.getParameter("pseq"));
 							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
-							System.out.println("여기:"+request.getParameter("selOpt"));
+							//System.out.println("여기:"+request.getParameter("selOpt"));
 							return "redirect:buyform.do";
 						}else if ( request.getParameter("returnUrl").equals("cart")) {
 							model.addAttribute("pseq", request.getParameter("pseq"));

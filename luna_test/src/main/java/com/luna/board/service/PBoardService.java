@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.luna.board.daos.IPBoardDAO;
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
@@ -189,6 +190,12 @@ public class PBoardService implements IPBoardService{
 	            }
 	    }
 	        return isS;
+	}
+
+	@Override
+	public MemberDTO getMember(String id) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getMember(id);
 	}
 	
 	

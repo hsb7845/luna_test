@@ -153,6 +153,9 @@
 		where pseq = #{pseq}
 	</update>
 	
+	<select id="getAdr" parameterType="String" resultType="MDTO">
+		select * from member where id=#{id}
+	</select>
 </mapper>
 
 

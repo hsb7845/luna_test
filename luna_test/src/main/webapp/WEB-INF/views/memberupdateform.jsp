@@ -70,11 +70,11 @@ body,button,input{font-family: 'BinggraeSamanco-Bold';
 		</div>
 		이메일<br> <input type="text" name="email"  value="${dto.email}"><br>
 		주소<br>
-		<input type="text" name="adr1" value="${dto.adr1}"id="sample2_postcode" placeholder="우편번호">
+		<input type="text" name="adr1" value="${dto.adr1}" id="sample2_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" name="adr2" value="${dto.adr2}" placeholder="주소"><br>
-		<input type="text" name="adr3" value="${dto.adr3}" placeholder="상세주소">
-		<input type="text" name="adr4" value="${dto.adr4}" placeholder="참고항목"><br>
+		<input type="text" name="adr2" value="${dto.adr2}" id="sample2_address" placeholder="주소"><br>
+		<input type="text" name="adr3" value="${dto.adr3}" id="sample2_detailAddress" placeholder="상세주소">
+		<input type="text" name="adr4" value="${dto.adr4}" id="sample2_extraAddress" placeholder="참고항목"><br>
 				<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">

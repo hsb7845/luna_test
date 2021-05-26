@@ -79,16 +79,15 @@
 			<th>전화번호</th>
 			<td><input type="text" name="phone" value="${mdto.phone }"></td>
 		</tr>
-		<tr>
 			<th>주소</th>
-		<td><input type="text" name="adr1" value="${mdto.adr1}"id="sample2_postcode" placeholder="우편번호"></td>
-		<td><input type="text" name="adr2" value="${mdto.adr2}" placeholder="주소"><br></td>
-		<td><input type="text" name="adr3" value="${mdto.adr3}" placeholder="상세주소"></td>
-		<td><input type="text" name="adr4" value="${mdto.adr4}" placeholder="참고항목"></td>
+			<td><input type="button" onclick="sample2_execDaumPostcode()" value="주소 찾기">
+		<input type="text" name="adr1" value="${mdto.adr1}" id="sample2_postcode" placeholder="우편번호">
+		<input type="text" name="adr2" value="${mdto.adr2}" id="sample2_address" placeholder="주소"><br>
+		<input type="text" name="adr3" value="${mdto.adr3}" id="sample2_detailAddress" placeholder="상세주소">
+		<input type="text" name="adr4" value="${mdto.adr4}" id="sample2_extraAddress" placeholder="참고항목"></td>
 	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-	</div>	
-		</tr>
+
 		<tr>
 			<th>결제 방법</th>
 			<td><input type="radio" name="pay" value="noBankbook" checked="checked" /> 무통장 입금
@@ -107,7 +106,8 @@
       </div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <script type="text/javascript">
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
 

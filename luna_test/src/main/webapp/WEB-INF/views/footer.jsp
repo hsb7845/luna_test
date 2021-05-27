@@ -14,6 +14,7 @@
 		border-collapse: collapse;
 		text-align: center;
 		font-size : 10px;	
+		
 	}
 </style>
 

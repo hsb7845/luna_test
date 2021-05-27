@@ -336,7 +336,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 			<p style="text-align:center;">
-				<img id='mainLogo' src='upload/23_13.jpeg' style='width:200px; height:90px; vertical-align: middle;' /> 
+				<img id='mainLogo' src='upload/23_13.jpeg' style='width:50%; height:600px; vertical-align: middle;' /> 
 				
 				
 

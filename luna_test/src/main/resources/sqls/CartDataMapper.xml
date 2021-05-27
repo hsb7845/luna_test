@@ -4,7 +4,7 @@
 <mapper namespace="com.luna.cart">
 
 	<select id="getAllList" resultType="CartDTO" parameterType="String">
-		SELECT SEQ, ID, PSEQ, PCOUNT 
+		SELECT *
 		FROM CART WHERE id = #{id}
 		 ORDER BY SEQ DESC
 	

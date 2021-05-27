@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.luna.board.daos.IBuyListDAO;
 import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.MemberDTO;
 
 @Service
@@ -71,6 +72,12 @@ public class BuyListService implements IBuyListService {
 	public boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list) {
 		// TODO Auto-generated method stub
 		return buyListDAO.insertBuyList(blDTO,list);
+	}
+
+	@Override
+	public List<CartDTO> getSelCart(String[] chks,String id) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getSelCart(chks,id);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.MemberDTO;
 
 public interface IBuyListDAO {
@@ -17,4 +18,5 @@ public interface IBuyListDAO {
 	Map<String, Object> getPBoard(int pseq);
 	MemberDTO getMember(String id);
 	boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list);
+	List<CartDTO> getSelCart(String[] chks, String id);
 }

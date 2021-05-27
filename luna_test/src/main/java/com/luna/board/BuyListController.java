@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.SelectedOptionDTO;
 import com.luna.board.service.IBuyListService;
@@ -43,6 +44,18 @@ public class BuyListController {
 		
 
 		return "buyListInsertForm";
+	}
+	
+	@RequestMapping(value = "/buyformByCart.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String buyFormByCart(Locale locale, Model model,String[] chks,String id) {
+		//System.out.println("chks[0]"+chks[0]);
+		//System.out.println("chks[1]"+chks[1]);
+		List<CartDTO> cartList = buyListService.getSelCart(chks,id);
+		
+		MemberDTO mdto = buyListService.getMember(id);
+		model.addAttribute("list",cartList);
+		model.addAttribute("mdto",mdto);
+		return "buyFormByCart";
 	}
 	
 	@RequestMapping(value = "/buyform.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -117,6 +130,7 @@ public class BuyListController {
 	@RequestMapping(value = "/buy.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buy(Locale locale, Model model,HttpServletRequest request) {
 		int count = Integer.parseInt(request.getParameter("count"));
+		System.out.println("count"+count);
 		BuyListDTO blDTO = new BuyListDTO();
 		blDTO.setId(request.getParameter("id"));
 		blDTO.setName(request.getParameter("name"));
@@ -129,13 +143,15 @@ public class BuyListController {
 			for(int i=1;i<=count;i++) {
 				bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+i)));
 				bdDTO.setSelOpt(request.getParameter("selOpt"+i));
-				bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq")));
+				bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+i)));		
+				System.out.println(request.getParameter("pseq"+i));
+				bdDTO.setPrice(Integer.parseInt(request.getParameter("price"+i)));
 				list.add(bdDTO);
 			}
 		}else if(count==1) {
 			bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+1)));
 			bdDTO.setSelOpt(request.getParameter("selOpt"+1));
-			bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq")));
+			bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+1)));
 			list.add(bdDTO);
 		}
 		boolean isS = buyListService.insertBuyList(blDTO,list);

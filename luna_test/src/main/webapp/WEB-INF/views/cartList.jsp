@@ -61,7 +61,7 @@
 
 </style>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
 // core, BOM, DOM  3가지 영역으로 나눔
 	function allSel(val){
@@ -77,6 +77,55 @@
 	}
 	//form 태그에서 submit 이벤트가 발생하면 함수실행 
 $(function(){
+	$("input[name='allBuy']").click(function(){
+		var chk_arr = [];
+		$("input[name='chk']").each(function(){
+			var chk =$(this).val();
+			chk_arr.push(chk);
+		})
+		var newForm = document.createElement('form');
+		newForm.name= "newForm";
+		newForm.method = 'post'; 
+		newForm.action = 'buyformByCart.do'; 
+		var input3 = document.createElement('input');
+		input3.setAttribute("type", "hidden"); 
+		input3.setAttribute("name", "chks"); 
+		input3.setAttribute("value", chk_arr);
+		var input4 = document.createElement('input');
+		input4.setAttribute("type", "hidden"); 
+		input4.setAttribute("name", "id"); 
+		input4.setAttribute("value", $('input[name="id"]').val());
+		newForm.appendChild(input3);
+		newForm.appendChild(input4);
+		document.body.appendChild(newForm); 
+		newForm.submit();
+	});
+	
+	$("input[name='sel']").click(function(){
+		var chk_arr = [];
+		$("input[name='chk']:checked").each(function(){
+			var chk =$(this).val();
+			chk_arr.push(chk);
+		})
+		var newForm = document.createElement('form');
+		newForm.name= "newForm";
+		newForm.method = 'post'; 
+		newForm.action = 'buyformByCart.do'; 
+		var input3 = document.createElement('input');
+		input3.setAttribute("type", "hidden"); 
+		input3.setAttribute("name", "chks"); 
+		input3.setAttribute("value", chk_arr);
+		var input4 = document.createElement('input');
+		input4.setAttribute("type", "hidden"); 
+		input4.setAttribute("name", "id"); 
+		input4.setAttribute("value", $('input[name="id"]').val());
+		newForm.appendChild(input3);
+		newForm.appendChild(input4);
+		document.body.appendChild(newForm); 
+		newForm.submit();
+	});
+	
+	
 	$("form").submit(function(){
 		var bool = true;
 		var count=$(this).find("input[name=chk]:checked").length;
@@ -104,14 +153,11 @@ $(function(){
 	
 </script>
 </head>
-<%
-	List<CartDTO> list = (List<CartDTO>) request.getAttribute("list");
-%>
 <body>
 <%@ include file="header.jsp" %>
 <p class="cls1">장바구니리스트</p> 
 <form action="muldelCart.do" method="post">
-
+<input type="hidden" name="id" value="${id }"/>
 <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="150px">
@@ -120,35 +166,32 @@ $(function(){
 	<col width="150px">
 	<tr align="center" class="cartT" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>장바구니번호</th>
-		<th>아이디</th>
 		<th>상품게시글번호</th>
+		<th>선택사항</th>
+		<th>판매가</th>
 		<th>상품수량</th>
+		<th>합계</th>
 	</tr>
-	
-	<%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='5'>----작성된 글이 없습니다.</td></tr>");
-			} else {
-		for(int i=0;i<list.size();i++){
-			CartDTO dto=list.get(i);
-	%>
-		<tr align="center" class="cartM">
-				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
-				<td><%=dto.getSeq()%></td>
-				<td><%=dto.getId()%></a></td>
-				<td><%=dto.getPseq()%></td>
-				<td><%=dto.getPcount()%></td>
+		<c:set var="totalPrice" value="0"/>
+		<c:forEach items="${list }" var="list">
+			<tr align="center" class="cartM">
+			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>
+			<td>${list.pseq }</td>
+			<td>${list.selOpt }</td>
+			<td>${list.price }</td>	
+			<td>${list.pcount }</td>
+			<c:set var="sumPrice" value="${list.price * list.pcount }"/>
+			<td><c:out value="${sumPrice }"></c:out>원</td>
+			<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
-	<%
-			}
-		}
-	%>
+		</c:forEach>
+		<tr><th>총 금액</th><td><c:out value="${totalPrice }원"/></td></tr>
 	<tr>
 		<td colspan="5" id="cartD" >
-			<a href="buyFormByCart.do">전체 항목 구매</a>
-			<a href="buyFormByCart.do">선택 항목 구매</a>
-			<a href=".do">메인</a>
+			<input type="button" value="전체 항목 구매" name="allBuy">
+			<input type="button" value="선택 항목 구매" name="sel">
+			<input type="hidden" value="" name="chks">
+			<a href="index.do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>

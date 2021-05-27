@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 
@@ -88,6 +90,23 @@ public class BuyListDAO implements IBuyListDAO {
 		
 		//isS = sqlSession.update(namespace+"insertBuyDetail",list)>0?true:false;
 		return isS;
+	}
+
+	@Override
+	public List<CartDTO> getSelCart(String[] chks,String id) {
+		// TODO Auto-generated method stub
+		List<CartDTO> list= new ArrayList<>();
+		Map<String,String> map = new HashMap<>();
+		
+		//System.out.println(chks.toString());
+		for(int i=0;i<chks.length;i++) {
+			map.clear();
+			map.put("id", id);
+			map.put("seq", chks[i]);
+			CartDTO dto = sqlSession.selectOne(namespace+"getCart",map);
+			list.add(dto);
+		}
+		return list;
 	}
 	
 }

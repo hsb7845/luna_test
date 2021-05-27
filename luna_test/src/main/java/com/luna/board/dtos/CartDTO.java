@@ -11,8 +11,25 @@ public class CartDTO {
 	private int pcount;
 	private String selOpt;
 	private int price;
+	private ImgFileDTO image;
+	private PBoardDTO pboard;
 	
-	
+	public ImgFileDTO getImage() {
+		return image;
+	}
+
+	public void setImage(ImgFileDTO image) {
+		this.image = image;
+	}
+
+	public PBoardDTO getPboard() {
+		return pboard;
+	}
+
+	public void setPboard(PBoardDTO pboard) {
+		this.pboard = pboard;
+	}
+
 	public String getSelOpt() {
 		return selOpt;
 	}

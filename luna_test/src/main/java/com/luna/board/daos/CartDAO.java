@@ -27,9 +27,9 @@ import com.luna.board.dtos.CartDTO;
 	}
 
 	@Override
-	public boolean insertCart(CartDTO dto) {
+	public boolean insertCart(List<CartDTO> list) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace+"insertCart",dto)>0?true:false;
+		return sqlSession.update(namespace+"insertCart",list)>0?true:false;
 	}
 
 	@Override

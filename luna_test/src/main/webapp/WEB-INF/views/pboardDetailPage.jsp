@@ -11,25 +11,10 @@
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
 
-	function incart(id,pseq){
-		if(id==null){
-			location.href = "loginForm.do?";
-		}
+	
 		
-		$.ajax({
-			url : "insertCart.do",
-			mehthod : "post",
-			dataType : "json",
-			data : { "id" : id ,"pseq" : pseq},
-			asnc:false,
-			success : function(data) {
-				if(confirm("장바구니로 이동하시겠습니까?")){
-					location.href ="cart.do?id="+id;
-				}
-			}
-		})
 		
-	}
+	
 	$(document).ready(function(){
 		var selectedOptNum = 0;
 		
@@ -108,6 +93,69 @@
 				newForm.submit();
 			}
 		});
+		$("#cart").click(function(){
+			var id = $("input[name='id']").val();
+			var pseq = $("input[name='pseq']").val();
+			var id = '${id}';
+			if(selectedOptNum==1){
+				var amount  = $("input[name='amount"+1+"']").val();
+				var optname = $("#selectedOpt1").text();
+				price = $("input[name='price1']").val();
+				selOpt[1] = {"amount":amount,"optName":optname,"price":price};
+			}else{
+				for(var i=1;i<=selectedOptNum;i++){
+					var amount  = $("input[name='amount"+i+"']").val();
+					var optname = $("#selectedOpt"+i).text();
+					price =  $("input[name='price"+i+"']").val();
+					selOpt[i] = {"amount":amount,"optName":optname,"price":price};
+				}
+			}
+			selOpt = JSON.stringify(selOpt);
+			if(id==""){
+				var newForm = document.createElement('form');
+				newForm.name= "newForm";
+				newForm.method = 'post'; 
+				newForm.action = 'loginForm.do'; 
+				var input1 = document.createElement('input'); 
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				var input4 = document.createElement('input');
+				input1.setAttribute("type", "hidden"); 
+				input1.setAttribute("name", "returnUrl"); 
+				input1.setAttribute("value", "buyform");
+				input2.setAttribute("type", "hidden"); 
+				input2.setAttribute("name", "pseq"); 
+				input2.setAttribute("value", pseq);
+				input3.setAttribute("type", "hidden"); 
+				input3.setAttribute("name", "selOpt"); 
+				input3.setAttribute("value", selOpt);
+				input4.setAttribute("type", "hidden"); 
+				input4.setAttribute("name", "selOptNum"); 
+				input4.setAttribute("value", selectedOptNum);
+				newForm.appendChild(input1); 
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				newForm.appendChild(input4);
+				document.body.appendChild(newForm); 
+				newForm.submit();
+				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
+			}else{
+				$.ajax({
+					url : "insertCart.do",
+					mehthod : "post",
+					dataType : "json",
+					data : { "id" : id ,"pseq" : pseq,"selOpt":selOpt,"selOptNum":selectedOptNum},
+					asnc:false,
+					success : function(data) {
+						if(confirm("장바구니로 이동하시겠습니까?")){
+							location.href ="cart.do?id="+id;
+						}
+					}
+				})
+			}
+		});
+		
+		
 		
 		$("input[name='selOpt']").click(function(){
 			//alert(selectedOptNum);
@@ -274,7 +322,7 @@
 		</table>
 	</div>
 	<div>
-		<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })"> 
+		<input type="button" value="장바구니" id="cart" > 
 		<input type="button" name="buy" value="바로구매">
 	</div>
 	<div>

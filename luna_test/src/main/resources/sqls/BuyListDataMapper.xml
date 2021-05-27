@@ -42,6 +42,18 @@
 	<select id="getMember" parameterType="String" resultType="MDTO">
 		select * from member where id =#{id}
 	</select>
+
+	<insert id="insertBuyList" parameterType="BLDTO">
+		INSERT INTO BUY_LIST
+		(BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE)
+		VALUES(BUY_LIST_SEQ.nextval, #{id},sysdate,0,'입금전', #{name}, #{phone}, #{address}, #{totalPrice})
+	</insert>
 	
+	<update id="insertBuyDetail">
+		<foreach collection="list" item="i" separator=" " open="INSERT ALL" close ="SELECT * FROM DUAL">
+			INTO BUY_DETAIL(BDSEQ, PSEQ, PCOUNT, BSEQ, SELOPT)
+			VALUES(BUY_DETAIL_SEQ.NEXTVAL,#{i.pseq},#{i.pcount},BUY_LIST_SEQ.CURRVAL,#{i.selOpt})
+		</foreach>
+	</update>
 	
 </mapper>

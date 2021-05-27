@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
@@ -74,6 +75,14 @@ public class BuyListDAO implements IBuyListDAO {
 	public MemberDTO getMember(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getMember", id);
+	}
+
+	@Override
+	public boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list) {
+		// TODO Auto-generated method stub
+		boolean isS = sqlSession.insert(namespace+"insertBuyList",blDTO)>0?true:false;
+		//isS = sqlSession.update(namespace+"insertBuyDetail",list)>0?true:false;
+		return isS;
 	}
 	
 }

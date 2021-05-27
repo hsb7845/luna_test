@@ -9,7 +9,26 @@ public class CartDTO {
 	private String id;
 	private int pseq;
 	private int pcount;
+	private String selOpt;
+	private int price;
 	
+	
+	public String getSelOpt() {
+		return selOpt;
+	}
+
+	public void setSelOpt(String selOpt) {
+		this.selOpt = selOpt;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public CartDTO() {
 		super();
 		// TODO Auto-generated constructor stub

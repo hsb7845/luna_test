@@ -119,7 +119,7 @@ public class PboardController {
 	
 	
 	@RequestMapping(value = "/pboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String pboard(Locale locale, Model model) {
+	public String pboard(Locale locale, Model model,String select ) {
 		
 //		int total = pBoardService.countBoard();
 //		if(nowPage ==null &&cntPerPage == null) {
@@ -133,8 +133,10 @@ public class PboardController {
 //		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 //		model.addAttribute("paging", "pagingDTO");
 //		model.addAttribute("list",pBoardService.getPagingList(pagingDTO));
-		
-		List<PBoardDTO> list = pBoardService.getAllList();
+		if(select ==null) {
+		select = "all";
+		}
+		List<PBoardDTO> list = pBoardService.getAllList(select);
 		model.addAttribute("list",list);
 		
 		

@@ -136,7 +136,7 @@ $(function(){
 		<tr align="center" class="cartM">
 				<td><input type="checkbox" name="chk" value="<%=dto.getSeq()%>"/></td>
 				<td><%=dto.getSeq()%></td>
-				<td><a href="cartUpdateForm.do?seq=<%=dto.getSeq()%>" ><%=dto.getId()%></a></td>
+				<td><%=dto.getId()%></a></td>
 				<td><%=dto.getPseq()%></td>
 				<td><%=dto.getPcount()%></td>
 			</tr>
@@ -146,7 +146,8 @@ $(function(){
 	%>
 	<tr>
 		<td colspan="5" id="cartD" >
-			<a href="cartInsertForm.do">장바구니 추가하기</a>
+			<a href="buyFormByCart.do">전체 항목 구매</a>
+			<a href="buyFormByCart.do">선택 항목 구매</a>
 			<a href=".do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>

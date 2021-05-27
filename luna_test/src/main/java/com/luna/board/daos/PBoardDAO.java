@@ -59,9 +59,9 @@ public class PBoardDAO implements IPBoardDAO{
 	}
 
 	@Override
-	public List<PBoardDTO> getAllList() {
+	public List<PBoardDTO> getAllList(String select) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"getAllList");
+		return sqlSession.selectList(namespace+"getAllList",select);
 	}
 
 	@Override

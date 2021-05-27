@@ -8,7 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
 <link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/font-awesome.min.css' type='text/css' media='all'/>

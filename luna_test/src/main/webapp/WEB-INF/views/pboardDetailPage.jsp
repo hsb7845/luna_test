@@ -253,7 +253,7 @@
 <style>
 .imgmain {
 	width: 300px;
-	height: 350px;
+	height: 450px;
 }
 
 .imgsub {
@@ -286,7 +286,7 @@
 		<div style="border: 1px dashed #BDBDBD; float: left;">
 			<!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
-				<img class="imgmain" src="upload/img_dummy1.jpg">
+				<img class="imgmain"  src="upload/img_dummy1.jpg">
 			</c:if>
 
 			<div>
@@ -299,9 +299,9 @@
 		</div>
 		<div>
 			<div>
-				<h1>${map.pboard.ptitle}</h1>
+				<h3>${map.pboard.ptitle}</h3>
 				<input type="hidden" id="ptitle" value="${map.pboard.ptitle}" />
-				<h2>판매가 : ${map.pboard.stock.price }원</h2>
+				<h4>판매가 : ${map.pboard.stock.price }원</h4>
 				<input type="hidden" value="${map.pboard.stock.price }" id="price">
 			</div>
 

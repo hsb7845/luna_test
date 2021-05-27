@@ -10,7 +10,7 @@ import com.luna.board.dtos.MemberDTO;
 public interface IMemberDAO {
 
 	List<MemberDTO> getAllList();
-	boolean insertMember(MemberDTO mdto, CouponDTO cdto);
+	boolean insertMember(MemberDTO dto);
 	MemberDTO getMember(String id);
 	boolean updateMember(MemberDTO dto);
 	boolean muldelMember(String[] chks);
@@ -24,5 +24,6 @@ public interface IMemberDAO {
 	boolean insertKMember(MemberDTO dto);
 	
 	List<MemberDTO> BirthMember();
+	
 
 }

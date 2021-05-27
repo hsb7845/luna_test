@@ -10,7 +10,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 
 @Repository
@@ -23,8 +22,8 @@ public class MemberDAO implements IMemberDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public boolean insertMember(MemberDTO mdto, CouponDTO cdto) {
-		return sqlSession.insert(namespace+"insertMember" , cdto)>0? true:false;
+	public boolean insertMember(MemberDTO dto) {
+		return sqlSession.insert(namespace+"insertMember" , dto)>0? true:false;
 	}
 	
 	@Override

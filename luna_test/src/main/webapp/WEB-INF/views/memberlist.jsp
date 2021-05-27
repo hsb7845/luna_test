@@ -249,10 +249,6 @@ $(function(){
 // $("#insertmemberform").click(function(){
 // location.href='insertmemberform.do'
 // });
-	$("#insertmemberform").click(function(){
-		location.href='insertmemberform.do'
-	});
-});
 
 	</script>
 	

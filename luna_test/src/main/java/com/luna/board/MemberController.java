@@ -36,11 +36,9 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.model.KakaoProfile;
 import com.luna.board.model.OAuthToken;
-import com.luna.board.service.ICouponService;
 import com.luna.board.service.IMemberService;
 
 @Controller
@@ -50,8 +48,6 @@ public class MemberController {
 	@Autowired
 	private IMemberService MemberService;
 
-	@Autowired
-	private ICouponService CouponServece;
 	
 	 @Autowired
 	 private JavaMailSender mailSender;
@@ -65,12 +61,12 @@ public class MemberController {
 		return "memberlist";
 	}
 	
-	@RequestMapping(value = "/memberNew.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String newmember(Locale locale, Model model) {
-		List<MemberDTO> list = MemberService.getAllList();
-		model.addAttribute("list", list);
-		return "memberlist";
-	}
+//	@RequestMapping(value = "/memberNew.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String newmember(Locale locale, Model model) {
+//		List<MemberDTO> list = MemberService.getAllList();
+//		model.addAttribute("list", list);
+//		return "memberlist";
+//	}
 	
 	@RequestMapping(value = "/insertmemberform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertmember(Locale locale, Model model) {
@@ -78,11 +74,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/insertmember.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, MemberDTO mdto, CouponDTO cdto, String birthtest) {
+	public String insert(Locale locale, Model model, MemberDTO dto, String birthtest) {
 		System.out.println("birthtest : "+birthtest); 
 		Timestamp ts= Timestamp.valueOf(birthtest+" 00:00:00");
-		mdto.setBirth(ts);
-		boolean isS = MemberService.insertMember(mdto,  cdto);
+		dto.setBirth(ts);
+		boolean isS = MemberService.insertMember(dto);
 		if(isS) {
 			return "redirect:member.do";
 		}else {
@@ -433,12 +429,6 @@ public class MemberController {
 	}
 	
 	
-//	@RequestMapping(value = "/newMember.do", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String newMember(Locale locale, Model model) {
-//		List<MemberDTO> list = MemberService.getAllList();
-//		model.addAttribute("list", list);
-//		return "memberlist";
-//	}
 	
 	@RequestMapping(value = "/birthmember.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String birth(Locale locale, Model model) {

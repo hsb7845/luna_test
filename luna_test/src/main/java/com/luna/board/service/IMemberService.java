@@ -9,6 +9,7 @@ import com.luna.board.dtos.MemberDTO;
 
 public interface IMemberService {
 	List<MemberDTO> getAllList();
+	boolean insertMember(MemberDTO dto);
 	MemberDTO getMember(String id);
 	boolean deleteMember(MemberDTO dto);
 	boolean updateMember(MemberDTO dto);
@@ -23,7 +24,7 @@ public interface IMemberService {
 	
 	List<MemberDTO> BirthMember();
 	
-	boolean insertMember(MemberDTO mdto, CouponDTO cdto);
+	
 	
 	
 }

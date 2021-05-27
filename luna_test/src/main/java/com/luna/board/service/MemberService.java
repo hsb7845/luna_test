@@ -21,16 +21,12 @@ public class MemberService implements IMemberService{
 	private static final MemberDTO MemberDTO = null;
 	@Autowired
 	IMemberDAO MemberDAO;
-
-	@Autowired
-	ICouponDAO CouponDAO;
 	
 	@Override
-	public boolean insertMember(MemberDTO mdto, CouponDTO cdto) {
-		MemberDAO.insertKMember(mdto);
-		return CouponDAO.insertCoupon(cdto);
+	public boolean insertMember(MemberDTO dto) {
+		return MemberDAO.insertMember(dto);
 	}
-
+	
 	@Override
 	public List<MemberDTO> getAllList() {
 		// TODO Auto-generated method stub

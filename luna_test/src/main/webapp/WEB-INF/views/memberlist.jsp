@@ -123,8 +123,6 @@
 		</select>
 	</div>	
 	
-	<input type="hidden" name='sorting' value="${paging.sorting }">
-	
 	
 	<table border = "1" >
 	<tr>

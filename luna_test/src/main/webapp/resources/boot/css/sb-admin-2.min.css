@@ -4537,10 +4537,10 @@ a.badge-warning:focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(246,194,62,.5);
 }
-.badge-danger {
-    color: #fff;
-    background-color: #e74a3b;
-}
+/* .badge-danger { */
+/*     color: #fff; */
+/*     background-color: #e74a3b; */
+/* } */
 a.badge-danger:focus,
 a.badge-danger:hover {
     color: #fff;

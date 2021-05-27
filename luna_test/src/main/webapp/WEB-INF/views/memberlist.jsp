@@ -8,7 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="UTF-8">
     <head>
         <meta charset="utf-8">
@@ -18,14 +17,12 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-=======
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 
         <title>adminMain</title>
 

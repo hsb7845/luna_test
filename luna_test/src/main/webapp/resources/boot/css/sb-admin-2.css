@@ -4957,10 +4957,10 @@ a.badge-warning:focus, a.badge-warning.focus {
   box-shadow: 0 0 0 0.2rem rgba(246, 194, 62, 0.5);
 }
 
-.badge-danger {
-  color: #fff;
-  background-color: #e74a3b;
-}
+/* .badge-danger { */
+/*   color: #fff; */
+/*   background-color: #e74a3b; */
+/* } */
 
 a.badge-danger:hover, a.badge-danger:focus {
   color: #fff;
@@ -10157,14 +10157,14 @@ a:focus {
   position: relative;
 }
 
-.sidebar .nav-item .nav-link .badge-counter,
-.topbar .nav-item .nav-link .badge-counter {
-  position: absolute;
-  transform: scale(0.7);
-  transform-origin: top right;
-  right: .25rem;
-  margin-top: -.25rem;
-}
+/* .sidebar .nav-item .nav-link .badge-counter, */
+/* .topbar .nav-item .nav-link .badge-counter { */
+/*   position: absolute; */
+/*   transform: scale(0.7); */
+/*   transform-origin: top right; */
+/*   right: .25rem; */
+/*   margin-top: -.25rem; */
+/* } */
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {

@@ -512,9 +512,9 @@
 .fa-behance-square:before {
     content: "\f1b5";
 }
-.fa-bell:before {
-    content: "\f0f3";
-}
+/* .fa-bell:before { */
+/*     content: "\f0f3"; */
+/* } */
 .fa-bell-slash:before {
     content: "\f1f6";
 }
@@ -1442,9 +1442,9 @@
 .fa-empire:before {
     content: "\f1d1";
 }
-.fa-envelope:before {
-    content: "\f0e0";
-}
+/* .fa-envelope:before { */
+/*     content: "\f0e0"; */
+/* } */
 .fa-envelope-open:before {
     content: "\f2b6";
 }

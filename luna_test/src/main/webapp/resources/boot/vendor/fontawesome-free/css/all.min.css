@@ -2462,7 +2462,9 @@
 .fa-laugh-squint:before {
     content: "\f59b";
 }
-/* .fa-laugh-wink:before{content:"\f59c"} */
+/* .fa-laugh-wink:before{ */
+/* 	content:"\f59c" */
+/* } */
 .fa-layer-group:before {
     content: "\f5fd";
 }

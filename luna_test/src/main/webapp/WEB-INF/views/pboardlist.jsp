@@ -77,6 +77,9 @@
 	})
 </script>
 	<style type="text/css">
+		table {
+    		width: 100%;
+  		}
 		.cls1 {
 		    font-size: 30px;
 		    text-align: center;
@@ -99,7 +102,7 @@
 			font-size: 13px;
 		}
 		.pboardD {
-			text-align: center;
+			text-align: left;
 			font-size: 12px;
 		}
 	</style>
@@ -258,9 +261,9 @@
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+<!--     <div class="text-center d-none d-md-inline"> -->
+<!--         <button class="rounded-circle border-0" id="sidebarToggle"></button> -->
+<!--     </div> -->
 
 </ul>
 <!-- End of Sidebar -->
@@ -283,22 +286,22 @@
             </button>
 
             <!-- Topbar Search -->
-            <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control bg-light border-0 small"
-                        placeholder="Search for..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+<!--             <form -->
+<!--                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"> -->
+<!--                 <div class="input-group"> -->
+<!--                     <input -->
+<!--                         type="text" -->
+<!--                         class="form-control bg-light border-0 small" -->
+<!--                         placeholder="Search for..." -->
+<!--                         aria-label="Search" -->
+<!--                         aria-describedby="basic-addon2"> -->
+<!--                     <div class="input-group-append"> -->
+<!--                         <button class="btn btn-primary" type="button"> -->
+<!--                             <i class="fas fa-search fa-sm"></i> -->
+<!--                         </button> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </form> -->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -350,7 +353,7 @@
 <div class="row">
 <p class="cls1">상품게시판관리</p>
 <form action="muldelPboard.do" method="post">
-<table border="1">
+<table border="1" align="center" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="100px">
 	<col width="300px">

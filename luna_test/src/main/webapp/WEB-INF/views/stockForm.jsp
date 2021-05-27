@@ -167,6 +167,7 @@ div.row {
  div#stockForm { 
      text-align: center; 
      background-color: white;
+     width: 100%;
  } 
 </style>
 </head>
@@ -252,6 +253,7 @@ div.row {
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">게시판관리:</h6>
                     <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
                     <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                     <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
@@ -299,12 +301,11 @@ div.row {
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="buydetail.do">
+            <a class="nav-link" href="buylist.do">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>주문관리</a>
-            </span>
-        </a>
-    </li>
+                <span>주문관리</a> </span>
+        	</a>
+    	</li>
 
     <!-- Nav Item - Tables -->
     <!-- <li class="nav-item"> -->
@@ -317,9 +318,9 @@ div.row {
     <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+<!--     <div class="text-center d-none d-md-inline"> -->
+<!--         <button class="rounded-circle border-0" id="sidebarToggle"></button> -->
+<!--     </div> -->
 
 </ul>
 <!-- End of Sidebar -->
@@ -342,22 +343,22 @@ div.row {
             </button>
 
             <!-- Topbar Search -->
-            <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control bg-light border-0 small"
-                        placeholder="Search for..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+<!--             <form -->
+<!--                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"> -->
+<!--                 <div class="input-group"> -->
+<!--                     <input -->
+<!--                         type="text" -->
+<!--                         class="form-control bg-light border-0 small" -->
+<!--                         placeholder="Search for..." -->
+<!--                         aria-label="Search" -->
+<!--                         aria-describedby="basic-addon2"> -->
+<!--                     <div class="input-group-append"> -->
+<!--                         <button class="btn btn-primary" type="button"> -->
+<!--                             <i class="fas fa-search fa-sm"></i> -->
+<!--                         </button> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </form> -->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">

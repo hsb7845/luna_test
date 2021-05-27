@@ -94,6 +94,9 @@
 	</script>
 	
 	<style >	
+		table {
+    		width: 100%;
+  		}
 		.cls1 {
 		    font-size: 30px;
 		    text-align: center;
@@ -256,10 +259,10 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+<!--     Sidebar Toggler (Sidebar) -->
+<!--     <div class="text-center d-none d-md-inline"> -->
+<!--         <button class="rounded-circle border-0" id="sidebarToggle"></button> -->
+<!--     </div> -->
 
 </ul>
 <!-- End of Sidebar -->
@@ -285,17 +288,6 @@
             <form
                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control bg-light border-0 small"
-                        placeholder="Search for..."
-                        aria-label="Search"
-                        aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
                 </div>
             </form>
 
@@ -510,7 +502,7 @@
             <div class="row">
 				<p class="cls1">재고관리</p>
                     <form action="muldelStock.do" method="post">
-                        <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+                        <table align="center" border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                             <col width="50px">
                             <col width="100px">
                             <col width="300px">

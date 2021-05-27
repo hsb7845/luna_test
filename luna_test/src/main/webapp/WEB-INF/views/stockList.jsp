@@ -94,13 +94,22 @@
 	</script>
 	
 	<style >	
-	.cls1 {
-	    font-size: 30px;
-	    text-align: center;
-	}
-	#content {
-		background-color: white;
-	}
+		.cls1 {
+		    font-size: 30px;
+		    text-align: center;
+		}
+		#content {
+			background-color: white;
+		}
+		.stockT {
+			font-size: 15px;
+		}
+		.stockM {
+			font-size: 13px;
+		}
+		.stockD {
+			font-size: 12px;
+		}
 	</style>                
 </head>
 <%
@@ -232,7 +241,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="eboard.do">
+            <a class="nav-link" href="buylist.do">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>
@@ -501,7 +510,7 @@
             <!-- Content Row -->
 
             <div class="row">
-
+				<p class="cls1">재고관리</p>
                     <form action="muldelStock.do" method="post">
                         <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                             <col width="50px">

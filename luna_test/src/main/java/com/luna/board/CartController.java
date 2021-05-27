@@ -47,7 +47,7 @@ public class CartController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCart.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model,int selOptNum,String id,int pseq,HttpServletRequest request) {
+	public boolean insert(Locale locale, Model model,int selOptNum,String id,int pseq,HttpServletRequest request) {
 		JSONParser  parser = new JSONParser();
 		List<CartDTO> list = new ArrayList<>();
 		CartDTO dto = new CartDTO();
@@ -95,10 +95,10 @@ public class CartController {
 		
 		boolean isS = CartService.insertCart(list);
 		if(isS) {
-			return "redirect:cart.do";
+			return isS;
 		} else {
 			model.addAttribute("msg", "장바구니 추가를 실패하였습니다.");
-			return "error";
+			return isS;
 		}
 	}	
 	

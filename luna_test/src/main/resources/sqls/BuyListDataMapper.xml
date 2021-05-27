@@ -44,7 +44,7 @@
 	</select>
 
 	<insert id="insertBuyList" parameterType="BLDTO">
-		INSERT INTO BUY_LIST
+		INTO BUY_LIST
 		(BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE)
 		VALUES(BUY_LIST_SEQ.nextval, #{id},sysdate,0,'입금전', #{name}, #{phone}, #{address}, #{totalPrice})
 	</insert>

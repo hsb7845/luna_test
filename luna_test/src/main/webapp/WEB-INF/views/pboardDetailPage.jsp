@@ -112,33 +112,7 @@
 			}
 			selOpt = JSON.stringify(selOpt);
 			if(id==""){
-				var newForm = document.createElement('form');
-				newForm.name= "newForm";
-				newForm.method = 'post'; 
-				newForm.action = 'loginForm.do'; 
-				var input1 = document.createElement('input'); 
-				var input2 = document.createElement('input');
-				var input3 = document.createElement('input');
-				var input4 = document.createElement('input');
-				input1.setAttribute("type", "hidden"); 
-				input1.setAttribute("name", "returnUrl"); 
-				input1.setAttribute("value", "buyform");
-				input2.setAttribute("type", "hidden"); 
-				input2.setAttribute("name", "pseq"); 
-				input2.setAttribute("value", pseq);
-				input3.setAttribute("type", "hidden"); 
-				input3.setAttribute("name", "selOpt"); 
-				input3.setAttribute("value", selOpt);
-				input4.setAttribute("type", "hidden"); 
-				input4.setAttribute("name", "selOptNum"); 
-				input4.setAttribute("value", selectedOptNum);
-				newForm.appendChild(input1); 
-				newForm.appendChild(input2);
-				newForm.appendChild(input3);
-				newForm.appendChild(input4);
-				document.body.appendChild(newForm); 
-				newForm.submit();
-				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
+				location.href = "loginForm.do?returnUrl=pboard&pseq="+pseq;
 			}else{
 				$.ajax({
 					url : "insertCart.do",
@@ -147,8 +121,13 @@
 					data : { "id" : id ,"pseq" : pseq,"selOpt":selOpt,"selOptNum":selectedOptNum},
 					asnc:false,
 					success : function(data) {
-						if(confirm("장바구니로 이동하시겠습니까?")){
-							location.href ="cart.do?id="+id;
+						var isS = data["isS"];
+						if(isS){
+							if(confirm("장바구니로 이동하시겠습니까?")){
+								location.href ="cart.do?id="+id;
+							}else{
+								return false;
+							}
 						}
 					}
 				})

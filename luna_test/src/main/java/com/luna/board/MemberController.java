@@ -143,19 +143,8 @@ public class MemberController {
 			model.addAttribute("returnUrl",returnUrl);
 			//System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
 			return "userlogin";
-		}else if(returnUrl.equals("cart")) {
-			JSONParser  parser = new JSONParser();
-			try {
-				Object obj = parser.parse(request.getParameter("selOpt"));
-				JSONObject jsonObj = (JSONObject) obj;
-				
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}else if(returnUrl.equals("pboard")) {
 			model.addAttribute("pseq", request.getParameter("pseq"));
-			System.out.println("로그인  : "+request.getParameter("selOptNum"));
-			model.addAttribute("selOpt", request.getParameter("selOpt"));
 			model.addAttribute("returnUrl",returnUrl);
 			return "userlogin";
 		}else {
@@ -188,10 +177,9 @@ public class MemberController {
 							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
 							//System.out.println("여기:"+request.getParameter("selOpt"));
 							return "redirect:buyform.do";
-						}else if ( request.getParameter("returnUrl").equals("cart")) {
+						}else if ( request.getParameter("returnUrl").equals("pboard")) {
 							model.addAttribute("pseq", request.getParameter("pseq"));
-							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
-							return "redirect:inCart.do";
+							return "redirect:pboarddetail.do";
 						}
 					}
 					

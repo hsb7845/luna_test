@@ -3,7 +3,7 @@
 <mapper namespace="com.luna.buydetail">
 
 	<select id="getAllList" resultType="BDDTO">
-		SELECT BDSEQ,PNUM,PCOUNT,BSEQ
+		SELECT BDSEQ,PSEQ,PCOUNT,BSEQ
 		FROM BUY_DETAIL ORDER BY BDSEQ DESC
 	</select>
 	

@@ -49,7 +49,7 @@
 		VALUES(BUY_LIST_SEQ.nextval, #{id},sysdate,0,'입금전', #{name}, #{phone}, #{address}, #{totalPrice})
 	</insert>
 	
-	<insert id="insertBuyDetail">
+	<insert id="insertBuyDetail" parameterType="BDDTO">
 			INSERT INTO BUY_DETAIL(BDSEQ, PSEQ, PCOUNT, BSEQ, SELOPT,PRICE)
 			VALUES(BUY_DETAIL_SEQ.NEXTVAL,#{pseq},#{pcount},BUY_LIST_SEQ.CURRVAL,#{selOpt},#{price})
 	</insert>

@@ -6,8 +6,16 @@ public class BuyDetailDTO {
 	private int pcount;
 	private int bseq;
 	private String selOpt;
+	private int price;
+	
 	
 
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getPseq() {
 		return pseq;
 	}

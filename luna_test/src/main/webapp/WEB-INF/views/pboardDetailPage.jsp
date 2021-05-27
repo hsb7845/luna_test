@@ -213,6 +213,11 @@
 		   });
 		 $("#totalprice").text(totalPrice+"원");
 	}
+	
+	function goCart(){
+		var id = $("input[name='id']").val();
+		location.href = "cart.do?id="+id;
+	}
 </script>
 <style>
 	.imgmain{
@@ -392,7 +397,7 @@
 <div id="popup_layer" > 
 <div class="header"><h3>장바구니</h3><a onclick="$('#popup_layer').hide()"><img src="upload/close.png"></a></div>
 <div class="content"><img src="upload/cart.png"><p>장바구니에 상품이 정상적으로 담겼습니다.</p></div>
-<div><button>장바구니 이동</button><button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button> </div>
+<div><button onclick="goCart()">장바구니 이동</button><button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button> </div>
 </div> 
 <%@ include file="footer.jsp" %>
 </body>

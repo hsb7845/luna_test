@@ -7,9 +7,29 @@ public class BuyDetailDTO {
 	private int bseq;
 	private String selOpt;
 	private int price;
-	
-	
+	private ImgFileDTO image;
+	private BuyListDTO blDTO;
+	private PBoardDTO pboard;
 
+	
+	public ImgFileDTO getImage() {
+		return image;
+	}
+	public void setImage(ImgFileDTO image) {
+		this.image = image;
+	}
+	public BuyListDTO getBlDTO() {
+		return blDTO;
+	}
+	public void setBlDTO(BuyListDTO blDTO) {
+		this.blDTO = blDTO;
+	}
+	public PBoardDTO getPboard() {
+		return pboard;
+	}
+	public void setPboard(PBoardDTO pboard) {
+		this.pboard = pboard;
+	}
 	public int getPrice() {
 		return price;
 	}

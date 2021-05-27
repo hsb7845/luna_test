@@ -146,7 +146,7 @@ public class PBoardService implements IPBoardService{
 					try {
 					multiFile.transferTo(f);//파일객체의 저장된 경로대로 업로드 실행됨.
 					//파일정보를 DB에 저장하기
-					ImgFileDTO dto = new ImgFileDTO(0, fileSize, imgname,(String)session.getAttribute("id"), 0, 0, 0);
+					ImgFileDTO dto = new ImgFileDTO(0, fileSize, imgname,(String)session.getAttribute("id"), 0, 0, 0,"true");
 					isS = PBoardDAO.uploadImg(dto);
 					} catch (IllegalStateException e) {
 					// TODO Auto-generated catch block
@@ -171,6 +171,7 @@ public class PBoardService implements IPBoardService{
 		 Map<String,Object>fileMap=new HashMap<String,Object>();
 		 HttpSession session = request.getSession();
 		 boolean isS = false;
+		 int count = 0;
 	        for(MultipartFile multipartFile : uploadFiles) {
 	            try {
 	               String fileName=multipartFile.getOriginalFilename();
@@ -182,8 +183,15 @@ public class PBoardService implements IPBoardService{
 	                fileMap.put("fileSize", multipartFile.getSize());
 	                System.out.println("fileMap :"+fileMap);
 	                multipartFile.transferTo(tmp);
-	                ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0);
-	                isS = PBoardDAO.uploadImg(dto);
+	                if(count==0) {
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"true");
+	                	isS = PBoardDAO.uploadImg(dto);
+	                }else {
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"false");
+	                	isS = PBoardDAO.uploadImg(dto);
+	                }
+	                count++;
+	      
 	            }
 	            catch(Exception e){
 	                return false;

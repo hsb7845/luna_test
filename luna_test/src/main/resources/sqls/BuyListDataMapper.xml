@@ -17,12 +17,30 @@
 		</collection>
 	</resultMap>
 	
-	<select id="getAllList" resultType="BLDTO">
-		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
-		FROM BUY_LIST
-		<if test="id!=null">
-		where id = #{id}
-		</if>
+	<resultMap type="BDDTO" id="BDDTO_resultMap">
+		<result column="BDSEQ" property="bdseq"/>
+		<result column="PSEQ" property="pseq"/>
+		<result column="PCOUNT" property="pcount"/>
+		<result column="SELOPT" property="selOpt"/>
+		<result column="PRICE" property="price"/>
+		<result column="BSEQ" property="bseq"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="IMGNAME" property="imgname"></result>
+		</collection>
+		<collection property="blDTO" ofType="BLDTO">
+			<result column="BUYDATE" property="buyDate"></result>
+		</collection>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
+	
+	
+	<select id="getAllList" resultMap="BDDTO_resultMap">
+		SELECT bd.BDSEQ ,bd.PCOUNT,bd.SELOPT,bl.BUYDATE,bd.PRICE,pb.PTITLE,if2.IMGNAME FROM BUY_LIST bl ,BUY_DETAIL bd,P_BOARD pb ,IMG_FILE if2 
+		 WHERE bl.BSEQ =bd.bseq   AND  pb.pseq = bd.PSEQ  AND pb.PSEQ =if2.PSEQ (+)
+		 ORDER BY bd.BDSEQ DESC 
 	</select>
 	
 	<select id="getBoard" parameterType="int" resultType="BLDTO">
@@ -81,4 +99,17 @@
 			#{i}
 		</foreach>
 	</select>
+	<delete id="delInCart" parameterType="Map">
+		DELETE FROM CART WHERE id=#{id} and SEQ IN 
+		<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</delete>
+	<select id="getList" parameterType="String" resultMap="BDDTO_resultMap" > 
+ 		 SELECT bd.BDSEQ ,bd.PCOUNT,bd.SELOPT,bl.BUYDATE,bd.PRICE,pb.PTITLE,if2.IMGNAME,bd.pseq FROM BUY_LIST bl ,BUY_DETAIL bd,P_BOARD pb ,IMG_FILE if2 
+		 WHERE bl.BSEQ =bd.bseq AND  bl.id =#{id}  AND  pb.pseq = bd.PSEQ  AND pb.PSEQ =if2.PSEQ (+)
+		 ORDER BY bl.BUYDATE DESC 
+ 	</select>
+	
+	
 </mapper>

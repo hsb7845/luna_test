@@ -37,7 +37,8 @@ public class ImgFileService implements IImgFileService {
 		boolean isS =false;
 		try {
 			multiFile.transferTo(f);
-			isS=ImgFileDAO.insertBoard(new ImgFileDTO(0,fileSize,imgname,"",0,0,0));
+			
+			isS=ImgFileDAO.insertBoard(new ImgFileDTO(0,fileSize,imgname,"",0,0,0,"true"));
 		}catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

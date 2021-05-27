@@ -32,7 +32,7 @@ public class BuyListDAO implements IBuyListDAO {
 	}
 
 	@Override
-	public List<BuyListDTO> getAllList() {
+	public List<BuyDetailDTO> getAllList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getAllList");
 	}
@@ -117,6 +117,12 @@ public class BuyListDAO implements IBuyListDAO {
 		map.put("id", id);
 		sqlSession.delete(namespace+"delInCart", map);
 		
+	}
+
+	@Override
+	public List<BuyDetailDTO> getList(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getList",id);
 	}
 	
 }

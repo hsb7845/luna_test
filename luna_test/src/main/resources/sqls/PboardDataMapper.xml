@@ -165,12 +165,7 @@
 		select * from member where id=#{id}
 	</select>
 	
-	<delete id="delInCart" parameterType="Map">
-		DELETE FROM CART WHERE id=#{id} and SEQ IN 
-		<foreach collection="chks" item="i" separator="," open="(" close=")">
-			#{i}
-		</foreach>
-	</delete>
+	
 </mapper>
 
 

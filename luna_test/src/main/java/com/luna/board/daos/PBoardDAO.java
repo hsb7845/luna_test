@@ -100,7 +100,7 @@ public class PBoardDAO implements IPBoardDAO{
 	public List<PBoardDTO> getPagingList(PagingDTO pagingDTO) {
 		// TODO Auto-generated method stub
 		List<PBoardDTO> list = sqlSession.selectList(namespace+"getPagingList", pagingDTO);
-		list.get(0).getPseq();
+		//list.get(0).getPseq();
 		return sqlSession.selectList(namespace+"getPagingList", pagingDTO);
 	}
 

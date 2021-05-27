@@ -95,7 +95,7 @@
 		var adr3 = $("input[name='adr3']").val();
 		var adr4 = $("input[name='adr4']").val();
 		var address = "("+adr1+") "+adr2+adr3+adr4; 
-		var chks = {};
+		var chks = [];
 		$("input[name='chk']").each(function(){
 			var chk = $(this).val();
 			alert(chk);

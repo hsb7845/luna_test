@@ -96,14 +96,16 @@ public class PboardController {
 		 * 
 		 * */
 	
-		System.out.println("total:"+total);
-		System.out.println("nowPage:"+nowPage);
-		System.out.println("cntPerPage:"+cntPerPage);
-		System.out.println("arrayNum:"+arrayNum);
-		System.out.println("sorting:"+sorting);
+		
 		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum),Integer.parseInt(sorting));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
-		System.out.println("sorting :"+pagingDTO.getSorting());
+		System.out.println(pagingDTO.getStart());
+		System.out.println(pagingDTO.getEnd());
+		for(int i=0;i<list.size();i++) {
+			System.out.println("i="+i);
+			System.out.println(list.get(i).getPseq());
+			
+		}
 		model.addAttribute("paging", pagingDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("arrayNum", arrayNum);

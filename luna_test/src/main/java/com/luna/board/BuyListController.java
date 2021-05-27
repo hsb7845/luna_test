@@ -33,9 +33,14 @@ public class BuyListController {
 	private IBuyListService buyListService;
 	
 	@RequestMapping(value = "/buylist.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String getAllBuyList(Locale locale, Model model,HttpServletRequest request) {
-		List<BuyListDTO> list = buyListService.getAllList();
-		model.addAttribute("list",list);
+	public String getAllBuyList(Locale locale, Model model,HttpServletRequest request,String id) {
+			List<BuyDetailDTO> list = buyListService.getAllList();
+		if(id!=null) {
+			list =  buyListService.getList(id);
+			model.addAttribute("list",list);
+			return "userBuyList";
+		}
+		
 		return "buylist";
 	}
 	
@@ -161,8 +166,6 @@ public class BuyListController {
 	
 	@RequestMapping(value = "/buyCart.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyCart(Locale locale, Model model,HttpServletRequest request,String bank,String[] chks) {
-		System.out.println(chks[0]);
-		System.out.println(chks[1]);
 		int count = Integer.parseInt(request.getParameter("count"));
 		System.out.println("count"+count);
 		BuyListDTO blDTO = new BuyListDTO();

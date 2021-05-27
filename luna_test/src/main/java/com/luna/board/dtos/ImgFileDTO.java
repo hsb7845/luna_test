@@ -9,6 +9,13 @@ public class ImgFileDTO {
 	private int pseq;
 	private int rseq;
 	private int eseq;
+	private String main;
+	public String getMain() {
+		return main;
+	}
+	public void setMain(String main) {
+		this.main = main;
+	}
 	public int getImgnum() {
 		return imgnum;
 	}
@@ -56,7 +63,7 @@ public class ImgFileDTO {
 		return "ImgFileDTO [imgnum=" + imgnum + ", filesize=" + filesize + ", imgname=" + imgname + ", id=" + id
 				+ ", pseq=" + pseq + ", rseq=" + rseq + ", eseq=" + eseq + "]";
 	}
-	public ImgFileDTO(int imgnum, int  filesize, String imgname, String id, int pseq, int rseq, int eseq) {
+	public ImgFileDTO(int imgnum, int  filesize, String imgname, String id, int pseq, int rseq, int eseq,String main) {
 		super();
 		this.imgnum = imgnum;
 		this.filesize = filesize;
@@ -65,6 +72,7 @@ public class ImgFileDTO {
 		this.pseq = pseq;
 		this.rseq = rseq;
 		this.eseq = eseq;
+		this.main =main;
 	}
 	public ImgFileDTO() {
 		super();

@@ -11,7 +11,7 @@ import com.luna.board.dtos.MemberDTO;
 
 public interface IBuyListService {
 	boolean insertBoard(BuyListDTO dto);
-    List<BuyListDTO> getAllList();
+    List<BuyDetailDTO> getAllList();
     BuyListDTO getBoard(int bseq);
 	boolean deleteBoard(int bseq);
 	boolean updateBoard(BuyListDTO dto);
@@ -21,4 +21,5 @@ public interface IBuyListService {
 	boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list);
 	List<CartDTO> getSelCart(String[] chks, String id);
 	void deleteInCart(String[] chks, String parameter);
+	List<BuyDetailDTO> getList(String id);
 }

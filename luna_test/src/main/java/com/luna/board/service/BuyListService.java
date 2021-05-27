@@ -27,7 +27,7 @@ public class BuyListService implements IBuyListService {
 	}
 
 	@Override
-	public List<BuyListDTO> getAllList() {
+	public List<BuyDetailDTO> getAllList() {
 		// TODO Auto-generated method stub
 		return buyListDAO.getAllList();
 	}
@@ -84,6 +84,12 @@ public class BuyListService implements IBuyListService {
 	public void deleteInCart(String[] chks, String id) {
 		// TODO Auto-generated method stub
 		buyListDAO.deleteInCart(chks,id);
+	}
+
+	@Override
+	public List<BuyDetailDTO> getList(String id) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getList(id);
 	}
 	
 }

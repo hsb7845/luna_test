@@ -88,11 +88,6 @@ public class StockService implements IStockService {
 		return StockDAO.getSelectedList(chk_arr);
 	}
 
-	@Override
-	public List<PCategoryDTO> getCnum(int cnum) {
-		// TODO Auto-generated method stub
-		return StockDAO.getCnum(cnum);
-	}
 	
 
 }

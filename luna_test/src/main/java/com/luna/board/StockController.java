@@ -43,7 +43,7 @@ public class StockController {
 	@RequestMapping(value = "/insertStock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insert(Locale locale, Model model, StockDTO dto,PCategoryDTO cdto) {
 		int cnum = StockService.getCnum(cdto);
-		
+		dto.setCnum(cnum);
 		boolean isS = StockService.insertStock(dto);
 		if(isS) {
 			return "redirect:stock.do";
@@ -121,13 +121,5 @@ public class StockController {
 		System.out.println("list.size"+list.size());
 		return map;
 	}
-	@ResponseBody
-	@RequestMapping(value = "/getCnum.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public Map<String,List<PCategoryDTO>>getCnum(Locale locale, Model model,int cnum) {
-		Map<String,List<PCategoryDTO>> map = new HashMap<String, List<PCategoryDTO>>();
-		List<PCategoryDTO> list = StockService.getCnum(cnum);
-		map.put("list", list); 
-		System.out.println("list.size"+list.size());
-		return map;
-	}
+
 }

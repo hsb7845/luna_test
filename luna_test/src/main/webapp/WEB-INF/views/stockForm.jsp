@@ -120,23 +120,23 @@
 				}
 			});			
 		});	
-		$("#ptype").change(function(){
-			$.ajax({
-				url : "getCnum.do",
-				mehthod : "post",
-				dataType : "json",
-				data : { "ptype" : $("#ptype").val()},
-				asnc:false,
-				success : function(data) {
-					var list = data["list"];
-					var sizeOption = "<option value=''>전체</option>";
-					for(var i=0; i<list.length; i++) {					
-						cnumOption += '<option value="'+list[i]["cnum"]+'"> '+list[i]["cnum"]+'</option>'
-					}				
-					$("#cnum").html(cnumOption);
-				}
-			});			
-		});		
+// 		$("#ptype").change(function(){
+// 			$.ajax({
+// 				url : "getCnum.do",
+// 				mehthod : "post",
+// 				dataType : "json",
+// 				data : { "ptype" : $("#ptype").val()},
+// 				asnc:false,
+// 				success : function(data) {
+// 					var list = data["list"];
+// 					var sizeOption = "<option value=''>전체</option>";
+// 					for(var i=0; i<list.length; i++) {					
+// 						cnumOption += '<option value="'+list[i]["cnum"]+'"> '+list[i]["cnum"]+'</option>'
+// 					}				
+// 					$("#cnum").html(cnumOption);
+// 				}
+// 			});			
+// 		});		
 	}); 
 </script>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
@@ -599,10 +599,10 @@ div.row {
 					<P>상품명  <input type="text" name="pname" id="pname" ></P>
 					<P>상품입고수량  <input type="text" name="scount" id="scount" ></P>
 					<P>상품원가  <input type="text" name="cost" id="cost" ></P>				
-					<p>카테고리번호
-						<select name="cnum" id="cnum" >		
-							<option value="" >전체</option>
-						</select></p>				
+<!-- 					<p>카테고리번호 -->
+<!-- 						<select name="cnum" id="cnum" >		 -->
+<!-- 							<option value="" >전체</option> -->
+<!-- 						</select></p>				 -->
 					<P>상품내용  
 						<textarea cols="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
 					<P>상품가격  <input type="text" name="price" id="price"></P>	

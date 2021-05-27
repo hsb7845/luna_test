@@ -20,5 +20,4 @@ public interface IStockDAO {
 	List<String> getPtype();
 	List<PCategoryDTO> getSize(String ptype);
 	List<StockDTO> getSelectedList(String[] chk_arr);
-	List<PCategoryDTO> getCnum(int cnum);
 }

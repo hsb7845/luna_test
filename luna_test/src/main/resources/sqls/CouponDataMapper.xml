@@ -5,10 +5,11 @@
 
 	<select id="getAllList" resultType="CouponDTO" parameterType="CouponDTO">		
 		SELECT CSEQ, CCONTENT, DISCOUNT, ID, HIT
-		FROM COUPON	order by cseq desc	
+		FROM COUPON	
 		<if test="id!=null">
 		where id = #{id}
 		</if>
+		order by cseq desc	
 	</select>
 	
 	<insert id="insertCoupon" parameterType="CouponDTO">
@@ -51,4 +52,21 @@
 			#{i}
 		</foreach>
 	</delete>
+	
+	<update id="insertAllCoupon" parameterType="list">
+		 <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+	                 INTO COUPON  ( 
+	                      CSEQ,CCONTENT,DISCOUNT,ID,HIT         
+	                ) VALUES(
+	                       COUPON_SEQ.nextval                 
+	                     , #{item.ccontent}                         
+	                     , #{item.discount}                             
+	                     , #{item.id}       
+	                     , 0
+	                )
+	    </foreach>
+	
+	</update>
+	
+	
 </mapper>

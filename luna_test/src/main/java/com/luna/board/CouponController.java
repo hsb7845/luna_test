@@ -28,6 +28,7 @@ public class CouponController {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String admin = (String)session.getAttribute("admin");
+		System.out.println("id"+"admin");
 		
 		if(admin.equals("관리자")) {
 			List<CouponDTO> list = CouponService.getAllList(new CouponDTO());

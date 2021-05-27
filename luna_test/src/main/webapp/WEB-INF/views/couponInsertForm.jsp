@@ -31,6 +31,17 @@
 
 </head>
 
+<script>
+
+	var chk_arr = [];
+	$("input[name='chk']:checked").each(function(){
+	   var chk =$(this).val();
+	   chk_arr.push(chk);
+	})
+
+</script>
+
+
 <style>
 	.cls1 {
 		font-size: 40px;
@@ -40,12 +51,12 @@
 
 <body>
 <form method="post" action="insertCoupon.do">
-<input type="hidden" name="id"  value="${dto.id}" >
 <table>	
 	<p class="cls1">쿠폰 추가</p>
 	<tr>
 		<th>아이디</th>
 		<td><input type="text" name="id"></td>
+		
 	</tr>
 	<tr>
 		<th>쿠폰내용</th>

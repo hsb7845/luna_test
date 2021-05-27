@@ -22,7 +22,7 @@ public class CouponDAO implements ICouponDAO {
 	@Override
 	public List<CouponDTO> getAllList(CouponDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"getAllList");
+		return sqlSession.selectList(namespace+"getAllList", dto);
 	}
 
 	@Override
@@ -67,6 +67,12 @@ public class CouponDAO implements ICouponDAO {
 	public CouponDTO ringCoupon() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"ringCoupon");
+	}
+
+	@Override
+	public List<CouponDTO> getAllList(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

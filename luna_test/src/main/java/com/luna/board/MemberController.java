@@ -427,9 +427,7 @@ public class MemberController {
 		return "pwdSearchForm";
 		
 	}
-	
-	
-	
+		
 	@RequestMapping(value = "/birthmember.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String birth(Locale locale, Model model) {
 		List<MemberDTO> list = MemberService.BirthMember();
@@ -437,6 +435,12 @@ public class MemberController {
 		return "memberlist";
 	}
 	
+	@RequestMapping(value = "/freshmember.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String fresh(Locale locale, Model model) {
+		List<MemberDTO> list = MemberService.FreshMember();
+		model.addAttribute("list", list);
+		return "memberlist";
+	}
 }
 	
    

@@ -22,6 +22,9 @@ public class MemberDTO {
 	private String name;
 	private int point;
 	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pwd=" + pwd + ", email=" + email + ", adr1="

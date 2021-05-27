@@ -27,11 +27,17 @@
     font-weight: normal;
     font-style: normal;
 }
+
 body,button,input{
 	font-family: 'BinggraeSamanco-Bold';
 	font-weight: bold;
 	line-height: 20px;
+
  }
+ .body {
+	left: 50%;	
+	position: relative;		
+}
 .pwck_input_re_1{
 	color : green;
 	display : none;    
@@ -53,8 +59,11 @@ body,button,input{
 </head>
 
 <body> 		
+	<%@ include file="header.jsp" %>
+
+	<div class=body>
 	<form method="post" action="insertmember.do" id="join">
-		<h1 style = "text-align:left">회원가입</h1>
+		<h1>회원가입</h1>
 		<div id="id" >
 			<label for="id">아이디</label><br>
 			<input type="text" name="id" id="id" required />
@@ -329,7 +338,7 @@ function check() {
 	}
 }
  </script>
-
+</div>
 </body>
 </html>
 

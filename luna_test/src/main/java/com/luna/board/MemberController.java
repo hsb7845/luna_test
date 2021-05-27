@@ -205,7 +205,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		System.out.println("세션 정보삭제 완료");
 		session.invalidate();
-		return "userlogin"; 
+		return "index"; 
 	}
 		 
     /* 이메일 인증 */

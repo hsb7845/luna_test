@@ -26,7 +26,7 @@
 
         <title>adminMain</title>
 
-<<<<<<< HEAD
+
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script>
 
@@ -36,7 +36,7 @@
 </script>
 
 <style type="text/css">
-=======
+
         <!-- Custom fonts for this template-->
         <link
             href="resources/boot/vendor/fontawesome-free/css/all.min.css"
@@ -45,9 +45,6 @@
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
-
-<<<<<<< HEAD
    html, body {
     height: 100%;
     }
@@ -149,10 +146,7 @@
 			<input type="button" value="쿠폰 추가" onclick="addCoupon()"/>
 		
 	</form>
-=======
-        <!-- Custom styles for this template-->
-        <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	function delBoard(){

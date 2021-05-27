@@ -231,7 +231,6 @@ $(function(){
  			}
  		}
  	}
-<<<<<<< HEAD
  	
  	$("#insertmemberform").click(function(){
 		location.href='insertmemberform.do'
@@ -250,13 +249,11 @@ $(function(){
 // $("#insertmemberform").click(function(){
 // location.href='insertmemberform.do'
 // });
-=======
 	$("#insertmemberform").click(function(){
 		location.href='insertmemberform.do'
 	});
 });
 
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 	</script>
 	
 	<style >	
@@ -284,9 +281,7 @@ $(function(){
 	}
 	</style>                
 </head>
-<%
-	List<MemberDTO> list= (List<MemberDTO>) request.getAttribute("list");
-%>
+
     
 <body id="page-top">
 

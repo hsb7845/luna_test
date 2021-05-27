@@ -150,12 +150,12 @@ table {
 </tr>
 		<tr>
 			<td>
-		생년월일<br> <input type="date" name="birthtest"required><br>
+		생년월일<br> <input type="date" max="9999-12-31" name="birthtest"required><br>
 			</td>
 			<td>
 		성별<br>
-		남<input type="checkbox" style="font-size10px;" name="sex" required onclick="checkOnly(this);" value="남" >
-		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
+		남<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" required value="남" >
+		여<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" value="여" ><br>
 			</td>
 		</tr>
 		<tr>
@@ -340,7 +340,7 @@ table {
 	
 	
 
-	 
+	 s
 	/* 비밀번호 확인 일치 유효성 검사 */
 	 
 	$('.pwck_input').on("propertychange change keyup paste input", function(){
@@ -377,23 +377,23 @@ table {
 // 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
 	
 
-function checkOnly(chk){
+// function checkOnly(chk){
 
-   var obj = document.getElementsByName("sex");
+//    var obj = document.getElementsByName("sex");
 
-      for(var i=0; i<obj.length; i++){
-            if(obj[i] != chk){
-                  obj[i].checked = false;
-                  }
-            }
-    }
+//       for(var i=0; i<obj.length; i++){
+//             if(obj[i] != chk){
+//                   obj[i].checked = false;
+//                   }
+//             }
+//     }
 
-function check() {
-	if ($("input:checkbox[name='sex']").is(":checked")==false) {
-		alert("성별을 선택하여 주십시오.");
-		return;
-	}
-}
+// function check() {
+// 	if ($("input:checkbox[name='sex']").is(":checked")==false) {
+// 		alert("성별을 선택하여 주십시오.");
+// 		return;
+// 	}
+// }
  </script>
 </div>
 </body>

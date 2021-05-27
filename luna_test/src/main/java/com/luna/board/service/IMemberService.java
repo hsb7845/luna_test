@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 
 public interface IMemberService {
-	boolean insertMember(MemberDTO dto);
 	List<MemberDTO> getAllList();
 	MemberDTO getMember(String id);
 	boolean deleteMember(MemberDTO dto);
@@ -20,4 +20,10 @@ public interface IMemberService {
 	MemberDTO getMemberByIdAndEmail(MemberDTO dto);
 	boolean pwdUpdate(MemberDTO dto);
 	boolean insertKMember(MemberDTO dto);
+	
+	List<MemberDTO> BirthMember();
+	
+	boolean insertMember(MemberDTO mdto, CouponDTO cdto);
+	
+	
 }

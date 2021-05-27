@@ -15,4 +15,5 @@ public interface ICouponService {
 	boolean mulDel(String[] chk);
 	CouponDTO ringCoupon();
 	List<CouponDTO> getAllList(CouponDTO couponDTO);
+	boolean insertAllCoupon(CouponDTO dto);
 }

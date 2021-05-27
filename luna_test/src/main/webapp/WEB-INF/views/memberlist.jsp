@@ -24,6 +24,14 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
+<script>
+
+
+
+	
+</script>
+
 <style type="text/css">
 
    html, body {
@@ -60,7 +68,9 @@
 %>
 <body>
 <p class="cls1">회 원 목 록</p>
-	<form action="muldelmember.do" method="post">
+<!-- 	<form action="muldelmember.do" method="post"> -->
+	<form method="post" name="form">
+		
 	<table border = "1" >
 	<tr>
 		<th id="m1"><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
@@ -113,14 +123,65 @@
 		}
 	%>
 	</table>
-<!-- 			<input type="button" value="회원가입" id="insertmemberform"> -->
-			<a href="insertmemberform.do">회원가입</a>
-			<a href=".do">메인</a>
-			<input type="submit" value="삭제" />
-	
+<!-- 			<a href="insertmemberform.do">회원가입</a> -->
+			<input type="button" value="회원가입" id="insertmemberform">
+			<input type="button" value="메인" id="main">
+			<input type="button" value="삭제" onclick="delBoard()"/>
+			
+<!-- 			<input type="button" value="신규가입자 보기" onclick="newMember()"/> -->
+			
+			<input type="button" value="생일자 보기" onclick="birthMem()"/>
+			
+			<input type="button" value="쿠폰 추가" onclick="addCoupon()"/>
+		
 	</form>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+	function delBoard(){
+		var bool = true;
+		var count=$("form").find("input[name=chk]:checked").length;
+		if(count==0){
+			alert('최소 하나 이상 체크하세요!!!');
+			bool= false;
+		}else if(confirm("정말 삭제하시겠습니까?")==false){
+			bool = false;
+		}
+		if(bool){
+			var formEle=document.form;
+			formEle.action='muldelmember.do';
+			formEle.submit();//javascript에서 submit실행 			
+		}
+	}
+	
+	function newMember(){
+		var formEle=document.form;
+		formEle.action='.do';
+		formEle.submit();
+	}
+	
+	function birthMem(){
+		var formEle=document.form;
+		formEle.action='birthmember.do';
+		formEle.submit();
+	}
+	
+	function addCoupon(){
+		var bool = true;
+		var count=$("form").find("input[name=chk]:checked").length;
+		if(count==0){
+			alert('최소 하나 이상 체크하세요!!!');
+			bool= false;
+		}else if(confirm("쿠폰을 추가하시겠습니까?")==false){
+			bool = false;
+		}
+		if(bool){
+			var formEle=document.form;
+			formEle.action='.do';
+			formEle.submit();//javascript에서 submit실행 			
+		}
+	}
+	
+	
 // core, BOM, DOM  3가지 영역으로 나눔
 	function allSel(val){
 		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
@@ -139,7 +200,7 @@ $(function(){
 		var bool = true;
 		var count=$(this).find("input[name=chk]:checked").length;
 		if(count==0){
-			alert('최소 하나이상 체크하세요!!!');
+			alert('최소 하나 이상 체크하세요!!!');
 			bool= false;
 		}else if(confirm("정말 삭제하시겠습니까?")==false){
 			bool = false;
@@ -158,6 +219,20 @@ $(function(){
  			}
  		}
  	}
+ 	
+ 	$("#insertmemberform").click(function(){
+		location.href='insertmemberform.do'
+	});
+ 	
+ 	$("#main").click(function(){
+ 		location.href='.do'
+ 	});
+ 	
+ 	var chk_arr = [];
+    $("input[name='chk']:checked").each(function(){
+       var chk =$(this).val();
+       chk_arr.push(chk);
+    })
 })
 // $("#insertmemberform").click(function(){
 // location.href='insertmemberform.do'

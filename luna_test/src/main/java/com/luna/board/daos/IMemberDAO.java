@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 
 public interface IMemberDAO {
 
 	List<MemberDTO> getAllList();
-	boolean insertMember(MemberDTO dto);
+	boolean insertMember(MemberDTO mdto, CouponDTO cdto);
 	MemberDTO getMember(String id);
 	boolean updateMember(MemberDTO dto);
 	boolean muldelMember(String[] chks);
@@ -21,5 +22,7 @@ public interface IMemberDAO {
     public boolean pwdUpdate(MemberDTO dto);
 	boolean deleteMember(MemberDTO dto);
 	boolean insertKMember(MemberDTO dto);
+	
+	List<MemberDTO> BirthMember();
 
 }

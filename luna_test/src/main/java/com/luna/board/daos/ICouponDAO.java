@@ -16,5 +16,6 @@ public interface ICouponDAO {
 	CouponDTO ringCoupon();
 	List<CouponDTO> getAllList(String id);
 	List<CouponDTO> getAllList(CouponDTO dto);
+	boolean insertAllCoupon(CouponDTO dto);
 	
 }

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luna.board.daos.ICouponDAO;
 import com.luna.board.daos.IMemberDAO;
+import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 
@@ -20,10 +22,13 @@ public class MemberService implements IMemberService{
 	@Autowired
 	IMemberDAO MemberDAO;
 
+	@Autowired
+	ICouponDAO CouponDAO;
+	
 	@Override
-	public boolean insertMember(MemberDTO dto) {
-		// TODO Auto-generated method stub
-		return MemberDAO.insertMember(dto);
+	public boolean insertMember(MemberDTO mdto, CouponDTO cdto) {
+		MemberDAO.insertKMember(mdto);
+		return CouponDAO.insertCoupon(cdto);
 	}
 
 	@Override
@@ -95,5 +100,10 @@ public class MemberService implements IMemberService{
 		return MemberDAO.insertKMember(dto);
 	}
 
+	@Override
+	public List<MemberDTO> BirthMember() {
+		// TODO Auto-generated method stub
+		return MemberDAO.BirthMember();
+	}
 
 }

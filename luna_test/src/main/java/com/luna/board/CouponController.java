@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.luna.board.dtos.CouponDTO;
+import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.ICouponService;
 
@@ -104,4 +105,5 @@ public class CouponController {
 			return "error";
 		}
 	}
+	
 }

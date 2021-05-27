@@ -70,9 +70,21 @@ public class CouponDAO implements ICouponDAO {
 	}
 
 	@Override
+	public boolean insertAllCoupon(CouponDTO dto) {
+		return sqlSession.insert(namespace+"insertAllCoupon",dto)>0?true:false;
+	}
+
+	@Override
 	public List<CouponDTO> getAllList(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+//	@Override
+//	public List<CouponDTO> getAllList(String id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

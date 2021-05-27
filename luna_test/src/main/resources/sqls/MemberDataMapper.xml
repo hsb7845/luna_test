@@ -9,10 +9,13 @@
 		select id, pwd, email, adr1, adr2, adr3, adr4, birth, sex, phone, joinDate, admin, nickName, name, point
 		from Member order by id desc
 	</select>
-
+	
 	<insert id="insertMember" parameterType="MDTO">
 		INSERT INTO MEMBER(id, pwd, email, adr1, adr2, adr3, adr4, birth, sex, phone, joinDate, admin, nickName, name, point)
 		VALUES(#{id},#{pwd},#{email}, #{adr1}, #{adr2}, #{adr3}, #{adr4}, #{birth}, #{sex}, #{phone}, sysdate, #{admin}, #{nickName}, #{name}, #{point})
+		INSERT INTO COUPON (CSEQ, CCONTENT, DISCOUNT, ID, HIT)
+		VALUES(COUPON_SEQ.NEXTVAL, '가입축하쿠폰', '5000', #{id}, 0)		
+		
 	</insert>
 	
 	<insert id="insertKMember" parameterType="MDTO">
@@ -69,6 +72,16 @@
 	<update id="pwdUpdate" parameterType="MDTO">
 		update member set PWD = #{pwd} where EMAIL=#{email}
 	</update>
+
+
+	
+	
+	<!-- 생일자 현재 월 기준으로 월 출력 -->
+	<select id="birthMember" resultType="MDTO">
+		SELECT * from MEMBER
+		WHERE to_char(birth,'MM') = to_char(sysdate,'MM')
+	</select>
+
 
 </mapper>
 

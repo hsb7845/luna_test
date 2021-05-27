@@ -20,7 +20,7 @@
 	<select id="getAllList" resultType="PBDTO" parameterType="String">
 		select pb.pseq,pb.pcontent,pb.pdate,pb.ptitle,pb.hit 
 		FROM P_BOARD pb ,STOCK s ,P_CATEGORY pc 
-		WHERE pb.PSEQ =s.PSEQ  AND pc.CNUM =s.CNUM
+		WHERE pb.PSEQ =s.PSEQ  AND pc.CNUM =s.CNUM and main='true'
 		<choose>
 			<when test="select=='귀걸이'">and pc.ptype='귀걸이'</when>
 			<when test="select=='목걸이'">and pc.ptype='목걸이'</when>

@@ -156,6 +156,7 @@ public class BuyListController {
 			bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+1)));
 			bdDTO.setSelOpt(request.getParameter("selOpt"+1));
 			bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+1)));
+			bdDTO.setPrice(Integer.parseInt(request.getParameter("price"+1)));
 			list.add(bdDTO);
 		}
 		boolean isS = buyListService.insertBuyList(blDTO,list);

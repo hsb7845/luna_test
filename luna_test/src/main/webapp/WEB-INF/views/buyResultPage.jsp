@@ -10,7 +10,8 @@
 <script>
 $(document).ready(function(){
 	$("#goMyPage").click(function(){
-		location.href="myPage.do?id="+$("input[name='id']").val();
+		var id = $("input[name='id']").val();
+		location.href="myPage.do";
 	})
 });
 </script>
@@ -18,11 +19,11 @@ $(document).ready(function(){
 <%@ include file="header.jsp" %>
 
 <body>
-<form>
+<form action="myPage.do" method="post">
 <h1>상품 구매를 완료하였습니다.</h1>
 <p>입금계좌 : ${bank }</p>
 <p>입금액 : ${totalPrice }</p>
-<button id="goMyPage">마이페이지 이동</button>
+<button onclick="location.href='myPage.do?id=${id}';">마이페이지 이동</button>
 <input type="hidden" name="id" value=${id }>
 </form>
 </body>

@@ -25,7 +25,7 @@
 			<td>${i.image.imgname }</td>
 			<td colspan="2"><a href="buyDetail.do?bdseq=${i.bdseq }">${i.pboard.ptitle }<br>${i.selOpt }</a></td>
 			<td>${i.price }</td>
-			<td><fmt:formatDate value="${i.blDTO.buyDate }" pattern="yyyy년MM월dd일 hh:mm:ss" /></td>
+			<td><fmt:formatDate value="${i.blDTO.buyDate }" pattern="yyyy.MM.dd " /></td>
 			<td><button onclick="location.href='insertrboardform.do?pseq=${i.pboard.pseq}';">리뷰작성</button>
 		</tr>
 	</c:forEach>

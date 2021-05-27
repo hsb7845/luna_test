@@ -563,7 +563,7 @@
 	<tr>
 		<td colspan="10" class="buylistD">
 			<input type="button" value="구매 등록" id="buyListInsertForm" />
-			<input type="button" value="메인" id="main">
+<!-- 			<input type="button" value="메인" id="main"> -->
 			<input type="submit" value="삭제" />
 			
 <!-- 			<a href="buyListInsertForm.do">글쓰기</a> -->

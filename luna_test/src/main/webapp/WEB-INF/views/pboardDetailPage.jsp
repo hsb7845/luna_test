@@ -252,8 +252,10 @@
 </script>
 <style>
 .imgmain {
-	width: 300px;
-	height: 450px;
+	width: 400px;
+	height: 530px;
+	float: left;
+	margin-right: 100px;
 }
 
 .imgsub {
@@ -274,6 +276,13 @@
 	align: center;
 }
 
+.box {
+position:relative;
+}
+.footer {
+	position:absolute;
+	bottom:0;
+}
 
 </style>
 
@@ -281,12 +290,13 @@
 
 </head>
 <body>
+
 	<form action="buyform.do" method="get">
-		<input type="hidden" name="id" value="${sessionScope.id }">
-		<div style="border: 1px dashed #BDBDBD; float: left;">
+		<div class="box">
+			<input type="hidden" name="id" value="${sessionScope.id }">
 			<!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
-				<img class="imgmain"  src="upload/img_dummy1.jpg">
+				<img class="imgmain" src="upload/img_dummy1.jpg">
 			</c:if>
 
 			<div>
@@ -296,7 +306,6 @@
 				</c:forEach>
 			</div>
 			<input type="hidden" name="pseq" value="${map.pboard.pseq }" />
-		</div>
 		<div>
 			<div>
 				<h3>${map.pboard.ptitle}</h3>
@@ -327,61 +336,58 @@
 				</c:forEach>
 				<input type="hidden" name="optNum" value="${optNum }" />
 				<input type="button" name="selOpt" value="옵션선택">
-				<table border="1" width="500" height="50">
-					<tr>
-						<th>선택상품</th>
-						<th>수량</th>
-						<th>가격</th>
-					</tr>
-					<tbody id="optContainer"></tbody>
-					<tfoot>
-						<tr>
-							<td colspan='2'>총 금액 :</td>
-							<td id="totalprice"></td>
-						</tr>
-					</tfoot>
-				</table>
-			</c:if>
 
+				<p>선택상품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수량
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가격
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+				<div id="optContainer"></div>
 
-
-			<div>
-				<input type="button" value="장바구니" id="cart"> <input
-					type="button" name="buy" value="바로구매">
-			</div>
+				<p>총 금액 :</p>
 		</div>
+		<div id="totalprice"></div>
+
+		</c:if>
+
+
+
+		<div>
+			<input type="button" value="장바구니" id="cart"> <input
+				type="button" name="buy" value="바로구매">
+		</div>
+
 		<div>${map.pboard.pcontent }</div>
 		<br>
 	</form>
-	<div>	
-		<!-- 유사 제품 -->
+	<div class="foot">
+			<!-- 유사 제품 -->
 
 
+		</div>
+		<div>
+			<!-- 평점 -->
+			<br>
+			<p>${map.avgRank }
+			<ul class="ratio">
+				<li><div style="height: 30%">
+						<em>30%</em>
+					</div></li>
+				<li><div style="height: 40%">
+						<em>40%</em>
+					</div></li>
+				<li><div style="height: 100%">
+						<em>50%</em>
+					</div></li>
+				<li><div style="height: 30%">
+						<em>30%</em>
+					</div></li>
+				<li><div style="height: 40%">
+						<em>40%</em>
+					</div></li>
+			</ul>
+			<span>1점</span> <span>2점</span> <span>3점</span> <span>4점</span> <span>5점</span>
+		</div>
 	</div>
-	<div>
-		<!-- 평점 -->
-		<br>
-		<p>${map.avgRank }
-		<ul class="ratio">
-			<li><div style="height: 30%">
-					<em>30%</em>
-				</div></li>
-			<li><div style="height: 40%">
-					<em>40%</em>
-				</div></li>
-			<li><div style="height: 100%">
-					<em>50%</em>
-				</div></li>
-			<li><div style="height: 30%">
-					<em>30%</em>
-				</div></li>
-			<li><div style="height: 40%">
-					<em>40%</em>
-				</div></li>
-		</ul>
-		<span>1점</span> <span>2점</span> <span>3점</span> <span>4점</span> <span>5점</span>
-
-	</div>
+	
 	<div>
 		<!-- 리뷰 -->
 		<table border="1">

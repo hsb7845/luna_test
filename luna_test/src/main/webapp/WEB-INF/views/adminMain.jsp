@@ -1,8 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
-<%--     pageEncoding="UTF-8"%> --%>
-<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
-<%--     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
-
 <%@page import="com.luna.board.dtos.StockDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -99,8 +94,16 @@
 
                     })
                 </script>
-            </head>
-            <%
+	<style type="text/css">
+		#content {
+			background-color: white;
+		}
+		.container-fluid {
+			background-color: white;
+		}
+	</style>
+</head>
+<%
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
     
@@ -182,12 +185,12 @@
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">게시판관리:</h6>
-                    <a class="collapse-item" href="utilities-color.html">귀걸이</a>
-                    <a class="collapse-item" href="utilities-border.html">목걸이</a>
-                    <a class="collapse-item" href="utilities-animation.html">기타</a>
-                    <a class="collapse-item" href="utilities-other.html">리뷰</a>
-                    <a class="collapse-item" href="utilities-other.html">문의사항</a>
+                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
+                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                    <a class="collapse-item" href="rboard.do">리뷰</a>
+                    <a class="collapse-item" href="qboard.do">문의사항</a>
                     <a class="collapse-item" href="eboard.do">이벤트</a>
                 </div>
             </div>
@@ -226,22 +229,29 @@
                 </div>
             </div>
         </li>
+<!--        <li class="nav-item"> -->
+<!-- 			<a class="nav-link" href="pboard.do"> -->
+<!-- 	         	<i class="fas fa-fw fa-chart-area"></i> -->
+<!-- 	         	<span>상품게시판관리</span></a> -->
+<!-- 		</li> -->
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="eboard.do">
+            <a class="nav-link" href="buylist.do">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>
-        </a>
-    </li>
+        	</a>
+        </li>
+        <!-- Nav Item - Pages Collapse Menu -->
 
-    <!-- Nav Item - Tables -->
-    <!-- <li class="nav-item"> -->
-    <!-- <a class="nav-link" href="tables.html"> -->
-    <!-- <i class="fas fa-fw fa-table"></i> -->
-    <!-- <span>Tables</span></a> -->
-    <!-- </li> -->
+
+<!--     Nav Item - Tables -->
+<!--     <li class="nav-item"> -->
+<!--     <a class="nav-link" href="tables.html"> -->
+<!--     <i class="fas fa-fw fa-table"></i> -->
+<!--     <span>Tables</span></a> -->
+<!--     </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -292,168 +302,8 @@
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <li class="nav-item dropdown no-arrow d-sm-none">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="searchDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fas fa-search fa-fw"></i>
-                    </a>
-                    <!-- Dropdown - Messages -->
-                    <div
-                        class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                        aria-labelledby="searchDropdown">
-                        <form class="form-inline mr-auto w-100 navbar-search">
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control bg-light border-0 small"
-                                    placeholder="Search for..."
-                                    aria-label="Search"
-                                    aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
 
-                <!-- Nav Item - Alerts -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="alertsDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fas fa-bell fa-fw"></i>
-                        <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter">3+</span>
-                    </a>
-                    <!-- Dropdown - Alerts -->
-                    <div
-                        class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">
-                            Alerts Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-primary">
-                                    <i class="fas fa-file-alt text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 12, 2019</div>
-                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-success">
-                                    <i class="fas fa-donate text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 7, 2019</div>
-                                $290.29 has been deposited into your account!
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-warning">
-                                    <i class="fas fa-exclamation-triangle text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 2, 2019</div>
-                                Spending Alert: We've noticed unusually high spending for your account.
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                    </div>
-                </li>
 
-                <!-- Nav Item - Messages -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="messagesDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fas fa-envelope fa-fw"></i>
-                        <!-- Counter - Messages -->
-                        <span class="badge badge-danger badge-counter">7</span>
-                    </a>
-                    <!-- Dropdown - Messages -->
-                    <div
-                        class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="messagesDropdown">
-                        <h6 class="dropdown-header">
-                            Message Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                <div class="status-indicator bg-success"></div>
-                            </div>
-                            <div class="font-weight-bold">
-                                <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                                <div class="small text-gray-500">Emily Fowler · 58m</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                <div class="status-indicator"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">I have the photos that you ordered last month, how
-                                    would you like them sent to you?</div>
-                                <div class="small text-gray-500">Jae Chun · 1d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                <div class="status-indicator bg-warning"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">Last month's report looks great, I am very happy with
-                                    the progress so far, keep up the good work!</div>
-                                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img
-                                    class="rounded-circle"
-                                    src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                    alt="...">
-                                <div class="status-indicator bg-success"></div>
-                            </div>
-                            <div>
-                                <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                    told me that people say this to all dogs, even if they aren't good...</div>
-                                <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                    </div>
-                </li>
 
                 <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -494,82 +344,14 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+			<p style="text-align:center;">
+				<img id='mainLogo' src='upload/23_13.jpeg' style='width:200px; height:90px; vertical-align: middle;' /> 
+				
+				
 
-            <!-- Content Row -->
-
-            <div class="row">
-
-                    <form action="muldelStock.do" method="post">
-                        <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-                            <col width="50px">
-                            <col width="100px">
-                            <col width="300px">
-                            <col width="150px">
-                            <col width="100px">
-                            <col width="150px">
-                            <col width="500px">
-                            <col width="100px">
-                            <col width="150px">
-                            <tr align="center" class="stockT">
-                                <th><input type="checkbox" name="all" onclick="allSel(this)"/></th>
-                                <th>상품번호</th>
-                                <th>상품명</th>
-                                <th>상품재고수량</th>
-                                <th>원가</th>
-                                <th>카테고리번호</th>
-                                <th>상품내용</th>
-                                <th>판매가</th>
-                                <th>상품게시글번호</th>
-                            </tr>
-                            <%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='9'>----작성된 글이 없습니다.</td></tr>");
-			}else{
-		for(int i=0;i<list.size();i++){
-			StockDTO dto=list.get(i);
-	%>
-                                <tr align="center" class="stockM">
-                                    <td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
-                                    <td><%=dto.getPnum()%></td>
-                                    <td>
-                                        <a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>"><%=dto.getPname()%></a>
-                                    </td>
-                                    <td><%=dto.getScount()%></td>
-                                    <td><%=dto.getCost()%></td>
-                                    <td><%=dto.getCnum()%></td>
-                                    <td><%=dto.getPcontent()%></td>
-                                    <td><%=dto.getPrice()%></td>
-                                    <td><%=dto.getPseq() %></td>
-                                </tr>
-                                <%
-			}
-		}
-	%>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td colspan="9" class="stockD">
-                                            <!-- <input type="button" value="상품입고" id="stockInsertForm"> -->
-                                            <input type="button" value="상품등록" id="stockForm">
-                                            <!-- <input type="button" value="메인" id="main"> -->
-                                            <input type="submit" value="삭제"/>
-                                            <!-- <a href="stockInsertForm.do">상품입고</a> -->
-                                            <!-- <a href="stockForm.do">상품등록</a> -->
-                                            <!-- <a href=".do">메인</a> -->
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-
-                        </div>
-
-                        <!-- Content Row -->
-                        <div class="row"></div>
-
-                    </div>
-                    <!-- /.container-fluid -->
-
-                </div>
+		</div>
+                <!-- End of Main Content -->
+        </div>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->

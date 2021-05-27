@@ -94,13 +94,22 @@
 	</script>
 	
 	<style >	
-	.cls1 {
-	    font-size: 30px;
-	    text-align: center;
-	}
-	#content {
-		background-color: white;
-	}
+		.cls1 {
+		    font-size: 30px;
+		    text-align: center;
+		}
+		#content {
+			background-color: white;
+		}
+		.stockT {
+			font-size: 15px;
+		}
+		.stockM {
+			font-size: 13px;
+		}
+		.stockD {
+			font-size: 12px;
+		}
 	</style>                
 </head>
 <%
@@ -113,9 +122,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-            id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" 
+        id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a href="index.do">
@@ -127,9 +135,8 @@
                         id='mainLogo'
                         src='upload/logo.png'
                         style='width:200px; height:90px; vertical-align: middle;'/>
-                </a>
-            </div>
-        </a>
+			</a>
+	</div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -185,12 +192,12 @@
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">게시판관리:</h6>
-                    <a class="collapse-item" href="utilities-color.html">귀걸이</a>
-                    <a class="collapse-item" href="utilities-border.html">목걸이</a>
-                    <a class="collapse-item" href="utilities-animation.html">기타</a>
-                    <a class="collapse-item" href="utilities-other.html">리뷰</a>
-                    <a class="collapse-item" href="utilities-other.html">문의사항</a>
+                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
+                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                    <a class="collapse-item" href="rboard.do">리뷰</a>
+                    <a class="collapse-item" href="qboard.do">문의사항</a>
                     <a class="collapse-item" href="eboard.do">이벤트</a>
                 </div>
             </div>
@@ -232,7 +239,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="eboard.do">
+            <a class="nav-link" href="buylist.do">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>
@@ -501,7 +508,7 @@
             <!-- Content Row -->
 
             <div class="row">
-
+				<p class="cls1">재고관리</p>
                     <form action="muldelStock.do" method="post">
                         <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                             <col width="50px">

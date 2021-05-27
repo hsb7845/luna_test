@@ -88,11 +88,6 @@ public class StockService implements IStockService {
 		return StockDAO.getSelectedList(chk_arr);
 	}
 
-
-
-	
-
-	
 	
 
 }

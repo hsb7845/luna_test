@@ -37,9 +37,9 @@ public class PBoardService implements IPBoardService{
 
 
 	@Override
-	public List<PBoardDTO> getAllList() {
+	public List<PBoardDTO> getAllList(String select) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.getAllList();
+		return PBoardDAO.getAllList(select);
 	}
 
 	@Override

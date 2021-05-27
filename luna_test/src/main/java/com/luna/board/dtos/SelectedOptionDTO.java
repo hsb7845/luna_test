@@ -4,6 +4,20 @@ public class SelectedOptionDTO {
 	private int amount;
 	private String optName;
 	private int price ;
+	private String ptitle;
+	private String imgName;
+	public String getPtitle() {
+		return ptitle;
+	}
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
 	public int getAmount() {
 		return amount;
 	}

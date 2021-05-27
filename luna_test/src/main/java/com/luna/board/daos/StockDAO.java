@@ -67,7 +67,7 @@ public class StockDAO implements IStockDAO {
 	@Override
 	public int getCnum(PCategoryDTO cdto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"getCnum",cdto);
+		return  sqlSession.selectOne(namespace+"getCnum",cdto);
 	}
 
 	@Override
@@ -95,5 +95,6 @@ public class StockDAO implements IStockDAO {
 		map.put("chk", chk_arr);
 		return sqlSession.selectList(namespace+"getSelectedList",map);
 	}
-	
+
+
 }

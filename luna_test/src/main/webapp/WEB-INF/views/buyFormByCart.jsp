@@ -117,22 +117,21 @@
 		</tr>
 		<c:if test="${list!=null }">
 			<c:set var="totalPrice" value="0"/>
-			<c:forEach items="${list }" var="i" varStatus="status" >
+			<c:forEach items="${list}" var="i" varStatus="status" >
 			<c:set var="count" value="${status.count }"/>
 			<tr>
-				<td>이미지</td>
-				<td><input type="hidden"value="${dto.pseq}" name="pseq"/>${dto.ptitle }<br><input type="hidden"value="${i.optName }" name="selOpt${status.count}"/>${i.optName }</td>
+				<td>${i.image.imgname }</td>
+				<td><input type="hidden" value="${i.pboard.pseq}" name="pseq${status.count }"/>${i.pboard.ptitle }<br><input type="hidden"value="${i.selOpt }" name="selOpt${status.count}"/>${i.selOpt }</td>
 				<td><input type="hidden"value="${i.price }" name="price${status.count}"/>${i.price}원</td>
-				<td><input type="hidden"value="${i.amount }" name="amount${status.count}"/>${i.amount}</td>
-				<td><c:set var="sumPrice" value="${i.price*i.amount }" /><c:out value="${sumPrice }원" /></td>
+				<td><input type="hidden"value="${i.pcount }" name="amount${status.count}"/>${i.pcount}</td>
+				<td><c:set var="sumPrice" value="${i.price*i.pcount }" /><c:out value="${sumPrice }원" /></td>
 				
 				<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
-			
 			</c:forEach>
 			<tr>
 			
-				<th><input type="hidden" name="count" value="${count }">총 금액 </th><td><c:out value="${totalPrice }원"/><input type="hidden" name="totalPrice" value="${totalPrice }"></td>
+				<th><input type="hidden" name="count" value="${count}">총 금액 </th><td><c:out value="${totalPrice }원"/><input type="hidden" name="totalPrice" value="${totalPrice }"></td>
 			</tr>
 		</c:if>
 		<tr>

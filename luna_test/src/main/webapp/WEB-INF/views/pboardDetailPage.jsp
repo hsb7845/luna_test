@@ -11,25 +11,10 @@
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
 
-	function incart(id,pseq){
-		if(id==null){
-			location.href = "loginForm.do?";
-		}
+	
 		
-		$.ajax({
-			url : "insertCart.do",
-			mehthod : "post",
-			dataType : "json",
-			data : { "id" : id ,"pseq" : pseq},
-			asnc:false,
-			success : function(data) {
-				if(confirm("장바구니로 이동하시겠습니까?")){
-					location.href ="cart.do?id="+id;
-				}
-			}
-		})
 		
-	}
+	
 	$(document).ready(function(){
 		var selectedOptNum = 0;
 		var selectedOpt = "";
@@ -39,7 +24,8 @@
 		var selOpt = {};
 		selOpt = {"ptitle":ptitle,"pseq":pseq};
 		$("input[name='buy']").click(function(){
-			var id = '${id}';
+			//alert(selectedOptNum);
+			var id = $("input[name='id']").val();
 			if(selectedOptNum==1){
 				var amount  = $("input[name='amount"+1+"']").val();
 				var optname = $("#selectedOpt1").text();
@@ -106,8 +92,45 @@
 				newForm.submit();
 			}
 		});
-		
+		$("#cart").click(function(){
+			var id = $("input[name='id']").val();
+			var pseq = $("input[name='pseq']").val();
+			selOpt= {};
+			if(selectedOptNum==1){
+				var amount  = $("input[name='amount"+1+"']").val();
+				var optname = $("#selectedOpt1").text();
+				price = $("input[name='price1']").val();
+				selOpt[1] = {"amount":amount,"optName":optname,"price":price};
+			}else{
+				for(var i=1;i<=selectedOptNum;i++){
+					var amount  = $("input[name='amount"+i+"']").val();
+					var optname = $("#selectedOpt"+i).text();
+					price =  $("input[name='price"+i+"']").val();
+					selOpt[i] = {"amount":amount,"optName":optname,"price":price};
+				}
+			}
+			selOpt = JSON.stringify(selOpt);
+			//alert(selOpt);
+			if(id==""){
+				location.href = "loginForm.do?returnUrl=pboard&pseq="+pseq;
+			}else{
+				$.ajax({
+					url : "insertCart.do",
+					mehthod : "post",
+					dataType : "json",
+					data : { "id" : id ,"pseq" : pseq,"selOpt":selOpt,"selOptNum":selectedOptNum},
+					async:false,
+					success : function(data) {
+						
+					}
+				});
+				var layer = document.getElementById("popup_layer"); 
+				layer.style.visibility="visible"; //반대는 hidden 
+			}
+		});
+
 		$("input[name='selOpt']").click(function(){
+			//alert(selectedOptNum);
 			var optNum = $('input[name="optNum"]').val();
 			if(optNum==1){
 				selectedOptNum++;
@@ -121,12 +144,11 @@
 				}else if(optval!=" "){
 					selectedOpt = optname;
 					var innerText= "";
-					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span>"+selectedOpt+"</span></td>";
+					innerText +="<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ptitle+"</span><br><span id='selectedOpt"+selectedOptNum+"'>"+selectedOpt+"</span></td>";
 					innerText +='<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('+selectedOptNum+');"><input type="button" value=" - " onclick="del('+selectedOptNum+');"></td>';
 					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
 					$("#optContainer").append(innerText);
 					changeTotalPrice();
-					selectedOptNum++;
 				}
 			}else if (optNum>1){
 				selectedOptNum++;
@@ -152,38 +174,26 @@
 					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
 					$("#optContainer").append(innerText);
 					changeTotalPrice();
-					
 				}
 		});	
 	});
 	
 	var sell_price;
 	var amount;
-
-	function init () {
-		 sell_price = document.form.sell_price.value;
-		 amount = document.form.amount.value;
-		 document.form.sum.value = sell_price;
-		 
-	}
-
 	function add (i) {
 		var amount = $("input[name='amount"+i+"']").val();
 		amount++;
 		 $("input[name='amount"+i+"']").val(amount);
 		 change(i);
 	}
-
 	function del (i) {
 		var amount = $("input[name='amount"+i+"']").val();
 		if(amount==1){
-			
 		}else{
 			amount--;
 			$("input[name='amount"+i+"']").val(amount);
 			change(i);
 		}
-		
 	}
 
 	function change(i) {
@@ -203,6 +213,11 @@
 		   });
 		 $("#totalprice").text(totalPrice+"원");
 	}
+	
+	function goCart(){
+		var id = $("input[name='id']").val();
+		location.href = "cart.do?id="+id;
+	}
 </script>
 <style>
 	.imgmain{
@@ -216,12 +231,26 @@
 		width : 50px;
 		height : 50px;
 	}
+	#popup_layer{
+	position:absolute;
+	border:double; 
+	top:50%; 
+	left:50%; 
+	width:500px; 
+	height:400px; 
+	z-index:1;
+	background-color:white;
+	visibility:hidden; 
+	align : center;
+	}
 </style>
 
 
 </head>
 <body>
+<%@ include file="header.jsp" %>
 	<form action="buyform.do" method="get">
+	<input type="hidden" name="id" value="${sessionScope.id }">
 	<div><!-- 상품 게시글  -->
 		<div><!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
@@ -272,7 +301,7 @@
 		</table>
 	</div>
 	<div>
-		<input type="button" value="장바구니" id="cart" onclick="incart(<c:if test="${id==null }">null</c:if><c:if test="${id!=null }">'${id }'</c:if>,${map.pboard.pseq })"> 
+		<input type="button" value="장바구니" id="cart" > 
 		<input type="button" name="buy" value="바로구매">
 	</div>
 	<div>
@@ -365,5 +394,11 @@
 				<tr><td colspan="3"><a href="insertQuestion.do?pseq=${map.pboard.pseq }">문의작성하기</a></td></tr>
 		</table>
 	</div>
+<div id="popup_layer" > 
+<div class="header"><h3>장바구니</h3><a onclick="$('#popup_layer').hide()"><img src="upload/close.png"></a></div>
+<div class="content"><img src="upload/cart.png"><p>장바구니에 상품이 정상적으로 담겼습니다.</p></div>
+<div><button onclick="goCart()">장바구니 이동</button><button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button> </div>
+</div> 
+<%@ include file="footer.jsp" %>
 </body>
 </html>

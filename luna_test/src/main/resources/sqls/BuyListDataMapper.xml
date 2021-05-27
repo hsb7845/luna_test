@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luna.buylist">
-
+	<resultMap type="CartDTO" id="CartDTO_resultMap">
+		<result column="SEQ" property="seq"/>
+		<result column="PSEQ" property="pseq"/>
+		<result column="PCOUNT" property="pcount"/>
+		<result column="SELOPT" property="selOpt"/>
+		<result column="PRICE" property="price"/>
+		<result column="ID" property="id"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
+	
 	<select id="getAllList" resultType="BLDTO">
 		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
 		FROM BUY_LIST
@@ -42,6 +57,28 @@
 	<select id="getMember" parameterType="String" resultType="MDTO">
 		select * from member where id =#{id}
 	</select>
+
+	<insert id="insertBuyList" parameterType="BLDTO">
+		INSERT INTO BUY_LIST
+		(BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE)
+		VALUES(BUY_LIST_SEQ.nextval, #{id},sysdate,0,'입금전', #{name}, #{phone}, #{address}, #{totalPrice})
+	</insert>
+	
+	<insert id="insertBuyDetail" parameterType="BDDTO">
+			INSERT INTO BUY_DETAIL(BDSEQ, PSEQ, PCOUNT, BSEQ, SELOPT,PRICE)
+			VALUES(BUY_DETAIL_SEQ.NEXTVAL,#{pseq},#{pcount},BUY_LIST_SEQ.CURRVAL,#{selOpt},#{price})
+	</insert>
+	
+	<select id="getCart" parameterType="map" resultMap="CartDTO_resultMap">
+		 SELECT * FROM CART c ,P_BOARD pb,IMG_FILE if2 
+		 WHERE c.Pseq  = pb.pseq AND pb.PSEQ = if2.PSEQ  AND c.id=#{id} AND c.seq=#{seq}
+	</select>
 	
 	
+	<select id="getSelCart" parameterType="map" resultType="CartDTO">
+	 	select * from cart where seq in
+	 	<foreach collection="chks" item="i" separator="," open="(" close=")">
+			#{i}
+		</foreach>
+	</select>
 </mapper>

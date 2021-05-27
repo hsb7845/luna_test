@@ -145,6 +145,7 @@ public class MemberController {
 		
 	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String loginForm(Locale locale, Model model,String returnUrl,HttpServletRequest request) {
+		System.out.println(returnUrl);
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
@@ -156,19 +157,8 @@ public class MemberController {
 			model.addAttribute("returnUrl",returnUrl);
 			//System.out.println("로그인폼에서 : "+request.getParameter("selOpt"));
 			return "userlogin";
-		}else if(returnUrl.equals("cart")) {
-			JSONParser  parser = new JSONParser();
-			try {
-				Object obj = parser.parse(request.getParameter("selOpt"));
-				JSONObject jsonObj = (JSONObject) obj;
-				
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}else if(returnUrl.equals("pboard")) {
 			model.addAttribute("pseq", request.getParameter("pseq"));
-			System.out.println("로그인  : "+request.getParameter("selOptNum"));
-			model.addAttribute("selOpt", request.getParameter("selOpt"));
 			model.addAttribute("returnUrl",returnUrl);
 			return "userlogin";
 		}else {
@@ -179,7 +169,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request,HttpServletResponse response) {
+	public String login(Locale locale, Model model,MemberDTO dto,String returnUrl,HttpServletRequest request,HttpServletResponse response) {
 		String msg= "";
 		boolean isS = false;
 		HttpSession session = request.getSession();
@@ -193,18 +183,18 @@ public class MemberController {
 					//System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
-					if(request.getParameter("returnUrl")!=null) {
-						if(request.getParameter("returnUrl").equals("buyform")) {
+					if(returnUrl!=null) {
+						System.out.println("returnUrl:"+request.getParameter("returnUrl"));
+						if(returnUrl.equals("buyform")) {
 							System.out.println("로그인  : "+request.getParameter("selOptNum"));
 							model.addAttribute("selOptNum",request.getParameter("selOptNum"));
 							model.addAttribute("pseq", request.getParameter("pseq"));
 							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
 							//System.out.println("여기:"+request.getParameter("selOpt"));
 							return "redirect:buyform.do";
-						}else if ( request.getParameter("returnUrl").equals("cart")) {
+						}else if (returnUrl.equals("pboard")) {
 							model.addAttribute("pseq", request.getParameter("pseq"));
-							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
-							return "redirect:inCart.do";
+							return "redirect:pboarddetail.do";
 						}
 					}
 					
@@ -228,7 +218,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		System.out.println("세션 정보삭제 완료");
 		session.invalidate();
-		return "userlogin"; 
+		return "index"; 
 	}
 		 
     /* 이메일 인증 */

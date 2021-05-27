@@ -2,23 +2,40 @@ package com.luna.board.dtos;
 
 public class BuyDetailDTO {
 	private int bdseq;
-	private int pnum;
+	private int pseq;
 	private int pcount;
 	private int bseq;
+	private String selOpt;
+	private int price;
 	
 	
-	@Override
-	public String toString() {
-		return "BuyDetailDTO [bdseq=" + bdseq + ", pnum=" + pnum + ", pcount=" + pcount + ", bseq=" + bseq + "]";
+
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getPseq() {
+		return pseq;
+	}
+	public void setPseq(int pseq) {
+		this.pseq = pseq;
+	}
+	public String getSelOpt() {
+		return selOpt;
+	}
+	public void setSelOpt(String selOpt) {
+		this.selOpt = selOpt;
 	}
 	public BuyDetailDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BuyDetailDTO(int bdseq, int pnum, int pcount, int bseq) {
+	public BuyDetailDTO(int bdseq, int pseq, int pcount, int bseq) {
 		super();
 		this.bdseq = bdseq;
-		this.pnum = pnum;
+		this.pseq= pseq;
 		this.pcount = pcount;
 		this.bseq = bseq;
 	}
@@ -28,12 +45,7 @@ public class BuyDetailDTO {
 	public void setBdseq(int bdseq) {
 		this.bdseq = bdseq;
 	}
-	public int getPnum() {
-		return pnum;
-	}
-	public void setPnum(int pnum) {
-		this.pnum = pnum;
-	}
+	
 	public int getPcount() {
 		return pcount;
 	}

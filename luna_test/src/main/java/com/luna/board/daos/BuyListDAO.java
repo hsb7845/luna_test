@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 
@@ -74,6 +77,36 @@ public class BuyListDAO implements IBuyListDAO {
 	public MemberDTO getMember(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getMember", id);
+	}
+
+	@Override
+	public boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list) {
+		// TODO Auto-generated method stub
+		boolean isS = sqlSession.insert(namespace+"insertBuyList",blDTO)>0?true:false;
+		for(int i=0;i<list.size();i++) {
+			BuyDetailDTO dto = list.get(i);
+			isS = sqlSession.insert(namespace+"insertBuyDetail",dto)>0?true:false;
+		}
+		
+		//isS = sqlSession.update(namespace+"insertBuyDetail",list)>0?true:false;
+		return isS;
+	}
+
+	@Override
+	public List<CartDTO> getSelCart(String[] chks,String id) {
+		// TODO Auto-generated method stub
+		List<CartDTO> list= new ArrayList<>();
+		Map<String,String> map = new HashMap<>();
+		
+		//System.out.println(chks.toString());
+		for(int i=0;i<chks.length;i++) {
+			map.clear();
+			map.put("id", id);
+			map.put("seq", chks[i]);
+			CartDTO dto = sqlSession.selectOne(namespace+"getCart",map);
+			list.add(dto);
+		}
+		return list;
 	}
 	
 }

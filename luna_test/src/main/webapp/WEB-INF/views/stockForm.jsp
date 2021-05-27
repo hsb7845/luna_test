@@ -40,6 +40,7 @@
 			var pname=$("#pname").val();
 			var scount=$("#scount").val();
 			var cost=$("#cost").val();			
+			var cnum=$("#cnum").val();			
 			var pcontent=$("#pcontent").val();
 			var price=$("#price").val();
 			
@@ -118,7 +119,24 @@
 					$("#psize").html(sizeOption);
 				}
 			});			
-		});		
+		});	
+// 		$("#ptype").change(function(){
+// 			$.ajax({
+// 				url : "getCnum.do",
+// 				mehthod : "post",
+// 				dataType : "json",
+// 				data : { "ptype" : $("#ptype").val()},
+// 				asnc:false,
+// 				success : function(data) {
+// 					var list = data["list"];
+// 					var sizeOption = "<option value=''>전체</option>";
+// 					for(var i=0; i<list.length; i++) {					
+// 						cnumOption += '<option value="'+list[i]["cnum"]+'"> '+list[i]["cnum"]+'</option>'
+// 					}				
+// 					$("#cnum").html(cnumOption);
+// 				}
+// 			});			
+// 		});		
 	}); 
 </script>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
@@ -234,12 +252,12 @@ div.row {
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">게시판관리:</h6>
-                    <a class="collapse-item" href="utilities-color.html">귀걸이</a>
-                    <a class="collapse-item" href="utilities-border.html">목걸이</a>
-                    <a class="collapse-item" href="utilities-animation.html">기타</a>
-                    <a class="collapse-item" href="utilities-other.html">리뷰</a>
-                    <a class="collapse-item" href="utilities-other.html">문의사항</a>
+                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
+                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                    <a class="collapse-item" href="rboard.do">리뷰</a>
+                    <a class="collapse-item" href="qboard.do">문의사항</a>
                     <a class="collapse-item" href="eboard.do">이벤트</a>
                 </div>
             </div>
@@ -281,7 +299,7 @@ div.row {
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="eboard.do">
+            <a class="nav-link" href="buydetail.do">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>
@@ -580,7 +598,11 @@ div.row {
 					<div id='result'></div>
 					<P>상품명  <input type="text" name="pname" id="pname" ></P>
 					<P>상품입고수량  <input type="text" name="scount" id="scount" ></P>
-					<P>상품원가  <input type="text" name="productCost" id="productCost" ></P>
+					<P>상품원가  <input type="text" name="cost" id="cost" ></P>				
+<!-- 					<p>카테고리번호 -->
+<!-- 						<select name="cnum" id="cnum" >		 -->
+<!-- 							<option value="" >전체</option> -->
+<!-- 						</select></p>				 -->
 					<P>상품내용  
 						<textarea cols="30" rows="5" name="pcontent" id="pcontent" ></textarea></P>
 					<P>상품가격  <input type="text" name="price" id="price"></P>	

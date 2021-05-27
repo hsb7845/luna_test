@@ -77,7 +77,7 @@ body,button,input{
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
-			<input type="password" class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합"required>
+			<input type="password" class="pw_input" name="pwd" placeholder="영문자+특수문자 조합"required>
 		</div>
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
 		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>

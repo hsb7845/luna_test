@@ -21,6 +21,12 @@
 		select pb.pseq,pb.pcontent,pb.pdate,pb.ptitle,pb.hit 
 		FROM P_BOARD pb ,STOCK s ,P_CATEGORY pc 
 		WHERE pb.PSEQ =s.PSEQ  AND pc.CNUM =s.CNUM
+		<choose>
+			<when test="select==귀걸이">and pc.type='귀걸이'</when>
+			<when test="select==목걸이">and pc.type='목걸이'</when>
+			<when test="select==반지">and pc.type='반지'</when>
+			<when test="select==all"></when>
+		</choose>
 	</select>
 	
 	<select id="getBoard" resultType="PBDTO" parameterType="int">
@@ -35,12 +41,6 @@
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
 		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit from P_board p,stock s
 		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true'
-		<choose>
-			<when test="select==귀걸이">and pc.type='귀걸이'</when>
-			<when test="select==목걸이">and pc.type='목걸이'</when>
-			<when test="select==반지">and pc.type='반지'</when>
-			<when test="select==all"></when>
-		</choose>
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">

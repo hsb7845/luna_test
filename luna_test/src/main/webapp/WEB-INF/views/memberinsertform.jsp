@@ -11,6 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <style type="text/css">
 
 @font-face {
@@ -26,7 +27,10 @@ body,button,input{
 	line-height: 20px;
 
  }
-
+ .body {
+	left: 50%;	
+	position: relative;		
+}
 .pwck_input_re_1{
 	color : green;
 	display : none;    
@@ -44,27 +48,15 @@ body,button,input{
 	color :red;
 }
 
-table {
-    width: 300px;
-	height: 30px;
-	margin:auto;
-	text-align:left;
-    }
-
-
 </style>
 </head>
 
-<body>
-	
+<body> 		
+	<%@ include file="header.jsp" %>
+
 	<div class=body>
 	<form method="post" action="insertmember.do" id="join">
-		
-		
-	
-		<h2>회원가입</h2>
-	
-	
+		<h1>회원가입</h1>
 		<div id="id" >
 			<label for="id">아이디</label><br>
 			<input type="text" name="id" id="id" required />
@@ -86,16 +78,12 @@ table {
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>
-	
 		<div class="mail_wrap">
-	
 			<div class="email">이메일</div>
 			<div class="mail_input_box">
 			<input class="mail_input" name="email"required>
 			</div>
-		</div>
-	
-		<div class="mail_check_wrap">
+			<div class="mail_check_wrap">
 			<div class="mail_check_input_box" id="mail_check_input_box_false">	
 					인증번호<br><input class="mail_check_input" disabled="disabled"required>
 			</div>
@@ -104,8 +92,10 @@ table {
 			</div>
 			<div class="clearfix"></div>
 			 <span id="mail_check_input_box_warn"></span>
+			</div>
 		</div>
-	
+
+
 주소<br>
 <input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호"required>
 <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -118,22 +108,17 @@ table {
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 
-		생년월일<br> <input type="date" max="9999-12-31" name="birthtest"required><br>
+		생년월일<br> <input type="date" name="birthtest"required><br>
 		성별<br>
-		남<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" required value="남" >
-		여<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" value="여" ><br>
+		남<input type="radio" name="sex" required onclick="checkOnly(this);" required value="남" >
+		여<input type="radio" name="sex" onclick="checkOnly(this);" value="여" ><br>
 		핸드폰 <br><input type="text" name="phone"required>
-  		 <input type="hidden" name="admin"> 
-  		 <div class="nickname">
+<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
+  		 <input type="hidden" name="admin"><br>  
 		닉네임 <br><input type="text" name="nickName"required><br>
-		</div>
-		<div class="name">
 		이름<br>	<input type="text" name="name"required>
-		</div>
-	
 		 <input type="hidden" name="point"><br><br>
 		<input type="submit" value="회원가입">
-		
 		<input type="reset" value="다시입력">
 	</form>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -289,7 +274,7 @@ table {
 	
 	
 
-	 s
+	 
 	/* 비밀번호 확인 일치 유효성 검사 */
 	 
 	$('.pwck_input').on("propertychange change keyup paste input", function(){
@@ -326,23 +311,23 @@ table {
 // 		var check2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{10,12}$/.test(mbrPwd);  //영문,특수문자
 	
 
-// function checkOnly(chk){
+function checkOnly(chk){
 
-//    var obj = document.getElementsByName("sex");
+   var obj = document.getElementsByName("sex");
 
-//       for(var i=0; i<obj.length; i++){
-//             if(obj[i] != chk){
-//                   obj[i].checked = false;
-//                   }
-//             }
-//     }
+      for(var i=0; i<obj.length; i++){
+            if(obj[i] != chk){
+                  obj[i].checked = false;
+                  }
+            }
+    }
 
-// function check() {
-// 	if ($("input:checkbox[name='sex']").is(":checked")==false) {
-// 		alert("성별을 선택하여 주십시오.");
-// 		return;
-// 	}
-// }
+function check() {
+	if ($("input:checkbox[name='sex']").is(":checked")==false) {
+		alert("성별을 선택하여 주십시오.");
+		return;
+	}
+}
  </script>
 </div>
 </body>

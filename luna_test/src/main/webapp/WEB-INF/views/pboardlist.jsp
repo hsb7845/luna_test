@@ -138,6 +138,7 @@
 			<a href="insertpboardform.do">글쓰기</a>
 			<a href="index.do">메인</a>
 			<input type="submit" value="삭제" />
+			<a href="adminMain.do">관리자페이지</a>
 		</td>
 	</tr>
 </table>

@@ -59,7 +59,12 @@ body,button,input{
 </head>
 
 <body> 		
-	<%@ include file="header.jsp" %>
+<div>
+	<a href="index.do">
+	<p style="text-align:center;"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> 
+	</a>
+</div>
+
 
 	<div class=body>
 	<form method="post" action="insertmember.do" id="join">
@@ -72,18 +77,16 @@ body,button,input{
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
-			<input type="password" class="pw_input" name="pwd" placeholder="영문자+숫자+특수문자 조합"required>
+			<input type="password" class="pw_input" name="pwd" placeholder="영문자+특수문자 조합"required>
 		</div>
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
 		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
-<!-- 		<span class="final_pw_ck">비밀번호를 입력해 주세요</span> -->
 		</div>
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
 				<input type="password" class="pwck_input" name="pwdCheck"required>
 			</div>
-<!-- 		<span class="final_pwck_ck">비밀번호 확인을 입력해주세요</span> -->
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>

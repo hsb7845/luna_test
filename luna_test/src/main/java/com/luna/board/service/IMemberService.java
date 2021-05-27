@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 
 public interface IMemberService {

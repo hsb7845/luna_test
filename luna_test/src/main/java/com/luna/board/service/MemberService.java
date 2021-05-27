@@ -9,9 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.luna.board.daos.ICouponDAO;
 import com.luna.board.daos.IMemberDAO;
-import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
 

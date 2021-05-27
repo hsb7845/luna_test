@@ -70,7 +70,6 @@
 		update member set PWD = #{pwd} where EMAIL=#{email}
 	</update>
 
-
 	
 	
 	<!-- 생일자 현재 월 기준으로 월 출력 -->

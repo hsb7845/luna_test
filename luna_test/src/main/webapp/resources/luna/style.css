@@ -617,10 +617,10 @@ a:active,a:focus {
 /*--------------------------------------------------------------9.0 Clearings--------------------------------------------------------------*/
 .clear:before,.clear:after,.entry-content:before,.entry-content:after,.comment-content:before,.comment-content:after,.site-header:before,.site-header:after,.site-content:before,.site-content:after,.site-footer:before,.site-footer:after {
 	content:'';
-	display:table;
+/* 	display:table; */
 }
 .clear:after,.entry-content:after,.comment-content:after,.site-header:after,.site-content:after,.site-footer:after {
-	clear:both;
+/* 	clear:both; */
 }
 .clear {
 	*zoom: 1;
@@ -909,15 +909,15 @@ a.smoothup {
 		padding-top: 30px;
 }
 /*--------------------------------------------------------------12.0 Footer--------------------------------------------------------------*/
-.site-footer {
-	padding:2em 0;
-	text-align:center;
-	background-color:#333;
-	color:#999;
-}
-.site-footer a {
-	text-decoration:none;
-	color: #999;
+/* .site-footer { */
+/* 	padding:2em 0; */
+/* 	text-align:center; */
+/* 	background-color:#333; */
+/* 	color:#999; */
+/* } */
+/* .site-footer a { */
+/* 	text-decoration:none; */
+/* 	color: #999; */
 }
 /*--------------------------------------------------------------13.0 Infinite scroll--------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
@@ -928,7 +928,7 @@ a.smoothup {
 }
 /* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
 .infinity-end.neverending .site-footer {
-	display: block;
+/* 	display: block; */
 }
 /*--------------------------------------------------------------14.0 Media--------------------------------------------------------------*/
 .page-content img.wp-smiley,.entry-content img.wp-smiley,.comment-content img.wp-smiley {
@@ -1936,7 +1936,7 @@ ul.shortcode-archive li {
 			text-decoration:none;
 	}
 	.site-header,.entry-thumbnail,.site-content .entry-header,.site-footerr {
-			background:transparent;
+/* 			background:transparent; */
 	}
 	.site-title {
 			float:none;

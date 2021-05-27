@@ -128,7 +128,7 @@
 				<tr align="center" class="detailM">
 					<td><input type="checkbox" name="chk" value="<%=dto.getBdseq()%>"/></td>
 					<td><%=dto.getBdseq()%></td>
-					<td ><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPnum()%></a> </td>
+					<td ><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPseq()%></a> </td>
 					<td><%=dto.getPcount()%>개</td>
 					<td><%=dto.getBseq() %>
 				</tr>

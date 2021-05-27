@@ -37,6 +37,10 @@ div#loginPage{
 				<input type="hidden" name="selOpt" value='${selOpt }'>
 				<input type="hidden" name="selOptNum" value='${selOptNum }'>
 			</c:when>
+			<c:when test="${returnUrl=='pboard' }">
+				<input type="hidden" name="returnUrl" value="${returnUrl }">
+				<input type="hidden" name="pseq" value="${pseq }">
+			</c:when>
 		</c:choose>
 	</c:if>
 	<div id = "loginPage">

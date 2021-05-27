@@ -10,12 +10,10 @@
 	
 	</select>
 
-	<update id="insertCart" parameterType="list">
-		<foreach collection="list" item="i" separator=" " open="INSERT ALL" close ="SELECT * FROM DUAL">
+	<insert id="insertCart" parameterType="CartDTO">
 		INSERT INTO CART (SEQ, ID, PSEQ, PCOUNT,SELOPT,PRICE) 
-		VALUES(CART_SEQ.NEXTVAL,#{i.id}, #{i.pseq}, #{i.pcount},#{i.selOpt},#{i.price})
-		</foreach>
-	</update>
+		VALUES(CART_SEQ.NEXTVAL,#{id}, #{pseq}, #{pcount},#{selOpt},#{price})
+	</insert>
 	
 	<select id ="getCart" resultType="CartDTO" parameterType="int">
 		SELECT SEQ, ID, PSEQ, PCOUNT 

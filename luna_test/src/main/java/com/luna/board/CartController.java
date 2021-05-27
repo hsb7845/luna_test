@@ -47,13 +47,14 @@ public class CartController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCart.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public boolean insert(Locale locale, Model model,int selOptNum,String id,int pseq,HttpServletRequest request) {
+	public String insert(Locale locale, Model model,int selOptNum,String id,int pseq,HttpServletRequest request) {
 		JSONParser  parser = new JSONParser();
 		List<CartDTO> list = new ArrayList<>();
 		CartDTO dto = new CartDTO();
 		if(selOptNum>1) {
 			try {
 				Object obj = parser.parse(request.getParameter("selOpt"));
+				System.out.println(obj);
 				JSONObject jsonObj = (JSONObject) obj;
 				System.out.println(jsonObj);
 			for(int i=1;i<=selOptNum;i++) {
@@ -95,10 +96,11 @@ public class CartController {
 		
 		boolean isS = CartService.insertCart(list);
 		if(isS) {
-			return isS;
-		} else {
-			model.addAttribute("msg", "장바구니 추가를 실패하였습니다.");
-			return isS;
+			String msg = "장바구니에 상품이 정상적으로 담겼습니다.";
+			return msg;
+		}else {
+			String msg ="";
+			return msg;
 		}
 	}	
 	
@@ -131,5 +133,10 @@ public class CartController {
 			return "error";
 		}
 	}
-
+	
+	@RequestMapping(value = "/cartPopup.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String cartPopup(Locale locale, Model model,String id) {
+		model.addAttribute("id",id);
+		return "cartPopup";
+	}
 }

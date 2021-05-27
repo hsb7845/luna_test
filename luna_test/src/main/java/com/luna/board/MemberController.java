@@ -132,6 +132,7 @@ public class MemberController {
 		
 	@RequestMapping(value = "/loginForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String loginForm(Locale locale, Model model,String returnUrl,HttpServletRequest request) {
+		System.out.println(returnUrl);
 		if(returnUrl==null) {
 			return "userlogin";
 		}else if (returnUrl.equals("buyform")) {
@@ -155,7 +156,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String login(Locale locale, Model model,MemberDTO dto,HttpServletRequest request,HttpServletResponse response) {
+	public String login(Locale locale, Model model,MemberDTO dto,String returnUrl,HttpServletRequest request,HttpServletResponse response) {
 		String msg= "";
 		boolean isS = false;
 		HttpSession session = request.getSession();
@@ -169,15 +170,16 @@ public class MemberController {
 					//System.out.println("admin : "+dto.getAdmin());
 					return "adminMain";
 				}else {
-					if(request.getParameter("returnUrl")!=null) {
-						if(request.getParameter("returnUrl").equals("buyform")) {
+					if(returnUrl!=null) {
+						System.out.println("returnUrl:"+request.getParameter("returnUrl"));
+						if(returnUrl.equals("buyform")) {
 							System.out.println("로그인  : "+request.getParameter("selOptNum"));
 							model.addAttribute("selOptNum",request.getParameter("selOptNum"));
 							model.addAttribute("pseq", request.getParameter("pseq"));
 							model.addAttribute("selOpt", (String)request.getParameter("selOpt"));
 							//System.out.println("여기:"+request.getParameter("selOpt"));
 							return "redirect:buyform.do";
-						}else if ( request.getParameter("returnUrl").equals("pboard")) {
+						}else if (returnUrl.equals("pboard")) {
 							model.addAttribute("pseq", request.getParameter("pseq"));
 							return "redirect:pboarddetail.do";
 						}

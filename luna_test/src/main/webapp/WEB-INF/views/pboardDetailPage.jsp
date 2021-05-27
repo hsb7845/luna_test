@@ -17,7 +17,6 @@
 	
 	$(document).ready(function(){
 		var selectedOptNum = 0;
-		
 		var selectedOpt = "";
 		var pseq = $("input[name='pseq']").val();
 		var price= $("#price").val();
@@ -26,7 +25,7 @@
 		selOpt = {"ptitle":ptitle,"pseq":pseq};
 		$("input[name='buy']").click(function(){
 			//alert(selectedOptNum);
-			var id = '${id}';
+			var id = $("input[name='id']").val();
 			if(selectedOptNum==1){
 				var amount  = $("input[name='amount"+1+"']").val();
 				var optname = $("#selectedOpt1").text();
@@ -96,7 +95,7 @@
 		$("#cart").click(function(){
 			var id = $("input[name='id']").val();
 			var pseq = $("input[name='pseq']").val();
-			var id = '${id}';
+			selOpt= {};
 			if(selectedOptNum==1){
 				var amount  = $("input[name='amount"+1+"']").val();
 				var optname = $("#selectedOpt1").text();
@@ -111,6 +110,7 @@
 				}
 			}
 			selOpt = JSON.stringify(selOpt);
+			//alert(selOpt);
 			if(id==""){
 				location.href = "loginForm.do?returnUrl=pboard&pseq="+pseq;
 			}else{
@@ -119,23 +119,16 @@
 					mehthod : "post",
 					dataType : "json",
 					data : { "id" : id ,"pseq" : pseq,"selOpt":selOpt,"selOptNum":selectedOptNum},
-					asnc:false,
+					async:false,
 					success : function(data) {
-						var isS = data["isS"];
-						if(isS){
-							if(confirm("장바구니로 이동하시겠습니까?")){
-								location.href ="cart.do?id="+id;
-							}else{
-								return false;
-							}
-						}
+						
 					}
-				})
+				});
+				var layer = document.getElementById("popup_layer"); 
+				layer.style.visibility="visible"; //반대는 hidden 
 			}
 		});
-		
-		
-		
+
 		$("input[name='selOpt']").click(function(){
 			//alert(selectedOptNum);
 			var optNum = $('input[name="optNum"]').val();
@@ -181,38 +174,26 @@
 					innerText +="<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"+price+"</span></td></tr>"
 					$("#optContainer").append(innerText);
 					changeTotalPrice();
-					
 				}
 		});	
 	});
 	
 	var sell_price;
 	var amount;
-
-	function init () {
-		 sell_price = document.form.sell_price.value;
-		 amount = document.form.amount.value;
-		 document.form.sum.value = sell_price;
-		 
-	}
-
 	function add (i) {
 		var amount = $("input[name='amount"+i+"']").val();
 		amount++;
 		 $("input[name='amount"+i+"']").val(amount);
 		 change(i);
 	}
-
 	function del (i) {
 		var amount = $("input[name='amount"+i+"']").val();
 		if(amount==1){
-			
 		}else{
 			amount--;
 			$("input[name='amount"+i+"']").val(amount);
 			change(i);
 		}
-		
 	}
 
 	function change(i) {
@@ -245,12 +226,26 @@
 		width : 50px;
 		height : 50px;
 	}
+	#popup_layer{
+	position:absolute;
+	border:double; 
+	top:50%; 
+	left:50%; 
+	width:500px; 
+	height:400px; 
+	z-index:1;
+	background-color:white;
+	visibility:hidden; 
+	align : center;
+	}
 </style>
 
 
 </head>
 <body>
+<%@ include file="header.jsp" %>
 	<form action="buyform.do" method="get">
+	<input type="hidden" name="id" value="${sessionScope.id }">
 	<div><!-- 상품 게시글  -->
 		<div><!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
@@ -394,5 +389,11 @@
 				<tr><td colspan="3"><a href="insertQuestion.do?pseq=${map.pboard.pseq }">문의작성하기</a></td></tr>
 		</table>
 	</div>
+<div id="popup_layer" > 
+<div class="header"><h3>장바구니</h3><a onclick="$('#popup_layer').hide()"><img src="upload/close.png"></a></div>
+<div class="content"><img src="upload/cart.png"><p>장바구니에 상품이 정상적으로 담겼습니다.</p></div>
+<div><button>장바구니 이동</button><button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button> </div>
+</div> 
+<%@ include file="footer.jsp" %>
 </body>
 </html>

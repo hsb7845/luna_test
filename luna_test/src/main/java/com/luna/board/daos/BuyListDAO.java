@@ -81,6 +81,10 @@ public class BuyListDAO implements IBuyListDAO {
 	public boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list) {
 		// TODO Auto-generated method stub
 		boolean isS = sqlSession.insert(namespace+"insertBuyList",blDTO)>0?true:false;
+		for(int i=0;i<list.size();i++) {
+			isS = sqlSession.insert(namespace+"insertBuyDetail",list)>0?true:false;
+		}
+		
 		//isS = sqlSession.update(namespace+"insertBuyDetail",list)>0?true:false;
 		return isS;
 	}

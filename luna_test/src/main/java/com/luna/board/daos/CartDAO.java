@@ -29,7 +29,12 @@ import com.luna.board.dtos.CartDTO;
 	@Override
 	public boolean insertCart(List<CartDTO> list) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace+"insertCart",list)>0?true:false;
+		boolean isS =false;
+		for(int i=0;i<list.size();i++) {
+			CartDTO dto = list.get(i);
+			isS = sqlSession.insert(namespace+"insertCart",dto)>0?true:false;
+		}
+		return isS;
 	}
 
 	@Override

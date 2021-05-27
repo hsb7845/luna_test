@@ -155,7 +155,7 @@ public class BuyListController {
 			list.add(bdDTO);
 		}
 		boolean isS = buyListService.insertBuyList(blDTO,list);
-		return "buyResult";
+		return "buyResultPage";
 	}
 	
 	@RequestMapping(value = "/buyListInsert.do", method = {RequestMethod.GET,RequestMethod.POST})

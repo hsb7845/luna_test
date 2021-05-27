@@ -9,310 +9,206 @@
 <title>Insert title here</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						var selectedOptNum = 0;
-						var selectedOpt = "";
-						var pseq = $("input[name='pseq']").val();
-						var price = $("#price").val();
-						var ptitle = $("#ptitle").val();
-						var selOpt = {};
-						selOpt = {
-							"ptitle" : ptitle,
-							"pseq" : pseq
-						};
-						$("input[name='buy']")
-								.click(
-										function() {
-											//alert(selectedOptNum);
-											var id = $("input[name='id']")
-													.val();
-											if (selectedOptNum == 1) {
-												var amount = $(
-														"input[name='amount"
-																+ 1 + "']")
-														.val();
-												var optname = $("#selectedOpt1")
-														.text();
-												price = $(
-														"input[name='price1']")
-														.val();
-												selOpt[1] = {
-													"amount" : amount,
-													"optName" : optname,
-													"price" : price
-												};
-											} else {
-												for (var i = 1; i <= selectedOptNum; i++) {
-													var amount = $(
-															"input[name='amount"
-																	+ i + "']")
-															.val();
-													var optname = $(
-															"#selectedOpt" + i)
-															.text();
-													price = $(
-															"input[name='price"
-																	+ i + "']")
-															.val();
-													selOpt[i] = {
-														"amount" : amount,
-														"optName" : optname,
-														"price" : price
-													};
-												}
-											}
-											selOpt = JSON.stringify(selOpt);
-											if (id == "") {
-												var newForm = document
-														.createElement('form');
-												newForm.name = "newForm";
-												newForm.method = 'post';
-												newForm.action = 'loginForm.do';
-												var input1 = document
-														.createElement('input');
-												var input2 = document
-														.createElement('input');
-												var input3 = document
-														.createElement('input');
-												var input4 = document
-														.createElement('input');
-												input1.setAttribute("type",
-														"hidden");
-												input1.setAttribute("name",
-														"returnUrl");
-												input1.setAttribute("value",
-														"buyform");
-												input2.setAttribute("type",
-														"hidden");
-												input2.setAttribute("name",
-														"pseq");
-												input2.setAttribute("value",
-														pseq);
-												input3.setAttribute("type",
-														"hidden");
-												input3.setAttribute("name",
-														"selOpt");
-												input3.setAttribute("value",
-														selOpt);
-												input4.setAttribute("type",
-														"hidden");
-												input4.setAttribute("name",
-														"selOptNum");
-												input4.setAttribute("value",
-														selectedOptNum);
-												newForm.appendChild(input1);
-												newForm.appendChild(input2);
-												newForm.appendChild(input3);
-												newForm.appendChild(input4);
-												document.body
-														.appendChild(newForm);
-												newForm.submit();
-												//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
-											} else {
-												var newForm = document
-														.createElement('form');
-												newForm.name = "newForm";
-												newForm.method = 'post';
-												newForm.action = 'buyform.do';
-												var input2 = document
-														.createElement('input');
-												var input3 = document
-														.createElement('input');
-												var input4 = document
-														.createElement('input');
-												input2.setAttribute("type",
-														"hidden");
-												input2.setAttribute("name",
-														"pseq");
-												input2.setAttribute("value",
-														pseq);
-												input3.setAttribute("type",
-														"hidden");
-												input3.setAttribute("name",
-														"selOpt");
-												input3.setAttribute("value",
-														selOpt);
-												input4.setAttribute("type",
-														"hidden");
-												input4.setAttribute("name",
-														"selOptNum");
-												input4.setAttribute("value",
-														selectedOptNum);
-												newForm.appendChild(input2);
-												newForm.appendChild(input3);
-												newForm.appendChild(input4);
-												document.body
-														.appendChild(newForm);
-												newForm.submit();
-											}
-										});
-						$("#cart")
-								.click(
-										function() {
-											var id = $("input[name='id']")
-													.val();
-											var pseq = $("input[name='pseq']")
-													.val();
-											selOpt = {};
-											if (selectedOptNum == 1) {
-												var amount = $(
-														"input[name='amount"
-																+ 1 + "']")
-														.val();
-												var optname = $("#selectedOpt1")
-														.text();
-												price = $(
-														"input[name='price1']")
-														.val();
-												selOpt[1] = {
-													"amount" : amount,
-													"optName" : optname,
-													"price" : price
-												};
-											} else {
-												for (var i = 1; i <= selectedOptNum; i++) {
-													var amount = $(
-															"input[name='amount"
-																	+ i + "']")
-															.val();
-													var optname = $(
-															"#selectedOpt" + i)
-															.text();
-													price = $(
-															"input[name='price"
-																	+ i + "']")
-															.val();
-													selOpt[i] = {
-														"amount" : amount,
-														"optName" : optname,
-														"price" : price
-													};
-												}
-											}
-											selOpt = JSON.stringify(selOpt);
-											//alert(selOpt);
-											if (id == "") {
-												location.href = "loginForm.do?returnUrl=pboard&pseq="
-														+ pseq;
-											} else {
-												$
-														.ajax({
-															url : "insertCart.do",
-															mehthod : "post",
-															dataType : "json",
-															data : {
-																"id" : id,
-																"pseq" : pseq,
-																"selOpt" : selOpt,
-																"selOptNum" : selectedOptNum
-															},
-															async : false,
-															success : function(
-																	data) {
+	$(document).ready(function() {
+			var selectedOptNum = 0;
+			var selectedOpt = "";
+			var pseq = $("input[name='pseq']").val();
+			var price = $("#price").val();
+			var ptitle = $("#ptitle").val();
+			var selOpt = {};
+			selOpt = {
+				"ptitle" : ptitle,
+				"pseq" : pseq
+			};
+	$("input[name='buy']").click(function() {
+			//alert(selectedOptNum);
+			var id = $("input[name='id']")
+					.val();
+			if (selectedOptNum == 1) {
+				var amount = $(
+						"input[name='amount"
+								+ 1 + "']")
+						.val();
+				var optname = $("#selectedOpt1")
+						.text();
+				price = $("input[name='price1']")
+						.val();
+				selOpt[1] = {
+					"amount" : amount,
+					"optName" : optname,
+					"price" : price
+				};
+			}else if(selectedOptNum==0){
+				alert("옵션을 선택해주세요!");
+				return false;
+			}else {
+				for (var i = 1; i <= selectedOptNum; i++) {
+					var amount = $("input[name='amount"+ i + "']").val();
+					var optname = $("#selectedOpt" + i).text();
+					price = $("input[name='price"+ i + "']").val();
+					selOpt[i] = {"amount" : amount,"optName" : optname,"price" : price};
+				}
+			}
+			selOpt = JSON.stringify(selOpt);
+			if (id == "") {
+				var newForm = document.createElement('form');
+				newForm.name = "newForm";
+				newForm.method = 'post';
+				newForm.action = 'loginForm.do';
+				var input1 = document.createElement('input');
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				var input4 = document.createElement('input');
+				input1.setAttribute("type","hidden");
+				input1.setAttribute("name","returnUrl");
+				input1.setAttribute("value","buyform");
+				input2.setAttribute("type","hidden");
+				input2.setAttribute("name","pseq");
+				input2.setAttribute("value",pseq);
+				input3.setAttribute("type","hidden");
+				input3.setAttribute("name","selOpt");
+				input3.setAttribute("value",selOpt);
+				input4.setAttribute("type","hidden");
+				input4.setAttribute("name","selOptNum");
+				input4.setAttribute("value",selectedOptNum);
+				newForm.appendChild(input1);
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				newForm.appendChild(input4);
+				document.body.appendChild(newForm);
+				newForm.submit();
+				//location.href = "loginForm.do?returnUrl=buyform&pseq="+pseq+"&selOpt="+selOpt;
+			} else {
+				var newForm = document.createElement('form');
+				newForm.name = "newForm";
+				newForm.method = 'post';
+				newForm.action = 'buyform.do';
+				var input2 = document.createElement('input');
+				var input3 = document.createElement('input');
+				var input4 = document.createElement('input');
+				input2.setAttribute("type","hidden");
+				input2.setAttribute("name","pseq");
+				input2.setAttribute("value",pseq);
+				input3.setAttribute("type","hidden");
+				input3.setAttribute("name","selOpt");
+				input3.setAttribute("value",selOpt);
+				input4.setAttribute("type","hidden");
+				input4.setAttribute("name","selOptNum");
+				input4.setAttribute("value",selectedOptNum);
+				newForm.appendChild(input2);
+				newForm.appendChild(input3);
+				newForm.appendChild(input4);
+				document.body.appendChild(newForm);
+				newForm.submit();
+			}
+		});
+		$("#cart").click(function() {
+			var id = $("input[name='id']").val();
+			var pseq = $("input[name='pseq']").val();
+			selOpt = {};
+			if (selectedOptNum == 1) {
+				var amount = $("input[name='amount"+ 1 + "']").val();
+				var optname = $("#selectedOpt1").text();
+				price = $("input[name='price1']").val();
+				selOpt[1] = {"amount" : amount,"optName" : optname,"price" : price	};
+			} else {
+				for (var i = 1; i <= selectedOptNum; i++) {
+					var amount = $("input[name='amount"+ i + "']").val();
+					var optname = $("#selectedOpt" + i).text();
+					price = $("input[name='price"+ i + "']").val();
+					selOpt[i] = {"amount" : amount,"optName" : optname,"price" : price};
+				}
+			}
+			selOpt = JSON.stringify(selOpt);
+			//alert(selOpt);
+			if (id == "") {
+				location.href = "loginForm.do?returnUrl=pboard&pseq="+ pseq;
+			} else {
+				$.ajax({
+					url : "insertCart.do",
+					mehthod : "post",
+					dataType : "json",
+					data : {
+						"id" : id,
+						"pseq" : pseq,
+						"selOpt" : selOpt,
+						"selOptNum" : selectedOptNum
+					},
+					async : false,
+					success : function(
+							data) {
 
-															}
-														});
-												var layer = document
-														.getElementById("popup_layer");
-												layer.style.visibility = "visible"; //반대는 hidden 
-											}
-										});
+					}
+				});
+				var layer = document.getElementById("popup_layer");
+				layer.style.visibility = "visible"; //반대는 hidden 
+			}
+		});
 
-						$("input[name='selOpt']")
-								.click(
-										function() {
-											//alert(selectedOptNum);
-											var optNum = $(
-													'input[name="optNum"]')
-													.val();
-											if (optNum == 1) {
-												selectedOptNum++;
-												var necc = $("#opt1").attr(
-														"name");
-												var optval = $(
-														"#opt1 option:selected")
-														.val();
-												var optname = $(
-														"#opt1 option:selected")
-														.attr("value2");
-												price = parseInt(price)
-														+ parseInt(optval)
-												if (optval == " "
-														&& necc == "true") {
-													alert("필수 옵션을 선택해주세요!!");
-													return;
-												} else if (optval != " ") {
-													selectedOpt = optname;
-													var innerText = "";
-													innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"
-															+ ptitle
-															+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"
-															+ selectedOpt
-															+ "</span></td>";
-													innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
-															+ selectedOptNum
-															+ ');"><input type="button" value=" - " onclick="del('
-															+ selectedOptNum
-															+ ');"></td>';
-													innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
-															+ price
-															+ "</span></td></tr>"
-													$("#optContainer").append(
-															innerText);
-													changeTotalPrice();
-												}
-											} else if (optNum > 1) {
-												selectedOptNum++;
-												var necc = "";
-												var optval = "";
-												var optname = "";
-												price = $("#price").val();
-												for (var i = 1; i <= optNum; i++) {
-													necc = $('#opt' + i).attr(
-															'name');
-													optval = $(
-															"#opt"
-																	+ i
-																	+ " option:selected")
-															.val();
-													if (optval == " "
-															&& necc == "true") {
-														alert("필수 옵션을 선택해주세요!!");
-														return;
-													}
-													optname += $(
-															"#opt"
-																	+ i
-																	+ " option:selected")
-															.attr("value2")
-															+ "/";
-													price = parseInt(price)
-															+ parseInt(optval);
-
-												}
-												selectedOpt = optname;
-												var innerText = "";
-												innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"
-														+ ptitle
-														+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"
-														+ selectedOpt
-														+ "</span></td>";
-												innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
-														+ selectedOptNum
-														+ ');"><input type="button" value=" - " onclick="del('
-														+ selectedOptNum
-														+ ');"></td>';
-												innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
-														+ price
-														+ "</span></td></tr>"
-												$("#optContainer").append(
-														innerText);
-												changeTotalPrice();
-											}
-										});
-					});
+		$("input[name='selOpt']").click(function() {
+			//alert(selectedOptNum);
+			var optNum = $('input[name="optNum"]').val();
+			if (optNum == 1) {
+				selectedOptNum++;
+				var necc = $("#opt1").attr("name");
+				var optval = $("#opt1 option:selected").val();
+				var optname = $("#opt1 option:selected").attr("value2");
+				price = parseInt(price)+ parseInt(optval)
+				if (optval == " "&& necc == "true") {
+					alert("필수 옵션을 선택해주세요!!");
+					return;
+				} else if (optval != " ") {
+					selectedOpt = optname;
+					var innerText = "";
+					innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ ptitle+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"+ selectedOpt+ "</span></td>";
+					innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
+							+ selectedOptNum
+							+ ');"><input type="button" value=" - " onclick="del('
+							+ selectedOptNum
+							+ ');"></td>';
+					innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
+							+ price
+							+ "</span></td></tr>"
+					$("#optContainer").append(
+							innerText);
+					changeTotalPrice();
+				}
+			} else if (optNum > 1) {
+				selectedOptNum++;
+				var necc = "";
+				var optval = "";
+				var optname = "";
+				price = $("#price").val();
+				for (var i = 1; i <= optNum; i++) {
+					necc = $('#opt' + i).attr('name');
+					optval = $("#opt"+ i+ " option:selected").val();
+					if (optval == " "&& necc == "true") {
+						alert("필수 옵션을 선택해주세요!!");
+						return;
+					}
+					optname += $("#opt"+ i+ " option:selected").attr("value2")+ "/";
+					price = parseInt(price)+ parseInt(optval);
+				}
+				selectedOpt = optname;
+				var innerText = "";
+				innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"
+						+ ptitle
+						+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"
+						+ selectedOpt
+						+ "</span></td>";
+				innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
+						+ selectedOptNum
+						+ ');"><input type="button" value=" - " onclick="del('
+						+ selectedOptNum
+						+ ');"></td>';
+				innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
+						+ price
+						+ "</span></td></tr>"
+				$("#optContainer").append(innerText);
+				changeTotalPrice();
+			}
+		});
+});
 
 	var sell_price;
 	var amount;

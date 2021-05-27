@@ -81,7 +81,7 @@ body,button,input{
 		<div class="mail_wrap">
 			<div class="email">이메일</div>
 			<div class="mail_input_box">
-			<input class="mail_input" name="email"required>
+			<input class="mail_input" name="email" required>
 			</div>
 			<div class="mail_check_wrap">
 			<div class="mail_check_input_box" id="mail_check_input_box_false">	
@@ -113,11 +113,12 @@ body,button,input{
 		남<input type="radio" name="sex" onclick="checkOnly(this);" required value="남" >
 		여<input type="radio" name="sex" onclick="checkOnly(this);" value="여" ><br>
 		핸드폰 <br><input type="text" name="phone"required>
+		<br>
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
-  		 <input type="hidden" name="admin"><br>  
 		닉네임 <br><input type="text" name="nickName"required><br>
 		이름<br>	<input type="text" name="name"required>
-		 <input type="hidden" name="point"><br><br>
+		<input type="hidden" value="일반회원" name="admin">
+<br><br>
 		<input type="submit" value="회원가입">
 		<input type="reset" value="다시입력">
 	</form>

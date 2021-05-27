@@ -101,10 +101,13 @@ public class MemberDAO implements IMemberDAO {
 		
 	}
 	
-	
-	
 	@Override
 	public List<MemberDTO> BirthMember() {
 		return sqlSession.selectList(namespace+"birthMember");
+	}
+	
+	@Override
+	public List<MemberDTO> FreshMember() {
+		return sqlSession.selectList(namespace+"freshMember");
 	}
 }

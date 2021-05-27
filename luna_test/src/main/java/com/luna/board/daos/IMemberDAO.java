@@ -23,6 +23,7 @@ public interface IMemberDAO {
 	boolean insertKMember(MemberDTO dto);
 	
 	List<MemberDTO> BirthMember();
+	List<MemberDTO> FreshMember();
 	
 
 }

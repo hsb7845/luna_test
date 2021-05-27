@@ -22,6 +22,7 @@ public interface IMemberService {
 	boolean insertKMember(MemberDTO dto);
 	
 	List<MemberDTO> BirthMember();
+	List<MemberDTO> FreshMember();
 	
 	
 	

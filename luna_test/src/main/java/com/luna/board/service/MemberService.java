@@ -99,5 +99,11 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		return MemberDAO.BirthMember();
 	}
+	
+	@Override
+	public List<MemberDTO> FreshMember() {
+		// TODO Auto-generated method stub
+		return MemberDAO.FreshMember();
+	}
 
 }

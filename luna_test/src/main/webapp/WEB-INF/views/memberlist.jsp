@@ -17,18 +17,23 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+
 
         <title>adminMain</title>
 
+<!-- Custom fonts for this template-->
+        <link
+            href="resources/boot/vendor/fontawesome-free/css/all.min.css"
+            rel="stylesheet"
+            type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
-<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
-<script>
+        <!-- Custom styles for this template-->
+        <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
+                <script src="http://code.jquery.com/jquery-latest.js"></script>
+                <script type="text/javascript">
 
 
 
@@ -79,6 +84,9 @@
 	#content {
 		background-color: white;
 	}
+	.container-fluid {
+			background-color: white;
+	}
 	.memberT {
 		text-align: center;
 		font-size: 15px;
@@ -100,10 +108,24 @@
 	List<MemberDTO> list= (List<MemberDTO>) request.getAttribute("list");
 %>
 <body>
-<p class="cls1">회 원 목 록</p>
+<%@ include file="header.jsp" %>
+
+<div id="outter">
+<p class="cls1">회원 목록</p>
 <!-- 	<form action="muldelmember.do" method="post"> -->
 	<form method="post" name="form">
-		
+	<div style="float:right">
+		<select id="arrayNum" name="sel" onchange="selChange()">
+			<option value="1"
+				<c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option>
+			<option value="2"
+				<c:if test="${arrayNum == 2}">selected</c:if>>생일자</option>
+		</select>
+	</div>	
+	
+	<input type="hidden" name='sorting' value="${paging.sorting }">
+	
+	
 	<table border = "1" >
 	<tr>
 		<th id="m1"><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
@@ -161,13 +183,16 @@
 			<input type="button" value="메인" id="main">
 			<input type="button" value="삭제" onclick="delBoard()"/>
 			
-			<input type="button" value="신규가입자 보기" onclick="newMem()"/>
+			
 			
 			<input type="button" value="생일자 보기" onclick="birthMem()"/>
-			
+			<input type="button" value="신규가입자 보기" onclick="freshMem()"/>
 			<input type="button" value="쿠폰 추가" onclick="addCoupon()"/>
 		
 	</form>
+<%@ include file="footer.jsp" %>
+
+</body>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -186,16 +211,16 @@
 			formEle.submit();//javascript에서 submit실행 			
 		}
 	}
-	
-	function newMem(){
-		var formEle=document.form;
-		formEle.action='newmember.do';
-		formEle.submit();
-	}
-	
+		
 	function birthMem(){
 		var formEle=document.form;
 		formEle.action='birthmember.do';
+		formEle.submit();
+	}
+	
+	function freshMem(){
+		var formEle=document.form;
+		formEle.action='freshmember.do';
 		formEle.submit();
 	}
 	
@@ -274,8 +299,7 @@ $(function(){
 
 	</script>
 	
-	             
-</head>
+	         
 
     
 

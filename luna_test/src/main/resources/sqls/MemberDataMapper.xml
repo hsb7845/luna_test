@@ -70,15 +70,17 @@
 		update member set PWD = #{pwd} where EMAIL=#{email}
 	</update>
 
-	
-	
 	<!-- 생일자 현재 월 기준으로 월 출력 -->
 	<select id="birthMember" resultType="MDTO">
 		SELECT * from MEMBER
 		WHERE to_char(birth,'MM') = to_char(sysdate,'MM')
 	</select>
 
-
+	<!-- 신규 현재 월 기준으로 월 출력 -->
+	<select id="freshMember" resultType="MDTO">
+		SELECT * from MEMBER
+		WHERE to_char(JOINDATE ,'YYYYMM') = to_char(sysdate,'YYYYMM')
+	</select>
 </mapper>
 
 

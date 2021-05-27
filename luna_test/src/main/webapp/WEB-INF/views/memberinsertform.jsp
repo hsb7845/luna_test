@@ -110,8 +110,8 @@ body,button,input{
 
 		생년월일<br> <input type="date" name="birthtest" max="9999-12-31" required><br>
 		성별<br>
-		남<input type="radio" name="sex" onclick="checkOnly(this);" required value="남" >
-		여<input type="radio" name="sex" onclick="checkOnly(this);" value="여" ><br>
+		남<input type="checkbox" name="sex" required onclick="checkOnly(this);" value="남" >
+		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
 		핸드폰 <br><input type="text" name="phone"required>
 		<br>
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->

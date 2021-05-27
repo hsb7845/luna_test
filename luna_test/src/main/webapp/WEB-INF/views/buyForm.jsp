@@ -19,8 +19,37 @@
 	    box-sizing: border-box;
 	
 	}
+.cardPayment{
+	display : none;
+}
+
+
 </style>
 <script>
+	function bankDisplay(frm) {
+	 
+	    var bank = frm.selectbank.selectedIndex;
+	 
+	    switch( bank ){
+	       case 0:
+	         frm.bank.value = '은행 및 계좌번호가 표시됩니다.';
+	         break;
+	       case 1:
+	         frm.bank.value = '(국민은행) 0XX-XX-XXXX-XXX';
+	         break;
+	       case 2:
+	         frm.bank.value = '(기업은행) XXX-0XXXXX-0X-0XX';
+	         break;
+	       case 3:
+	         frm.bank.value = '(우리은행) 1XX-XX-0XXXXXXX';
+	         break;
+	       case 4:
+	         frm.bank.value = '(농협) 0XXXXXX-0X-0XXXXX';
+	         break;
+	    }
+    
+   		 return true;
+	}
 	function newAdd(){
 		
 		$("input[name='memAdr']").attr("checked", false);
@@ -28,6 +57,16 @@
 	}
 	
 	$(document).ready(function(){
+		$("#cardPayment").click(function(){		
+			$(".cardPayment").css("display","table-row");
+			$(".noBankbook").css("display","none");
+		})
+		$("#noBankbook").click(function(){		
+			$(".cardPayment").css("display","none");
+			$(".noBankbook").css("display","table-row");
+		})
+		
+		
 		$("input[name='memAdr']").click(function(){
 			$("input[name='newAdr']").attr("checked", false);
 			var id = $("input[name='id']").val();
@@ -49,22 +88,51 @@
 			});
 		});
 	});
+	
+	function addAdr(){
+		var adr1 = $("input[name='adr1']").val();
+		var adr2 = $("input[name='adr2']").val();
+		var adr3 = $("input[name='adr3']").val();
+		var adr4 = $("input[name='adr4']").val();
+		var address = "("+adr1+") "+adr2+adr3+adr4; 
+		$("input[name='address']").val(address);
+		if($("input[name='address']")!= "() "){
+			return true;
+		}else{
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
 	<h1>구매/결제</h1>
-	<form method="post" action=".do">
+	<form method="post" action="buy.do">
 		<input type="hidden" value="${mdto.id }" name="id" >
+			<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+ 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+ 	</div> 
 	<table border="1">
 		<tr>
 			<th>이미지</th><th>상품명</th><th>판매가</th><th>수량</th><th>합계</th>
 		</tr>
 		<c:if test="${list!=null }">
-			<c:forEach items="${list }" var="i">
+			<c:forEach items="${list }" var="i" varStatus="status" >
+			<c:set var="count" value="${status.count }"/>
 			<tr>
-				<td>이미지</td><td>${dto.ptitle }<br>${i.optName }</td><td>${i.price}</td><td>${i.amount}</td><td>${i.amount * i.price }</td>
+				<td>이미지</td>
+				<td><input type="hidden"value="${dto.pseq}" name="pseq"/>${dto.ptitle }<br><input type="hidden"value="${i.optName }" name="selOpt${status.count}"/>${i.optName }</td>
+				<td><input type="hidden"value="${i.price }" name="price${status.count}"/>${i.price}원</td>
+				<td><input type="hidden"value="${i.amount }" name="amount${status.count}"/>${i.amount}</td>
+				<td><c:set var="sumPrice" value="${i.price*i.amount }" /><c:out value="${sumPrice }원" /></td>
+				<c:set var="totalPrice" value="0"/>
+				<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
+			
 			</c:forEach>
+			<tr>
+			
+				<th><input type="hidden" name="count" value="${count }">총 금액 </th><td><c:out value="${totalPrice }원"/><input type="hidden" name="totalPrice" value="${totalPrice }"></td>
+			</tr>
 		</c:if>
 		<tr>
 			<th>배송지 정보</th>
@@ -73,37 +141,61 @@
 		</tr>
 		<tr>
 			<th>받는 이</th>
-			<td><input type="text" name="address" value="${mdto.name }"></td>
+			<td><input type="text" name="name" value="${mdto.name }"></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
 			<td><input type="text" name="phone" value="${mdto.phone }"></td>
 		</tr>
+		<tr>
 			<th>주소</th>
 			<td><input type="button" onclick="sample2_execDaumPostcode()" value="주소 찾기">
-		<input type="text" name="adr1" value="${mdto.adr1}" id="sample2_postcode" placeholder="우편번호">
-		<input type="text" name="adr2" value="${mdto.adr2}" id="sample2_address" placeholder="주소"><br>
-		<input type="text" name="adr3" value="${mdto.adr3}" id="sample2_detailAddress" placeholder="상세주소">
-		<input type="text" name="adr4" value="${mdto.adr4}" id="sample2_extraAddress" placeholder="참고항목"></td>
-	<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-
+		<input type="text" name="adr1" value="${mdto.adr1}" id="sample2_postcode" placeholder="우편번호" required="required">
+		<input type="text" name="adr2" value="${mdto.adr2}" id="sample2_address" placeholder="주소" required="required"><br>
+		<input type="text" name="adr3" value="${mdto.adr3}" id="sample2_detailAddress" placeholder="상세주소" required="required"><br>
+		<input type="text" name="adr4" value="${mdto.adr4}" id="sample2_extraAddress" placeholder="참고항목" required="required">
+		<input type="hidden" name="address" ></td>
+		</tr>
+	
 		<tr>
 			<th>결제 방법</th>
-			<td><input type="radio" name="pay" value="noBankbook" checked="checked" /> 무통장 입금
-				<input type="radio" name="pay" value="cardPayment"  /> 카드결제</td>
+			<td><input type="radio" name="pay" id="noBankbook" checked="checked" /> 무통장 입금
+				<input type="radio" name="pay"  id="cardPayment" value="cardPayment"  /> 카드결제</td>
 		</tr>
+
+	<tr class="noBankbook">
+    <th  width="120" >
+         입  금  은  행 :</th>
+    <td widht="400">
+    <select name="selectbank" onchange="bankDisplay(this.form)" >
+    <option selected value=0>-선택하세요-
+    <option value=1>국민은행
+    <option value=2>기업은행
+    <option value=3>우리은행
+    <option value=4>농협
+    </select>
+    </td>
+    </tr>
+    <tr class="noBankbook">
+    <th  width="120" >
+    <font color="#0000ff">*</font> 입  금  계  좌 :</th>
+    <td width="400">
+    <input name="bank" type="text" size="50" maxlength="50"value="" readonly></td>
+    </tr>
+    <tr class="cardPayment">
+    	<th>카드결제 : </th><td>카드결제는 구현이안됐습니다.</td>
+    </tr>
 		<tr>
 			<th>적립 포인트 및 쿠폰</th>
 		</tr>
 		
 	</table>
-	
-	</form>
 	<div class="cmd">
-            <input type="submit" value="구매 확정">
+            <input type="submit" value="구매 확정" onclick="return addAdr()">
             <input type="button" value="취소" onclick="history.back(-1);">
       </div>
+	</form>
+	
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

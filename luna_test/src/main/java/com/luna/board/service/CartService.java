@@ -20,9 +20,9 @@ public class CartService implements ICartService {
 	}
 
 	@Override
-	public boolean insertCart(CartDTO dto) {
+	public boolean insertCart(List<CartDTO> list) {
 		// TODO Auto-generated method stub
-		return CartDAO.insertCart(dto);
+		return CartDAO.insertCart(list);
 	}
 
 	@Override

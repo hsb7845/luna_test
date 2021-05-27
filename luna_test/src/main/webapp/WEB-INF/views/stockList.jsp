@@ -122,9 +122,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-            id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" 
+        id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a href="index.do">
@@ -136,9 +135,8 @@
                         id='mainLogo'
                         src='upload/logo.png'
                         style='width:200px; height:90px; vertical-align: middle;'/>
-                </a>
-            </div>
-        </a>
+			</a>
+	</div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -194,12 +192,12 @@
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">게시판관리:</h6>
-                    <a class="collapse-item" href="utilities-color.html">귀걸이</a>
-                    <a class="collapse-item" href="utilities-border.html">목걸이</a>
-                    <a class="collapse-item" href="utilities-animation.html">기타</a>
-                    <a class="collapse-item" href="utilities-other.html">리뷰</a>
-                    <a class="collapse-item" href="utilities-other.html">문의사항</a>
+                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
+                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                    <a class="collapse-item" href="rboard.do">리뷰</a>
+                    <a class="collapse-item" href="qboard.do">문의사항</a>
                     <a class="collapse-item" href="eboard.do">이벤트</a>
                 </div>
             </div>

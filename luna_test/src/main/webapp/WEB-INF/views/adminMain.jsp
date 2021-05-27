@@ -185,7 +185,7 @@
                 aria-labelledby="headingUtilities"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">게시판관리:</h6>
+                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
                     <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                     <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                     <a class="collapse-item" href="pboard.do?select=반지">반지</a>
@@ -229,6 +229,11 @@
                 </div>
             </div>
         </li>
+<!--        <li class="nav-item"> -->
+<!-- 			<a class="nav-link" href="pboard.do"> -->
+<!-- 	         	<i class="fas fa-fw fa-chart-area"></i> -->
+<!-- 	         	<span>상품게시판관리</span></a> -->
+<!-- 		</li> -->
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
@@ -236,15 +241,17 @@
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>주문관리</a>
             </span>
-        </a>
-    </li>
+        	</a>
+        </li>
+        <!-- Nav Item - Pages Collapse Menu -->
 
-    <!-- Nav Item - Tables -->
-    <!-- <li class="nav-item"> -->
-    <!-- <a class="nav-link" href="tables.html"> -->
-    <!-- <i class="fas fa-fw fa-table"></i> -->
-    <!-- <span>Tables</span></a> -->
-    <!-- </li> -->
+
+<!--     Nav Item - Tables -->
+<!--     <li class="nav-item"> -->
+<!--     <a class="nav-link" href="tables.html"> -->
+<!--     <i class="fas fa-fw fa-table"></i> -->
+<!--     <span>Tables</span></a> -->
+<!--     </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -337,82 +344,14 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+			<p style="text-align:center;">
+				<img id='mainLogo' src='upload/23_13.jpeg' style='width:200px; height:90px; vertical-align: middle;' /> 
+				
+				
 
-            <!-- Content Row -->
-
-            <div class="row">
-
-                    <form action="muldelStock.do" method="post">
-                        <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-                            <col width="50px">
-                            <col width="100px">
-                            <col width="300px">
-                            <col width="150px">
-                            <col width="100px">
-                            <col width="150px">
-                            <col width="500px">
-                            <col width="100px">
-                            <col width="150px">
-                            <tr align="center" class="stockT">
-                                <th><input type="checkbox" name="all" onclick="allSel(this)"/></th>
-                                <th>상품번호</th>
-                                <th>상품명</th>
-                                <th>상품재고수량</th>
-                                <th>원가</th>
-                                <th>카테고리번호</th>
-                                <th>상품내용</th>
-                                <th>판매가</th>
-                                <th>상품게시글번호</th>
-                            </tr>
-                            <%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='9'>----작성된 글이 없습니다.</td></tr>");
-			}else{
-		for(int i=0;i<list.size();i++){
-			StockDTO dto=list.get(i);
-	%>
-                                <tr align="center" class="stockM">
-                                    <td><input type="checkbox" name="chk" value="<%=dto.getPnum()%>"/></td>
-                                    <td><%=dto.getPnum()%></td>
-                                    <td>
-                                        <a href="stockUpdateForm.do?pnum=<%=dto.getPnum()%>"><%=dto.getPname()%></a>
-                                    </td>
-                                    <td><%=dto.getScount()%></td>
-                                    <td><%=dto.getCost()%></td>
-                                    <td><%=dto.getCnum()%></td>
-                                    <td><%=dto.getPcontent()%></td>
-                                    <td><%=dto.getPrice()%></td>
-                                    <td><%=dto.getPseq() %></td>
-                                </tr>
-                                <%
-			}
-		}
-	%>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td colspan="9" class="stockD">
-                                            <!-- <input type="button" value="상품입고" id="stockInsertForm"> -->
-                                            <input type="button" value="상품등록" id="stockForm">
-                                            <!-- <input type="button" value="메인" id="main"> -->
-                                            <input type="submit" value="삭제"/>
-                                            <!-- <a href="stockInsertForm.do">상품입고</a> -->
-                                            <!-- <a href="stockForm.do">상품등록</a> -->
-                                            <!-- <a href=".do">메인</a> -->
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-
-                        </div>
-
-                        <!-- Content Row -->
-                        <div class="row"></div>
-
-                    </div>
-                    <!-- /.container-fluid -->
-
-                </div>
+		</div>
+                <!-- End of Main Content -->
+        </div>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->

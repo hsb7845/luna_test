@@ -59,7 +59,12 @@ body,button,input{
 </head>
 
 <body> 		
-	<%@ include file="header.jsp" %>
+<div>
+	<a href="index.do">
+	<p style="text-align:center;"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> 
+	</a>
+</div>
+
 
 	<div class=body>
 	<form method="post" action="insertmember.do" id="join">

@@ -27,10 +27,11 @@ body,button,input{
 	line-height: 20px;
 
  }
- .body {
-	left: 50%;	
-	position: relative;		
-}
+/*  .body { */
+/* 	left: 50%;	 */
+/* 	position: relative;		 */
+/* } */
+
 .pwck_input_re_1{
 	color : green;
 	display : none;    
@@ -52,7 +53,6 @@ body,button,input{
 </head>
 
 <body> 		
-	<%@ include file="header.jsp" %>
 
 	<div class=body>
 	<form method="post" action="insertmember.do" id="join">
@@ -108,9 +108,9 @@ body,button,input{
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 
-		생년월일<br> <input type="date" name="birthtest"required><br>
+		생년월일<br> <input type="date" name="birthtest" max="9999-12-31" required><br>
 		성별<br>
-		남<input type="radio" name="sex" required onclick="checkOnly(this);" required value="남" >
+		남<input type="radio" name="sex" onclick="checkOnly(this);" required value="남" >
 		여<input type="radio" name="sex" onclick="checkOnly(this);" value="여" ><br>
 		핸드폰 <br><input type="text" name="phone"required>
 <!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->

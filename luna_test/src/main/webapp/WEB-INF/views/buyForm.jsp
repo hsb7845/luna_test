@@ -24,6 +24,7 @@
 }
 
 
+
 </style>
 <script>
 	function bankDisplay(frm) {
@@ -103,6 +104,8 @@
 		}
 	}
 </script>
+<%@ include file="header.jsp" %>
+
 </head>
 <body>
 	<h1>구매/결제</h1>
@@ -120,7 +123,7 @@
 			<c:forEach items="${list }" var="i" varStatus="status" >
 			<c:set var="count" value="${status.count }"/>
 			<tr>
-				<td>이미지</td>
+				<td><img class="image" src="upload/img_dummy1.jpg" width="150px" height="150px"></td>
 				<td><input type="hidden"value="${dto.pseq}" name="pseq${status.count }"/>${dto.ptitle }<br><input type="hidden"value="${i.optName }" name="selOpt${status.count}"/>${i.optName }</td>
 				<td><input type="hidden"value="${i.price }" name="price${status.count}"/>${i.price}원</td>
 				<td><input type="hidden"value="${i.amount }" name="amount${status.count}"/>${i.amount}</td>
@@ -150,11 +153,12 @@
 		</tr>
 		<tr>
 			<th>주소</th>
-			<td><input type="button" onclick="sample2_execDaumPostcode()" value="주소 찾기">
+			<td>
 		<input type="text" name="adr1" value="${mdto.adr1}" id="sample2_postcode" placeholder="우편번호" required="required">
-		<input type="text" name="adr2" value="${mdto.adr2}" id="sample2_address" placeholder="주소" required="required"><br>
-		<input type="text" name="adr3" value="${mdto.adr3}" id="sample2_detailAddress" placeholder="상세주소" required="required"><br>
-		<input type="text" name="adr4" value="${mdto.adr4}" id="sample2_extraAddress" placeholder="참고항목" required="required">
+		<input type="button" onclick="sample2_execDaumPostcode()" value="주소 찾기">
+		<input type="text" name="adr2" size=60 value="${mdto.adr2}" id="sample2_address" placeholder="주소" required="required"><br>
+		<input type="text" name="adr3" size=60 value="${mdto.adr3}" id="sample2_detailAddress" placeholder="상세주소" required="required"><br>
+		<input type="text" name="adr4" size=60 value="${mdto.adr4}" id="sample2_extraAddress" placeholder="참고항목" required="required">
 		<input type="hidden" name="address" ></td>
 		</tr>
 	

@@ -11,12 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel='stylesheet' href='resources/luna/css/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='resources/luna/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='resources/luna/css/woocommerce.css' type='text/css' media='all'/>
-
-<link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-
 <style type="text/css">
 
 @font-face {
@@ -61,35 +55,21 @@ table {
 </style>
 </head>
 
-<body> 		
-<div>
-	<a href="index.do">
-	<p style="text-align:center;"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> 
-	</a>
-</div>
-
-	<table>
+<body>
+	
 	<div class=body>
 	<form method="post" action="insertmember.do" id="join">
 		
 		
-		<tr>
-		<td colspan="2">
+	
 		<h2>회원가입</h2>
-		</td>
-		<td></td>
-		</tr>
-		<tr>
-		<td colspan="2">
+	
+	
 		<div id="id" >
 			<label for="id">아이디</label><br>
 			<input type="text" name="id" id="id" required />
 			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
 		</div>
-		</td>
-		</tr>
-		<tr>
-		<td>
 		<div class="pw_wrap">
 		<div class="pw_name=">비밀번호</div>
 		<div class="pw_input_box">
@@ -98,8 +78,6 @@ table {
 		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
 		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
 		</div>
-		</td>
-		<td>
 		<div class="pwck_wrap">
 			<div class="pwck_name">비밀번호확인</div>
 			<div class="pwck_input_box">
@@ -108,18 +86,15 @@ table {
 		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
 		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
 		</div>
-		</td>
-		</tr>
+	
 		<div class="mail_wrap">
-		<tr>
-		<td>
+	
 			<div class="email">이메일</div>
 			<div class="mail_input_box">
 			<input class="mail_input" name="email"required>
 			</div>
 		</div>
-		</td>
-		<td>
+	
 		<div class="mail_check_wrap">
 			<div class="mail_check_input_box" id="mail_check_input_box_false">	
 					인증번호<br><input class="mail_check_input" disabled="disabled"required>
@@ -130,11 +105,7 @@ table {
 			<div class="clearfix"></div>
 			 <span id="mail_check_input_box_warn"></span>
 		</div>
-		</td>
-		</tr>
-
-<tr>
-<td colspan="2">
+	
 주소<br>
 <input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호"required>
 <input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -146,47 +117,25 @@ table {
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
-</td>
-</tr>
-		<tr>
-			<td>
+
 		생년월일<br> <input type="date" max="9999-12-31" name="birthtest"required><br>
-			</td>
-			<td>
 		성별<br>
 		남<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" required value="남" >
 		여<input type="radio" id="sex" name="sex" onclick="checkOnly(this);" value="여" ><br>
-			</td>
-		</tr>
-		<tr>
-		<td>
 		핸드폰 <br><input type="text" name="phone"required>
-		</td>
-		<td>
   		 <input type="hidden" name="admin"> 
   		 <div class="nickname">
 		닉네임 <br><input type="text" name="nickName"required><br>
 		</div>
-		</td>
-		</tr>
-		<tr>
-		<td colspan="2">
 		<div class="name">
 		이름<br>	<input type="text" name="name"required>
 		</div>
-		</td>
-		</tr>
-		
+	
 		 <input type="hidden" name="point"><br><br>
-		<tr>
-		<td colspan="2">
 		<input type="submit" value="회원가입">
 		
 		<input type="reset" value="다시입력">
-		</td>
-		</tr>
 	</form>
-	</table>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

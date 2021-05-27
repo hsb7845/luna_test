@@ -95,6 +95,14 @@
 		var adr3 = $("input[name='adr3']").val();
 		var adr4 = $("input[name='adr4']").val();
 		var address = "("+adr1+") "+adr2+adr3+adr4; 
+		var chks = {};
+		$("input[name='chk']").each(function(){
+			var chk = $(this).val();
+			alert(chk);
+			chks.push(chk);
+		});
+		alert(chks);
+		$("input[name='chks']").val(chks);
 		$("input[name='address']").val(address);
 		if($("input[name='address']")!= "() "){
 			return true;
@@ -106,7 +114,7 @@
 </head>
 <body>
 	<h1>구매/결제</h1>
-	<form method="post" action="buy.do">
+	<form method="post" action="buyCart.do">
 		<input type="hidden" value="${mdto.id }" name="id" >
 			<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
  		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -191,6 +199,11 @@
 		
 	</table>
 	<div class="cmd">
+			
+			<c:forEach items="${chks }" var="i">
+				<input type="hidden" name="chk" value="${i }">
+			</c:forEach>
+			<input type="hidden" name="chks" value="">
             <input type="submit" value="구매 확정" onclick="return addAdr()">
             <input type="button" value="취소" onclick="history.back(-1);">
       </div>

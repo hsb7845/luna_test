@@ -41,8 +41,6 @@ public class BuyListController {
 	
 	@RequestMapping(value = "/buyListInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListInsertForm(Locale locale, Model model) {
-		
-
 		return "buyListInsertForm";
 	}
 	
@@ -55,6 +53,7 @@ public class BuyListController {
 		MemberDTO mdto = buyListService.getMember(id);
 		model.addAttribute("list",cartList);
 		model.addAttribute("mdto",mdto);
+		model.addAttribute("chks", chks);
 		return "buyFormByCart";
 	}
 	
@@ -128,7 +127,7 @@ public class BuyListController {
 		return "buyForm";
 	}
 	@RequestMapping(value = "/buy.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String buy(Locale locale, Model model,HttpServletRequest request) {
+	public String buy(Locale locale, Model model,HttpServletRequest request,String bank) {
 		int count = Integer.parseInt(request.getParameter("count"));
 		System.out.println("count"+count);
 		BuyListDTO blDTO = new BuyListDTO();
@@ -155,9 +154,48 @@ public class BuyListController {
 			list.add(bdDTO);
 		}
 		boolean isS = buyListService.insertBuyList(blDTO,list);
+		model.addAttribute("bank", bank);
+		model.addAttribute("totalPrice",blDTO.getTotalPrice());
 		return "buyResultPage";
 	}
 	
+	@RequestMapping(value = "/buyCart.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String buyCart(Locale locale, Model model,HttpServletRequest request,String bank,String[] chks) {
+		System.out.println(chks[0]);
+		System.out.println(chks[1]);
+		int count = Integer.parseInt(request.getParameter("count"));
+		System.out.println("count"+count);
+		BuyListDTO blDTO = new BuyListDTO();
+		blDTO.setId(request.getParameter("id"));
+		blDTO.setName(request.getParameter("name"));
+		blDTO.setPhone(request.getParameter("phone"));
+		blDTO.setAddress(request.getParameter("address"));
+		blDTO.setTotalPrice(Integer.parseInt(request.getParameter("totalPrice")));
+		List<BuyDetailDTO> list = new ArrayList<>();
+		BuyDetailDTO bdDTO = new BuyDetailDTO();
+		if(count>1) {
+			for(int i=1;i<=count;i++) {
+				bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+i)));
+				bdDTO.setSelOpt(request.getParameter("selOpt"+i));
+				bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+i)));		
+				System.out.println(request.getParameter("pseq"+i));
+				bdDTO.setPrice(Integer.parseInt(request.getParameter("price"+i)));
+				list.add(bdDTO);
+			}
+		}else if(count==1) {
+			bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+1)));
+			bdDTO.setSelOpt(request.getParameter("selOpt"+1));
+			bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+1)));
+			list.add(bdDTO);
+		}
+		boolean isS = buyListService.insertBuyList(blDTO,list);
+		if(isS) {
+			buyListService.deleteInCart(chks,request.getParameter("id"));
+		}
+		model.addAttribute("bank", bank);
+		model.addAttribute("totalPrice",blDTO.getTotalPrice());
+		return "buyResultPage";
+	}
 	@RequestMapping(value = "/buyListInsert.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListInsert(Locale locale, Model model,BuyListDTO dto) {
 		boolean isS = buyListService.insertBoard(dto);

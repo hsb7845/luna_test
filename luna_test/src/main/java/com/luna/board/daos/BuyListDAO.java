@@ -108,5 +108,15 @@ public class BuyListDAO implements IBuyListDAO {
 		}
 		return list;
 	}
+
+	@Override
+	public void deleteInCart(String[] chks, String id) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("chks",chks);
+		map.put("id", id);
+		sqlSession.delete(namespace+"delInCart", map);
+		
+	}
 	
 }

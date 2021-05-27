@@ -4,7 +4,19 @@
 
 
 <mapper namespace="com.luna.member">
-
+	<resultMap type="PBDTO" id="PBDTO_resultMap">
+		<result column="PSEQ" property="pseq"/>
+		<result column="PDATE" property="pdate"/>
+		<result column="PTITLE" property="ptitle"/>
+		<result column="PCONTENT" property="pcontent"/>
+		<result column="HIT" property="hit"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+		<collection property="stock" ofType="StockDTO">
+			<result column="price" property="price"></result>
+		</collection>
+	</resultMap>
 	<select id="getAllList" resultType="MDTO">
 		select id, pwd, email, adr1, adr2, adr3, adr4, birth, sex, phone, joinDate, admin, nickName, name, point
 		from Member order by id desc

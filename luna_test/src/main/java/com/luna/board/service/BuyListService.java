@@ -79,5 +79,11 @@ public class BuyListService implements IBuyListService {
 		// TODO Auto-generated method stub
 		return buyListDAO.getSelCart(chks,id);
 	}
+
+	@Override
+	public void deleteInCart(String[] chks, String id) {
+		// TODO Auto-generated method stub
+		buyListDAO.deleteInCart(chks,id);
+	}
 	
 }

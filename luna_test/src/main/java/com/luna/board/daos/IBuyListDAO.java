@@ -19,4 +19,5 @@ public interface IBuyListDAO {
 	MemberDTO getMember(String id);
 	boolean insertBuyList(BuyListDTO blDTO, List<BuyDetailDTO> list);
 	List<CartDTO> getSelCart(String[] chks, String id);
+	void deleteInCart(String[] chks, String id);
 }

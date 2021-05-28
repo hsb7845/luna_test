@@ -233,7 +233,7 @@
 		}
 		if(bool){
 			var formEle=document.form;
-			formEle.action='.do';
+			formEle.action='insertcoupon.do';
 			formEle.submit();//javascript에서 submit실행 			
 		}
 	}

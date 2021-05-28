@@ -149,11 +149,23 @@
 			//alert(selectedOptNum);
 			var optNum = $('input[name="optNum"]').val();
 			if (optNum == 1) {
-				selectedOptNum++;
 				var necc = $("#opt1").attr("name");
 				var optval = $("#opt1 option:selected").val();
 				var optname = $("#opt1 option:selected").attr("value2");
-				price = parseInt(price)+ parseInt(optval)
+				price = parseInt(price)+ parseInt(optval);
+				for(var i=1;i<=selectedOptNum;i++){
+					var selOpt = $("#selectedOpt"+i).text();
+					if(optname==selOpt){
+						if(confirm("이미 같은 제품을 담았습니다.\r\n수량을 추가하시겠습니까?")){
+							var amount = $("input[name:'amount"+i+"']").val();
+							amount++;
+							$("input[name:amount'"+i+"']").val(amount);
+						}else{
+							return false;
+						}
+					}
+				}
+				selectedOptNum++;
 				if (optval == " "&& necc == "true") {
 					alert("필수 옵션을 선택해주세요!!");
 					return;

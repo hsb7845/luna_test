@@ -36,7 +36,7 @@ public class QboardController {
 				} else {
 					List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO(id));
 					model.addAttribute("list",list);
-					return "qboardlist";
+					return "myqboardlist";
 				}
 		}else {
 			return "userlogin";

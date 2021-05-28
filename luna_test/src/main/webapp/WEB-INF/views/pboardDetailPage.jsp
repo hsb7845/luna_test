@@ -278,6 +278,7 @@
 
 .box {
 position:relative;
+height: 530px;
 }
 .footer {
 	position:absolute;
@@ -306,57 +307,57 @@ position:relative;
 				</c:forEach>
 			</div>
 			<input type="hidden" name="pseq" value="${map.pboard.pseq }" />
-		<div>
 			<div>
-				<h3>${map.pboard.ptitle}</h3>
-				<input type="hidden" id="ptitle" value="${map.pboard.ptitle}" />
-				<h4>판매가 : ${map.pboard.stock.price }원</h4>
-				<input type="hidden" value="${map.pboard.stock.price }" id="price">
-			</div>
+				<div>
+					<h3>${map.pboard.ptitle}</h3>
+					<input type="hidden" id="ptitle" value="${map.pboard.ptitle}" />
+					<h4>판매가 : ${map.pboard.stock.price }원</h4>
+					<input type="hidden" value="${map.pboard.stock.price }" id="price">
+				</div>
 
-			<c:if test="${map.option !=null }">
-				<c:forEach items="${map.option }" var="i" varStatus="j">
-					<c:if test="${i.necessary =='true' }">
-						<b>필수</b>
-					</c:if>
-					<c:if test="${i.necessary =='false' }">
-						<b>선택</b>
-					</c:if>
+				<c:if test="${map.option !=null }">
+					<c:forEach items="${map.option }" var="i" varStatus="j">
+						<c:if test="${i.necessary =='true' }">
+							<b>필수</b>
+						</c:if>
+						<c:if test="${i.necessary =='false' }">
+							<b>선택</b>
+						</c:if>
 				&nbsp;&nbsp; ${i.otitle }
 				<select name="${i.necessary }" id="opt${j.count}">
-						<option value=" ">선택</option>
-						<option value="" disabled="disabled">-----------</option>
-						<c:forEach items="${i.oconArr }" var="k" varStatus="status">
-							<option value="${i.ovalArr[status.index]}" value2="${k }">${k }</option>
-						</c:forEach>
-					</select>
-					<br>
-					<c:set var="optNum" value="${j.count }" scope="request" />
+							<option value=" ">선택</option>
+							<option value="" disabled="disabled">-----------</option>
+							<c:forEach items="${i.oconArr }" var="k" varStatus="status">
+								<option value="${i.ovalArr[status.index]}" value2="${k }">${k }</option>
+							</c:forEach>
+						</select>
+						<br>
+						<c:set var="optNum" value="${j.count }" scope="request" />
 
-				</c:forEach>
-				<input type="hidden" name="optNum" value="${optNum }" />
-				<input type="button" name="selOpt" value="옵션선택">
+					</c:forEach>
+					<input type="hidden" name="optNum" value="${optNum }" />
+					<input type="button" name="selOpt" value="옵션선택">
 
-				<p>선택상품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수량
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가격
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-				<div id="optContainer"></div>
+					<p>선택상품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수량
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가격
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+					<div id="optContainer"></div>
 
-				<p>총 금액 :</p>
-		</div>
-		<div id="totalprice"></div>
+					<p>총 금액 :</p>
+			</div>
+			<div id="totalprice"></div>
 
-		</c:if>
+			</c:if>
 
 
 
-		<div>
-			<input type="button" value="장바구니" id="cart"> <input
-				type="button" name="buy" value="바로구매">
-		</div>
-
-		<div>${map.pboard.pcontent }</div>
-		<br>
+			<div>
+				<input type="button" value="장바구니" id="cart"> <input
+					type="button" name="buy" value="바로구매">
+			</div>
+		</div>	
+			<div>${map.pboard.pcontent }</div>
+			<br>
 	</form>
 	<div class="foot">
 			<!-- 유사 제품 -->

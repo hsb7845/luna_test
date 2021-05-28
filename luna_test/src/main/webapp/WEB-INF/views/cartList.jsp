@@ -110,7 +110,7 @@ $(function(){
 			alert("장바구니가 비어있습니다!");
 			return false;
 		}
-		var count=$(this).find("input[name=chk]:checked").length;
+		var count=$("input[name=chk]:checked").length;
 		if(count==0){
 			alert('최소 하나이상 체크하세요!!!');
 			return false;

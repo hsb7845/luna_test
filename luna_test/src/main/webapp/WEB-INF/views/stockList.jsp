@@ -113,6 +113,38 @@
 		.stockD {
 			font-size: 12px;
 		}
+		button {
+		   color:#666666;
+		   font-family:inherit;
+		   font-size:14px;
+		   line-height:1.8;
+		   word-wrap:break-word;
+		   -webkit-hyphens:auto;
+		    -moz-hyphens:auto;
+		    -ms-hyphens:auto;
+		         hyphens:auto;
+		         
+		         font-size:100%;
+		   /* Corrects font size not being inherited in all browsers */
+		   margin:0;
+		   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+		   vertical-align:baseline;
+		   /* Improves appearance and consistency in all browsers */
+		}
+		button,input[type="button"],input[type="reset"],input[type="submit"] {
+		   border:1px solid #ccc;
+		   border-radius:0px;
+		   background:#ccc;
+		   color:#fff;
+		   cursor:pointer;
+		   /* Improves usability and consistency of cursor style between image-type 'input' and others */
+		   -webkit-appearance:button;
+		   /* Corrects inability to style clickable 'input' types in iOS */
+		   padding:3px 15px;
+		}
+		button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
+		   opacity:0.6;
+		}
 	</style>                
 </head>
 <%
@@ -502,7 +534,7 @@
             <div class="row">
 				<p class="cls1">재고관리</p>
                     <form action="muldelStock.do" method="post">
-                        <table align="center" border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+                        <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                             <col width="50px">
                             <col width="100px">
                             <col width="300px">
@@ -548,7 +580,7 @@
 		}
 	%>
                                 </table>
-                                <table>
+                                <table align="center" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                                     <tr>
                                         <td colspan="9" class="stockD">
                                             <!-- <input type="button" value="상품입고" id="stockInsertForm"> -->

@@ -128,9 +128,9 @@ public class PBoardDAO implements IPBoardDAO{
 		//System.out.println(String.valueOf(countRank.get(0).get("count")));
 		//System.out.println((Integer.parseInt(String.valueOf(countRank.get(0).get("count")))));
 		//System.out.println(count);
-		
-		//System.out.println((double)(Integer.parseInt(String.valueOf(countRank.get(0).get("count")))/(double)count)*100.0);
-		switch(Integer.parseInt(String.valueOf(countRank.get(0).get("starrank")))) {
+		System.out.println(countRank);
+		if(!countRank.isEmpty()) {
+			switch(Integer.parseInt(String.valueOf(countRank.get(0).get("starrank")))) {
 			case 1:
 				for(int i=1;i<=5;i++) {
 					rankAvg.clear();
@@ -178,6 +178,9 @@ public class PBoardDAO implements IPBoardDAO{
 				break;
 		}
 		System.out.println(rankAvg);
+		}
+		//System.out.println((double)(Integer.parseInt(String.valueOf(countRank.get(0).get("count")))/(double)count)*100.0);
+		
 		List<POptionDTO> option= sqlSession.selectList(namespace+"getOption", pseq);
 		for(int i=0;i<option.size();i++) {
 			option.get(i).setOconArr(option.get(i).getOcontent().split("/"));

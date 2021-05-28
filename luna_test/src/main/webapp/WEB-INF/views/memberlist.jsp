@@ -164,6 +164,38 @@
             /* 		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; */
             /* 		font-weight: bold; */
             /* 	}	 */
+             button {
+   color:#666666;
+   font-family:inherit;
+   font-size:14px;
+   line-height:1.8;
+   word-wrap:break-word;
+   -webkit-hyphens:auto;
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+         hyphens:auto;
+         
+         font-size:100%;
+   /* Corrects font size not being inherited in all browsers */
+   margin:0;
+   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+   vertical-align:baseline;
+   /* Improves appearance and consistency in all browsers */
+}
+button,input[type="button"],input[type="reset"],input[type="submit"] {
+   border:1px solid #ccc;
+   border-radius:0px;
+   background:#ccc;
+   color:#fff;
+   cursor:pointer;
+   /* Improves usability and consistency of cursor style between image-type 'input' and others */
+   -webkit-appearance:button;
+   /* Corrects inability to style clickable 'input' types in iOS */
+   padding:3px 15px;
+}
+button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
+   opacity:0.6;
+}
         </style>
     </head>
     <%
@@ -401,30 +433,30 @@
                             <p class="cls1">회원 목록</p>
                             <!-- <form action="muldelmember.do" method="post"> -->
                             <form method="post" name="form">
-                                <div style="float:right">
+                                <div style="float:right" >
                                     <select id="arrayNum" name="sel" onchange="selChange()"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option>
                             <option value="2" <c:if test="${arrayNum == 2}">selected</c:if>>생일자</option>
                     </select>
                 </div>
 
-                <table border="1">
+                <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                     <tr class="memberT">
-                        <th id="m1"><input type="checkbox" name="all" onclick="allSel(this)"/></th>
-                        <th id="m1">아이디</th>
-                        <th id="m1">비밀번호</th>
-                        <th id="m1">이메일</th>
-                        <th id="m1">우편번호</th>
-                        <th id="m1">주소</th>
-                        <th id="m1">상세주소</th>
-                        <th id="m1">참고주소</th>
-                        <th id="m1">생년월일</th>
-                        <th id="m1">성별</th>
-                        <th id="m1">핸드폰</th>
-                        <th id="m1">가입일</th>
-                        <th id="m1">관리자</th>
-                        <th id="m1">닉네임</th>
-                        <th id="m1">이름</th>
-                        <th id="m1">포인트</th>
+                        <th ><input type="checkbox" name="all" onclick="allSel(this)"/></th>
+                        <th>아이디</th>
+<!--                         <th>비밀번호</th> -->
+                        <th>이메일</th>
+                        <th>우편번호</th>
+                        <th>주소</th>
+                        <th>상세주소</th>
+                        <th>참고주소</th>
+                        <th>생년월일</th>
+                        <th>성별</th>
+<!--                         <th>핸드폰</th> -->
+                        <th>가입일</th>
+                        <th>관리자</th>
+                        <th>닉네임</th>
+                        <th>이름</th>
+                        <th>포인트</th>
                     </tr>
                     <%
 		if(list==null||list.size()==0){
@@ -435,25 +467,24 @@
 	%>
 
                         <tr class="memberM">
-                            <td id="m2"><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
-                            <td id="m2">
+                            <td><input type="checkbox" name="chk" value="<%=dto.getId()%>"></td>
+                            <td>
                                 <a href="updatememberForm.do?id=<%=dto.getId()%>"><%=dto.getId()%></a>
                             </td>
-                            <td id="m2"><%=dto.getPwd() %></td>
-                            <td id="m2"><%=dto.getEmail()%></td>
-                            <td id="m2"><%=dto.getAdr1()%></td>
-                            <td id="m2"><%=dto.getAdr2()%></td>
-                            <td id="m2"><%=dto.getAdr3()%></td>
-                            <td id="m2"><%=dto.getAdr4()%></td>
-
-                           <td id="m2"><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>
-                            <td id="m2"><%=dto.getSex()%></td>
-                            <td id="m2"><%=dto.getPhone()%></td>
-                            <td id="m2"><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
-                            <td id="m2"><%=dto.getAdmin()%></td>
-                            <td id="m2"><%=dto.getNickName()%></td>
-                            <td id="m2"><%=dto.getName()%></td>
-                            <td id="m2"><%=dto.getPoint()%></td>
+<%--                             <td><%=dto.getPwd() %></td> --%>
+                            <td><%=dto.getEmail()%></td>
+                            <td><%=dto.getAdr1()%></td>
+                            <td><%=dto.getAdr2()%></td>
+                            <td><%=dto.getAdr3()%></td>
+                            <td><%=dto.getAdr4()%></td>
+                           <td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>
+                            <td><%=dto.getSex()%></td>
+<%--                             <td><%=dto.getPhone()%></td> --%>
+                            <td><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
+                            <td><%=dto.getAdmin()%></td>
+                            <td><%=dto.getNickName()%></td>
+                            <td><%=dto.getName()%></td>
+                            <td><%=dto.getPoint()%></td>
                         </tr>
 
                         <%
@@ -461,7 +492,7 @@
 		}
 	%>
                         </table>
-                        <table>
+                        <table align="center" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                             <tr>
                                 <td class="memberD">
                                     <!-- <a href="insertmemberform.do">회원가입</a> -->

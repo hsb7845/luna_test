@@ -46,6 +46,16 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
+	function goReply(par_rseq,rseq){
+// 	    alert(rseq);
+	    if(par_rseq!=0){
+	       alert("답글에는 답글을 달 수 없습니다!");
+	       return false;
+	    }else{
+	       location.href = "rreply.do?rseq="+rseq;
+	    }
+	}
+
 	function allSel(val){
 		var chks=document.getElementsByName("chk");
 		for(var i=0;i<chks.length;i++){
@@ -155,7 +165,7 @@
 				<%
 					}	
 				%>
-				<a href="rreply.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
+				<a href="rreply.do?rseq=<%=dto.getRseq() %>" onclick="goReply(<%=dto.getPar_rseq()%>,<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
 				<td id="m2" ><%=dto.getRcontent()%></td>
 				<td id="m2" ><%=dto.getPseq()%></td>
 				<td id="m2" ><%=dto.getId()%></td>

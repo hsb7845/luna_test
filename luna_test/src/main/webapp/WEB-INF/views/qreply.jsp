@@ -61,7 +61,9 @@ $(function(){
 </script>
 
 </head>
+
 <body>
+
 <%@ include file="header.jsp" %>
 
 
@@ -74,9 +76,8 @@ $(function(){
 	<input type="hidden" name="par_qseq" value="${dto.par_qseq}">
 	
 	
-	<p class="cls1">리뷰 상세보기</p>	
+<p class="cls1">문의 상세 보기</p>
 	<table>
-	
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="par_qtitle" value="${dto.qtitle }" readonly></td>
@@ -85,23 +86,23 @@ $(function(){
 			<th>내용</th>
 			<td><textarea name="par_qcontent" readonly>${dto.qcontent}</textarea></td>
 		</tr>
-	</table>
-	<table>
-		<p2>댓글 달기</p2>
-		<tr>
-			<th>제목</th>
-			<td><input type="text" name="qtitle"></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td><textarea name="qcontent"></textarea></td>
-		</tr>	
+<!-- 	</table> -->
+<!-- 	<table> -->
+<!-- 		<p2>댓글 달기</p2> -->
+<!-- 		<tr> -->
+<!-- 			<th>제목</th> -->
+<!-- 			<td><input type="text" name="qtitle"></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>내용</th> -->
+<!-- 			<td><textarea name="qcontent"></textarea></td> -->
+<!-- 		</tr>	 -->
 		
-		<tr>
-			<td colspan="2">
+<!-- 		<tr> -->
+			<td colspan="5">
 <!-- 				<input type="submit" value="수정"> -->
             	<input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/qboard.do'">
-            	<input type="button" value="답글 쓰기" class="replyWriteBtn">
+<!--             	<input type="button" value="답글 쓰기" class="replyWriteBtn"> -->
 			</td>
 		</tr>
 	

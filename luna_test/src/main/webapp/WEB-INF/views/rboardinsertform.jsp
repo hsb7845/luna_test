@@ -184,12 +184,12 @@ $(function(){
 <!--     		<input type="file" name="imgname" id="image" accept="image/*" onchange="setThumbnail(event);" multiple /> -->
 <!-- 			<div id="image_container" ></div> -->
 	
-			<div style="margin-top:50px">
-			    <input id="imageFile" type="file">
-			</div>
+<!-- 			<div style="margin-top:50px"> -->
+<!-- 			    <input id="imageFile" type="file"> -->
+<!-- 			</div> -->
 			
-			<div style="margin-top:50px">
-			    <input type="button" value="Resize Image" onclick="ResizeImage()"/>
+<!-- 			<div style="margin-top:50px"> -->
+<!-- 			    <input type="button" value="Resize Image" onclick="ResizeImage()"/> -->
 			</div>
 			
 			<div style="margin-top:50px">

@@ -235,22 +235,21 @@ $(document).ready(function(){
 	<div>
 		<div>
 			<div>제목</div>
-			<div><input type="text" name="ptitle" id="ptitle"></div>
+		<input type="text" name="ptitle" id="ptitle">
 		</div>
-		<br><br>
+		<br>
 		<div><!-- 이미지 추가 -->
 		
 		<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
 		<div id="image_container"></div>
 		</div>
-		<br><br>
-		<div>
+		<br>
 		<span>항목추가</span>
-		<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button></div>
+		<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button>
 		<div id="stock"><!-- 가져온 stock 받아주는 div -->
 			
 		</div>
-		<br><br>
+		<br>
 		<button type="button" id="addOpt">옵션추가</button>
 		<div id="opt"><!-- 해당 옵션 가져오는 태그 -->
 			

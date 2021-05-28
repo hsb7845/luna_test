@@ -91,9 +91,9 @@ public class PBoardDAO implements IPBoardDAO{
 	}
 
 	@Override
-	public int countBoard() {
+	public int countBoard(String sorting) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"countBoard");
+		return sqlSession.selectOne(namespace+"countBoard",sorting);
 	}
 
 	@Override

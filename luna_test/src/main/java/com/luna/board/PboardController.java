@@ -74,7 +74,7 @@ public class PboardController {
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws IOException {
 		//System.out.println(sorting);
-		int total = pBoardService.countBoard();
+		
 		//System.out.println(sorting);
 		if(nowPage ==null&&cntPerPage==null&&arrayNum==null&&sorting==null) {
 			nowPage="1";
@@ -92,6 +92,7 @@ public class PboardController {
 		}else if(sorting==null) {
 			sorting="1";
 		}
+		int total = pBoardService.countBoard(sorting);
 		/* sorting =1 -> 신상 2 ->귀걸이 3-> 목걸이 4-> 반지 5->팔찌 6->귀걸이
 		 * 
 		 * */

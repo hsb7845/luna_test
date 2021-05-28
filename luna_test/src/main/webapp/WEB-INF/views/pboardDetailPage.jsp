@@ -312,7 +312,7 @@
         height: 2em; 
         line-height: 2em;            
     }
-    .graph .bar span { position: absolute; left: 1em; }
+    .graph .bar span { left: 1em; }
 
 .imgmain {
 	width: 400px;

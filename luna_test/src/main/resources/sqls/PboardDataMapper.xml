@@ -64,8 +64,29 @@
 		</foreach>
 	</delete>
 	
-	<select id="countBoard" resultType="int" >
-		select count(*) from p_board
+	<select id="countBoard" resultType="int"  parameterType="String">
+		select count(*) from p_board p,stock s ,p_category c
+		where  p.PSEQ =s.PSEQ  AND s.main = 'true' AND s.cnum = c.cnum
+		<choose>
+			<when test="sorting==1">
+				AND to_char(pdate,'MM') >= to_Char(sysdate,'MM') -1
+			</when>
+			<when test="sorting==2">
+				 AND c.ptype = '귀걸이'
+			</when>
+			<when test="sorting==3">
+				AND c.ptype = '목걸이'
+			</when>
+			<when test="sorting==4">
+				 AND c.ptype = '반지'
+			</when>
+			<when test="sorting==5">
+				 AND c.ptype = '팔찌'
+			</when>
+			<when test="sorting==6">
+				 AND c.ptype = '기타'
+			</when>
+		</choose>
 	</select>
 	
 	

@@ -72,9 +72,9 @@ public class PBoardService implements IPBoardService{
 
 
 	@Override
-	public int countBoard() {
+	public int countBoard(String sorting) {
 		// TODO Auto-generated method stub
-		return PBoardDAO.countBoard();
+		return PBoardDAO.countBoard(sorting);
 	}
 
 
@@ -211,6 +211,7 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return PBoardDAO.searchId(id,pseq);
 	}
+
 	
 	
 }

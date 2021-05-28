@@ -56,7 +56,9 @@ public class BuyListController {
 		List<CartDTO> cartList = buyListService.getSelCart(chks,id);
 		
 		MemberDTO mdto = buyListService.getMember(id);
+		
 		model.addAttribute("list",cartList);
+		System.out.println(cartList.get(0).getPrice());
 		model.addAttribute("mdto",mdto);
 		model.addAttribute("chks", chks);
 		return "buyFormByCart";

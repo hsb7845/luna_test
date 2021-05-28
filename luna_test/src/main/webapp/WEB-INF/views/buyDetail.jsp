@@ -120,6 +120,10 @@
 		padding-left: 30px; 
 		padding-right: 30px;
 	}
+	
+	.noBankbook{
+		padding-left: 30px; 
+	}
 </style>
 
 
@@ -151,6 +155,8 @@
 		</tr>
 	</c:forEach>
 </table>
+<div class="noBankbook">
+ <h2>구매/계좌정보</h2>
 <select id="selectbank" onchange="bankDisplay()" >
     <option selected value=0>-선택하세요-
     <option value=1>국민은행
@@ -158,12 +164,20 @@
     <option value=3>우리은행
     <option value=4>농협
 </select>
-    <div class="noBankbook">
+   	<br>
     <font color="#0000ff">*</font> 입  금  계  좌 :
     <input name="bank" type="text" size="50" maxlength="50"value=""  placeholder="은행 및 계좌번호가 표시됩니다." readonly>
-    </div>
-   
- </form>
+ 	 <div style="float:middle"><h2>입금액 : ${list[0].blDTO.totalPrice}원</h2></div>
+  	</div>
+  <div style="margin-left :40px;">
+  <h2>  배송지 정보</h2>
+  <table>
+  	<tr><th>수령인</th><td>${list[0].blDTO.name }</td></tr>
+  	<tr><th>연락처</th><td>${list[0].blDTO.phone }</td></tr>
+  	<tr><th>배송지</th><td>${list[0].blDTO.address }</td></tr>
+  </table>
+  </div>
+</form>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

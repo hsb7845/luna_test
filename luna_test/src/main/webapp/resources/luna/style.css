@@ -288,7 +288,9 @@ table {
 	border-bottom:1px solid #ccc;
 	line-height:2;
 	margin-bottom:40px;
-	width:100%;
+	margin-left :80px;
+	width:70%;
+	
 }
 table th {
 	font-weight:bold;
@@ -805,6 +807,7 @@ a.more-link {
 .nav-links a {
 	text-decoration: none;
 }
+<<<<<<< HEAD
 /* Archives Page */
 .page-header {
 	margin-bottom:0.5em;
@@ -814,6 +817,9 @@ a.more-link {
 	margin-top:0;
 	text-transform:capitalize;
 }
+=======
+
+>>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
 .page-title:before {
 	content:"#";
 }

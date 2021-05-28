@@ -3,6 +3,8 @@
 
 <mapper namespace="com.luna.coupon">
 
+	
+
 	<select id="getAllList" resultType="CouponDTO" parameterType="CouponDTO">		
 		SELECT CSEQ, CCONTENT, DISCOUNT, ID, HIT
 		FROM COUPON	
@@ -53,20 +55,7 @@
 		</foreach>
 	</delete>
 	
-	<update id="insertAllCoupon" parameterType="list">
-		 <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
-	                 INTO COUPON  ( 
-	                      CSEQ,CCONTENT,DISCOUNT,ID,HIT         
-	                ) VALUES(
-	                       COUPON_SEQ.nextval                 
-	                     , #{item.ccontent}                         
-	                     , #{item.discount}                             
-	                     , #{item.id}       
-	                     , 0
-	                )
-	    </foreach>
 	
-	</update>
 	
 	
 </mapper>

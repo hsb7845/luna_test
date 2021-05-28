@@ -441,6 +441,12 @@ public class MemberController {
 		model.addAttribute("list", list);
 		return "memberlist";
 	}
+	
+	@RequestMapping(value = "/insertAllCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insertAll(Locale locale, Model model, String[] chk) {
+		model.addAttribute("chk",chk);
+		return "couponInsertForm";
+	}
 }
 	
    

@@ -29,6 +29,8 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
 <script>
@@ -49,14 +51,20 @@
 	}
 </style>
 
+
 <body>
+
+
+
 <form method="post" action="insertCoupon.do">
 <table>	
 	<p class="cls1">쿠폰 추가</p>
 	<tr>
 		<th>아이디</th>
-		<td><input type="text" name="id"></td>
-		
+		<td><c:forEach var="list" items="${chk }">
+               <li>${list}</li>
+       		</c:forEach>
+		</td>
 	</tr>
 	<tr>
 		<th>쿠폰내용</th>

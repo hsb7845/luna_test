@@ -20,11 +20,7 @@ public class CouponService implements ICouponService {
 		return CouponDAO.getAllList(dto);
 	}
 
-	@Override
-	public boolean insertCoupon(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		return CouponDAO.insertCoupon(dto);
-	}
+	
 
 	@Override
 	public CouponDTO getCoupon(int cseq) {
@@ -64,10 +60,30 @@ public class CouponService implements ICouponService {
 
 	
 	@Override
-	public boolean insertAllCoupon(CouponDTO dto) {
+	public boolean insertAllCoup(CouponDTO dto) {
 		// TODO Auto-generated method stub
-		return CouponDAO.insertAllCoupon(dto);
+		return CouponDAO.insertAllCoup(dto);
 	}
 	
-	
+	@Override
+	public boolean insertCoupon(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return CouponDAO.insertCoupon(dto);
+	}
+
+
+
+//	@Override
+//	public boolean insertCoupon(String[] id) {
+//		// TODO Auto-generated method stub
+//		return CouponDAO.insertCoupon(String[] id);
+//	}
+
+
+
+	@Override
+	public boolean insertEveryCoup(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		return CouponDAO.insertEveryCoup(dto);
+	}
 }

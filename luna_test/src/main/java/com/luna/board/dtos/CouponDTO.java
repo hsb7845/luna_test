@@ -1,5 +1,7 @@
 package com.luna.board.dtos;
 
+import java.util.Arrays;
+
 public class CouponDTO {
 //	"CSEQ" NUMBER(*,0) NOT NULL ENABLE, 
 //	"CCONTENT" VARCHAR2(400), 
@@ -10,7 +12,16 @@ public class CouponDTO {
 	private int discount;
 	private String id;
 	private int hit;
+	private String[] chk;
 	
+	public String[] getChk() {
+		return chk;
+	}
+
+	public void setChk(String[] chk) {
+		this.chk = chk;
+	}
+
 	public CouponDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -73,7 +84,9 @@ public class CouponDTO {
 	@Override
 	public String toString() {
 		return "CouponDTO [cseq=" + cseq + ", ccontent=" + ccontent + ", discount=" + discount + ", id=" + id + ", hit="
-				+ hit + "]";
+				+ hit + ", chk=" + Arrays.toString(chk) + "]";
 	}
+
+	
 
 }

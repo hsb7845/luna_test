@@ -70,8 +70,13 @@ public class CouponDAO implements ICouponDAO {
 	}
 
 	@Override
-	public boolean insertAllCoupon(CouponDTO dto) {
-		return sqlSession.insert(namespace+"insertAllCoupon",dto)>0?true:false;
+	public boolean insertAllCoup(CouponDTO dto) {
+		return sqlSession.insert(namespace+"insertAllCoup",dto)>0?true:false;
+	}
+
+	@Override
+	public boolean insertEveryCoup(CouponDTO dto) {
+		return sqlSession.insert("com.luna.member.insertEveryCoup",dto)>0?true:false;
 	}
 
 	@Override
@@ -79,6 +84,14 @@ public class CouponDAO implements ICouponDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean insertCoupon(String[] id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 	
 	
 //	@Override

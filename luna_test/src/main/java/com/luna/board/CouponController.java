@@ -60,7 +60,7 @@ public class CouponController {
 		if(isS) {
 			return "redirect:coupon.do";
 		} else {
-			model.addAttribute("msg", "장바구니 추가를 실패하였습니다.");
+			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
 			return "error";
 		}
 	}	

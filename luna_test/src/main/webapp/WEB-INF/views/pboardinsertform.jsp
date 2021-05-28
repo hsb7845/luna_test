@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 스마트에디터 -->
@@ -108,7 +109,7 @@ $(document).ready(function(){
 	
 	 
 	 
-	$(".btn").on("click", function() {
+	$(".btnn").on("click", function() {
 		var pnum_arr = [];
 		$("input[name='pnum']").each(function(){
 			var pnum = $(this).val();
@@ -212,7 +213,7 @@ $(document).ready(function(){
  		});	
 	});
 })
-	
+
 </script>
 <style>
 	#btnimg{
@@ -226,6 +227,9 @@ $(document).ready(function(){
 	}
 	
 </style>
+<%@ include file="header.jsp" %>
+
+</head>
 <body>
 	<form method="post" action="insertpboard.do" id="insert" enctype="multipart/form-data">
 	<div>
@@ -259,7 +263,7 @@ $(document).ready(function(){
 			<div><!-- 표시할 textarea 영역 --> <textarea id="pcontent"  name="pcontent" rows="10" cols="100" ></textarea></div>
 		</div>
 		<div>
-			<div><input type="button" value="작성" class="btn"></div>
+			<input type="button" value="작성" class="btnn">
 			<input type="button" value="연습" class="praBtn">
 		</div>
 	</div>

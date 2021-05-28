@@ -90,6 +90,12 @@ public class CouponDAO implements ICouponDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean insertCoupon(Object dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 	

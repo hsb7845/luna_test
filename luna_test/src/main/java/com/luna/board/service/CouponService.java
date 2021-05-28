@@ -86,4 +86,16 @@ public class CouponService implements ICouponService {
 		// TODO Auto-generated method stub
 		return CouponDAO.insertEveryCoup(dto);
 	}
+
+
+
+	@Override
+	public boolean insertCoupon(String[] id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	
 }

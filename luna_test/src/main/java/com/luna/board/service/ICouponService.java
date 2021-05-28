@@ -7,7 +7,7 @@ import com.luna.board.dtos.RBoardDTO;
 
 public interface ICouponService {
 
-	boolean insertCoupon(CouponDTO dto);
+	boolean insertCoupon(String[] id);
 	CouponDTO getCoupon(int cseq);
 	boolean deleteCoupon(int cseq);
 	boolean updateCoupon(CouponDTO dto);
@@ -15,5 +15,7 @@ public interface ICouponService {
 	boolean mulDel(String[] chk);
 	CouponDTO ringCoupon();
 	List<CouponDTO> getAllList(CouponDTO couponDTO);
-	boolean insertAllCoupon(CouponDTO dto);
+	boolean insertCoupon(CouponDTO dto);
+	boolean insertAllCoup(CouponDTO dto);
+	boolean insertEveryCoup(CouponDTO dto);
 }

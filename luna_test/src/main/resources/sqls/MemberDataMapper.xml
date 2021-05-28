@@ -102,15 +102,15 @@
 		WHERE to_char(JOINDATE ,'YYYYMM') = to_char(sysdate,'YYYYMM')
 	</select>
 	
-	<update id="insertAllCoupon" parameterType="list" >
-		 <foreach collection="list" item="item" index="index" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+	<update id="insertEveryCoup" parameterType="CouponDTO" >
+		 <foreach collection="chk" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
 	                 INTO COUPON  ( 
 	                      CSEQ,CCONTENT,DISCOUNT,ID,HIT         
 	                ) VALUES(
 	                       COUPON_SEQ.nextval                 
-	                     , #{item.ccontent}                         
-	                     , #{item.discount}                             
-	                     , #{item.id}       
+	                     , #{ccontent}                         
+	                     , #{discount}                             
+	                     , #{item}       
 	                     , 0
 	                )
 	    </foreach>

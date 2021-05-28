@@ -18,12 +18,13 @@ public interface IPBoardDAO {
 	boolean deleteBoard(int pseq);
 	boolean updateBoard(PBoardDTO dto);
 	boolean mulDel(String[] chk);
-	int countBoard();
+	int countBoard(String sorting);
 	List<PBoardDTO> getPagingList(PagingDTO pagingDTO);
 	Map<String, Object> getDetail(int pseq);
 	List<PCategoryDTO> getCategory(String[] chk_arr);
 	boolean uploadImg(ImgFileDTO dto);
 	void boardHit(int pseq);
 	MemberDTO getMember(String id);
+	int searchId(String id, int pseq);
 	
 }

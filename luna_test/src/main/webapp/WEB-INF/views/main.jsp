@@ -98,6 +98,7 @@ img {vertical-align: middle;}
 </style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <div class="slideshow-container">
 
 <div class="mySlides fade">
@@ -206,7 +207,7 @@ function showSlides() {
     setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 </script>
-
+<%@ include file="footer.jsp" %>
 </body>
 
 </html>

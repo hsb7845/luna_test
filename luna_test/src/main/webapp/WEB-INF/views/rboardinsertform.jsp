@@ -165,6 +165,7 @@ $(function(){
 	<div class="wrap">
     
     <form method="post" action="insertrboard.do" onsubmit="return review1()">
+    <input type="hidden" name="pseq" value="${pseq }"/>
     <input type="hidden" name="id"  value="${sessionScope.id}" >
     <p class="cls1">리뷰 쓰기</p>
     <table>

@@ -149,11 +149,23 @@
 			//alert(selectedOptNum);
 			var optNum = $('input[name="optNum"]').val();
 			if (optNum == 1) {
-				selectedOptNum++;
 				var necc = $("#opt1").attr("name");
 				var optval = $("#opt1 option:selected").val();
 				var optname = $("#opt1 option:selected").attr("value2");
-				price = parseInt(price)+ parseInt(optval)
+				price = parseInt(price)+ parseInt(optval);
+				for(var i=1;i<=selectedOptNum;i++){
+					var selOpt = $("#selectedOpt"+i).text();
+					if(optname==selOpt){
+						if(confirm("이미 같은 제품을 담았습니다.\r\n수량을 추가하시겠습니까?")){
+							var amount = $("input[name:'amount"+i+"']").val();
+							amount++;
+							$("input[name:amount'"+i+"']").val(amount);
+						}else{
+							return false;
+						}
+					}
+				}
+				selectedOptNum++;
 				if (optval == " "&& necc == "true") {
 					alert("필수 옵션을 선택해주세요!!");
 					return;
@@ -161,7 +173,7 @@
 					selectedOpt = optname;
 					var innerText = "";
 					innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ ptitle+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"+ selectedOpt+ "</span></td>";
-					innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
+					innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" readonly size="3"><input type="button" value=" + " onclick="add('
 							+ selectedOptNum
 							+ ');"><input type="button" value=" - " onclick="del('
 							+ selectedOptNum
@@ -196,7 +208,7 @@
 						+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"
 						+ selectedOpt
 						+ "</span></td>";
-				innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3"><input type="button" value=" + " onclick="add('
+				innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" size="3" readonly><input type="button" value=" + " onclick="add('
 						+ selectedOptNum
 						+ ');"><input type="button" value=" - " onclick="del('
 						+ selectedOptNum
@@ -208,10 +220,50 @@
 				changeTotalPrice();
 			}
 		});
+		$("input[name='ir']").click(function(){
+			var id = $("input[name='id']").val();
+			//alert(id);
+			if(id==""){
+				location.href = "loginForm.do?returnUrl=pboard&pseq="+pseq;
+			}else{	
+				$.ajax({
+					url : "searchId.do",
+					mehthod : "post",
+					dataType : "json",
+					data : {"pseq":pseq,"id":id},
+					async : false,
+					success : function(data) {
+						pseq = data;
+						if(pseq==0){
+							alert("구매한 상품만 리뷰를 작성할수있습니다!");
+						}else{
+							goPage("insertrboardform.do?id="+id+"&pseq="+pseq);
+						}
+					}
+			})
+		//	alert("여기옴?3");
+			}
+		})
+		
+		
+		
+		
+		$("input[name='iq']").click(function(){
+			var id = $("input[name='id']").val();
+			if(id==""){
+				location.href = "loginForm.do?returnUrl=pboard&pseq="+pseq;
+			}else{	
+				goPage("insertqboardform.do?id="+id+"&pseq="+pseq);
+			}
+		})
 });
 
 	var sell_price;
 	var amount;
+	function goPage(url){
+		location.href = url;
+	}
+	
 	function add(i) {
 		var amount = $("input[name='amount" + i + "']").val();
 		amount++;
@@ -251,6 +303,29 @@
 	}
 </script>
 <style>
+.rank {
+	margin-left : 300px;
+}
+.graph { 
+        position: relative; /* IE is dumb */
+        width: 200px; 
+        border: 1px solid #B1D632; 
+        padding: 2px; 
+		font-size:11px;
+		font-family:tahoma;
+		margin-bottom:3px;
+    }
+    .graph .bar { 
+        display: block;
+        position: relative;
+        background: #B1D632; 
+        text-align: center; 
+        color: #333; 
+        height: 2em; 
+        line-height: 2em;            
+    }
+    .graph .bar span { left: 1em; }
+
 .imgmain {
 	width: 400px;
 	height: 530px;
@@ -348,12 +423,8 @@ height: 530px;
 			<div id="totalprice"></div>
 
 			</c:if>
-
-
-
 			<div>
-				<input type="button" value="장바구니" id="cart"> <input
-					type="button" name="buy" value="바로구매">
+				<input type="button" value="장바구니" id="cart"> <input type="button" name="buy" value="바로구매">
 			</div>
 		</div>	
 			<div>${map.pboard.pcontent }</div>
@@ -364,30 +435,16 @@ height: 530px;
 
 
 		</div>
-		<div>
+		<div class="rank">
 			<!-- 평점 -->
 			<br>
-			<p>${map.avgRank }
-			<ul class="ratio">
-				<li><div style="height: 30%">
-						<em>30%</em>
-					</div></li>
-				<li><div style="height: 40%">
-						<em>40%</em>
-					</div></li>
-				<li><div style="height: 100%">
-						<em>50%</em>
-					</div></li>
-				<li><div style="height: 30%">
-						<em>30%</em>
-					</div></li>
-				<li><div style="height: 40%">
-						<em>40%</em>
-					</div></li>
-			</ul>
-			<span>1점</span> <span>2점</span> <span>3점</span> <span>4점</span> <span>5점</span>
+			<h2>평균 평점 : ${map.avgRank }</h2>
+	<c:forEach items="${map.rankAvg }" var="i" varStatus="sta">
+		<div class="graph">
+   			<span>${i.key}점</span><strong class="bar" style="width: ${i.value}%;"> ${i.value }<c:if test="${i.value!=0 }">%</c:if></strong>
 		</div>
-	</div>
+	</c:forEach>
+		</div>
 	
 	<div>
 		<!-- 리뷰 -->
@@ -423,8 +480,7 @@ height: 530px;
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3"><a
-						href="insertrboardform.do?pseq=${map.pboard.pseq }">리뷰작성하기</a></td>
+					<td colspan="3"><input type="button" name="ir" value="리뷰작성하기"></td>
 				</tr>
 			</c:if>
 
@@ -447,7 +503,6 @@ height: 530px;
 				</tr>
 			</c:if>
 			<c:if test="${map.qboard!=null }">
-
 				<c:forEach items="${map.qboard }" var="i">
 					<tr>
 						<td>${i.id }</td>
@@ -457,8 +512,7 @@ height: 530px;
 				</c:forEach>
 			</c:if>
 			<tr>
-				<td colspan="3"><a
-					href="insertqboardform.do?pseq=${map.pboard.pseq }">문의작성하기</a></td>
+				<td colspan="3"><input type="button" name="iq" value="문의하기"></td>
 			</tr>
 		</table>
 	</div>

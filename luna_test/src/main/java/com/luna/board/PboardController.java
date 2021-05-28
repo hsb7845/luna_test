@@ -59,7 +59,7 @@ public class PboardController {
 	private IStockService stockService;
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
-	public String main(Locale locale, Model model) {
+	public String nomain(Locale locale, Model model) {
 		return "index";
 	}
 	
@@ -74,7 +74,7 @@ public class PboardController {
 			@RequestParam(value="nowPage", required=false)String nowPage,
 			@RequestParam(value="cntPerPage",required=false)String cntPerPage) throws IOException {
 		//System.out.println(sorting);
-		int total = pBoardService.countBoard();
+		
 		//System.out.println(sorting);
 		if(nowPage ==null&&cntPerPage==null&&arrayNum==null&&sorting==null) {
 			nowPage="1";
@@ -92,6 +92,7 @@ public class PboardController {
 		}else if(sorting==null) {
 			sorting="1";
 		}
+		int total = pBoardService.countBoard(sorting);
 		/* sorting =1 -> 신상 2 ->귀걸이 3-> 목걸이 4-> 반지 5->팔찌 6->귀걸이
 		 * 
 		 * */
@@ -158,7 +159,7 @@ public class PboardController {
 		List<POptionDTO> optionList = new ArrayList<>();
 		POptionDTO optDto = new POptionDTO();
 		JSONParser  parser = new JSONParser();
-		System.out.println(mainNum);
+		//System.out.println(mainNum);
 		try {
 			Object obj = parser.parse(realObject);
 			JSONObject jsonObj = (JSONObject) obj;
@@ -198,12 +199,17 @@ public class PboardController {
 	@RequestMapping(value = "/pboarddetail.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pboardDetail(Locale locale, Model model, PBoardDTO dto) {
 		Map<String,Object> map = pBoardService.getDetail(dto.getPseq());
+		//System.out.println(map.get("rboard"));
 		model.addAttribute("map", map);
 		return "pboardDetailPage";
 
 
 	}
-	
+	@RequestMapping(value = "/main.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String main(Locale locale, Model model) {
+		return "main";
+
+	}
 	
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -255,6 +261,15 @@ public class PboardController {
 		return map;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/searchId.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public  int searchId(Locale locale, Model model,String id,int pseq){
+		System.out.println("id는 "+id);
+		pseq = pBoardService.serachId(id,pseq);
+		
+		System.out.println(pseq);
+		return pseq;
+	}
 	
 	
 	

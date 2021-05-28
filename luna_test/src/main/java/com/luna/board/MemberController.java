@@ -36,9 +36,12 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.model.KakaoProfile;
 import com.luna.board.model.OAuthToken;
+import com.luna.board.service.CouponService;
+import com.luna.board.service.ICouponService;
 import com.luna.board.service.IMemberService;
 
 @Controller
@@ -48,6 +51,8 @@ public class MemberController {
 	@Autowired
 	private IMemberService MemberService;
 
+	@Autowired
+	private ICouponService CouponService;
 	
 	 @Autowired
 	 private JavaMailSender mailSender;
@@ -442,10 +447,22 @@ public class MemberController {
 		return "memberlist";
 	}
 	
-	@RequestMapping(value = "/insertAllCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/insertAllCoup.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertAll(Locale locale, Model model, String[] chk) {
 		model.addAttribute("chk",chk);
 		return "couponInsertForm";
+	}
+	
+	@RequestMapping(value = "/insertEveryCoup.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String insert(Locale locale, Model model, CouponDTO dto) {
+		System.out.println("dto"+dto);
+		boolean isS = CouponService.insertEveryCoup(dto);
+		if(isS) {
+			return "redirect:coupon.do";
+		} else {
+			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
+			return "error";
+		}
 	}
 }
 	

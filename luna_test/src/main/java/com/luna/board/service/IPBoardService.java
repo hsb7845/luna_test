@@ -21,11 +21,12 @@ public interface IPBoardService {
 	boolean deleteBoard(int pseq);
 	boolean updateBoard(PBoardDTO dto);
 	boolean mulDel(String[] chk);
-	int countBoard();
+	int countBoard(String sorting);
 	List<PBoardDTO> getPagingList(PagingDTO pagingDTO);
 	Map<String, Object> getDetail(int pseq);
 	List<PCategoryDTO> getCategory(String[] chk_arr);
 	boolean uploadImg(HttpServletRequest request);
 	boolean uploadFile(MultipartFile[] uploadFiles, HttpServletRequest request);
 	MemberDTO getMember(String id);
+	int serachId(String id, int pseq);
 }

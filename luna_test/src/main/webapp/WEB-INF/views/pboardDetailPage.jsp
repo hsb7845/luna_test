@@ -423,7 +423,7 @@ position:relative;
 				</c:forEach>
 				<tr>
 					<td colspan="3"><a
-						href="insertReview.do?pseq=${map.pboard.pseq }">리뷰작성하기</a></td>
+						href="insertrboardform.do?pseq=${map.pboard.pseq }">리뷰작성하기</a></td>
 				</tr>
 			</c:if>
 
@@ -457,7 +457,7 @@ position:relative;
 			</c:if>
 			<tr>
 				<td colspan="3"><a
-					href="insertQuestion.do?pseq=${map.pboard.pseq }">문의작성하기</a></td>
+					href="insertqboardform.do?pseq=${map.pboard.pseq }">문의작성하기</a></td>
 			</tr>
 		</table>
 	</div>

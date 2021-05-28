@@ -130,7 +130,7 @@
 
 <tr>
 	<td colspan="6">
-		<input type="button" value="문의 등록" id="insertqboardform">
+<!-- 		<input type="button" value="문의 등록" id="insertqboardform"> -->
 		<input type="button" value="메인" id="main">
 		<input type="submit" value="삭제" />
 		

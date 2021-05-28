@@ -84,7 +84,8 @@
 	<a href="coupon.do">쿠폰함보기(coupon)</a><br>
 	<a href="imgfile.do">이미지 파일 보기</a><br>
 	<a href="loginForm.do">로그인</a><br>
-	<a href="logout.do">로그아웃</a>
+	<a href="logout.do">로그아웃</a><br>
+	<a href="main.do">메인페이지</a>
 </div>
 <div>
 	<%@ include file="footer.jsp" %>

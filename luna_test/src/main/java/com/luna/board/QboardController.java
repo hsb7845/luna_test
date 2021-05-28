@@ -39,7 +39,7 @@ public class QboardController {
 					return "qboardlist";
 				}
 		}else {
-			return "loginForm";
+			return "userlogin";
 		}
 		
 	}

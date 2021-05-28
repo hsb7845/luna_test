@@ -30,7 +30,7 @@ public class RboardController {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String admin = (String)session.getAttribute("admin");
-		
+		if(admin !=null) {
 		if(admin.equals("관리자")) {
 			List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO());
 			model.addAttribute("list",list);
@@ -40,6 +40,9 @@ public class RboardController {
 				model.addAttribute("list",list);
 				return "rboardlist";
 			}
+		
+			}
+			return "userlogin";
 		}
 	
 	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})

@@ -59,7 +59,7 @@ public class PboardController {
 	private IStockService stockService;
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
-	public String main(Locale locale, Model model) {
+	public String nomain(Locale locale, Model model) {
 		return "index";
 	}
 	
@@ -205,7 +205,11 @@ public class PboardController {
 
 
 	}
-	
+	@RequestMapping(value = "/main.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String main(Locale locale, Model model) {
+		return "main";
+
+	}
 	
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})

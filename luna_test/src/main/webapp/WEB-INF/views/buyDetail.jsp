@@ -2,7 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,28 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 	// core, BOM, DOM  3가지 영역으로 나눔
+	function bankDisplay() {
+	    var bank =  $("#selectbank option:selected").val();
+	    switch(bank){
+	       case '0':
+	        $("input[name='bank']").val('은행 및 계좌번호가 표시됩니다.') ;
+	         break;
+	       case '1': 
+	    	   $("input[name='bank']").val('(국민은행) 0XX-XX-XXXX-XXX');  
+	         break;
+	       case '2':
+	    	   $("input[name='bank']").val('(기업은행) XXX-0XXXXX-0X-0XX');  
+	         break;
+	       case '3':
+	    	   $("input[name='bank']").val('(우리은행) 1XX-XX-0XXXXXXX');  
+	         break;
+	       case '4':
+	    	   $("input[name='bank']").val( '(농협) 0XXXXXX-0X-0XXXXX');   
+	         break;
+	    }
+    
+   		 return true;
+	}
  	function allSel(val){
  		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
 //  		alert(val.tagName);
@@ -90,62 +113,57 @@
 		font-size: 13px;
 	}
 	.detailD {
-		font-size: 12px;
+		padding-left: 30px; 
+		padding-bottom:50px;
+	}
+	.detailD >span {
+		padding-left: 30px; 
+		padding-right: 30px;
 	}
 </style>
 
 
 </head>
-<%
-	List<BuyDetailDTO> list= (List<BuyDetailDTO>) request.getAttribute("list");
-%>
+
 <body>
+
 <%@ include file="header.jsp" %>
+<form action="muldel.do">
 <!-- <h1>구매현황</h1> -->
-<p class="cls1">구매현황</p> 
-<form action="buyDetailMulDel.do" method="post">
-<table border="1">
-	<col width="50px">
-	<col width="50px">
-	<col width="200px">
-	<col width="200px">
-	<col width="200px">
-	<tr align="center" class="detailT">
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>번호</th>
-		<th>상품번호</th>
-		<th>수량</th>
-		<th>구매번호</th>
-		
-	</tr>
-	<%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='5'>----작성된 글이 없습니다.</td></tr>");
-			}else{
-		for(int i=0;i<list.size();i++){
-			BuyDetailDTO dto=list.get(i);
-	%>
-				<tr align="center" class="detailM">
-					<td><input type="checkbox" name="chk" value="<%=dto.getBdseq()%>"/></td>
-					<td><%=dto.getBdseq()%></td>
-					<td ><a href="buyDetailUpdateForm.do?bdseq=<%=dto.getBdseq() %>"><%=dto.getPseq()%></a> </td>
-					<td><%=dto.getPcount()%>개</td>
-					<td><%=dto.getBseq() %>
-				</tr>
-	<%
-			}
-		}
-	%>
+<h2>주문 상세정보</h2> 
+<div  class="detailD">
+	주문일자<span>
+	<fmt:formatDate value="${list[0].blDTO.buyDate }" pattern="yyyy.MM.dd " />
+	</span>  
+	주문 번호<span>${list[0].blDTO.bseq }</span>
+</div>
+<table>
 	<tr>
-		<td colspan="10" class="detailD">
-			<input type="button" value="글쓰기" id="buyDetailInsertForm" />
-			<input type="button" value="메인" id="main">
-			<input type="submit" value="삭제" />
-		</td>		
+		<td>상품주문번호</td><td></td><td>상품정보</td><td>상품금액(수량)</td><td>진행상태</td>
 	</tr>
-	
+	<c:forEach items="${list }" var="list">
+		<tr>
+			<td>${list.bdseq }</td>
+			<td>${list.image.imgname }</td>
+			<td><a href="pboarddetail.do?pseq=${list.pboard.pseq }">${list.pboard.ptitle }</a><br>${list.selOpt }</td>
+			<td>${list.price }<br>(${list.pcount }개)</td>
+			<td>${list.blDTO.delStatus}</td>
+		</tr>
+	</c:forEach>
 </table>
-</form>
+<select id="selectbank" onchange="bankDisplay()" >
+    <option selected value=0>-선택하세요-
+    <option value=1>국민은행
+    <option value=2>기업은행
+    <option value=3>우리은행
+    <option value=4>농협
+</select>
+    <div class="noBankbook">
+    <font color="#0000ff">*</font> 입  금  계  좌 :
+    <input name="bank" type="text" size="50" maxlength="50"value=""  placeholder="은행 및 계좌번호가 표시됩니다." readonly>
+    </div>
+   
+ </form>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

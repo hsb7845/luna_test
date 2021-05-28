@@ -91,5 +91,11 @@ public class BuyListService implements IBuyListService {
 		// TODO Auto-generated method stub
 		return buyListDAO.getList(id);
 	}
+
+	@Override
+	public List<BuyDetailDTO> getList(int bdseq) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getDetail(bdseq);
+	}
 	
 }

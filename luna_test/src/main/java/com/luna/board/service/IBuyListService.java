@@ -22,4 +22,5 @@ public interface IBuyListService {
 	List<CartDTO> getSelCart(String[] chks, String id);
 	void deleteInCart(String[] chks, String parameter);
 	List<BuyDetailDTO> getList(String id);
+	List<BuyDetailDTO> getList(int bdseq);
 }

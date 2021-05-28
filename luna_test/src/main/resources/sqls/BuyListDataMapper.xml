@@ -28,7 +28,14 @@
 			<result column="IMGNAME" property="imgname"></result>
 		</collection>
 		<collection property="blDTO" ofType="BLDTO">
+			<result column="BSEQ" property="bseq"></result>
 			<result column="BUYDATE" property="buyDate"></result>
+			<result column="TOTALPRICE" property="totalPrice"></result>
+			<result column="ADDRESS" property="address"></result>
+			<result column="NAME" property="name"></result>
+			<result column="PHONE" property="phone"></result>
+			<result column="TRACKINGNUM" property="trackingNum"></result>
+			<result column="DELSTATUS " property="delStatus"></result>
 		</collection>
 		<collection property="pboard" ofType="PBDTO">
 			<result column="PTITLE" property="ptitle"></result>
@@ -110,6 +117,14 @@
 		 WHERE bl.BSEQ =bd.bseq AND  bl.id =#{id}  AND  pb.pseq = bd.PSEQ  AND pb.PSEQ =if2.PSEQ (+)
 		 ORDER BY bl.BUYDATE DESC 
  	</select>
+	<select id="getDetail" parameterType="int" resultMap="BDDTO_resultMap">
+	SELECT DISTINCT * FROM BUY_DETAIL bd , BUY_LIST bl ,P_BOARD pb ,IMG_FILE if2 
+		WHERE bd.BSEQ =(SELECT bl.bseq FROM BUY_DETAIL bd ,BUY_LIST bl 
+		WHERE bd.BDSEQ =#{bdseq}  AND bd.BSEQ =bl.BSEQ )  
+		AND pb.PSEQ =bd.PSEQ AND if2.PSEQ =pb.PSEQ AND bl.BSEQ =bd.BSEQ 
+	</select>
+	
+		
 	
 	
 </mapper>

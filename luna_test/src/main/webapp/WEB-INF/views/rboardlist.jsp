@@ -33,71 +33,6 @@
             rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
-
-
-
-
-        <style type="text/css">
-        table {
-    		width: 100%;
-  		}
-		.cls1 {
-		    font-size: 30px;
-		    text-align: center;
-
-		}
-        #content {
- 			background-color: white;
-		}
-		.container-fluid {
-		    background-color: white;
-		}
-            .rboardT {
-            	font-size: 15px;
-            	text-align: center;
-            }
-             .rboardM {
-            	font-size: 13px;
-            	text-align: center;
-            }           
-             .rboardD {
-            	font-size: 12px;
-            	text-align: left;
-            } 
-           button {
-			   color:#666666;
-			   font-family:inherit;
-			   font-size:14px;
-			   line-height:1.8;
-			   word-wrap:break-word;
-			   -webkit-hyphens:auto;
-			    -moz-hyphens:auto;
-			    -ms-hyphens:auto;
-		         hyphens:auto;
-		         
-		         font-size:100%;
-		   /* Corrects font size not being inherited in all browsers */
-		   margin:0;
-		   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
-		   vertical-align:baseline;
-		   /* Improves appearance and consistency in all browsers */
-		}
-		button,input[type="button"],input[type="reset"],input[type="submit"] {
-		   border:1px solid #ccc;
-		   border-radius:0px;
-		   background:#ccc;
-		   color:#fff;
-		   cursor:pointer;
-		   /* Improves usability and consistency of cursor style between image-type 'input' and others */
-		   -webkit-appearance:button;
-		   /* Corrects inability to style clickable 'input' types in iOS */
-		   padding:3px 15px;
-		}
-		button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
-		   opacity:0.6;
-		}
-		</style>
-		
         <script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript">
 			
@@ -155,78 +90,91 @@
 		 		$("#main").click(function(){
 		 			location.href='.do'
 		 		});
-			})
+			});
 		
 		</script>
+		<style type="text/css" > 
+			table {
+	    		width: 100%;
+	  		}
+			.cls1 {
+			    font-size: 30px;
+			    text-align: center;	
+			}
+			#content {
+			    background-color: white;
+			}
+			.container-fluid {
+			    background-color: white;
+			}
+			@font-face {
+			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			.rboardT {
+            	font-size: 15px;
+            	text-align: center;
+            }
+             .rboardM {
+            	font-size: 13px;
+            	text-align: center;
+            }           
+             .rboardD {
+            	font-size: 12px;
+            	text-align: left;
+            } 
+			
+			body,
+			button,
+			input {
+			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+			    font-weight: bold;
+			}
+			button {
+			    color: #666666;
+			    font-family: inherit;
+			    font-size: 14px;
+			    line-height: 1.8;
+			    word-wrap: break-word;
+			    -webkit-hyphens: auto;
+			    -moz-hyphens: auto;
+			    -ms-hyphens: auto;
+			    hyphens: auto;
+			
+			    font-size: 100%;
+			    /* Corrects font size not being inherited in all browsers */
+			    margin: 0;
+			    /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+			    vertical-align: baseline;
+			    /* Improves appearance and consistency in all browsers */
+			}
+			button,
+			input[type="button"],
+			input[type="reset"],
+			input[type="submit"] {
+			    border: 1px solid #ccc;
+			    border-radius: 0;
+			    background: #ccc;
+			    color: #fff;
+			    cursor: pointer;
+			    /* Improves usability and consistency of cursor style between image-type 'input' and others */
+			    -webkit-appearance: button;
+			    /* Corrects inability to style clickable 'input' types in iOS */
+			    padding: 3px 15px;
+			}
+			button:hover,
+			input[type="button"]:hover,
+			input[type="reset"]:hover,
+			input[type="submit"]:hover {
+			    opacity: 0.6;
+			}
+			</style>
+
     </head>
 <%
 	List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
 %>
-
-<body>
-<%@ include file="header.jsp" %>
-<p class="cls1">리뷰 목록</p> 
-<form action="muldelRboard.do" method="post">
-<table border="1">
-	<col width="50px">
-	<col width="200px">
-	<col width="100px">
-	<col width="300px">
-	<col width="200px">
-	<col width="100px">
-	<col width="100px">
-	<col width="200px">
-	<tr>
-		<th id="m1" ><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th id="m1" >리뷰 게시글 번호</th>
-		<th id="m1" >제목</th>
-		<th id="m1" >내용</th>
-		<th id="m1" >상품 게시글 번호</th>
-		<th id="m1" >아이디</th>
-		<th id="m1" >별점</th>
-		<th id="m1" >부모글 번호</th>
-	</tr>
-	<%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
-			} else {
-		for(int i=0;i<list.size();i++){
-			RBoardDTO dto=list.get(i);
-	%>
-			<tr>
-				<td id="m2" ><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
-				<td id="m2" ><%=dto.getRseq()%></td>
-				<td id="m2" >
-				<%
-				if(dto.getLevel()>1){				
-				%>
-				<span style="padding-left:20px"></span>└
-				<%
-					}	
-				%>
-				<a href="rreply.do?rseq=<%=dto.getRseq() %>" onclick="goReply(<%=dto.getPar_rseq()%>,<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
-				<td id="m2" ><%=dto.getRcontent()%></td>
-				<td id="m2" ><%=dto.getPseq()%></td>
-				<td id="m2" ><%=dto.getId()%></td>
-				<td id="m2" ><%=dto.getStarrank()%></td>
-				<td id="m2" ><%=dto.getPar_rseq()%></td>
-			</tr>
-<%
-		}
-	}
-%>
-<tr>
-	<td colspan="8">
-		<input type="button" value="리뷰 등록" id="insertrboardform" />
-		<input type="button" value="메인" id="main">
-		<input type="submit" value="삭제" />
-		
-		
-<!-- 		<a href=".do">메인</a> -->
-<!-- 		<a href="insertrboardform.do">리뷰 작성</a>  -->
-	</td>
-</tr>
-
 
         <body id="page-top">
             <!-- Page Wrapper -->
@@ -316,7 +264,6 @@
             </li>
 
 
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -393,69 +340,69 @@
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                	<p class="cls1">리뷰 목록</p> 
-					<form action="muldelRboard.do" method="post">
-					<table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-						<col width="50px">
-						<col width="200px">
-						<col width="100px">
-						<col width="300px">
-						<col width="200px">
-						<col width="100px">
-						<col width="100px">
-						<col width="200px">
-						<tr class="rboardT">
-							<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-							<th>리뷰 게시글 번호</th>
-							<th>제목</th>
-							<th>내용</th>
-							<th>상품 게시글 번호</th>
-							<th>아이디</th>
-							<th>별점</th>
-							<th>부모글 번호</th>
-						</tr>
+					<p class="cls1">리뷰 목록</p> 
+						<form action="muldelRboard.do" method="post">
+						<table align="left" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+							<col width="50px">
+							<col width="150px">
+							<col width="200px">
+							<col width="300px">
+							<col width="200px">
+							<col width="100px">
+							<col width="100px">
+							<col width="200px">
+							<tr class="rboardT">
+								<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+								<th>리뷰 게시글 번호</th>
+								<th>제목</th>
+								<th>내용</th>
+								<th>상품 게시글 번호</th>
+								<th>아이디</th>
+								<th>별점</th>
+								<th>부모글 번호</th>
+							</tr>
+							<%
+								if(list==null||list.size()==0){
+									out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
+									} else {
+								for(int i=0;i<list.size();i++){
+									RBoardDTO dto=list.get(i);
+							%>
+									<tr class="rboardM">
+										<td><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
+										<td><%=dto.getRseq()%></td>
+										<td>
+										<%
+										if(dto.getLevel()>1){				
+										%>
+										<span style="padding-left:20px"></span>└
+										<%
+											}	
+										%>
+										<a href="rreply.do?rseq=<%=dto.getRseq() %>" onclick="goReply(<%=dto.getPar_rseq()%>,<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
+										<td><%=dto.getRcontent()%></td>
+										<td><%=dto.getPseq()%></td>
+										<td><%=dto.getId()%></td>
+										<td><%=dto.getStarrank()%></td>
+										<td ><%=dto.getPar_rseq()%></td>
+									</tr>
 						<%
-							if(list==null||list.size()==0){
-								out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
-								} else {
-							for(int i=0;i<list.size();i++){
-								RBoardDTO dto=list.get(i);
-						%>
-								<tr class="rboardM">
-									<td><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
-									<td><%=dto.getRseq()%></td>
-									<td>
-									<%
-									if(dto.getLevel()>1){				
-									%>
-									<span style="padding-left:20px"></span>└
-									<%
-										}	
-									%>
-									<a href="rreply.do?rseq=<%=dto.getRseq() %>"><%=dto.getRtitle()%></a> </td>
-									<td><%=dto.getRcontent()%></td>
-									<td><%=dto.getPseq()%></td>
-									<td><%=dto.getId()%></td>
-									<td><%=dto.getStarrank()%></td>
-									<td><%=dto.getPar_rseq()%></td>
-								</tr>
-					<%
+								}
 							}
-						}
-					%>
-					</table>
-					<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-					<tr>
-						<td colspan="8" class="rboardD">
-							<input type="button" value="리뷰 등록" id="insertrboardform" />
-<!-- 							<input type="button" value="메인" id="main"> -->
-							<input type="submit" value="삭제" />		
-					<!-- 		<a href=".do">메인</a> -->
-					<!-- 		<a href="insertrboardform.do">리뷰 작성</a>  -->
-						</td>
-					</tr>
-				</table>   
-
+						%>
+						</table>
+						<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+						<tr>
+							<td colspan="8" class="rboardD">
+								<input type="button" value="리뷰 등록" id="insertrboardform" />
+								<input type="button" value="메인" id="main">
+								<input type="submit" value="삭제" />
+								
+						<!-- 		<a href=".do">메인</a> -->
+						<!-- 		<a href="insertrboardform.do">리뷰 작성</a>  -->
+							</td>
+						</tr>
+					</table>  
                     </div>
                     <!-- End of Main Content -->
                 </div>
@@ -509,12 +456,16 @@
         <!-- Bootstrap core JavaScript-->
         <script src="resources/boot/vendor/jquery/jquery.min.js"></script>
         <script src="resources/boot/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- Core plugin JavaScript-->
         <script src="resources/boot/vendor/jquery-easing/jquery.easing.min.js"></script>
+
         <!-- Custom scripts for all pages-->
         <script src="resources/boot/js/sb-admin-2.min.js"></script>
+
         <!-- Page level plugins -->
         <script src="resources/boot/vendor/chart.js/Chart.min.js"></script>
+
         <!-- Page level custom scripts -->
         <script src="resources/boot/js/demo/chart-area-demo.js"></script>
         <script src="resources/boot/js/demo/chart-pie-demo.js"></script>

@@ -807,15 +807,7 @@ a.more-link {
 .nav-links a {
 	text-decoration: none;
 }
-/* Archives Page */
-.page-header {
-	margin-bottom:1.5em;
-}
-.page-title {
-	line-height:1;
-	margin-top:0;
-	text-transform:capitalize;
-}
+
 .page-title:before {
 	content:"#";
 }

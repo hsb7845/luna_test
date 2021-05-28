@@ -83,7 +83,7 @@
                 }
                 if (bool) {
                     var formEle = document.form;
-                    formEle.action = 'insertAllCoup.do';
+                    formEle.action = 'insertAllCoupon.do';
                     formEle.submit(); //javascript에서 submit실행
                 }
             }
@@ -164,7 +164,6 @@
             /* 		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; */
             /* 		font-weight: bold; */
             /* 	}	 */
-<<<<<<< HEAD
              button {
    color:#666666;
    font-family:inherit;
@@ -197,42 +196,6 @@ button,input[type="button"],input[type="reset"],input[type="submit"] {
 button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
    opacity:0.6;
 }
-=======
-            
-button {
-   color:#666666;
-   font-family:inherit;
-   font-size:14px;
-   line-height:1.8;
-   word-wrap:break-word;
-   -webkit-hyphens:auto;
-    -moz-hyphens:auto;
-    -ms-hyphens:auto;
-         hyphens:auto;
-         
-         font-size:100%;
-   /* Corrects font size not being inherited in all browsers */
-   margin:0;
-   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
-   vertical-align:baseline;
-   /* Improves appearance and consistency in all browsers */
-}
-button,input[type="button"],input[type="reset"],input[type="submit"] {
-   border:1px solid #ccc;
-   border-radius:0px;
-   background:#ccc;
-   color:#fff;
-   cursor:pointer;
-   /* Improves usability and consistency of cursor style between image-type 'input' and others */
-   -webkit-appearance:button;
-   /* Corrects inability to style clickable 'input' types in iOS */
-   padding:3px 15px;
-}
-button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
-   opacity:0.6;
-}
-            
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
         </style>
     </head>
     <%
@@ -470,18 +433,13 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             <p class="cls1">회원 목록</p>
                             <!-- <form action="muldelmember.do" method="post"> -->
                             <form method="post" name="form">
-<<<<<<< HEAD
                                 <div style="float:right" >
                                     <select id="arrayNum" name="sel" onchange="selChange()"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option>
-=======
-                                <div style="float:right">
-                                    <select id="arrayNum" name="sel" onchange="selChange(this.options)"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option>
->>>>>>> branch 'main' of https://github.com/hsb7845/luna_test.git
                             <option value="2" <c:if test="${arrayNum == 2}">selected</c:if>>생일자</option>
                     </select>
                 </div>
 
-                <table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+                <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                     <tr class="memberT">
                         <th ><input type="checkbox" name="all" onclick="allSel(this)"/></th>
                         <th>아이디</th>
@@ -493,7 +451,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 <!--                         <th>참고주소</th> -->
                         <th>생년월일</th>
                         <th>성별</th>
-<!--                         <th>핸드폰</th> -->
+                        <th>핸드폰</th>
                         <th>가입일</th>
 <!--                         <th>관리자</th> -->
                         <th>닉네임</th>
@@ -521,7 +479,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 <%--                             <td><%=dto.getAdr4()%></td> --%>
                            <td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>
                             <td><%=dto.getSex()%></td>
-<%--                             <td><%=dto.getPhone()%></td> --%>
+                            <td><%=dto.getPhone()%></td>
                             <td><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
 <%--                             <td><%=dto.getAdmin()%></td> --%>
                             <td><%=dto.getNickName()%></td>

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 스마트에디터 -->
@@ -108,7 +109,7 @@ $(document).ready(function(){
 	
 	 
 	 
-	$(".btn").on("click", function() {
+	$(".btnn").on("click", function() {
 		var pnum_arr = [];
 		$("input[name='pnum']").each(function(){
 			var pnum = $(this).val();
@@ -212,7 +213,7 @@ $(document).ready(function(){
  		});	
 	});
 })
-	
+
 </script>
 <style>
 	#btnimg{
@@ -226,27 +227,29 @@ $(document).ready(function(){
 	}
 	
 </style>
+<%@ include file="header.jsp" %>
+
+</head>
 <body>
 	<form method="post" action="insertpboard.do" id="insert" enctype="multipart/form-data">
 	<div>
 		<div>
 			<div>제목</div>
-			<div><input type="text" name="ptitle" id="ptitle"></div>
+		<input type="text" name="ptitle" id="ptitle">
 		</div>
-		<br><br>
+		<br>
 		<div><!-- 이미지 추가 -->
 		
 		<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
 		<div id="image_container"></div>
 		</div>
-		<br><br>
-		<div>
+		<br>
 		<span>항목추가</span>
-		<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button></div>
+		<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button>
 		<div id="stock"><!-- 가져온 stock 받아주는 div -->
 			
 		</div>
-		<br><br>
+		<br>
 		<button type="button" id="addOpt">옵션추가</button>
 		<div id="opt"><!-- 해당 옵션 가져오는 태그 -->
 			
@@ -259,7 +262,7 @@ $(document).ready(function(){
 			<div><!-- 표시할 textarea 영역 --> <textarea id="pcontent"  name="pcontent" rows="10" cols="100" ></textarea></div>
 		</div>
 		<div>
-			<div><input type="button" value="작성" class="btn"></div>
+			<input type="button" value="작성" class="btnn">
 			<input type="button" value="연습" class="praBtn">
 		</div>
 	</div>

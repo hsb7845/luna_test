@@ -439,21 +439,21 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                     </select>
                 </div>
 
-                <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+                <table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                     <tr class="memberT">
                         <th ><input type="checkbox" name="all" onclick="allSel(this)"/></th>
                         <th>아이디</th>
 <!--                         <th>비밀번호</th> -->
                         <th>이메일</th>
-                        <th>우편번호</th>
-                        <th>주소</th>
-                        <th>상세주소</th>
-                        <th>참고주소</th>
+<!--                         <th>우편번호</th> -->
+<!--                         <th>주소</th> -->
+<!--                         <th>상세주소</th> -->
+<!--                         <th>참고주소</th> -->
                         <th>생년월일</th>
                         <th>성별</th>
 <!--                         <th>핸드폰</th> -->
                         <th>가입일</th>
-                        <th>관리자</th>
+<!--                         <th>관리자</th> -->
                         <th>닉네임</th>
                         <th>이름</th>
                         <th>포인트</th>
@@ -473,15 +473,15 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             </td>
 <%--                             <td><%=dto.getPwd() %></td> --%>
                             <td><%=dto.getEmail()%></td>
-                            <td><%=dto.getAdr1()%></td>
-                            <td><%=dto.getAdr2()%></td>
-                            <td><%=dto.getAdr3()%></td>
-                            <td><%=dto.getAdr4()%></td>
+<%--                             <td><%=dto.getAdr1()%></td> --%>
+<%--                             <td><%=dto.getAdr2()%></td> --%>
+<%--                             <td><%=dto.getAdr3()%></td> --%>
+<%--                             <td><%=dto.getAdr4()%></td> --%>
                            <td><fmt:formatDate value="<%=dto.getBirth()%>" pattern="yyyy년MM월dd일"/></td>
                             <td><%=dto.getSex()%></td>
 <%--                             <td><%=dto.getPhone()%></td> --%>
                             <td><fmt:formatDate value="<%=dto.getJoindate()%>" pattern="yyyy년MM월dd일"/></td>
-                            <td><%=dto.getAdmin()%></td>
+<%--                             <td><%=dto.getAdmin()%></td> --%>
                             <td><%=dto.getNickName()%></td>
                             <td><%=dto.getName()%></td>
                             <td><%=dto.getPoint()%></td>

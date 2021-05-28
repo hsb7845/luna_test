@@ -35,7 +35,7 @@
 			<result column="NAME" property="name"></result>
 			<result column="PHONE" property="phone"></result>
 			<result column="TRACKINGNUM" property="trackingNum"></result>
-			<result column="DELSTATUS " property="delStatus"></result>
+			<result column="DELSTATUS" property="delStatus"></result>
 		</collection>
 		<collection property="pboard" ofType="PBDTO">
 			<result column="PTITLE" property="ptitle"></result>

@@ -9,18 +9,19 @@
 
 <style>
 
-	table{
+	#footerTable{
 		width: 100%;
 		border-collapse: collapse;
 		text-align: center;
 		font-size : 10px;	
-		
+		margin-left : 0;
+		margin-bottom : 50px;
 	}
 </style>
 
 <body>   
 	<footer id="footer" class="footer">
-		<table border="0">
+		<table border="0" id="footerTable">
 			<tbody>
 				<tr>
 					<td>고객센터</td>

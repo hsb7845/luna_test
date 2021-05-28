@@ -288,7 +288,9 @@ table {
 	border-bottom:1px solid #ccc;
 	line-height:2;
 	margin-bottom:40px;
-	width:100%;
+	margin-left :80px;
+	width:70%;
+	
 }
 table th {
 	font-weight:bold;

@@ -63,13 +63,26 @@ public class QboardController {
 			return "error";
 		}
 	}
-	
+
+		
 	@RequestMapping(value = "/qreply.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String qreplyForm(Locale locale, Model model,int qseq) {
-		QBoardDTO dto = qBoardService.getBoard(qseq);
-		System.out.println("qtitle"+dto.getQtitle());
-		model.addAttribute("dto", dto);
-		return "qreply";
+	public String qreplyForm(Locale locale, Model model,int qseq,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String admin = (String)session.getAttribute("admin");
+		if(admin !=null) {
+			if(admin.equals("관리자")) {
+				QBoardDTO dto = qBoardService.getBoard(qseq);
+				model.addAttribute("dto", dto);
+				return "qboardlist";
+				} else {
+					QBoardDTO dto = qBoardService.getBoard(qseq);
+					model.addAttribute("dto", dto);
+					return "myqboardlist";
+					
+				}
+		} else {
+		return "userlogin";
 	}
 	
 	@RequestMapping(value = "/insertqreply.do", method = {RequestMethod.GET,RequestMethod.POST})

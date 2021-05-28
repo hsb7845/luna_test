@@ -35,7 +35,12 @@
         <script type="text/javascript">
             function delBoard() {
            	 var chk_arr = [];
-            
+	           	
+//            	 	$("input[name='chk']:checked").each(function () {
+// 	                var chk = $(this).val();
+// 	                chk_arr.push(chk);
+// 	            })
+	            
                 var bool = true;
                 var count = $("form")
                     .find("input[name=chk]:checked")
@@ -84,6 +89,14 @@
                 if (bool) {
                     var formEle = document.form;
                     formEle.action = 'insertAllCoupon.do';
+                    
+//                     var input = document.createElement('input');
+//                	 	input.setAttribute('type','hidden');
+//                	 	input.setAttribute('name','chk');
+//                	 	input.setAttribute('value',chk_arr);
+//                	 	formEle.appendChild(input);
+                    
+                    
                     formEle.submit(); //javascript에서 submit실행
                 }
             }
@@ -152,6 +165,10 @@
             }
             .memberD {
                 text-align: left;
+                font-size: 12px;
+            }
+            .iCoupon {
+                text-align: right;
                 font-size: 12px;
             }
             /* 	@font-face { */
@@ -433,9 +450,9 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             <p class="cls1">회원 목록</p>
                             <!-- <form action="muldelmember.do" method="post"> -->
                             <form method="post" name="form">
-                                <div style="float:right" >
-                                    <select id="arrayNum" name="sel" onchange="selChange()"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option>
-                            <option value="2" <c:if test="${arrayNum == 2}">selected</c:if>>생일자</option>
+<!--                                 <div style="float:right" > -->
+<%--                                     <select id="arrayNum" name="sel" onchange="selChange()"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option> --%>
+<%--                             <option value="2" <c:if test="${arrayNum == 2}">selected</c:if>>생일자</option> --%>
                     </select>
                 </div>
 
@@ -499,8 +516,11 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                                     <input type="button" value="회원가입" id="insertmemberform">
                                     <!-- <input type="button" value="메인" id="main"> -->
                                     <input type="button" value="삭제" onclick="delBoard()"/>
-                                    <input type="button" value="생일자 보기" onclick="birthMem()"/>
-                                    <input type="button" value="신규가입자 보기" onclick="freshMem()"/>
+                                    
+                                </td>
+                                <td class="iCoupon">
+                                	<input type="button" value="생일 회원 보기" onclick="birthMem()"/>
+                                    <input type="button" value="신규 가입 회원 보기" onclick="freshMem()"/>
                                     <input type="button" value="쿠폰 추가" onclick="addCoupon()"/>
                                 </td>
                             </tr>

@@ -8,8 +8,38 @@
 <meta charset="UTF-8">
 <title>아이디찾기</title>
 <style type="text/css">
-
-
+ button {
+   color:#666666;
+   font-family:inherit;
+   font-size:14px;
+   line-height:1.8;
+   word-wrap:break-word;
+   -webkit-hyphens:auto;
+    -moz-hyphens:auto;
+    -ms-hyphens:auto;
+         hyphens:auto;
+         
+         font-size:100%;
+   /* Corrects font size not being inherited in all browsers */
+   margin:0;
+   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+   vertical-align:baseline;
+   /* Improves appearance and consistency in all browsers */
+}
+button,input[type="button"],input[type="reset"],input[type="submit"] {
+   border:1px solid #ccc;
+   border-radius:0px;
+   background:#ccc;
+   color:#fff;
+   cursor:pointer;
+   /* Improves usability and consistency of cursor style between image-type 'input' and others */
+   -webkit-appearance:button;
+   /* Corrects inability to style clickable 'input' types in iOS */
+   padding:3px 15px;
+}
+button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
+   opacity:0.6;
+}
 @font-face {
     font-family: 'BinggraeSamanco-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');

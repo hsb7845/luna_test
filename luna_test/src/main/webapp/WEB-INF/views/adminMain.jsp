@@ -29,15 +29,66 @@
             rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
+        
+		<style type="text/css" > 
+			#content {
+			    background-color: white;
+			}
+			.container-fluid {
+			    background-color: white;
+			}
+			@font-face {
+			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			
+			body,
+			button,
+			input {
+			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
+			    font-weight: bold;
+			}
+			button {
+			    color: #666666;
+			    font-family: inherit;
+			    font-size: 14px;
+			    line-height: 1.8;
+			    word-wrap: break-word;
+			    -webkit-hyphens: auto;
+			    -moz-hyphens: auto;
+			    -ms-hyphens: auto;
+			    hyphens: auto;
+			
+			    font-size: 100%;
+			    /* Corrects font size not being inherited in all browsers */
+			    margin: 0;
+			    /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+			    vertical-align: baseline;
+			    /* Improves appearance and consistency in all browsers */
+			}
+			button,
+			input[type="button"],
+			input[type="reset"],
+			input[type="submit"] {
+			    border: 1px solid #ccc;
+			    border-radius: 0;
+			    background: #ccc;
+			    color: #fff;
+			    cursor: pointer;
+			    /* Improves usability and consistency of cursor style between image-type 'input' and others */
+			    -webkit-appearance: button;
+			    /* Corrects inability to style clickable 'input' types in iOS */
+			    padding: 3px 15px;
+			}
+			button:hover,
+			input[type="button"]:hover,
+			input[type="reset"]:hover,
+			input[type="submit"]:hover {
+			    opacity: 0.6;
+			}
+			</style>
 
-        <style type="text/css">
-            #content {
-                background-color: white;
-            }
-            .container-fluid {
-                background-color: white;
-            }
-        </style>
     </head>
     <%
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
@@ -60,7 +111,7 @@
                         <div class="sidebar-brand-text mx-3">
                             <img
                                 id='mainLogo'
-                                src='upload/logo.png'
+                                src='upload/logo_gray.png'
                                 style='width:200px; height:90px; vertical-align: middle;'/>
                         </a>
                     </div>

@@ -87,7 +87,7 @@
 			<div class="menu1">
 			<h1><a href="myPage.do" rel="home">
 				<p style="text-align:left">
-					<img id='mainLogo' src='upload/logo_black.png' style='width:150px; height:80px; vertical-align: middle;' />
+					<img id='mainLogo' src='upload/logo_gray.png' style='width:150px; height:80px; vertical-align: middle;' />
 						마이페이지</a></p>
 			</a></h1>
 			<div class="menu2">

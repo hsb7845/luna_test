@@ -96,7 +96,7 @@
 	
 	<select id="getCart" parameterType="map" resultMap="CartDTO_resultMap">
 		 SELECT * FROM CART c ,P_BOARD pb,IMG_FILE if2 
-		 WHERE c.Pseq  = pb.pseq AND pb.PSEQ = if2.PSEQ  AND c.id=#{id} AND c.seq=#{seq}
+		 WHERE c.Pseq  = pb.pseq AND pb.PSEQ = if2.PSEQ(+)  AND c.id=#{id} AND c.seq=#{seq}
 	</select>
 	
 	

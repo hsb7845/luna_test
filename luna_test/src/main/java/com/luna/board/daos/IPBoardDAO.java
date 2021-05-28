@@ -25,5 +25,6 @@ public interface IPBoardDAO {
 	boolean uploadImg(ImgFileDTO dto);
 	void boardHit(int pseq);
 	MemberDTO getMember(String id);
+	int searchId(String id, int pseq);
 	
 }

@@ -9,7 +9,7 @@ public interface IQBoardDAO {
 
 	boolean insertBoard(QBoardDTO dto);
 
-	List<QBoardDTO> getAllList();
+	List<QBoardDTO> getAllList(QBoardDTO dto);
 
 	QBoardDTO getBoard(int qseq);
 

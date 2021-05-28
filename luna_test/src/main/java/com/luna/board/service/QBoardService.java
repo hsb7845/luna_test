@@ -20,8 +20,8 @@ public class QBoardService implements IQBoardService {
 	}
 	
 	@Override
-	public List<QBoardDTO> getAllList() {
-		return QBoardDAO.getAllList();
+	public List<QBoardDTO> getAllList(QBoardDTO dto) {
+		return QBoardDAO.getAllList(dto);
 	}
 
 	

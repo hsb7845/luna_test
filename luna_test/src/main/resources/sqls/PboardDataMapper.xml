@@ -17,6 +17,11 @@
 		</collection>
 	</resultMap>
 	
+	<resultMap type="Map" id="StarRank_resultMap">
+		<result column="STARRANK" property="starrank"></result>
+		<result column="count" property="count"></result>
+	</resultMap>
+	
 	<select id="getAllList" resultType="PBDTO" parameterType="String">
 		select pb.pseq,pb.pcontent,pb.pdate,pb.ptitle,pb.hit 
 		FROM P_BOARD pb ,STOCK s ,P_CATEGORY pc 
@@ -27,6 +32,7 @@
 			<when test="select=='반지'">and pc.ptype='반지'</when>
 			<when test="select=='all'"></when>
 		</choose>
+		order by pb.pseq desc
 	</select>
 	
 	<select id="getBoard" resultType="PBDTO" parameterType="int">
@@ -124,19 +130,21 @@
 		select * from q_board where pseq=#{pseq}
 	</select>
 	
-	<select id="getAvgRank" parameterType="int" resultType="double">
+	<select id="getAvgRank" parameterType="int" resultType="String">
 			select avg(starrank) from r_board where pseq=#{pseq}
 	</select>
 	
-	<select id="countStarrank" parameterType="int" resultType="Integer">
-		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK 
+	<select id="countStarrank" parameterType="int" resultMap="StarRank_resultMap">
+		SELECT STARRANK,count(starrank)as count FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK  order by starrank asc
 	</select>
 	
 	<update id="updateStock" parameterType="Map">
 		UPDATE STOCK SET pseq=p_board_seq.currval , main = #{main}
 				WHERE pnum = #{pnum}
 	</update>
-	
+	<select id="count" parameterType="int" resultType="int">
+		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} 
+	</select>
 	
 	<select id="getCategory" parameterType="map" resultType="PCDTO">
 		select * from p_category where cnum in <foreach close=")" open="(" separator="," item="i" collection="chk">#{i} </foreach>
@@ -165,6 +173,17 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<select id="searchId" parameterType="Map" resultType="int">
+		SELECT distinct nvl(pseq,0) FROM  (SELECT pseq FROM 
+		BUY_LIST bl ,BUY_DETAIL bd 
+		WHERE bl.BSEQ =bd.BSEQ  AND bl.ID =#{id} AND bd.PSEQ = #{pseq}
+		
+		UNION ALL 
+		
+		SELECT null as pseq 
+		FROM dual 
+		) WHERE pseq IS NOT NULL OR rownum=1
+	</select>
 	
 </mapper>
 

@@ -72,6 +72,10 @@ public class QBoardDTO {
 	}
 	
 	
+	public QBoardDTO(String id) {
+		this.id = id;
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		return "QBoardDTO [qseq=" + qseq + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", pseq=" + pseq + ", id="

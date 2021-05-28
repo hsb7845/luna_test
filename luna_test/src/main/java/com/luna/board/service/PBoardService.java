@@ -205,6 +205,12 @@ public class PBoardService implements IPBoardService{
 		// TODO Auto-generated method stub
 		return PBoardDAO.getMember(id);
 	}
+
+	@Override
+	public int serachId(String id, int pseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.searchId(id,pseq);
+	}
 	
 	
 }

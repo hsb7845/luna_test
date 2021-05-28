@@ -18,7 +18,7 @@
 
 	<insert id="insertboard" parameterType="RBDTO">
 		INSERT INTO R_BOARD(rseq, rtitle, rcontent, pseq, id, starrank, par_rseq)
-		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, NULL, #{id}, #{starrank}, #{par_rseq})
+		VALUES(R_BOARD_SEQ.nextval, #{rtitle}, #{rcontent}, #{pseq}, #{id}, #{starrank}, #{par_rseq})
 	</insert>
 	
 	<select id ="getBoard" resultType="RBDTO" parameterType="int">

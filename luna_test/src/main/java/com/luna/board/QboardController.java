@@ -3,6 +3,9 @@ package com.luna.board;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +24,30 @@ public class QboardController {
 	
 	
 	@RequestMapping(value = "/qboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String qboard(Locale locale, Model model) {
-		List<QBoardDTO> list = qBoardService.getAllList();
-		model.addAttribute("list",list);
+	public String qboard(Locale locale, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		String admin = (String)session.getAttribute("admin");
+		if(admin !=null) {
+			if(admin.equals("관리자")) {
+				List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO());
+				model.addAttribute("list",list);
+				return "qboardlist";
+				} else {
+					List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO(id));
+					model.addAttribute("list",list);
+					return "qboardlist";
+				}
+		}else {
+			return "loginForm";
+		}
 		
-		return "qboardlist";
 	}
 	
 	@RequestMapping(value = "/insertqboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertboard(Locale locale, Model model) {
-
+	public String insertboard(Locale locale, Model model,String id,int pseq) {
+		model.addAttribute("id",id);
+		model.addAttribute("pseq",pseq);
 		return "qboardinsertform";
 	}
 	

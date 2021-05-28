@@ -43,8 +43,9 @@ public class RboardController {
 		}
 	
 	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insertboard(Locale locale, Model model) {
-
+	public String insertboard(Locale locale, Model model,int pseq,String id) {
+		model.addAttribute("id",id);
+		model.addAttribute("pseq",pseq);
 		return "rboardinsertform";
 	}
 	

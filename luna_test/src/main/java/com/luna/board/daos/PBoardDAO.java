@@ -109,28 +109,85 @@ public class PBoardDAO implements IPBoardDAO{
 
 		// TODO Auto-generated method stub
 		Map<String,Object> map = new HashMap<>();
-		System.out.println(pseq);
+		//System.out.println(pseq);
 		PBoardDTO pboard= sqlSession.selectOne(namespace+"getPBoard", pseq);
 		String avg = sqlSession.selectOne(namespace+"getAvgRank", pseq);
 		double avgRank = 0;
 		if(avg!=null) {
 			avgRank = Double.parseDouble(avg);
 		}
+		map.put("avgRank",avgRank);
 		List<ImgFileDTO> img = sqlSession.selectList(namespace+"getImage",pseq);
 		List<RBoardDTO> rboard = sqlSession.selectList(namespace+"getRboard", pseq);
 		List<QBoardDTO> qboard = sqlSession.selectList(namespace+"getQboard", pseq);
-		List<Integer> countRank = sqlSession.selectList(namespace+"countStarrank", pseq);
+		List<Map<String,String>> countRank = sqlSession.selectList(namespace+"countStarrank", pseq);
+		int count = sqlSession.selectOne(namespace+"count",pseq);
+		Map<Integer,Integer> rankAvg = new HashMap<Integer, Integer>();
+		int per = 0;
+		//System.out.println(countRank);
+		//System.out.println(String.valueOf(countRank.get(0).get("count")));
+		//System.out.println((Integer.parseInt(String.valueOf(countRank.get(0).get("count")))));
+		//System.out.println(count);
+		
+		//System.out.println((double)(Integer.parseInt(String.valueOf(countRank.get(0).get("count")))/(double)count)*100.0);
+		switch(Integer.parseInt(String.valueOf(countRank.get(0).get("starrank")))) {
+			case 1:
+				for(int i=1;i<=5;i++) {
+					rankAvg.clear();
+					per =(int) ((double)(Integer.parseInt(String.valueOf(countRank.get(i-1).get("count")))/(double)count)*100.0);
+					rankAvg.put(i,per);
+				}
+				break;
+			case 2:
+				rankAvg.clear();
+				for(int i=2;i<=5;i++) {
+					
+					per =(int) ((double)(Integer.parseInt(String.valueOf(countRank.get(i-2).get("count")))/(double)count)*100.0);
+					rankAvg.put(i,per);
+				}
+				rankAvg.put(1,0);
+				break;
+			case 3:
+				rankAvg.clear();
+				for(int i=3;i<=5;i++) {
+					per =(int) ((double)(Integer.parseInt(String.valueOf(countRank.get(i-3).get("count")))/(double)count)*100.0);
+					rankAvg.put(i,per);
+				}
+				rankAvg.put(1,0);
+				rankAvg.put(2,0);
+				break;
+			case 4:
+				rankAvg.clear();
+				for(int i=4;i<=5;i++) {
+					per =(int) ((double)(Integer.parseInt(String.valueOf(countRank.get(i-4).get("count")))/(double)count)*100.0);
+					rankAvg.put(i,per);
+				}
+				rankAvg.put(1,0);
+				rankAvg.put(2,0);
+				rankAvg.put(3,0);
+				
+				break;
+			case 5:
+				rankAvg.clear();
+				per =(int)((double)(Integer.parseInt(String.valueOf(countRank.get(0).get("count")))/(double)count)*100.0);
+				rankAvg.put(1,0);
+				rankAvg.put(2,0);
+				rankAvg.put(3,0);
+				rankAvg.put(4,0);
+				rankAvg.put(5,per);
+				break;
+		}
+		System.out.println(rankAvg);
 		List<POptionDTO> option= sqlSession.selectList(namespace+"getOption", pseq);
 		for(int i=0;i<option.size();i++) {
 			option.get(i).setOconArr(option.get(i).getOcontent().split("/"));
 			option.get(i).setOvalArr(option.get(i).getOvalue().split("/"));
 		}
-		map.put("avgRank",avgRank);
 		map.put("pboard",pboard);
 		map.put("img", img);
 		map.put("rboard",rboard);
 		map.put("qboard", qboard);
-		map.put("countRank", countRank);
+		map.put("rankAvg", rankAvg);
 		map.put("option", option);
 		return map;
 	}
@@ -162,5 +219,16 @@ public class PBoardDAO implements IPBoardDAO{
 	public MemberDTO getMember(String id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getAdr", id);
+	}
+
+	@Override
+	public int searchId(String id, int pseq) {
+		// TODO Auto-generated method stub
+		System.out.println("id"+id);
+		System.out.println("pseq"+pseq);
+		Map<String,Object> map =  new HashMap<>();
+		map.put("id",id);
+		map.put("pseq",pseq);
+		return sqlSession.selectOne(namespace+"searchId", map);
 	}
 }

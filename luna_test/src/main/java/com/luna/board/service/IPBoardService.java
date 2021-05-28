@@ -28,4 +28,5 @@ public interface IPBoardService {
 	boolean uploadImg(HttpServletRequest request);
 	boolean uploadFile(MultipartFile[] uploadFiles, HttpServletRequest request);
 	MemberDTO getMember(String id);
+	int serachId(String id, int pseq);
 }

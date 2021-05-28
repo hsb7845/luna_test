@@ -44,6 +44,8 @@ $(function(){
 <body>
 <%@ include file="header.jsp" %>
 	<form method="post" action="insertqboard.do">
+	<input type="hidden" value="${id }" name="id">
+	<input type="hidden" value="${pseq }" name="pseq">
 	<p class="cls1">문의 사항 작성</p>
 	<table>
 		<tr>

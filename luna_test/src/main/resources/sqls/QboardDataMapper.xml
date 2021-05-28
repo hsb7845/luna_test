@@ -5,8 +5,11 @@
 
 <mapper namespace="com.luna.qboard">
 
-	<select id="getAllList" resultType="QBDTO">
+	<select id="getAllList" resultType="QBDTO" parameterType="QBDTO">
 		select LEVEL, qseq, par_qseq, LPAD(' ', 4*(LEVEL-1)) || qtitle qtitle, qcontent, pseq, id from Q_board
+		<if test="id!=null">
+		where id = #{id}
+		</if>
 		start with par_qseq=0
 		connect by prior qseq=par_qseq
 		order siblings by qseq desc
@@ -14,7 +17,7 @@
 
 	<insert id="insertboard" parameterType="QBDTO">
 		INSERT INTO Q_BOARD(qseq, qtitle, qcontent, pseq, id, par_qseq)
-		VALUES(Q_BOARD_SEQ.nextval, #{qtitle}, #{qcontent}, NULL, NULL, #{par_qseq})
+		VALUES(Q_BOARD_SEQ.nextval, #{qtitle}, #{qcontent},#{pseq}, #{id}, #{par_qseq})
 	</insert>
 	
 	<select id ="getBoard" resultType="QBDTO" parameterType="int">

@@ -21,4 +21,5 @@ public interface IBuyListDAO {
 	List<CartDTO> getSelCart(String[] chks, String id);
 	void deleteInCart(String[] chks, String id);
 	List<BuyDetailDTO> getList(String id);
+	List<BuyDetailDTO> getDetail(int bdseq);
 }

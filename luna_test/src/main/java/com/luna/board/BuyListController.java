@@ -56,7 +56,9 @@ public class BuyListController {
 		List<CartDTO> cartList = buyListService.getSelCart(chks,id);
 		
 		MemberDTO mdto = buyListService.getMember(id);
+		
 		model.addAttribute("list",cartList);
+		System.out.println(cartList.get(0).getPrice());
 		model.addAttribute("mdto",mdto);
 		model.addAttribute("chks", chks);
 		return "buyFormByCart";
@@ -145,6 +147,7 @@ public class BuyListController {
 		BuyDetailDTO bdDTO = new BuyDetailDTO();
 		if(count>1) {
 			for(int i=1;i<=count;i++) {
+				bdDTO = new BuyDetailDTO();
 				bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+i)));
 				bdDTO.setSelOpt(request.getParameter("selOpt"+i));
 				bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+i)));		
@@ -179,17 +182,23 @@ public class BuyListController {
 		BuyDetailDTO bdDTO = new BuyDetailDTO();
 		if(count>1) {
 			for(int i=1;i<=count;i++) {
+				bdDTO = new BuyDetailDTO();
+				System.out.println("i : "+i);
 				bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+i)));
+				System.out.println("amount"+i+": "+request.getParameter("amount"+i));
 				bdDTO.setSelOpt(request.getParameter("selOpt"+i));
+				System.out.println("selOpt"+i+": "+request.getParameter("selOpt"+i));
 				bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+i)));		
 				System.out.println(request.getParameter("pseq"+i));
 				bdDTO.setPrice(Integer.parseInt(request.getParameter("price"+i)));
+				System.out.println("price"+i+": "+request.getParameter("price"+i));
 				list.add(bdDTO);
 			}
 		}else if(count==1) {
 			bdDTO.setPcount(Integer.parseInt(request.getParameter("amount"+1)));
 			bdDTO.setSelOpt(request.getParameter("selOpt"+1));
 			bdDTO.setPseq(Integer.parseInt(request.getParameter("pseq"+1)));
+			bdDTO.setPrice(Integer.parseInt(request.getParameter("price"+1)));
 			list.add(bdDTO);
 		}
 		boolean isS = buyListService.insertBuyList(blDTO,list);
@@ -211,6 +220,15 @@ public class BuyListController {
 		}
 		
 	}
+	@RequestMapping(value = "/buyDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String buyDetail(Locale locale, Model model,int bdseq) {
+		List<BuyDetailDTO> list = buyListService.getList(bdseq);
+		model.addAttribute("list",list);
+		return "buyDetail";
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/buyListUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListUpdateForm(Locale locale, Model model,int bseq) {

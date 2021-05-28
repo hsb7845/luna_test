@@ -124,5 +124,11 @@ public class BuyListDAO implements IBuyListDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getList",id);
 	}
+
+	@Override
+	public List<BuyDetailDTO> getDetail(int bdseq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getDetail", bdseq);
+	}
 	
 }

@@ -78,6 +78,10 @@
 	//form 태그에서 submit 이벤트가 발생하면 함수실행 
 $(function(){
 	$("input[name='allBuy']").click(function(){
+		if($("input[name='count']").val()==0){
+			alert("장바구니가 비어있습니다!");
+			return false;
+		}
 		var chk_arr = [];
 		$("input[name='chk']").each(function(){
 			var chk =$(this).val();
@@ -102,6 +106,15 @@ $(function(){
 	});
 	
 	$("input[name='sel']").click(function(){
+		if($("input[name='count']").val()==0){
+			alert("장바구니가 비어있습니다!");
+			return false;
+		}
+		var count=$("input[name=chk]:checked").length;
+		if(count==0){
+			alert('최소 하나이상 체크하세요!!!');
+			return false;
+		}
 		var chk_arr = [];
 		$("input[name='chk']:checked").each(function(){
 			var chk =$(this).val();
@@ -158,6 +171,11 @@ $(function(){
 <p class="cls1">장바구니리스트</p> 
 <form action="muldelCart.do" method="post">
 <input type="hidden" name="id" value="${id }"/>
+<c:if test="${empty list}">
+ <input type="hidden" name="count" value="0">
+</c:if>
+
+
 <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="150px">
@@ -173,6 +191,7 @@ $(function(){
 		<th>합계</th>
 	</tr>
 		<c:set var="totalPrice" value="0"/>
+		
 		<c:forEach items="${list }" var="list">
 			<tr align="center" class="cartM">
 			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>

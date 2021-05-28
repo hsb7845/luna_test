@@ -62,7 +62,7 @@
 	<tr>
 		<th>아이디</th>
 		<td><c:forEach var="list" items="${chk }">
-               <li> ${list }</li>
+               <li>${list}</li>
        		</c:forEach>
 		</td>
 	</tr>

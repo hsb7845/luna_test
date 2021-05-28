@@ -30,7 +30,7 @@
 <header id="masthead" class="site-header">
 		<div class="menu1">
 			<h1 class="site-title"><a href="index.do" rel="home">
-				<p style="text-align:center"><img id='mainLogo' src='upload/logo.png' style='width:200px; height:90px; vertical-align: middle;' /> </a></p>
+				<p style="text-align:center"><img id='mainLogo' src='upload/logo_black.png' style='width:300px; height:80px; vertical-align: middle;' /> </a></p>
 			</a></h1>
 		</div>
 		<div class="menu2">

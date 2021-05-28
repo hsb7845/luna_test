@@ -8,9 +8,7 @@
 
 <!DOCTYPE html>
 <html lang="UTF-8">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta
@@ -29,320 +27,201 @@
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
-
         <!-- Custom styles for this template-->
         <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
-                <script src="http://code.jquery.com/jquery-latest.js"></script>
-                <script type="text/javascript">
-                    // core, BOM, DOM  3가지 영역으로 나눔
-                    function allSel(val) {
-                        // val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
-                        // alert(val.tagName); 		alert(val); getElementById(), getElementsByTagName(),
-                        // ...className ....등
-                        var chks = document.getElementsByName("chk"); //[chk,chk,chk...]
-                        for (var i = 0; i < chks.length; i++) {
-                            chks[i].checked = val.checked;
-                        }
-                        //		val.parentNode.style.backgroundColor="red";
-                    }
-                    //form 태그에서 submit 이벤트가 발생하면 함수실행
-                    $(function () {
-                        $("form").submit(function () {
-                            var bool = true;
-                            var count = $(this)
-                                .find("input[name=chk]:checked")
-                                .length;
-                            if (count == 0) {
-                                alert('최소 하나이상 체크하세요!!!');
-                                bool = false;
-                            } else if (confirm("정말 삭제하시겠습니까?") == false) {
-                                bool = false;
-                            }
-                            return bool
 
-                        });
-                        var chks = document.getElementsByName("chk");
-                        for (var i = 0; i < chks.length; i++) {
-                            chks[i].onclick = function () { //체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
-                                var checkdObjs = document.querySelectorAll("input[name=chk]:checked");
-                                if (checkedObjs.length == chks.length) {
-                                    document
-                                        .getElementsByName("all")[0]
-                                        .checked = true;
-                                } else {
-                                    document
-                                        .getElementsByName("all")[0]
-                                        .checked = false;
-                                }
-                            }
-                        }
-
-                        $("#stockInsertForm").click(function () {
-                            //			location.href='${path}/shop/product/list.do'
-                            location.href = 'stockInsertForm.do'
-                        });
-
-                        $("#main").click(function () {
-                            // 				location.href='${path}/shop/product/list.do'
-                            location.href = '.do'
-                        });
-
-                        $("#stockForm").click(function () {
-                            //				location.href='${path}/shop/product/list.do'
-                            location.href = 'stockForm.do'
-                        });
-
-                    })
-                </script>
-	<style type="text/css">
-		#content {
-			background-color: white;
-		}
-		.container-fluid {
-			background-color: white;
-		}
-	</style>
-</head>
-<%
+        <style type="text/css">
+            #content {
+                background-color: white;
+            }
+            .container-fluid {
+                background-color: white;
+            }
+        </style>
+    </head>
+    <%
 	List<StockDTO> list= (List<StockDTO>) request.getAttribute("list");
 %>
-    
-<body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul
-            class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-            id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.do">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">
-                    <img
-                        id='mainLogo'
-                        src='upload/logo.png'
-                        style='width:200px; height:90px; vertical-align: middle;'/>
-                </a>
-            </div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="stock.do">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>재고관리</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <!-- <div class="sidebar-heading"> -->
-        <!-- Interface -->
-        <!-- </div> -->
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="member.do">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>회원관리</span>
-            </a>
-            <!-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"> -->
-            <!-- <div class="bg-white py-2 collapse-inner rounded"> -->
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <!-- <a class="collapse-item" href="buttons.html">Buttons</a> -->
-            <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
-            <!-- </div> -->
-            <!-- </div> -->
-        </li>
-
-        <!-- 게시판관리 -->
-        <hr class="sidebar-divider">
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a
-                class="nav-link collapsed"
-                href="#"
-                data-toggle="collapse"
-                data-target="#collapseUtilities"
-                aria-expanded="true"
-                aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>게시판관리</span>
-            </a>
-            <div
-                id="collapseUtilities"
-                class="collapse"
-                aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </h6>
-                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
-                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
-                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
-                    <a class="collapse-item" href="rboard.do">리뷰</a>
-                    <a class="collapse-item" href="qboard.do">문의사항</a>
-                    <a class="collapse-item" href="eboard.do">이벤트</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <!-- <div class="sidebar-heading"> -->
-        <!-- Addons -->
-        <!-- </div> -->
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse"
-            data-target="#collapsePages" -->
-            <!-- aria-expanded="true" aria-controls="collapsePages"> -->
-            <!-- <i class="fas fa-fw fa-folder"></i> -->
-            <!-- <span>Pages</span> -->
-            <!-- </a> -->
-            <div
-                id="collapsePages"
-                class="collapse"
-                aria-labelledby="headingPages"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
-                </div>
-            </div>
-        </li>
-<!--        <li class="nav-item"> -->
-<!-- 			<a class="nav-link" href="pboard.do"> -->
-<!-- 	         	<i class="fas fa-fw fa-chart-area"></i> -->
-<!-- 	         	<span>상품게시판관리</span></a> -->
-<!-- 		</li> -->
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="buylist.do">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>주문관리</a>
-            </span>
-        	</a>
-        </li>
-        <!-- Nav Item - Pages Collapse Menu -->
-
-
-<!--     Nav Item - Tables -->
-<!--     <li class="nav-item"> -->
-<!--     <a class="nav-link" href="tables.html"> -->
-<!--     <i class="fas fa-fw fa-table"></i> -->
-<!--     <span>Tables</span></a> -->
-<!--     </li> -->
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-<!--     Sidebar Toggler (Sidebar) -->
-<!--     <div class="text-center d-none d-md-inline"> -->
-<!--         <button class="rounded-circle border-0" id="sidebarToggle"></button> -->
-<!--     </div> -->
-
-</ul>
-<!-- End of Sidebar -->
-
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
-
-        <!-- Topbar -->
-        <nav
-            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-            <!-- Sidebar Toggle (Topbar) -->
-            <button
-                id="sidebarToggleTop"
-                class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-            </button>
-
-            <!-- Topbar Search -->
-            <form
-                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                    <div class="input-group-append">
-                    </div>
-                </div>
-            </form>
-
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
-
-
-
-
-                <div class="topbar-divider d-none d-sm-block"></div>
-
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
+        <body id="page-top">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+                <!-- Sidebar -->
+                <ul
+                    class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+                    id="accordionSidebar">
+                    <!-- Sidebar - Brand -->
                     <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="userDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
-                        <img
-                            class="img-profile rounded-circle"
-                            src="resources/boot/img/undraw_profile.svg">
+                        class="sidebar-brand d-flex align-items-center justify-content-center"
+                        href="index.do">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class="fas fa-laugh-wink"></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">
+                            <img
+                                id='mainLogo'
+                                src='upload/logo.png'
+                                style='width:200px; height:90px; vertical-align: middle;'/>
+                        </a>
+                    </div>
+                </a>
+                
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="stock.do">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>재고관리</span></a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="member.do">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>회원관리</span>
                     </a>
-                    <!-- Dropdown - User Information -->
+                </li>
+
+                <!-- 게시판관리 -->
+                <hr class="sidebar-divider">
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a
+                        class="nav-link collapsed"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#collapseUtilities"
+                        aria-expanded="true"
+                        aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>게시판관리</span>
+                    </a>
                     <div
-                        class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="index.do">
-                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                            go main
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.do">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
-                        </a>
+                        id="collapseUtilities"
+                        class="collapse"
+                        aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">
+                                <a href="pboard.do">
+                                    상품게시판관리:</a>
+                            </h6>
+                            <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                            <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                            <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="rboard.do">리뷰</a>
+                            <a class="collapse-item" href="qboard.do">문의사항</a>
+                            <a class="collapse-item" href="eboard.do">이벤트</a>
+                        </div>
                     </div>
                 </li>
-            </ul>
 
-        </nav>
-        <!-- End of Topbar -->
+                <!-- Divider -->
+                <hr class="sidebar-divider">                
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                    <a class="nav-link" href="buylist.do">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>주문관리</a>
+                    </span>
+                </a>
+            </li>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-			<p style="text-align:center;">
-				<img id='mainLogo' src='upload/23_13.jpeg' style='width:50%; height:600px; vertical-align: middle;' /> 
-				
-				
 
-		</div>
-                <!-- End of Main Content -->
-        </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <!-- <div class="text-center d-none d-md-inline"> -->
+            <!-- <button class="rounded-circle border-0" id="sidebarToggle"></button> -->
+            <!-- </div> -->
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button
+                        id="sidebarToggleTop"
+                        class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <div class="input-group-append"></div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="userDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
+                                <img
+                                    class="img-profile rounded-circle"
+                                    src="resources/boot/img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div
+                                class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="index.do">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    go main
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="logout.do">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+<!-- content 추가분 여기에 작성 -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <p style="text-align:center;">
+                        <img
+                            id='mainLogo'
+                            src='upload/23_13.jpeg'
+                            style='width:50%; height:600px; vertical-align: middle;'/>
+
+
+
+
+
+
+
+                    </div>
+                    <!-- End of Main Content -->
+                </div>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->

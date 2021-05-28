@@ -419,13 +419,13 @@ textarea {
 /* 	border:12px solid #111; */
 /* } */
 .site-header {
-	padding-top:2em;
-	padding-bottom:1em;
+	padding-top:0.5em;
+	padding-bottom:0.5em;
 }
 .header-image {
 	margin-top:1em;
 	text-align:center;
-	margin-bottom: 2em;
+	margin-bottom: 0.5em;
 }
 /*--------------------------------------------------------------6.1 Links--------------------------------------------------------------*/
 a {
@@ -486,7 +486,7 @@ a:active,a:focus {
 	font-size:14px;
 	font-weight:700;
 	letter-spacing:1px;
-	padding:15px 0;
+	padding:5px 0;
 	border-top:1px solid;
 	border-bottom:1px solid;
 	text-transform:uppercase;
@@ -502,7 +502,7 @@ a:active,a:focus {
 .main-navigation li {
 	display:inline;
 	float:left;
-	margin:0 1em;
+	margin:0 4em;
 	position:relative;
 }
 .main-navigation ul ul {
@@ -807,7 +807,7 @@ a.more-link {
 }
 /* Archives Page */
 .page-header {
-	margin-bottom:1.5em;
+	margin-bottom:0.5em;
 }
 .page-title {
 	line-height:1;

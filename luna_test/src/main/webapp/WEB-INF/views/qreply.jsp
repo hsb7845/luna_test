@@ -71,7 +71,8 @@ $(function(){
 
 
 
-	<form method="post" name="qReplyForm" action="insertqreply.do">
+<form method="post" name="qReplyForm" action="insertqreply.do">
+	<input type="hidden" name="pseq" value="${dto.pseq }">
 	<input type="hidden" name="qseq" value="${dto.qseq}">
 	<input type="hidden" name="par_qseq" value="${dto.par_qseq}">
 	
@@ -105,17 +106,17 @@ $(function(){
             	<input type="button" value="답글 쓰기" class="replyWriteBtn">
 			</td>
 		</tr>
-	
+
 		
 </table>
 
 
 	
-	
+	</form>
 
 	</div>
 	<%@ include file="footer.jsp" %>
-	</form>
+	
 	
 </body>
 </html>

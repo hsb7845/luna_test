@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,13 @@
 				"ptitle" : ptitle,
 				"pseq" : pseq
 			};
+		$("img[name='imgsub']").click(function(){
+			var src = $(this).attr("src");
+			$(".imgmain").attr("src",src);
+		})
+			
+			
+			
 	$("input[name='buy']").click(function() {
 			//alert(selectedOptNum);
 			var id = $("input[name='id']")
@@ -147,6 +155,7 @@
 
 		$("input[name='selOpt']").click(function() {
 			//alert(selectedOptNum);
+			
 			var optNum = $('input[name="optNum"]').val();
 			if (optNum == 1) {
 				var necc = $("#opt1").attr("name");
@@ -157,13 +166,19 @@
 					var selOpt = $("#selectedOpt"+i).text();
 					if(optname==selOpt){
 						if(confirm("이미 같은 제품을 담았습니다.\r\n수량을 추가하시겠습니까?")){
-							var amount = $("input[name:'amount"+i+"']").val();
+							var amount = $("input[name='amount"+i+"']").val();
 							amount++;
-							$("input[name:amount'"+i+"']").val(amount);
+							$("input[name='amount"+i+"']").val(amount);
+							change(i);
+							return false;
 						}else{
 							return false;
 						}
 					}
+				}
+				if(selectedOptNum==3){
+					alert("옵션은 최대 3개만 선택할수있습니다!");
+					return false;
 				}
 				selectedOptNum++;
 				if (optval == " "&& necc == "true") {
@@ -186,7 +201,6 @@
 					changeTotalPrice();
 				}
 			} else if (optNum > 1) {
-				selectedOptNum++;
 				var necc = "";
 				var optval = "";
 				var optname = "";
@@ -201,6 +215,25 @@
 					optname += $("#opt"+ i+ " option:selected").attr("value2")+ "/";
 					price = parseInt(price)+ parseInt(optval);
 				}
+				for(var i=1;i<=selectedOptNum;i++){
+					var selOpt = $("#selectedOpt"+i).text();
+					if(optname==selOpt){
+						if(confirm("이미 같은 제품을 담았습니다.\r\n수량을 추가하시겠습니까?")){
+							var amount = $("input[name='amount"+i+"']").val();
+							amount++;
+							$("input[name='amount"+i+"']").val(amount);
+							change(i);
+							return false;
+						}else{
+							return false;
+						}
+					}
+				}
+				if(selectedOptNum==3){
+					alert("옵션은 최대 3개만 선택할수있습니다!");
+					return false;
+				}
+				selectedOptNum++;
 				selectedOpt = optname;
 				var innerText = "";
 				innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"
@@ -301,10 +334,33 @@
 		var id = $("input[name='id']").val();
 		location.href = "cart.do?id=" + id;
 	}
+	function showDQ(qseq){
+		
+	}
+	
+	function showDR(rseq){
+		$(".detailR").each(function(){
+			$(this).hide();
+		});
+		if($("#detailR"+rseq).css("display")=='none'){
+			$("#detailR"+rseq).show();
+		}else{
+			$("#detailR"+rseq).hide();
+		}
+		
+	}
+	
+	
+	
 </script>
 <style>
+.option {
+	padding :0;
+	margin : 0;
+}
 .rank {
-	margin-left : 300px;
+	 position: relative;
+	 rigth : 400px;
 }
 .graph { 
         position: relative; /* IE is dumb */
@@ -353,12 +409,41 @@
 
 .box {
 position:relative;
-height: 530px;
+margin-left : 400px;
 }
 .footer {
 	position:absolute;
 	bottom:0;
 }
+
+
+.content {
+position:relative;
+}
+
+#optContainer> tr>td{
+padding : 5px;
+}
+
+#totalprice {
+	font-size : 25pt;
+}
+.infoArea > table {
+	width : 500px;
+}
+
+
+.qseq:hover{
+		text-decoration : underline;
+		cursor:pointer;
+	}
+	
+.rseq:hover{
+		text-decoration : underline;
+		cursor:pointer;
+}
+
+
 
 </style>
 
@@ -366,68 +451,83 @@ height: 530px;
 
 </head>
 <body>
-
 	<form action="buyform.do" method="get">
+	<input type="hidden" id="ptitle" value="${map.pboard.ptitle}" />
 		<div class="box">
 			<input type="hidden" name="id" value="${sessionScope.id }">
 			<!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
-				<img class="imgmain" src="upload/img_dummy1.jpg">
+				<img  name="imgMain" class="imgmain" src="upload/img_dummy1.jpg">
 			</c:if>
 
 			<div>
 				<!-- 서브 이미지 -->
 				<c:forEach items="${map.img }" var="i">
-					<img class="imgsub" src="upload/img_dummy1.jpg">
+					<img class="imgsub"  name="imgsub" src="upload/img_dummy1.jpg">
 				</c:forEach>
 			</div>
 			<input type="hidden" name="pseq" value="${map.pboard.pseq }" />
-			<div>
-				<div>
-					<h3>${map.pboard.ptitle}</h3>
-					<input type="hidden" id="ptitle" value="${map.pboard.ptitle}" />
-					<h4>판매가 : ${map.pboard.stock.price }원</h4>
-					<input type="hidden" value="${map.pboard.stock.price }" id="price">
-				</div>
-
+			<div class="infoArea">
+				<h2>${map.pboard.ptitle}</h2>
+				<table >
+					<tr>
+					<th>판매가</th>
+					<td><strong><fmt:formatNumber value="${map.pboard.stock.price }" pattern="#,###" />원</strong>
+					<input type="hidden" value="${map.pboard.stock.price }" id="price"></td>
 				<c:if test="${map.option !=null }">
 					<c:forEach items="${map.option }" var="i" varStatus="j">
+					<tr class="option">
+					<th>${i.otitle }</th>
+					<td>
+				<select name="${i.necessary }" id="opt${j.count}">
 						<c:if test="${i.necessary =='true' }">
-							<b>필수</b>
+							<option value=" ">-[필수]옵션을 선택해주세요.-</option>
 						</c:if>
 						<c:if test="${i.necessary =='false' }">
-							<b>선택</b>
+							<b>-[선택]추가를 원하시면 선택하세요.-</b>
 						</c:if>
-				&nbsp;&nbsp; ${i.otitle }
-				<select name="${i.necessary }" id="opt${j.count}">
-							<option value=" ">선택</option>
+							
 							<option value="" disabled="disabled">-----------</option>
 							<c:forEach items="${i.oconArr }" var="k" varStatus="status">
 								<option value="${i.ovalArr[status.index]}" value2="${k }">${k }</option>
 							</c:forEach>
 						</select>
-						<br>
+						</td>
+						</tr>
 						<c:set var="optNum" value="${j.count }" scope="request" />
-
 					</c:forEach>
+					</c:if>
+					<tr>
+					<td colspan="2">
 					<input type="hidden" name="optNum" value="${optNum }" />
 					<input type="button" name="selOpt" value="옵션선택">
-
-					<p>선택상품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수량
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가격
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-					<div id="optContainer"></div>
-
-					<p>총 금액 :</p>
+					</td>
+					</tr>
+					</table>
+					<table>
+					<thead>
+						<tr>
+						<th>선택상품</th>
+						<th>수량</th>
+						<th>가격</th>
+					</thead>
+					<tbody id="optContainer">
+					
+					</tbody>
+					<tfoot>
+					<tr>
+					<th>총 금액 :</th><td colspan="2" id="totalprice"></td>
+					</tr>
+					<tr>
+					<td colspan="3"><input type="button" value="장바구니" id="cart"> <input type="button" name="buy" value="바로구매"></td>
+					</tr>
+					</table>
 			</div>
-			<div id="totalprice"></div>
-
-			</c:if>
-			<div>
-				<input type="button" value="장바구니" id="cart"> <input type="button" name="buy" value="바로구매">
+		
+			<div class="content">
+			<h1>상품내용</h1>
+			${map.pboard.pcontent }
 			</div>
-		</div>	
-			<div>${map.pboard.pcontent }</div>
 			<br>
 	</form>
 	<div class="foot">
@@ -438,27 +538,28 @@ height: 530px;
 		<div class="rank">
 			<!-- 평점 -->
 			<br>
-			<h2>평균 평점 : ${map.avgRank }</h2>
+			<h2>평균 평점 : ${map.avgRank }점</h2>
 	<c:forEach items="${map.rankAvg }" var="i" varStatus="sta">
 		<div class="graph">
    			<span>${i.key}점</span><strong class="bar" style="width: ${i.value}%;"> ${i.value }<c:if test="${i.value!=0 }">%</c:if></strong>
 		</div>
 	</c:forEach>
 		</div>
-	
+	</div>	
+		<br><br>
 	<div>
 		<!-- 리뷰 -->
 		<table border="1">
 			<tr>
-				<th colspan="3">리뷰</th>
+				<th colspan="3">상품후기</th>
 			</tr>
 			<tr>
 			<tr>
-				<th>아이디</th>
 				<%-- 					<c:if test="${map.rboard.img !=null }"> --%>
 				<!-- 						<th>사진</th> -->
 				<%-- 					</c:if> --%>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>평점</th>
 
 			</tr>
@@ -468,16 +569,36 @@ height: 530px;
 				</tr>
 			</c:if>
 			<c:if test="${map.rboard!=null }">
-
 				<c:forEach items="${map.rboard }" var="i">
+					<c:if test="${i.par_rseq ==0}">
 					<tr>
+						<td ><p class="rseq" onclick="showDR(${i.rseq})">${i.rtitle }</p></td>
 						<td>${i.id }</td>
 						<%-- 							<c:if test="${i.img !=null }"> --%>
 						<!-- 							<td><img class="imgmain" src="upload/img_dummy1.jpg"></td> -->
 						<%-- 							</c:if> --%>
-						<td>${i.rtitle }</td>
-						<td>${i.starrank }</td>
+						<td><c:forEach begin="1" end="5" step="1" var="j" >
+						<c:if test="${i.starrank<j }">
+						<span>☆</span>
+						</c:if>
+						<c:if test="${i.starrank>=j }">
+						<span>★</span>
+						</c:if>
+						</c:forEach></td>
 					</tr>
+					<tr id="detailR${i.rseq }" style="display:none;" class="detailR">
+						<td colspan="3"><div>${i.rcontent }</div>
+						<c:forEach var="j" items="${map.rboard }">
+						
+						<c:if test="${j.par_rseq==i.rseq }">
+						<hr>
+						<div><p>${j.id }<p>
+							${j.rcontent }
+						</div>
+						</c:if>
+						</c:forEach></td>
+					</tr>
+					</c:if>
 				</c:forEach>
 				<tr>
 					<td colspan="3"><input type="button" name="ir" value="리뷰작성하기"></td>
@@ -490,29 +611,33 @@ height: 530px;
 		<!-- 문의 -->
 		<table border="1">
 			<tr>
-				<th colspan="3">Q&A</th>
+				<th colspan="2">Q&A</th>
 			</tr>
 			<tr>
+				
 				<th>아이디</th>
 				<th>제목</th>
-				<th>내용</th>
 			</tr>
 			<c:if test="${map.qboard=='[]' }">
 				<tr>
-					<td colspan="3">작성된 Q&A가 없습니다.</td>
+					<td colspan="2">작성된 Q&A가 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${map.qboard!=null }">
-				<c:forEach items="${map.qboard }" var="i">
+				<c:forEach items="${map.qboard }" var="i" varStatus="status">
+					<c:if test="${i.par_qseq ==0 }">
 					<tr>
 						<td>${i.id }</td>
-
-						<td>${i.qtitle }</td>
-					</tr>
+						<td class="qseq" onclick="showDQ(${i.qseq})">${i.qtitle }</td>
+						<tr id="detailQ${i.qseq }" style="display:none;" class="detailQ">
+							<td><div>${i.qcontent }</div></td>
+						</tr>
+					</c:if>
+					
 				</c:forEach>
 			</c:if>
 			<tr>
-				<td colspan="3"><input type="button" name="iq" value="문의하기"></td>
+				<td colspan="2"><input type="button" name="iq" value="문의하기"></td>
 			</tr>
 		</table>
 	</div>

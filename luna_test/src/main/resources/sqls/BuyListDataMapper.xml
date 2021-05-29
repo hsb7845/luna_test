@@ -44,11 +44,36 @@
 	</resultMap>
 	
 	
-	<select id="getAllList" resultMap="BDDTO_resultMap">
-		SELECT bd.BDSEQ ,bd.PCOUNT,bd.SELOPT,bl.BUYDATE,bd.PRICE,pb.PTITLE,if2.IMGNAME FROM BUY_LIST bl ,BUY_DETAIL bd,P_BOARD pb ,IMG_FILE if2 
-		 WHERE bl.BSEQ =bd.bseq   AND  pb.pseq = bd.PSEQ  AND pb.PSEQ =if2.PSEQ (+)
-		 ORDER BY bd.BDSEQ DESC 
+	<select id="getAllList" resultType="BLDTO">
+		select * from buy_list order by  buydate desc
 	</select>
+	
+	<select id="getListOpt" resultType="BLDTO" parameterType="Map">
+		select * from buy_list 
+			<choose>
+				<when test='toDate!="" and fromDate=="" and delStatus.equals("all")'>
+				WHERE BUYDATE > to_date(#{toDate},'YYYY-MM-DD')
+				</when>
+				<when test='fromDate!="" and toDate=="" and delStatus.equals("all")'>
+				<![CDATA[WHERE BUYDATE < to_date(#{fromDate},'YYYY-MM-DD')]]>
+				</when>
+				<when test='toDate!="" and fromDate==""  and !delStatus.equals("all")'>
+				 	WHERE BUYDATE > to_date(#{toDate},'YYYY-MM-DD') and delStatus = #{delStatus}
+				</when>
+				<when test='fromDate!="" and toDate==""and !delStatus.equals("all")'>
+				<![CDATA[WHERE BUYDATE < to_date(#{fromDate},'YYYY-MM-DD') and delStatus = #{delStatus}]]>
+				</when>
+				<when test='toDate!="" and fromDate!="" and !delStatus.equals("all")'>
+					where BUYDATE BETWEEN to_date(#{toDate},'YYYY-MM-DD') and to_date(#{fromDate},'YYYY-MM-DD') AND delStatus = #{delStatus}
+				</when> 
+				
+				<when test='toDate=="" and fromDate=="" and !delStatus.equals("all")'>
+				WHERE delStatus = #{delStatus}
+				</when>
+			</choose>
+		order by  buydate desc
+	</select>
+	
 	
 	<select id="getBoard" parameterType="int" resultType="BLDTO">
 		SELECT BSEQ, ID, BUYDATE, TRACKINGNUM, DELSTATUS, NAME, PHONE, ADDRESS, TOTALPRICE
@@ -68,7 +93,7 @@
 	
 	
 	<update id="updateBoard" parameterType="BLDTO">
-		update buy_list  SET ID=#{id}, TRACKINGNUM=#{trackingNum}, DELSTATUS=#{delStatus}, NAME=#{name}, PHONE=#{phone}, ADDRESS=#{address}, TOTALPRICE=#{totalPrice}
+		update buy_list  SET TRACKINGNUM=#{trackingNum}, DELSTATUS=#{delStatus}
 		where bseq=#{bseq}
 	</update>
 	
@@ -124,7 +149,11 @@
 		AND pb.PSEQ =bd.PSEQ AND if2.PSEQ =pb.PSEQ AND bl.BSEQ =bd.BSEQ 
 	</select>
 	
-		
+	<select id="getDetailByAdmin" parameterType="int" resultMap="BDDTO_resultMap">
+	SELECT DISTINCT * FROM BUY_DETAIL bd , BUY_LIST bl ,P_BOARD pb ,IMG_FILE if2 
+		WHERE bd.BSEQ = #{bseq}
+		AND pb.PSEQ =bd.PSEQ AND if2.PSEQ =pb.PSEQ AND bl.BSEQ =bd.BSEQ 
+	</select>
 	
 	
 </mapper>

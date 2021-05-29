@@ -52,7 +52,7 @@
 			
 		}
 
-
+		
 	</style>
 </head>
 <%
@@ -451,10 +451,10 @@
         <div class="container-fluid">
 			<p class="cls1">상품재고수정하기</p>
             <!-- Content Row -->
-            <div class="row">
+            <div class="row" >
 				<form method="post" action="updateStock.do">
 				<input type="hidden" name="pnum" value="${dto.pnum}">
-						<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+					<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" >
 						<tbody id="tbody">
 						<tr>
 							<th>상품번호</th>
@@ -474,15 +474,15 @@
 							<th>원가</th>
 							<td><input type="number" name="cost" value="${dto.cost }" ></td>
 						</tr>
-						<tr>
-							<th>내용</th>
-							<td><input type="text" name="pcontent" value="${dto.pcontent }" ></td>
-						</tr>
+						
 						<tr>
 							<th>판매가</th>
 							<td><input type="number" name="price" value="${dto.price }" ></td>
 						</tr>
-
+						<tr>
+							<th>내용</th>
+							<td><textarea style="width:500px; height:100px; esize:none;" name="pcontent" >${dto.pcontent }</textarea></td>
+						</tr>
 <!-- 						<p>상품번호  -->
 <%-- 							<input type="number" name="pnum" value="${dto.pnum }" readonly="readonly"></p> --%>
 <!-- 						<p>상품명 -->

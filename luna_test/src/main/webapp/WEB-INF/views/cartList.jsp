@@ -197,14 +197,14 @@ $(function(){
 			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>
 			<td>${list.pseq }</td>
 			<td>${list.selOpt }</td>
-			<td>${list.price }</td>	
+			<td><fmt:formatNumber value="${list.price }" pattern="#,###" /></td>	
 			<td>${list.pcount }</td>
 			<c:set var="sumPrice" value="${list.price * list.pcount }"/>
-			<td><c:out value="${sumPrice }"></c:out>원</td>
+			<td><fmt:formatNumber value="${sumPrice }" pattern="#,###" />원</td>
 			<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
 		</c:forEach>
-		<tr><th>총 금액</th><td><c:out value="${totalPrice }원"/></td></tr>
+		<tr><th>총 금액</th><td><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</td></tr>
 	<tr>
 		<td colspan="5" id="cartD" >
 			<input type="button" value="전체 항목 구매" name="allBuy">

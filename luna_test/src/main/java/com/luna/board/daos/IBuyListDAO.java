@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +23,6 @@ public interface IBuyListDAO {
 	void deleteInCart(String[] chks, String id);
 	List<BuyDetailDTO> getList(String id);
 	List<BuyDetailDTO> getDetail(int bdseq);
+	List<BuyDetailDTO> getDetailByAdmin(int bseq);
+	List<BuyDetailDTO> getAllList(String toDate, String fromDate, String delStatus);
 }

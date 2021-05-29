@@ -28,7 +28,7 @@
  	<!-- 댓글 입력 -->
 	<insert id="insertReply" parameterType="RBDTO">
 		INSERT INTO Q_BOARD(qseq, qtitle, qcontent, pseq, id, par_qseq)
-		VALUES(Q_BOARD_SEQ.nextval, #{qtitle}, #{qcontent}, NULL, 'admin', #{par_qseq})
+		VALUES(Q_BOARD_SEQ.nextval, #{qtitle}, #{qcontent}, #{pseq}, '루나', #{par_qseq})
 	</insert>
  	
 	<update id ="updateBoard" parameterType="QBDTO">

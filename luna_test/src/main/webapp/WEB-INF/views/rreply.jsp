@@ -173,6 +173,7 @@ $(function(){
 
 
 	<form method="post" name="replyForm" action="insertrreply.do">
+	<input type="hidden" name="pseq" value="${dto.pseq }">
 	<input type="hidden" name="rseq" value="${dto.rseq}">
 	<input type="hidden" name="par_rseq" value="${dto.par_rseq}">
 	

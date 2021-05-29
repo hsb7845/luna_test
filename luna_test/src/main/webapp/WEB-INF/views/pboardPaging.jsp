@@ -99,17 +99,19 @@
 		<div class="list_start">
 		<c:forEach items="${list }" var="list" varStatus="sta">
 			<div class="list_detail">
+			<a href='pboarddetail.do?pseq=${list.pseq }'>
 			<c:if test="${list.image.imgname !=null }">
 				<img  src="upload/img_dummy1.jpg"><br>
 			</c:if>
 				<div class="list_in">
-					<div><a href='pboarddetail.do?pseq=${list.pseq }'>${list.ptitle }</a></div><br>
+					<div>${list.ptitle }</div><br>
 	<%-- 				<div><fmt:formatDate value="${list.pdate }" pattern="yyyy.MM.dd"/> </div> --%>
-					<div>${list.stock.price} 원</div><div width="100px"></div>
+					<div><fmt:formatNumber value="${list.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
 	<%-- 			<c:if test="${sta.count%3==0 }"> --%>
 	<!-- 				<br> -->
 	<%-- 			</c:if> --%>
 				</div>
+				</a>
 			</div>
 		</c:forEach>
 	</div>

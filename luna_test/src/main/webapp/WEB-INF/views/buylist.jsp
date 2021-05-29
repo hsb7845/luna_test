@@ -2,7 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <!DOCTYPE html>
 <html lang="UTF-8">
@@ -32,6 +33,13 @@
         <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
                 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
+	function update(bseq){
+		window.open("buyListUpdateForm.do?bseq="+bseq,"팝업","width = 1200, height = 1200, top = 100, left = 200, location = no");
+	}
+
+	function showDetail(bseq){
+		window.open("showDetail.do?bseq="+bseq,"팝업","width = 1200, height = 1200, top = 100, left = 200, location = no");
+	}
 	// core, BOM, DOM  3가지 영역으로 나눔
  	function allSel(val){
  		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
@@ -46,18 +54,6 @@
  	}
  	//form 태그에서 submit 이벤트가 발생하면 함수실행 
 	$(function(){
-		$("form").submit(function(){
-			var bool = true;
-			var count=$(this).find("input[name=chk]:checked").length;
-			if(count==0){
-				alert('최소 하나이상 체크하세요!!!');
-				bool= false;
-			}else if(confirm("정말 삭제하시겠습니까?")==false){
-				bool = false;
-			}
-			return bool
-			
-		});
 		var chks = document.getElementsByName("chk");
 	 	for(var i=0;i<chks.length;i++){
 	 		chks[i].onclick =function(){//체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
@@ -79,6 +75,15 @@
 	})
 </script>
 <style type="text/css">
+	.bseq{
+		text-align : center;
+		vertical-align : middle;
+	}
+	.bseq:hover{
+		text-decoration : underline;
+		color : red;
+		cursor:pointer;
+	}
 	#content {
 		background-color: white;
 	}
@@ -142,10 +147,6 @@
 		}       
 	</style>
 </head>
-<%
-	List<BuyListDTO> list= (List<BuyListDTO>) request.getAttribute("list");
-%>
-    
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -542,7 +543,20 @@
             <div class="row">
 
 <p class="cls1">구매현황</p>
-<form action="buyListMulDel.do" method="post">
+<form action="buylistOpt.do" method="post">
+<div align="right">
+<input type="date" name="toDate">~<input type="date" name="fromDate">&nbsp;&nbsp;  
+<select name="delStatus" id="delStatus"> 
+	<option value="all" selected>전체</option>
+	<option value="입금전">입금전</option>
+	<option value="물품준비중">물품준비중</option>
+	<option value="배송중" >배송중</option>
+	<option value="구매완료">구매완료</option>
+	<option value="취소">취소</option>
+</select>
+<input type="submit" name="btn_srch" value="조회">
+</div>
+
 <table border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="50px">
@@ -565,36 +579,29 @@
 		<th>전화번호</th>
 		<th>총 금액</th>
 		<th>구매날짜</th>
-		
 	</tr>
-	<%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='10'>----작성된 글이 없습니다.</td></tr>");
-			}else{
-		for(int i=0;i<list.size();i++){
-			BuyListDTO dto=list.get(i);
-	%>
-				<tr align="center" class="buylistM">
-					<td><input type="checkbox" name="chk" value="<%=dto.getBseq()%>"/></td>
-					<td><%=dto.getBseq()%></td>
-					<td><%=dto.getId()%></td>
-					<td><a href="buyListUpdateForm.do?bseq=<%=dto.getBseq() %>"><%=dto.getDelStatus()%></a> </td>
-					<td><a href="https://www.epost.go.kr/" target="_blank"><%=dto.getTrackingNum()%></a></td>
-					<td><%=dto.getName()%></td>
-					<td><%=dto.getAddress()%></td>
-					<td><%=dto.getPhone()%></td>
-					<td id="m2">₩<%=dto.getTotalPrice()%>원</td>
-					<td id="m2"><fmt:formatDate value="<%=dto.getBuyDate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
-				</tr>
-	<%
-			}
-		}
-	%>
+		<c:set var="total" value="0"/>
+		<c:forEach items="${list }" var="i">
+			<tr>
+				<td><input type="checkbox" name="chk"  value="${i.bseq }"/></td>
+				<td><p  class="bseq" onclick="showDetail(${i.bseq})">${i.bseq }</a></td>
+				<td>${i.id }</td>
+				<td class="bseq" onclick="update(${i.bseq})">${i.delStatus }</td>
+				<td>${i.trackingNum }</td>
+				<td>${i.name }</td>
+				<td>${i.address }</td>
+				<td>${i.phone }</td>
+				<td>₩<fmt:formatNumber value="${i.totalPrice }" pattern="#,###" />원</td>
+				<c:set var="total" value="${total+i.totalPrice }"/>
+				<td><fmt:formatDate value="${i.buyDate }" pattern="yyyy년MM월dd일"/></td>
+			</tr>
+			
+		</c:forEach>
 	</table>
+	<p align="right">총 : ₩<fmt:formatNumber value="${total }" pattern="#,###" /> 원</p>
 	<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr>
 		<td colspan="10" class="buylistD">
-			<input type="button" value="구매 등록" id="buyListInsertForm" />
 <!-- 			<input type="button" value="메인" id="main"> -->
 			<input type="submit" value="삭제" />
 			

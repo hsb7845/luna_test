@@ -130,8 +130,6 @@
 </head>
 
 <body>
-
-<%@ include file="header.jsp" %>
 <form action="muldel.do">
 <!-- <h1>구매현황</h1> -->
 <h2>주문 상세정보</h2> 
@@ -149,35 +147,12 @@
 		<tr>
 			<td>${list.bdseq }</td>
 			<td>${list.image.imgname }</td>
-			<td><a href="pboarddetail.do?pseq=${list.pboard.pseq }">${list.pboard.ptitle }</a><br>${list.selOpt }</td>
-			<td><fmt:formatNumber value="${list.price}" pattern="#,###" />원<br>(${list.pcount }개)</td>
+			<td>${list.pboard.ptitle }<br>${list.selOpt }</td>
+			<td>₩<fmt:formatNumber value="${list.price }" pattern="#,###" />원<br>(${list.pcount }개)</td>
 			<td>${list.blDTO.delStatus}</td>
 		</tr>
 	</c:forEach>
 </table>
-<div class="noBankbook">
- <h2>구매/계좌정보</h2>
-<select id="selectbank" onchange="bankDisplay()" >
-    <option selected value=0>-선택하세요-
-    <option value=1>국민은행
-    <option value=2>기업은행
-    <option value=3>우리은행
-    <option value=4>농협
-</select>
-   	<br>
-    <font color="#0000ff">*</font> 입  금  계  좌 :
-    <input name="bank" type="text" size="50" maxlength="50"value=""  placeholder="은행 및 계좌번호가 표시됩니다." readonly>
- 	 <div style="float:middle"><h2>입금액 : ${list[0].blDTO.totalPrice}원</h2></div>
-  	</div>
-  <div style="margin-left :40px;">
-  <h2>  배송지 정보</h2>
-  <table>
-  	<tr><th>수령인</th><td>${list[0].blDTO.name }</td></tr>
-  	<tr><th>연락처</th><td>${list[0].blDTO.phone }</td></tr>
-  	<tr><th>배송지</th><td>${list[0].blDTO.address }</td></tr>
-  </table>
-  </div>
 </form>
-<%@ include file="footer.jsp" %>
 </body>
 </html>

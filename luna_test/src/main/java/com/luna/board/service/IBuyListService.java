@@ -1,5 +1,6 @@
 package com.luna.board.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -23,4 +24,6 @@ public interface IBuyListService {
 	void deleteInCart(String[] chks, String parameter);
 	List<BuyDetailDTO> getList(String id);
 	List<BuyDetailDTO> getList(int bdseq);
+	List<BuyDetailDTO> getDetail(int bseq);
+	List<BuyDetailDTO> getAllList(String toDate, String fromDate, String delStatus);
 }

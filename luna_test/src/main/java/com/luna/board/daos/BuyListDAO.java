@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -129,6 +130,23 @@ public class BuyListDAO implements IBuyListDAO {
 	public List<BuyDetailDTO> getDetail(int bdseq) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getDetail", bdseq);
+	}
+
+	@Override
+	public List<BuyDetailDTO> getDetailByAdmin(int bseq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getDetailByAdmin", bseq);
+	}
+
+	@Override
+	public List<BuyDetailDTO> getAllList(String  toDate, String  fromDate, String delStatus) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map =new HashMap<>();
+		map.put("toDate",toDate);
+		map.put("fromDate", fromDate);
+		map.put("delStatus", delStatus);
+		
+		return sqlSession.selectList(namespace+"getListOpt", map);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.luna.board;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.BuyDetailDTO;
 import com.luna.board.dtos.BuyListDTO;
@@ -40,9 +42,18 @@ public class BuyListController {
 			model.addAttribute("list",list);
 			return "userBuyList";
 		}
-		
+		model.addAttribute("list",list);
 		return "buylist";
 	}
+	
+	
+	@RequestMapping(value = "/buylistOpt.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String getBuyList(Locale locale, Model model,HttpServletRequest request,String toDate,String fromDate,String delStatus) {
+		List<BuyDetailDTO> list = buyListService.getAllList(toDate,fromDate,delStatus);
+		model.addAttribute("list",list);
+		return "buylist";
+	}
+	
 	
 	@RequestMapping(value = "/buyListInsertForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListInsertForm(Locale locale, Model model) {
@@ -228,7 +239,12 @@ public class BuyListController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/showDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String showDetail(Locale locale, Model model,int bseq) {
+		List<BuyDetailDTO> list = buyListService.getDetail(bseq);
+		model.addAttribute("list",list);
+		return "buyDetailAdmin";
+	}
 	
 	@RequestMapping(value = "/buyListUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListUpdateForm(Locale locale, Model model,int bseq) {
@@ -236,17 +252,12 @@ public class BuyListController {
 		model.addAttribute("dto",dto);
 		return "buyListUpdateForm";
 	}
-	
+	@ResponseBody
 	@RequestMapping(value = "/buyListUpdate.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buyListUpdate(Locale locale, Model model,BuyListDTO dto) {
 		boolean isS = buyListService.updateBoard(dto);
-		if(isS) {
-			return "redirect:buylist.do";
-		}else {
-			model.addAttribute("msg","글수정실패");
-			return "error";
-		}
 		
+		return isS+"";
 	}
 	
 	@RequestMapping(value = "/buyListDelete.do", method = {RequestMethod.GET,RequestMethod.POST})

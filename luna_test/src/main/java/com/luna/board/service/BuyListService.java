@@ -1,5 +1,6 @@
 package com.luna.board.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +97,18 @@ public class BuyListService implements IBuyListService {
 	public List<BuyDetailDTO> getList(int bdseq) {
 		// TODO Auto-generated method stub
 		return buyListDAO.getDetail(bdseq);
+	}
+
+	@Override
+	public List<BuyDetailDTO> getDetail(int bseq) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getDetailByAdmin(bseq);
+	}
+
+	@Override
+	public List<BuyDetailDTO> getAllList(String  toDate, String  fromDate, String delStatus) {
+		// TODO Auto-generated method stub
+		return buyListDAO.getAllList(toDate,fromDate,delStatus);
 	}
 	
 }

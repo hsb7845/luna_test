@@ -36,7 +36,7 @@
 	</select>
 	
 	<select id="getBoard" resultType="PBDTO" parameterType="int">
-		select pseq,pcontent,pdate,ptitle,phit from P_board order by pseq desc where pseq= #{pseq}
+		select pseq,pcontent,pdate,ptitle,hit from P_board  where pseq= #{pseq} order by pseq desc
 	</select>
 
 	<insert id="insertboard" parameterType="PBDTO">
@@ -144,11 +144,11 @@
 	</select>
 	
 	<select id="getRboard" parameterType="int" resultType="RBDTO">
-		select * from r_board where pseq=#{pseq}
+		select * from r_board where pseq=#{pseq}  order by rseq desc
 	</select>
 	
 	<select id="getQboard" parameterType="int" resultType="QBDTO">
-		select * from q_board where pseq=#{pseq}
+		select * from q_board where pseq=#{pseq}  order by qseq desc
 	</select>
 	
 	<select id="getAvgRank" parameterType="int" resultType="String">

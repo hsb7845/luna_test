@@ -1,9 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
     <head>
+    <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
+	<script src="<c:url value='resources/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
+    <script>
+    function setThumbnail(event) {
+		for (var image of event.target.files) { 
+			var reader = new FileReader(); 
+			reader.onload = function(event) {
+				var img = document.createElement("img"); 
+				img.setAttribute("src", event.target.result);
+				document.querySelector("div#image_container").appendChild(img); 
+				};
+			reader.readAsDataURL(image); 
+		} 
+	}
+    
+    $(document).ready(function(){
+    	var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef: oEditors,
+			elPlaceHolder: "econtent",
+			sSkinURI: "resources/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
+			fCreator: "createSEditor2"
+		});
+		 $("#save").click(function(){
+	          oEditors.getById["econtent"].exec("UPDATE_CONTENTS_FIELD", []);
+	          $("#frm").submit();
+	      });    
+    });
+    </script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta
@@ -12,7 +42,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>이벤트수정하기</title>
+        <title>이벤트작성</title>
 
         <!-- Custom fonts for this template-->
         <link
@@ -46,7 +76,7 @@
 			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
 			    font-weight: bold;
 			}
-			button {
+			button,file {
 			    color: #666666;
 			    font-family: inherit;
 			    font-size: 14px;
@@ -65,6 +95,7 @@
 			    /* Improves appearance and consistency in all browsers */
 			}
 			button,
+			
 			input[type="button"],
 			input[type="reset"],
 			input[type="submit"] {
@@ -253,18 +284,22 @@
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-					<form method="post" action="inserteboard.do">
-						<table>
+					<form id="frm" method="post" action="inserteboard.do" enctype="multipart/form-data">
+						<table style="width : 1100px;">
 							<tr>
 								<th>제목</th>
 								<td><input type="text" name="etitle"></td>
 							</tr>
+							<div><!-- 이미지 추가 -->						
+							<span><input type='file' id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
+							<div id="image_container"></div>
+						</div>
 							<tr>
-								<th>내용</th>
-								<td><textarea name="econtent"></textarea></td>
+							<td>내용</td>
+							<td><!-- 표시할 textarea 영역 --> <textarea id="econtent"  name="econtent" rows="10" cols="100" ></textarea></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" value="작성"></td>
+								<td colspan="2"><input id="save" type="submit" value="작성"></td>
 							</tr>
 						</table>
 						</form>
@@ -335,6 +370,7 @@
         <!-- Page level custom scripts -->
         <script src="resources/boot/js/demo/chart-area-demo.js"></script>
         <script src="resources/boot/js/demo/chart-pie-demo.js"></script>
-
+ 
     </body>
+    <script type="text/javascript" src="<c:url value='resources/smarteditor2-2.8.2.3/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 </html>

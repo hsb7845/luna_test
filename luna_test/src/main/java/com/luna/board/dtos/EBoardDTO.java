@@ -4,8 +4,14 @@ public class EBoardDTO {
 	private int eseq;
 	private String econtent;
 	private String etitle;
+	private ImgFileDTO image;
 	
-	
+	public ImgFileDTO getImage() {
+		return image;
+	}
+	public void setImage(ImgFileDTO image) {
+		this.image = image;
+	}
 	public int getEseq() {
 		return eseq;
 	}

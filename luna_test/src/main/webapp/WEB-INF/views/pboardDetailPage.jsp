@@ -335,7 +335,14 @@
 		location.href = "cart.do?id=" + id;
 	}
 	function showDQ(qseq){
-		
+		$(".detailQ").each(function(){
+			$(this).hide();
+		});
+		if($("#detailQ"+qseq).css("display")=='none'){
+			$("#detailQ"+qseq).show();
+		}else{
+			$("#detailQ"+qseq).hide();
+		}
 	}
 	
 	function showDR(rseq){
@@ -592,7 +599,8 @@ padding : 5px;
 						
 						<c:if test="${j.par_rseq==i.rseq }">
 						<hr>
-						<div><p>${j.id }<p>
+						<div><p><b>${j.id }</b></p>
+						<hr>
 							${j.rcontent }
 						</div>
 						</c:if>
@@ -614,9 +622,8 @@ padding : 5px;
 				<th colspan="2">Q&A</th>
 			</tr>
 			<tr>
-				
-				<th>아이디</th>
 				<th>제목</th>
+				<th>작성자</th>	
 			</tr>
 			<c:if test="${map.qboard=='[]' }">
 				<tr>
@@ -627,11 +634,23 @@ padding : 5px;
 				<c:forEach items="${map.qboard }" var="i" varStatus="status">
 					<c:if test="${i.par_qseq ==0 }">
 					<tr>
-						<td>${i.id }</td>
 						<td class="qseq" onclick="showDQ(${i.qseq})">${i.qtitle }</td>
+						<td>${i.id }</td>
+						
+					</tr>
 						<tr id="detailQ${i.qseq }" style="display:none;" class="detailQ">
-							<td><div>${i.qcontent }</div></td>
-						</tr>
+						<td colspan="3"><div>${i.qcontent }</div>
+						<c:forEach var="j" items="${map.qboard }">
+						
+						<c:if test="${j.par_qseq==i.qseq }">
+						<hr>
+						<div><p><b>${j.id }</b></p>
+						<hr>
+							${j.qcontent }
+						</div>
+						</c:if>
+						</c:forEach></td>
+					</tr>
 					</c:if>
 					
 				</c:forEach>

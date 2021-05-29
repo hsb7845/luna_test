@@ -342,6 +342,7 @@
                 <div class="container-fluid">
 					<p class="cls1">리뷰 목록</p> 
 						<form action="muldelRboard.do" method="post">
+						
 						<table align="left" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 							<col width="50px">
 							<col width="150px">
@@ -375,11 +376,15 @@
 										<%
 										if(dto.getLevel()>1){				
 										%>
-										<span style="padding-left:20px"></span>└
+											<span style="padding-left:20px"></span>└<%=dto.getRtitle()%></td>
+										
 										<%
-											}	
+											}else{
 										%>
-										<a href="rreply.do?rseq=<%=dto.getRseq() %>" onclick="goReply(<%=dto.getPar_rseq()%>,<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
+											<a href="rreply.do?rseq=<%=dto.getRseq() %>" onclick="goReply(<%=dto.getPar_rseq()%>,<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
+										<% 
+											}
+										%>
 										<td><%=dto.getRcontent()%></td>
 										<td><%=dto.getPseq()%></td>
 										<td><%=dto.getId()%></td>

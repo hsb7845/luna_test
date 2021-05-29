@@ -4,9 +4,18 @@
 
 
 <mapper namespace="com.luna.eboard">
-
-   <select id="getAllList" resultType="EBDTO">
-      select eseq, econtent, etitle from E_board order by eseq desc
+	<resultMap type="EBDTO" id="EBDTO_resultMap">
+			<result column="ESEQ" property="eseq"/>
+			<result column="ETITLE" property="etitle"/>
+			<result column="ECONTENT" property="econtent"/>
+			<collection property="image"  ofType="IFDTO">
+				<result column="imgname" property="imgname"></result>
+			</collection>
+	</resultMap>
+   <select id="getAllList" resultMap="EBDTO_resultMap">
+      select * from E_board eb ,img_file if2
+      where eb.eseq = if2.eseq
+       order by eb.eseq desc
    </select>
 
    <insert id="insertboard" parameterType="EBDTO">
@@ -33,4 +42,16 @@
          #{i}
       </foreach>
    </delete>
+   
+   <insert id="insertImg" parameterType="IFDTO">
+  		 INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
+		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin',0,0,E_BOARD_SEQ.CURRVAL)
+   </insert>
+   
+   <update id="updateImg" parameterType="IFDTO">
+   	UPDATE LUNA.IMG_FILE
+	SET FILESIZE=#{filesize},IMGNAME=#{imgname}
+	WHERE IMGNUM=(SELECT DISTINCT IMGNUM FROM IMG_FILE if2 WHERE ESEQ =#{eseq})
+   </update>
+   
 </mapper>

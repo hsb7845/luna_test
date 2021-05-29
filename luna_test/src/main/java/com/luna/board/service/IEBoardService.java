@@ -2,11 +2,13 @@ package com.luna.board.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.luna.board.dtos.EBoardDTO;
 
 public interface IEBoardService {
 
-	boolean insertBoard(EBoardDTO dto);
+	boolean insertBoard(EBoardDTO dto, MultipartHttpServletRequest request);
 
 	List<EBoardDTO> getAllList();
 	
@@ -14,7 +16,7 @@ public interface IEBoardService {
 	
 	boolean deleteBoard(int eseq);
 
-	boolean updateBoard(EBoardDTO dto);
+	boolean updateBoard(EBoardDTO dto, MultipartHttpServletRequest request);
 
 	boolean mulDel(String[] chk);
 

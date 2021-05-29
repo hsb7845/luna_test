@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.EBoardDTO;
+import com.luna.board.dtos.ImgFileDTO;
 
 @Repository
 public class EBoardDAO implements IEBoardDAO{
@@ -51,5 +52,17 @@ public class EBoardDAO implements IEBoardDAO{
 		Map<String, String[]> map = new HashMap<String, String[]>();
 		map.put("chks", chks);
 		return sqlSession.delete(namespace+"mulDel",map)>0?true:false;
+	}
+
+	@Override
+	public boolean insertImg(ImgFileDTO imgFileDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(namespace+"insertImg", imgFileDTO)>0?true:false;
+	}
+
+	@Override
+	public boolean updateImg(ImgFileDTO imgFileDTO) {
+		// TODO Auto-generated method stub
+		return  sqlSession.update(namespace+"updateImg", imgFileDTO)>0?true:false;
 	}
 }

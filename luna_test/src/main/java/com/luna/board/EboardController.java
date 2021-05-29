@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.service.IEBoardService;
@@ -37,8 +38,9 @@ import com.luna.board.service.IEBoardService;
 		
 		
 		@RequestMapping(value = "/inserteboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-		public String insert(Locale locale, Model model, EBoardDTO dto) {
-			boolean isS = eBoardService.insertBoard(dto);
+		public String insert(Locale locale, Model model, EBoardDTO dto,MultipartHttpServletRequest request) {
+			boolean isS = eBoardService.insertBoard(dto,request);
+
 			if(isS) {
 				return "redirect:eboard.do";
 			} else {
@@ -57,8 +59,9 @@ import com.luna.board.service.IEBoardService;
 		}
 
 		@RequestMapping(value = "/updateeboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-		public String update(Locale locale, Model model, EBoardDTO dto) {
-			boolean isS = eBoardService.updateBoard(dto);
+		public String update(Locale locale, Model model, EBoardDTO dto,MultipartHttpServletRequest request) {
+			boolean isS = eBoardService.updateBoard(dto,request);
+			
 			if(isS) {
 				return "redirect:eboard.do";
 			} else {

@@ -334,9 +334,12 @@
 									<%
 									if(dto.getLevel()>1){				
 									%>
-									<span style="padding-left:20px"></span>└
+									<span style="padding-left:20px"></span>└<%=dto.getQtitle()%></td>
 									<%
-										}	
+										}else{
+									%>
+									<%
+										}
 									%>
 									<a href="qreply.do?qseq=<%=dto.getQseq() %>"><%=dto.getQtitle()%></a> </td>
 									<td><%=dto.getQcontent()%></td>

@@ -34,12 +34,12 @@
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript">
             function delBoard() {
-           	 var chk_arr = [];
+           		var chk_arr = [];
 	           	
-//            	 	$("input[name='chk']:checked").each(function () {
-// 	                var chk = $(this).val();
-// 	                chk_arr.push(chk);
-// 	            })
+           	 	$("input[name='chk']:checked").each(function () {
+	                var chk = $(this).val();
+	                chk_arr.push(chk);
+	            })
 	            
                 var bool = true;
                 var count = $("form")
@@ -56,6 +56,7 @@
                     formEle.action = 'muldelmember.do';
                     formEle.submit(); //javascript에서 submit실행
                 }
+                
             }
 
             function birthMem() {
@@ -71,12 +72,7 @@
             }
 
             function addCoupon() {
-            	 var chk_arr = [];
-                 $("input[name='chk']:checked").each(function () {
-                     var chk = $(this).val();
-                     chk_arr.push(chk);
-                 })
-                var bool = true;
+            	 
                 var count = $("form")
                     .find("input[name=chk]:checked")
                     .length;
@@ -86,11 +82,12 @@
                 } else if (confirm("쿠폰 추가 화면으로 이동하시겠습니까?") == false) {
                     bool = false;
                 }
+                
                 if (bool) {
                     var formEle = document.form;
                     formEle.action = 'insertAllCoupon.do';
                     
-//                     var input = document.createElement('input');
+//                      var input = document.createElement('input');
 //                	 	input.setAttribute('type','hidden');
 //                	 	input.setAttribute('name','chk');
 //                	 	input.setAttribute('value',chk_arr);

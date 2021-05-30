@@ -312,6 +312,7 @@
 						<col width="300px">
 						<col width="200px">
 						<col width="100px">
+						<col width="50px">
 						<tr class="qboardT" >
 							<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 							<th>번호</th>
@@ -319,10 +320,11 @@
 							<th>내용</th>
 							<th>상품 게시글 번호</th>
 							<th>아이디</th>
+							<th>부모글 번호</th>
 						</tr>
 						<%
 							if(list==null||list.size()==0){
-								out.print("<tr><td colspan='6'>----작성된 문의 사항이 없습니다.---</td></tr>");
+								out.print("<tr><td colspan='7'>----작성된 문의 사항이 없습니다.---</td></tr>");
 								} else {
 							for(int i=0;i<list.size();i++){
 								QBoardDTO dto=list.get(i);
@@ -345,6 +347,7 @@
 									<td><%=dto.getQcontent()%></td>
 									<td><%=dto.getPseq()%></td>
 									<td><%=dto.getId()%></td>
+									<td><%=dto.getPar_qseq()%></td>
 								</tr>
 					<%
 							}

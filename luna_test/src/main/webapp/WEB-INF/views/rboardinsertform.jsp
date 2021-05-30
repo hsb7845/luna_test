@@ -49,6 +49,16 @@
 	    background-color: lightcoral;
 	}
 	
+	.cmd {
+		margin-left: 35%;
+		margin-tog: 10%;
+	}
+	
+	.rating {
+	margin-top: 0%;
+	margin-left: 18%;
+	margin-bottom:0%;
+	}
 	
 	/* 레이아웃 외곽 너비 400px 제한*/
 	.wrap{
@@ -132,6 +142,8 @@
 		size: 50px;
 	}
 
+	
+	
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
@@ -190,11 +202,11 @@ $(function(){
 			
 <!-- 			<div style="margin-top:50px"> -->
 <!-- 			    <input type="button" value="Resize Image" onclick="ResizeImage()"/> -->
-			</div>
+<!-- 			</div> -->
 			
-			<div style="margin-top:50px">
-			    <img src="" id="output">
-			</div>
+<!-- 			<div style="margin-top:50px"> -->
+<!-- 			    <img src="" id="output"> -->
+<!-- 			</div> -->
 
 
 

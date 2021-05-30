@@ -1,19 +1,26 @@
 package com.luna.board;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.EBoardDTO;
+import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.service.ICouponService;
 
@@ -54,16 +61,40 @@ public class CouponController {
 		return "couponInsertForm";
 	}
 	
+//	@RequestMapping(value = "/insertCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String insert(Locale locale, Model model, CouponDTO dto) {
+//		boolean isS = CouponService.insertCoupon(dto);
+//		if(isS) {
+//			return "redirect:coupon.do";
+//		} else {
+//			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
+//			return "error";
+//		}
+//	}	
+	
 	@RequestMapping(value = "/insertCoupon.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, CouponDTO dto) {
-		boolean isS = CouponService.insertCoupon(dto);
-		if(isS) {
-			return "redirect:coupon.do";
-		} else {
-			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
-			return "error";
+	public String insert(Locale locale, Model model,  String[] id, String ccontent, int discount, HttpServletRequest request) {
+		List<CouponDTO> list = new ArrayList<>();
+		CouponDTO dto = new CouponDTO();
+		if(id.length>0) {
+			
+			for(int i=0; i<id.length; i++) {
+				dto.setId(id[i]);
+					dto.setCcontent(ccontent);
+					dto.setDiscount(discount);
+					list.add(dto);
+				}
 		}
-	}	
+		
+		boolean isS = CouponService.insertCoupon(list);
+		if(isS) {
+			String msg = "쿠폰을 추가하였습니다.";
+			return msg;
+		}else {
+			String msg = "error";
+			return msg;
+		}
+	}
 	
 	@RequestMapping(value = "/couponUpdateForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateCoupon(Locale locale, Model model,int cseq) {

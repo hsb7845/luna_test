@@ -102,19 +102,9 @@
 		WHERE to_char(JOINDATE ,'YYYYMM') = to_char(sysdate,'YYYYMM')
 	</select>
 	
-	<update id="insertEveryCoup" parameterType="CouponDTO" >
-		 <foreach collection="chk" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
-	                 INTO COUPON  ( 
-	                      CSEQ,CCONTENT,DISCOUNT,ID,HIT         
-	                ) VALUES(
-	                       COUPON_SEQ.nextval                 
-	                     , #{ccontent}                         
-	                     , #{discount}                             
-	                     , #{item}       
-	                     , 0
-	                )
-	    </foreach>
-	</update>
+	
+	
+	
 	
 </mapper>
 

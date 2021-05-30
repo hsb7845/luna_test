@@ -1,6 +1,7 @@
 package com.luna.board.dtos;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CouponDTO {
 //	"CSEQ" NUMBER(*,0) NOT NULL ENABLE, 
@@ -86,6 +87,9 @@ public class CouponDTO {
 		return "CouponDTO [cseq=" + cseq + ", ccontent=" + ccontent + ", discount=" + discount + ", id=" + id + ", hit="
 				+ hit + ", chk=" + Arrays.toString(chk) + "]";
 	}
+
+	
+
 
 	
 

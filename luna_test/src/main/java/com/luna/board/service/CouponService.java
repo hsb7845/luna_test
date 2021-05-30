@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.luna.board.daos.ICouponDAO;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.CouponDTO;
 
 @Service
@@ -65,36 +66,12 @@ public class CouponService implements ICouponService {
 		return CouponDAO.insertAllCoup(dto);
 	}
 	
-	@Override
-	public boolean insertCoupon(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		return CouponDAO.insertCoupon(dto);
-	}
-
-
-
-//	@Override
-//	public boolean insertCoupon(String[] id) {
-//		// TODO Auto-generated method stub
-//		return CouponDAO.insertCoupon(String[] id);
-//	}
-
-
 
 	@Override
-	public boolean insertEveryCoup(String [] chk) {
+	public boolean insertCoupon(List<CouponDTO> list) {
 		// TODO Auto-generated method stub
-		return CouponDAO.insertEveryCoup(chk);
+		return CouponDAO.insertCoupon(list);
 	}
-
-
-
-	@Override
-	public boolean insertCoupon(String[] id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 
 	

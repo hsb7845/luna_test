@@ -21,6 +21,11 @@ public class MemberDAO implements IMemberDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+//	@Override
+//	public boolean insertMember(MemberDTO dto) {
+//		return sqlSession.insert(namespace+"insertMember" , dto)>0? true:false;
+//	}
+	
 	@Override
 	public boolean insertMember(MemberDTO dto) {
 		return sqlSession.insert(namespace+"insertMember" , dto)>0? true:false;

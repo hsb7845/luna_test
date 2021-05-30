@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.CouponDTO;
 
 @Repository
@@ -25,10 +26,20 @@ public class CouponDAO implements ICouponDAO {
 		return sqlSession.selectList(namespace+"getAllList", dto);
 	}
 
+//	@Override
+//	public boolean insertCoupon(CouponDTO dto) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.insert(namespace+"insertCoupon",dto)>0?true:false;
+//	}
+	
 	@Override
-	public boolean insertCoupon(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace+"insertCoupon",dto)>0?true:false;
+	public boolean insertCoupon(List<CouponDTO> list) {
+		boolean isS =false;
+		for(int i=0;i<list.size();i++) {
+			CouponDTO dto = list.get(i);
+			isS =sqlSession.insert(namespace+"insertCoupon",dto)>0?true:false;
+		}
+		return isS;
 	}
 
 	@Override
@@ -79,23 +90,41 @@ public class CouponDAO implements ICouponDAO {
 		return sqlSession.insert("com.luna.member.insertEveryCoup",chk)>0?true:false;
 	}
 
-	@Override
-	public List<CouponDTO> getAllList(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<CouponDTO> getAllList(String id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	@Override
-	public boolean insertCoupon(String[] id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean insertCoupon(String[] id) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
-	@Override
-	public boolean insertCoupon(Object dto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public boolean insertCoupon(Object dto) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+
+//	@Override
+//	public boolean insertEveryCoup(CouponDTO dto) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+
+//	@Override
+//	public boolean insertCoupon(String[] id) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean insertCoupon(Object dto) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 	
 	
 	

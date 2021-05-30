@@ -2,6 +2,7 @@ package com.luna.board;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -36,6 +37,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.luna.board.dtos.CartDTO;
 import com.luna.board.dtos.CouponDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.model.KakaoProfile;
@@ -91,6 +93,9 @@ public class MemberController {
 			return "error";
 		}
 	}
+	
+		
+		
 	
 	@RequestMapping(value = "/updatememberForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updatemember(Locale locale, Model model,String id) {

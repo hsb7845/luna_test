@@ -81,8 +81,8 @@
                 
                 if (bool) {
                     var formEle = document.form;
-                    formEle.action = 'insertAllCoupon.do';
-                    
+//                     formEle.action = 'insertAllCoupon.do';
+                    formEle.action = 'insertAllCoup.do';
 //                      var input = document.createElement('input');
 //                	 	input.setAttribute('type','hidden');
 //                	 	input.setAttribute('name','chk');

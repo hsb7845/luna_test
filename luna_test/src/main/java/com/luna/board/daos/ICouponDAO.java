@@ -17,8 +17,8 @@ public interface ICouponDAO {
 	List<CouponDTO> getAllList(String id);
 	List<CouponDTO> getAllList(CouponDTO dto);
 	boolean insertAllCoup(CouponDTO dto);
-	boolean insertEveryCoup(CouponDTO dto);
 	boolean insertCoupon(String[] id);
 	boolean insertCoupon(Object dto);
+	boolean insertEveryCoup(String[] chk);
 	
 }

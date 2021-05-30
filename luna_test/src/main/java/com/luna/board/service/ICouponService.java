@@ -17,5 +17,5 @@ public interface ICouponService {
 	List<CouponDTO> getAllList(CouponDTO couponDTO);
 	boolean insertCoupon(CouponDTO dto);
 	boolean insertAllCoup(CouponDTO dto);
-	boolean insertEveryCoup(CouponDTO dto);
+	boolean insertEveryCoup(String[] chk);
 }

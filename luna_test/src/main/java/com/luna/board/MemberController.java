@@ -454,9 +454,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/insertEveryCoup.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, CouponDTO dto) {
-		System.out.println("dto"+dto);
-		boolean isS = CouponService.insertEveryCoup(dto);
+	public String insert(Locale locale, Model model, String[] chk) {
+		boolean isS = CouponService.insertEveryCoup(chk);
 		if(isS) {
 			return "redirect:coupon.do";
 		} else {
@@ -464,6 +463,7 @@ public class MemberController {
 			return "error";
 		}
 	}
+	
 }
 	
    

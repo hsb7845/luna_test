@@ -82,9 +82,9 @@ public class CouponService implements ICouponService {
 
 
 	@Override
-	public boolean insertEveryCoup(CouponDTO dto) {
+	public boolean insertEveryCoup(String [] chk) {
 		// TODO Auto-generated method stub
-		return CouponDAO.insertEveryCoup(dto);
+		return CouponDAO.insertEveryCoup(chk);
 	}
 
 

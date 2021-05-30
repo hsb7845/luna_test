@@ -77,6 +77,13 @@
 	})
 </script>
 	<style type="text/css">
+	
+		.content {
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		}
+	
 		table {
     		width: 100%;
   		}
@@ -396,9 +403,9 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>번호</th>
 		<th>제목</th>
-		<th>내용</th>
 		<th>작성일</th>
 		<th>조회수</th>
+		<th>바로가기</th>
 	</tr>
 	<%
 		if(list==null||list.size()==0){
@@ -411,9 +418,9 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 					<td><input type="checkbox" name="chk" value="<%=dto.getPseq()%>"/></td>
 					 <td><%=dto.getPseq()%></td>
 					<td><a href="updatePboardForm.do?pseq=<%=dto.getPseq() %>"><%=dto.getPtitle()%></a> </td>
-					<td><%=dto.getPcontent()%></td>
 					<td><fmt:formatDate value="<%=dto.getPdate()%>" pattern="yyyy년MM월dd일 hh:mm:ss" /> </td>
 					<td><%=dto.getHit() %></td>
+					<td><a href="pboarddetail.do?pseq=<%=dto.getPseq() %>">바로가기</a></td>
 				</tr>
 	<%
 			}

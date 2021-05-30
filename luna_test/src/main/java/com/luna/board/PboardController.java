@@ -277,7 +277,9 @@ public class PboardController {
 	@RequestMapping(value = "/selectstock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String selectStock(Locale locale, Model model) {
 		List<StockDTO> list =  stockService.getAllList();
+		List<String> ptype = stockService.getPtype();
 		model.addAttribute("list", list);
+		model.addAttribute("ptype",ptype);
 		return "selectStockList";
 	}
 	@RequestMapping(value = "/inputTest.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -299,6 +301,16 @@ public class PboardController {
 	public boolean uploadimgfile(Locale locale, Model model,HttpServletRequest request){
 		boolean isS =  pBoardService.uploadImg(request);
 		return isS;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/getListType.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,List<StockDTO>> getListType(Locale locale, Model model,String ptype){
+		Map<String,List<StockDTO>> map = new HashMap<String, List<StockDTO>>();
+		List<StockDTO> list = pBoardService.getListType(ptype);
+		map.put("list", list);
+		return map;
 	}
 	
 	

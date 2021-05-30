@@ -33,15 +33,15 @@
 		text-decoration: none;
 	}
 	img{
-		width : 200px;
-		height : 190px;
+		width : 320px;
+		height : 320px;
 	}
 	.main_title{
 	text-align: center;
 }
 
 .main_list {
-    width: 700px;
+    width: 1100px;
     margin: 0 auto;
 }
 
@@ -54,12 +54,10 @@
 }
 
 .list_detail {
-
     display: inline-block;
-    width: 220px;
-    height: 260px;
-	border: 1px solid;
-    margin-bottom: 5px;
+    width: 300px;
+    height: 300px;
+    margin : 10px;
 }
 
 .paging_start{

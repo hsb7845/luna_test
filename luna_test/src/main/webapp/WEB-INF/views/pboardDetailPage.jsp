@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Luna</title>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -187,7 +187,7 @@
 				} else if (optval != " ") {
 					selectedOpt = optname;
 					var innerText = "";
-					innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span>"+ ptitle+ "</span><br><span id='selectedOpt"+selectedOptNum+"'>"+ selectedOpt+ "</span></td>";
+					innerText += "<tr id='selectedopt"+selectedOptNum+"'><td><span class='ptitle'>"+ ptitle+ "</span><br><span  class='selectedOpt' id='selectedOpt"+selectedOptNum+"'>"+ selectedOpt+ "</span></td>";
 					innerText += '<td><input type="text" name="amount'+selectedOptNum+'" value="1" readonly size="3"><input type="button" value=" + " onclick="add('
 							+ selectedOptNum
 							+ ');"><input type="button" value=" - " onclick="del('
@@ -451,6 +451,13 @@ padding : 5px;
 }
 
 
+.ptitle {
+	font-weight : bold;
+	font-size : 16px;
+}
+
+.selectedOpt
+
 
 </style>
 
@@ -545,7 +552,9 @@ padding : 5px;
 		<div class="rank">
 			<!-- 평점 -->
 			<br>
+			<c:if test="${map.avgRank!=0 }">
 			<h2>평균 평점 : ${map.avgRank }점</h2>
+			</c:if>
 	<c:forEach items="${map.rankAvg }" var="i" varStatus="sta">
 		<div class="graph">
    			<span>${i.key}점</span><strong class="bar" style="width: ${i.value}%;"> ${i.value }<c:if test="${i.value!=0 }">%</c:if></strong>

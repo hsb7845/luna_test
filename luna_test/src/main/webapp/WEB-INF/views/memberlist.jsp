@@ -42,9 +42,7 @@
 	            })
 	            
                 var bool = true;
-                var count = $("form")
-                    .find("input[name=chk]:checked")
-                    .length;
+                var count = $("form").find("input[name=chk]:checked").length;
                 if (count == 0) {
                     alert('최소 하나 이상 체크하세요!!!');
                     bool = false;
@@ -72,10 +70,8 @@
             }
 
             function addCoupon() {
-            	 
-                var count = $("form")
-                    .find("input[name=chk]:checked")
-                    .length;
+                var count = $("form").find("input[name=chk]:checked").length;
+               // alert(count)
                 if (count == 0) {
                     alert('최소 하나 이상 체크하세요!!!');
                     bool = false;
@@ -446,12 +442,12 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 
                             <p class="cls1">회원 목록</p>
                             <!-- <form action="muldelmember.do" method="post"> -->
-                            <form method="post" name="form">
+<form method="post" name="form">
 <!--                                 <div style="float:right" > -->
 <%--                                     <select id="arrayNum" name="sel" onchange="selChange()"><option value="1" <c:if test="${arrayNum == 1}">selected</c:if>>신규 가입자</option> --%>
 <%--                             <option value="2" <c:if test="${arrayNum == 2}">selected</c:if>>생일자</option> --%>
-                    </select>
-                </div>
+                   <%--  </select>--%>
+               
 
                 <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                     <tr class="memberT">
@@ -523,7 +519,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             </tr>
                         </table>
                     </form>
-
+ </div>
                 </div>
             </div>
             <!-- End of Main Content -->

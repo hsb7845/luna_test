@@ -26,5 +26,6 @@ public interface IPBoardDAO {
 	void boardHit(int pseq);
 	MemberDTO getMember(String id);
 	int searchId(String id, int pseq);
+	List<StockDTO> getListType(String ptype);
 	
 }

@@ -29,4 +29,5 @@ public interface IPBoardService {
 	boolean uploadFile(MultipartFile[] uploadFiles, HttpServletRequest request);
 	MemberDTO getMember(String id);
 	int serachId(String id, int pseq);
+	List<StockDTO> getListType(String ptype);
 }

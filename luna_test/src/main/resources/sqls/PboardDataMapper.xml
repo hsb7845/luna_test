@@ -206,6 +206,10 @@
 		) WHERE pseq IS NOT NULL OR rownum=1
 	</select>
 	
+	<select id="getListType" parameterType="String" resultType="StockDTO">
+		select s.PNUM, s.PNAME, s.SCOUNT, s.COST, s.CNUM, s.PCONTENT, s.PRICE, s.PSEQ, s.MAIN from stock s ,p_category c 
+		where s.cnum = c.cnum and c.ptype = #{ptype}
+	</select>
 </mapper>
 
 

@@ -234,4 +234,10 @@ public class PBoardDAO implements IPBoardDAO{
 		map.put("pseq",pseq);
 		return sqlSession.selectOne(namespace+"searchId", map);
 	}
+
+	@Override
+	public List<StockDTO> getListType(String ptype) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getListType", ptype);
+	}
 }

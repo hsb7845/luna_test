@@ -31,6 +31,7 @@
 		<script src="<c:url value='resources/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
 		<script>
 		var chk_arr =[];
+		var optNum = 0;
 		function setThumbnail(event) {
 			for (var image of event.target.files) { 
 				var reader = new FileReader(); 
@@ -79,15 +80,17 @@
 				}
 			
 			
-			function necc(){
-				
+			function delOpt(num){
+				 var table =$("#table"+num);
+				 optNum--;
+				 table.remove();
 			}
 		
 		$(document).ready(function(){
-			var optNum = 0;
+			
 			var jsondata = {};
 			$("#addStock").click(function(){
-				window.open("selectstock.do","팝업","width = 1200, height = 1200, top = 100, left = 200, location = no");
+				window.open("selectstock.do","팝업","width = 1000, height = 1000, top = 100, left = 200, location = no");
 			});
 			
 			
@@ -99,7 +102,7 @@
 			
 			$("#addOpt").click(function(){		
 				optNum++;
-				var table = "<table border='1'  ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th>옵션제거</th></tr></thead>";
+				var table = "<table border='1' id='table"+optNum+"' ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th><input type='button' onclick='delOpt("+optNum+")' value='옵션제거'></th></tr></thead>";
 				table += "<tbody id='opt"+optNum+"'><tr><th>항목<input type='button' onclick='addcon("+optNum+")' value='+'></th>";
 				table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품추가비용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
 				table += "<td><input type='button' onclick='delcon("+optNum+")' value='항목제거'></td></tr></tbody></table>"
@@ -122,6 +125,7 @@
 						}
 					});
 			});
+			
 			
 			 
 			 

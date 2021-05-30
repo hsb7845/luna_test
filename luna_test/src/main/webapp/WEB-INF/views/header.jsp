@@ -13,7 +13,7 @@
 <!-- <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 
 
-<title>헤더</title>
+<title>Luna</title>
 <style>
 
 	div.menu2{

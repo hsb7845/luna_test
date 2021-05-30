@@ -212,6 +212,12 @@ public class PBoardService implements IPBoardService{
 		return PBoardDAO.searchId(id,pseq);
 	}
 
+	@Override
+	public List<StockDTO> getListType(String ptype) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getListType(ptype);
+	}
+
 	
 	
 }

@@ -75,7 +75,7 @@ public class CouponDAO implements ICouponDAO {
 	}
 
 	@Override
-	public boolean insertEveryCoup(String chk) {
+	public boolean insertEveryCoup(String [] chk) {
 		return sqlSession.insert("com.luna.member.insertEveryCoup",chk)>0?true:false;
 	}
 

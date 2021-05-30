@@ -70,7 +70,9 @@
             }
 
             function addCoupon() {
-                var count = $("form").find("input[name=chk]:checked").length;
+            	var bool = true;
+            	
+            	var count = $("form").find("input[name=chk]:checked").length;
                // alert(count)
                 if (count == 0) {
                     alert('최소 하나 이상 체크하세요!!!');

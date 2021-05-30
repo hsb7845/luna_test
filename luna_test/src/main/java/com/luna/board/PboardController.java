@@ -37,6 +37,7 @@ import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.QBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IPBoardService;
@@ -216,14 +217,27 @@ public class PboardController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/showAnsR.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String showAnsR(Locale locale, Model model,int rseq) {
+	public Map<String,Object> showAnsR(Locale locale, Model model,int rseq) {
 		RBoardDTO dto = pBoardService.showAnsR(rseq);
 		Map<String,Object> map = new HashMap<>();
 		map.put("dto",dto);
 		model.addAttribute("map",map);
-		return "main";
+		return map;
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/showAnsQ.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public Map<String,Object> showAnsQ(Locale locale, Model model,int qseq) {
+		QBoardDTO dto = pBoardService.showAnsQ(qseq);
+		Map<String,Object> map = new HashMap<>();
+		map.put("dto",dto);
+		model.addAttribute("map",map);
+		return map;
+
+	}
+	
+	
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateboard(Locale locale, Model model,int pseq) {

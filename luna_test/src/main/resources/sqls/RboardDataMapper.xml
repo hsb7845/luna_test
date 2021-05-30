@@ -4,6 +4,20 @@
 
 
 <mapper namespace="com.luna.rboard">
+	<resultMap type="RBDTO" id="RBDTO_resultMap">
+		<result column="RSEQ" property="rseq"/>
+		<result column="RTITLE" property="rtitle"/>
+		<result column="RCONTENT" property="rcontent"/>
+		<result column="STARRANK" property="starrank"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
+
 
 	<select id="getAllList" resultType="RBDTO" parameterType="RBDTO">
 		select LEVEL, rseq, par_rseq, LPAD(' ', 4*(LEVEL-1)) || rtitle rtitle, rcontent, pseq, id, starrank 
@@ -48,6 +62,13 @@
 			#{i}
 		</foreach>
 	</delete>
+	
+	<select id="getList" parameterType="RBDTO" resultMap="RBDTO_resultMap">
+		select  r.rseq, r.par_rseq, r.rtitle , r.rcontent, r.pseq,r.id,r.starrank,i.IMGNAME,p.PTITLE 
+		from  R_board r,P_BOARD p ,IMG_FILE i
+		WHERE  r.id = #{id} AND r.PSEQ  =p.PSEQ  AND i.RSEQ(+) =r.RSEQ 
+		order by r.rseq desc
+	</select>
 </mapper>
 
 

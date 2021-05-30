@@ -7,6 +7,7 @@
 		<result column="PSEQ" property="pseq"/>
 		<result column="PDATE" property="pdate"/>
 		<result column="PTITLE" property="ptitle"/>
+		
 		<result column="PCONTENT" property="pcontent"/>
 		<result column="HIT" property="hit"/>
 		<collection property="image"  ofType="IFDTO">
@@ -16,7 +17,21 @@
 			<result column="price" property="price"></result>
 		</collection>
 	</resultMap>
-	
+	<resultMap type="RBDTO" id="RBDTO_resultMap">
+		<result column="RSEQ" property="rseq"/>
+		<result column="PAR_RSEQ" property="par_rseq"/>
+		<result column="RTITLE" property="rtitle"/>
+		<result column="RCONTENT" property="rcontent"/>
+		<result column="id" property="id"/>
+		<result column="STARRANK" property="starrank"/>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
 	<resultMap type="EBDTO" id="EBoard_resultMap">
 		<result column="ESEQ" property="eseq"></result>
 		<collection property="image"  ofType="IFDTO">
@@ -150,8 +165,10 @@
 		select imgname from img_file where pseq=#{pseq}
 	</select>
 	
-	<select id="getRboard" parameterType="int" resultType="RBDTO">
-		select * from r_board where pseq=#{pseq}  order by rseq desc
+	<select id="getRboard" parameterType="int" resultMap="RBDTO_resultMap">
+		SELECT *
+		FROM R_BOARD rb ,IMG_FILE if2 
+		WHERE rb.RSEQ =if2.RSEQ(+) AND rb.pseq = #{pseq} order by rb.rseq desc
 	</select>
 	
 	<select id="getQboard" parameterType="int" resultType="QBDTO">
@@ -258,6 +275,9 @@
 		SELECT * FROM R_BOARD rb  WHERE PAR_RSEQ =#{rseq}
 	</select>
 	
+	<select id="showAnsQ" parameterType="int" resultType="QBDTO">
+		SELECT * FROM Q_BOARD rb  WHERE PAR_QSEQ =#{qseq}
+	</select>
 </mapper>
 
 

@@ -12,6 +12,7 @@ import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.QBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 
@@ -35,4 +36,5 @@ public interface IPBoardService {
 	void updateBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList, int mainNum, int pseq);
 	Map<String, Object> mainPage();
 	RBoardDTO showAnsR(int rseq);
+	QBoardDTO showAnsQ(int qseq);
 }

@@ -4,7 +4,15 @@
  
 
 <mapper namespace="com.luna.qboard">
-
+	<resultMap type="QBDTO" id="QBDTO_resultMap">
+		<result column="QSEQ" property="qseq"/>
+		<result column="QTITLE" property="qtitle"/>
+		<result column="QCONTENT" property="qcontent"/>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
 	<select id="getAllList" resultType="QBDTO" parameterType="QBDTO">
 		select LEVEL, qseq, par_qseq, LPAD(' ', 4*(LEVEL-1)) || qtitle qtitle, qcontent, pseq, id from Q_board
 		<if test="id!=null">
@@ -45,6 +53,14 @@
 			#{i}
 		</foreach>
 	</delete>
+	
+	
+	<select id="getList" parameterType="QBDTO" resultMap="QBDTO_resultMap">
+		select  q.qseq, q.par_qseq, q.qtitle ,q.qcontent, q.pseq,q.id,p.PTITLE 
+		from  q_board q,P_BOARD p 
+		WHERE  q.id = #{id} AND q.PSEQ  =p.PSEQ  
+		order by q.qseq desc
+	</select>
 </mapper>
 
 

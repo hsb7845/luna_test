@@ -29,6 +29,10 @@ public class RBoardDAO implements IRBoardDAO {
 	
 	@Override
 	public List<RBoardDTO> getAllList(RBoardDTO dto) {
+		//System.out.println(dto.getId());
+		if(dto.getId()!=null) {
+			return sqlSession.selectList(namespace+"getList", dto);
+		}
 		return sqlSession.selectList(namespace+"getAllList", dto);
 	}
 	

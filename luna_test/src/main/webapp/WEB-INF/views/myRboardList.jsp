@@ -30,6 +30,11 @@
 		font-size: 40px;
 		text-align: center;
 	}
+	
+	.rseq:hover{
+		text-decoration : underline;
+		cursor:pointer;
+}
 </style>
 
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
@@ -40,13 +45,16 @@
 			mehthod : "post",
 			dataType : "json",
 			data : {"rseq":rseq},
-			async : false,
 			success : function(data) {
-				alert("일단 성공!");
 				var dto = data["dto"];
-				var AnsHtml = "<tr><th>&nbsp;└[답글]"+dto[id]+"</th>";
-				AnsHtml += "<td>"+dto[rcontent]+"</td></tr>";
+				if(dto==null){
+					alert("아직 답변이 없는 글입니다.");
+					return;
+				}
+				var AnsHtml = "<td></td><td>"+dto["id"]+"</td><th >&nbsp;└[답글]"+dto["rtitle"]+"</th>";
+				AnsHtml += "<td colspna='2'>"+dto["rcontent"]+"</td>";
 				$("#answer"+rseq).html(AnsHtml);
+				$("#answer"+rseq).show();
 			}
 		});
 	}
@@ -97,9 +105,6 @@
 
 </script>
 </head>
-<%
-	List<RBoardDTO> list= (List<RBoardDTO>) request.getAttribute("list");
-%>
 <body>
 <%@ include file="header.jsp" %>
 <p class="cls1">리뷰 목록</p> 
@@ -119,37 +124,38 @@
 				<th>리뷰 게시글 번호</th>
 				<th>제목</th>
 				<th>내용</th>
-				<th>상품 게시글 번호</th>
-				<th>아이디</th>
+				<th>상품 제목</th>
 				<th>별점</th>
 			</tr>
-			<%
-				if(list==null||list.size()==0){
-					out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
-					} else {
-				for(int i=0;i<list.size();i++){
-					RBoardDTO dto=list.get(i);
-			%>
+			<c:if test="${list==null }">
+				<tr><td colspan='8'>----작성한 리뷰가 없습니다.---</td></tr>
+			</c:if>
+			<c:if test="${list!=null }">
+				<c:forEach items="${list }" var="i">
 					<tr class="rboardM">
-						<td><input type="checkbox" name="chk" value="<%=dto.getRseq()%>"/></td>
-						<td><%=dto.getRseq()%></td>
-						<td><a onclick="showAnswer(<%=dto.getRseq()%>)"><%=dto.getRtitle()%></a> </td>
-						<td><%=dto.getRcontent()%></td>
-						<td><%=dto.getPseq()%></td>
-						<td><%=dto.getId()%></td>
-						<td><%=dto.getStarrank()%></td>
+						<td><input type="checkbox" name="chk" value="${i.rseq}"/></td>
+						<td>${i.rseq}</td>
+						<td class="rseq"><a onclick="showAnswer(${i.rseq})">${i.rtitle}</a> </td>
+						<td>${i.rcontent }</td>
+						<td>${i.pboard.ptitle }</td>
+						<td><c:forEach begin="1" end="5" step="1" var="j" >
+						<c:if test="${i.starrank<j }">
+						<span>☆</span>
+						</c:if>
+						<c:if test="${i.starrank>=j }">
+						<span>★</span>
+						</c:if>
+						</c:forEach></td>
 					</tr>
-					<div id="answer<%=dto.getRseq()%>"></div>
-					
-		<%
-				}
-			}
-		%>
+					<tr  id="answer${i.rseq}" style="display:none;">
+						<td></td>
+					</tr>
+					</c:forEach>
+				</c:if>
 		</table>
 		<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 		<tr>
 			<td colspan="8" class="rboardD">
-				<input type="button" value="리뷰 등록" id="insertrboardform" />
 				<input type="button" value="메인" id="main">
 				<input type="submit" value="삭제" />
 				

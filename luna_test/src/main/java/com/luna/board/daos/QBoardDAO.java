@@ -26,6 +26,10 @@ public class QBoardDAO implements IQBoardDAO{
 
 	@Override
 	public List<QBoardDTO> getAllList(QBoardDTO dto) {
+		if(dto.getId()!=null) {
+			return sqlSession.selectList(namespace+"getList",dto);
+		}
+		
 		return sqlSession.selectList(namespace+"getAllList",dto);
 	}
 	

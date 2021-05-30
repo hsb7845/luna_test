@@ -191,7 +191,12 @@ $(function(){
 		<th>합계</th>
 	</tr>
 		<c:set var="totalPrice" value="0"/>
-		
+		<c:if test="${list=='[]' }">
+			<tr>
+			 <td colspan="6"><h2>장바구니가 비어있습니다</h2>
+			</td>
+			</tr>
+		</c:if>
 		<c:forEach items="${list }" var="list">
 			<tr align="center" class="cartM">
 			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>
@@ -210,7 +215,6 @@ $(function(){
 			<input type="button" value="전체 항목 구매" name="allBuy">
 			<input type="button" value="선택 항목 구매" name="sel">
 			<input type="hidden" value="" name="chks">
-			<a href="index.do">메인</a>
 			<input type="submit" value="삭제" />
 		</td>
 	</tr>

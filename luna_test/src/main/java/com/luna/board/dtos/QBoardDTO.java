@@ -9,8 +9,14 @@ public class QBoardDTO {
 	private String id;
 	private int par_qseq;
 	private int level;
+	private PBoardDTO pboard;
 	
-	
+	public PBoardDTO getPboard() {
+		return pboard;
+	}
+	public void setPboard(PBoardDTO pboard) {
+		this.pboard = pboard;
+	}
 	public int getQseq() {
 		return qseq;
 	}

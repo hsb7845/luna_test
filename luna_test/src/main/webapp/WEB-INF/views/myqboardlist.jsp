@@ -29,11 +29,34 @@
 		font-size: 40px;
 		text-align: center;
 	}
+	.qseq:hover{
+		text-decoration : underline;
+		cursor:pointer;
+	}
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
-
+function showAnswer(qseq){
+	$.ajax({
+		url : "showAnsQ.do",
+		mehthod : "post",
+		dataType : "json",
+		data : {"qseq":qseq},
+		success : function(data) {
+			var dto = data["dto"];
+			if(dto==null){
+				alert("아직 답변이 없는 글입니다.");
+				return;
+			}
+			var AnsHtml = "<td></td><td>"+dto["id"]+"</td><th >&nbsp;└[답글]"+dto["qtitle"]+"</th>";
+			AnsHtml += "<td colspna='2'>"+dto["qcontent"]+"</td>";
+			$("#answer"+qseq).html(AnsHtml);
+			$("#answer"+qseq).show();
+		}
+	});
+}
+	
 	function allSel(val){
 		var chks=document.getElementsByName("chk");
 		for(var i=0;i<chks.length;i++){
@@ -78,69 +101,54 @@
 
 </script>
 </head>
-<%
-	List<QBoardDTO> list= (List<QBoardDTO>) request.getAttribute("list");
-%>
 <body>
 <%@ include file="header.jsp" %>
 <p class="cls1">문의 게시판 글 목록</p> 
 <form action="muldelQboard.do" method="post">
-<table border="1">
-	<col width="50px">
-	<col width="50px">
-	<col width="200px">
-	<col width="300px">
-	<col width="200px">
-	<col width="100px">
-	<col width="50px">
-	<tr>
-		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
-		<th>번호</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>상품 게시글 번호</th>
-		<th>아이디</th>
-		<th>부모글 번호</th>
-	</tr>
-	<%
-		if(list==null||list.size()==0){
-			out.print("<tr><td colspan='7'>----작성된 문의 사항이 없습니다.---</td></tr>");
-			} else {
-		for(int i=0;i<list.size();i++){
-			QBoardDTO dto=list.get(i);
-	%>
-			<tr>
-				<td><input type="checkbox" name="chk" value="<%=dto.getQseq()%>"/></td>
-				<td><%=dto.getQseq()%></td>
-				<td>
-				<%
-				if(dto.getLevel()>1){				
-				%>
-				<span style="padding-left:20px"></span>
-				<%
-					}	
-				%>
-				<a href="qreply.do?qseq=<%=dto.getQseq() %>"><%=dto.getQtitle()%></a> </td>
-				<td><%=dto.getQcontent()%></td>
-				<td><%=dto.getPseq()%></td>
-				<td><%=dto.getId()%></td>
-				<td><%=dto.getPar_qseq()%></td>
+<table align="left" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+			<col width="50px">
+			<col width="150px">
+			<col width="200px">
+			<col width="300px">
+			<col width="200px">
+			<col width="100px">
+			<col width="100px">
+			<col width="200px">
+			<tr class="rboardT">
+				<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+				<th>리뷰 게시글 번호</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>상품 제목</th>
 			</tr>
-<%
-		}
-	}
-%>
-
-<tr>
-	<td colspan="6">
-<!-- 		<input type="button" value="문의 등록" id="insertqboardform"> -->
-		<input type="button" value="메인" id="main">
-		<input type="submit" value="삭제" />
-		
-<!-- 		<a href="insertqboardform.do">문의 사항 작성</a> -->
-<!-- 		<a href=".do">메인</a> -->
-	</td>
-</tr>
+			<c:if test="${list==null }">
+				<tr><td colspan='8'>----작성한 문의사항이 없습니다.---</td></tr>
+			</c:if>
+			<c:if test="${list!=null }">
+				<c:forEach items="${list }" var="i">
+					<tr class="qboardM">
+						<td><input type="checkbox" name="chk" value="${i.qseq}"/></td>
+						<td >${i.qseq}</td>
+						<td class="qseq"><a onclick="showAnswer(${i.qseq})">${i.qtitle}</a> </td>
+						<td>${i.qcontent }</td>
+						<td>${i.pboard.ptitle }</td>
+					</tr>
+					<tr  id="answer${i.qseq}" style="display:none;">
+						<td></td>
+					</tr>
+					</c:forEach>
+				</c:if>
+				<td colspan="6">
+			<!-- 		<input type="button" value="문의 등록" id="insertqboardform"> -->
+					<input type="button" value="메인" id="main">
+					<input type="submit" value="삭제" />
+					
+			<!-- 		<a href="insertqboardform.do">문의 사항 작성</a> -->
+			<!-- 		<a href=".do">메인</a> -->
+				</td>
+			</tr>
+		</table>
+	
 <%@ include file="footer.jsp" %>
 </table>
 </form>

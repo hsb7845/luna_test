@@ -111,6 +111,10 @@
 			}
 		});
 		$("#cart").click(function() {
+			if(selectedOptNum==0){
+				alert("옵션을 선택해주세요!");
+				return false;
+			}
 			var id = $("input[name='id']").val();
 			var pseq = $("input[name='pseq']").val();
 			selOpt = {};
@@ -361,6 +365,21 @@
 	
 </script>
 <style>
+.detailR{
+	border-bottom:3px solid;
+}
+
+.detailQ{
+	border-bottom:3px solid;
+}
+.review{
+border-bottom:3px solid;
+border-top : 3px solid;
+}
+.review >tr{
+border-bottom:2px solid;
+}
+
 .option {
 	padding :0;
 	margin : 0;
@@ -565,7 +584,7 @@ padding : 5px;
 		<br><br>
 	<div>
 		<!-- 리뷰 -->
-		<table border="1">
+		<table border="1" class="review">
 			<tr>
 				<th colspan="3">상품후기</th>
 			</tr>
@@ -586,7 +605,7 @@ padding : 5px;
 			</c:if>
 			<c:if test="${map.rboard!=null }">
 				<c:forEach items="${map.rboard }" var="i">
-					<c:if test="${i.par_rseq ==0}">
+					<c:if test="${i.par_rseq==0}">
 					<tr>
 						<td ><p class="rseq" onclick="showDR(${i.rseq})">${i.rtitle }</p></td>
 						<td>${i.id }</td>
@@ -603,14 +622,18 @@ padding : 5px;
 						</c:forEach></td>
 					</tr>
 					<tr id="detailR${i.rseq }" style="display:none;" class="detailR">
-						<td colspan="3"><div>${i.rcontent }</div>
+						<td colspan="3">
+						<c:if test="${i.image.imgname!=null }">
+						<img src="upload/cart.png">
+						</c:if>
+						<div style ="margin-left : 30px;">${i.rcontent }</div>
 						<c:forEach var="j" items="${map.rboard }">
 						
 						<c:if test="${j.par_rseq==i.rseq }">
+						<hr style=" height: 3px; background-color:black">
+						<div style="margin-left :30px;"><p><b>[답변]${j.id }</b></p>
 						<hr>
-						<div><p><b>${j.id }</b></p>
-						<hr>
-							${j.rcontent }
+							<p style="margin-left :30px;">${j.rcontent }</p>
 						</div>
 						</c:if>
 						</c:forEach></td>
@@ -626,7 +649,7 @@ padding : 5px;
 	</div>
 	<div>
 		<!-- 문의 -->
-		<table border="1">
+		<table border="1"  class="review">
 			<tr>
 				<th colspan="2">Q&A</th>
 			</tr>
@@ -648,14 +671,14 @@ padding : 5px;
 						
 					</tr>
 						<tr id="detailQ${i.qseq }" style="display:none;" class="detailQ">
-						<td colspan="3"><div>${i.qcontent }</div>
+						<td colspan="3" ><div style ="margin-left : 30px;">${i.qcontent }</div>
 						<c:forEach var="j" items="${map.qboard }">
 						
 						<c:if test="${j.par_qseq==i.qseq }">
+						<hr style=" height: 3px; background-color:black">
+						<div style ="margin-left : 30px;"><p><b>[답변]${j.id }</b></p>
 						<hr>
-						<div><p><b>${j.id }</b></p>
-						<hr>
-							${j.qcontent }
+							<p style ="margin-left : 30px;">${j.qcontent }</p>
 						</div>
 						</c:if>
 						</c:forEach></td>

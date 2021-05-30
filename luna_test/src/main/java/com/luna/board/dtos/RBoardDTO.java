@@ -9,7 +9,29 @@ public class RBoardDTO {
 	private int starrank;
 	private int par_rseq;
 	private int level;
+	private PBoardDTO pboard;
+	private ImgFileDTO image;
 	
+	public PBoardDTO getPboard() {
+		return pboard;
+	}
+
+
+	public void setPboard(PBoardDTO pboard) {
+		this.pboard = pboard;
+	}
+
+
+	public ImgFileDTO getImage() {
+		return image;
+	}
+
+
+	public void setImage(ImgFileDTO image) {
+		this.image = image;
+	}
+
+
 	public RBoardDTO() {
 		super();
 		// TODO Auto-generated constructor stub

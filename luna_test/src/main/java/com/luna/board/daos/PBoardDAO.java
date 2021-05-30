@@ -322,5 +322,11 @@ public class PBoardDAO implements IPBoardDAO{
 		return sqlSession.selectOne(namespace+"showAnsR", rseq);
 	}
 
+	@Override
+	public QBoardDTO showAnsQ(int qseq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"showAnsQ", qseq);
+	}
+
 
 }

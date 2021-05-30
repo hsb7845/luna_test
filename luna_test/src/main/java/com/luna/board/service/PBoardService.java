@@ -26,6 +26,7 @@ import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.QBoardDTO;
 import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 
@@ -241,6 +242,12 @@ public class PBoardService implements IPBoardService{
 	public RBoardDTO showAnsR(int rseq) {
 		// TODO Auto-generated method stub
 		return PBoardDAO.showAnsR(rseq);
+	}
+
+	@Override
+	public QBoardDTO showAnsQ(int qseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.showAnsQ(qseq);
 	}
 
 	

@@ -56,22 +56,22 @@
 
 
 
-<form method="post" action="insertEveryCoup.do">
+<form method="post" action="insertCoupon.do">
 <p class="cls1">쿠폰 추가</p>
 <table>		
 	<tr>
 		<th>아이디</th>
 		<td>
 			<c:forEach var="list" items="${chk }">
-               <li>${list}<input type='hidden' name='chk' value='${list}' /></li>
+               <li>${list}<input type='hidden' name='id' value='${list}' /></li>
        		</c:forEach>
 		</td>
 	</tr>
 	<tr>
 		<th>쿠폰내용</th>
 		<td>
-			<input type='checkbox' name='ccontent' value='new' />신규 가입 축하 쿠폰&nbsp;&nbsp;
-			<input type='checkbox' name='ccontent' value='birth' />생일 축하 쿠폰
+			<input type='checkbox' name='ccontent' value='신규 가입 축하 쿠폰' />신규 가입 축하 쿠폰&nbsp;&nbsp;
+			<input type='checkbox' name='ccontent' value='생일 축하 쿠폰' />생일 축하 쿠폰
 		</td>
 		
 <!-- 		<input type="text" name="ccontent"></td> -->

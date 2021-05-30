@@ -480,13 +480,31 @@
 						</div>
 						<br>
 						<div><!-- 이미지 추가 -->						
-						<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
+						<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" required="required" ></span>
 						<div id="image_container"></div>
 						</div>
 						<br>
-						<span>항목추가</span>
+						<span>항목변경</span>
 						<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button>
-						<div id="stock"><!-- 가져온 stock 받아주는 div -->							
+						<div >
+						<table border='1'>
+						<thead><!-- 가져온 stock 받아주는 div -->
+						<tr>
+							<th>메인</th>
+							<th>상품번호</th>
+							<th>상품명</th>
+							<th>상품재고수량</th>
+							<th>원가</th>
+							<th>카테고리번호</th>
+							<th>상품내용</th>
+							<th>판매가</th>
+							<th>제거</th>
+						</tr>
+						</thead>
+						<tbody id="stock">
+							
+						</tbody>
+						</table>							
 						</div>
 						<br>
 						<button type="button" id="addOpt">옵션추가</button>
@@ -497,7 +515,6 @@
 						</div>
 						<div>
 							<input type="button" value="작성" class="btnn">
-							<input type="button" value="연습" class="praBtn">
 						</div>
 					</div>
 					</form>

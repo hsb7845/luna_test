@@ -218,6 +218,24 @@ public class PBoardService implements IPBoardService{
 		return PBoardDAO.getListType(ptype);
 	}
 
+	@Override
+	public Map<String, Object> getDetailUpdateForm(int pseq) {
+		// TODO Auto-generated method stub
+		return PBoardDAO.getDetailUpdateForm(pseq);
+	}
+
+	@Override
+	public void updateBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList, int mainNum, int pseq) {
+		// TODO Auto-generated method stub
+		PBoardDAO.updateBoard(dto, pnum, optionList,  mainNum,pseq);
+	}
+
+	@Override
+	public Map<String, Object> mainPage() {
+		// TODO Auto-generated method stub
+		return PBoardDAO.mainPage();
+	}
+
 	
 	
 }

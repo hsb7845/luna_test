@@ -60,7 +60,7 @@
 			</tr>
 		</c:forEach>
 </table>
-		<div><input type="button" value="확인" id="check"></div>
+		<div><input type="button" value="상품변경" id="check"><input type="button" value="상품추가" id="add"></div>
 </form>
 
 </body>
@@ -81,7 +81,9 @@
 					var listhtml = '<tr><th><input type="checkbox" name="all"  onclick="allSel(this)"/></th><th>상품번호</th>';
 					listhtml += '<th>상품명</th><th>상품재고수량</th><th>원가</th><th>카테고리번호</th><th>상품내용</th><th>판매가</th><th>상품게시글번호</th></tr>'
 					for(var i=0; i<list.length; i++) {					
-						listhtml += '<tr><input type="checkbox"  name="chk" value="'+list[i]["pnum"]+'" /></td>';
+						listhtml += '<tr><td><input type="checkbox"  name="chk" value="'+list[i]["pnum"]+'" /></td>';
+						listhtml += '<td>'+list[i]["pnum"]+'</td>';
+						listhtml += '<td>'+list[i]["pname"]+'</td>';
 						listhtml += '<td>'+list[i]["scount"]+'</td>';
 						listhtml += '<td>'+list[i]["cost"]+'</td>';
 						listhtml += '<td>'+list[i]["cnum"]+'</td>';
@@ -108,7 +110,7 @@
 				asnc:false,
 				success : function(data) {
 					var list = data["list"];
-					var stockTable = "<table border='1'><tr><th>메인</th><th>상품번호</th><th>상품명</th><th>상품재고수량</th><th>원가</th><th>카테고리번호</th><th>상품내용</th><th>판매가</th><th>제거</th></tr>";
+					var stockTable = "";
 					for(var i=0; i<list.length; i++) {					
 						stockTable += '<tr>';
 						stockTable += "<td><input type='checkbox' name='main' value='"+list[i]["pnum"]+"' onclick='checkOnlyOne(this)'></td><td><input type='hidden' name='pnum' value='"+list[i]["pnum"]+"'>"+list[i]["pnum"]+'</td>';
@@ -121,7 +123,40 @@
 						stockTable += '<td><input type="button" name="delSto" value="제거"></td> '
 						stockTable += '</tr>';
 					}		
-					stockTable += '</table>';
+					$(opener.document).find("#stock").html(stockTable);
+					window.close();
+				}
+			});	
+			
+		});
+		$("#add").click(function(){
+			var chk_arr = [];
+			$("input[name='chk']:checked").each(function(){
+				var chk =$(this).val();
+				chk_arr.push(chk);
+			})
+			$.ajax({
+				url : "getselectedstock.do",
+				mehthod : "post",
+				dataType : "json",
+				traditional : true,
+				data : { "chk_arr" :chk_arr},
+				asnc:false,
+				success : function(data) {
+					var list = data["list"];
+					var stockTable = "";
+					for(var i=0; i<list.length; i++) {					
+						stockTable += '<tr>';
+						stockTable += "<td><input type='checkbox' name='main' value='"+list[i]["pnum"]+"' onclick='checkOnlyOne(this)'></td><td><input type='hidden' name='pnum' value='"+list[i]["pnum"]+"'>"+list[i]["pnum"]+'</td>';
+						stockTable += "<td>"+list[i]["pname"]+'</td>';
+						stockTable += '<td>'+list[i]["scount"]+'</td>';
+						stockTable += '<td>'+list[i]["cost"]+'</td>';
+						stockTable += "<td><input type='hidden' name='cnum' value='"+list[i]["cnum"]+"'>"+list[i]['cnum']+"</td>";
+						stockTable += '<td>'+list[i]["pcontent"]+'</td>';
+						stockTable += '<td>'+list[i]["price"]+'</td>';
+						stockTable += '<td><input type="button" name="delSto" value="제거"></td> '
+						stockTable += '</tr>';
+					}		
 					$(opener.document).find("#stock").append(stockTable);
 					window.close();
 				}

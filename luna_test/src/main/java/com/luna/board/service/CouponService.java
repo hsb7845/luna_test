@@ -59,12 +59,7 @@ public class CouponService implements ICouponService {
 		return CouponDAO.ringCoupon();
 	}
 
-	
-	@Override
-	public boolean insertAllCoup(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		return CouponDAO.insertAllCoup(dto);
-	}
+
 	
 
 	@Override

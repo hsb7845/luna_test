@@ -32,21 +32,24 @@ public class CouponController {
 	
 	@RequestMapping(value = "/coupon.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String coupon(Locale locale, Model model, HttpServletRequest request) {
-		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String admin = (String)session.getAttribute("admin");
 		System.out.println("id"+"admin");
-		
-		if(admin.equals("관리자")) {
-			List<CouponDTO> list = CouponService.getAllList(new CouponDTO());
-			model.addAttribute("list",list);
-			return "couponList";
-			} else {
-				List<CouponDTO> list = CouponService.getAllList(new CouponDTO(id));
+		if(admin != null) {
+			if(admin.equals("관리자")) {
+				List<CouponDTO> list = CouponService.getAllList(new CouponDTO());
 				model.addAttribute("list",list);
 				return "couponList";
-			}
+				} else {
+					List<CouponDTO> list = CouponService.getAllList(new CouponDTO(id));
+					model.addAttribute("list",list);
+					return "couponList";
+				}
+		}else {
+			return "couponList";
+		}
+		
 		}
 		
 		
@@ -76,10 +79,14 @@ public class CouponController {
 	public String insert(Locale locale, Model model,  String[] id, String ccontent, int discount, HttpServletRequest request) {
 		List<CouponDTO> list = new ArrayList<>();
 		CouponDTO dto = new CouponDTO();
+		System.out.println(id[0]);
+		System.out.println(id[1]);
+		System.out.println(id[2]);
+		
 		if(id.length>0) {
-			
 			for(int i=0; i<id.length; i++) {
-				dto.setId(id[i]);
+					dto = new CouponDTO();
+					dto.setId(id[i]);
 					dto.setCcontent(ccontent);
 					dto.setDiscount(discount);
 					list.add(dto);
@@ -88,11 +95,9 @@ public class CouponController {
 		
 		boolean isS = CouponService.insertCoupon(list);
 		if(isS) {
-			String msg = "쿠폰을 추가하였습니다.";
-			return msg;
+			return "redirect:coupon.do";
 		}else {
-			String msg = "error";
-			return msg;
+			return "error";
 		}
 	}
 	

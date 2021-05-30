@@ -17,6 +17,13 @@
 		</collection>
 	</resultMap>
 	
+	<resultMap type="EBDTO" id="EBoard_resultMap">
+		<result column="ESEQ" property="eseq"></result>
+		<collection property="image"  ofType="IFDTO">
+			<result column="imgname" property="imgname"></result>
+		</collection>
+	</resultMap>
+	
 	<resultMap type="Map" id="StarRank_resultMap">
 		<result column="STARRANK" property="starrank"></result>
 		<result column="count" property="count"></result>
@@ -159,8 +166,18 @@
 		SELECT STARRANK,count(starrank)as count FROM r_board WHERE pseq=#{pseq} GROUP BY STARRANK  order by starrank asc
 	</select>
 	
+	<update id="clearStock" parameterType="int">
+		update Stock set pseq = 0
+		where pseq = #{pseq}
+	</update>
+	
 	<update id="updateStock" parameterType="Map">
-		UPDATE STOCK SET pseq=p_board_seq.currval , main = #{main}
+		UPDATE STOCK SET pseq
+		<choose>
+		<when test="pseq!=0"> =#{pseq}</when>
+		<when test="pseq==0">=p_board_seq.currval</when>
+		</choose>
+		, main = #{main}
 				WHERE pnum = #{pnum}
 	</update>
 	<select id="count" parameterType="int" resultType="int">
@@ -174,10 +191,18 @@
 	<select id="getOption" parameterType="int" resultType="PODTO">
 		 select * from p_option where pseq=#{pseq}
 	</select>
+	<delete id="deleteOption" parameterType="int">
+		DELETE FROM P_OPTION WHERE pseq = #{pseq}
+	</delete>
 	
 	<insert id="insertoption" parameterType="PODTO">
-		INSERT INTO P_OPTION VALUES(P_OPTION_SEQ.NEXTVAL,P_BOARD_SEQ.CURRVAL,#{otitle},#{ocontent},#{ovalue},#{necessary})
+		INSERT INTO P_OPTION VALUES(P_OPTION_SEQ.NEXTVAL,
+		<if test="pseq==0">P_BOARD_SEQ.CURRVAL,</if>
+		<if test="pseq!=0">#{pseq},</if>
+		#{otitle},#{ocontent},#{ovalue},#{necessary})
 	</insert>
+	
+	
 	
 	<insert id="insertimgFile" parameterType="IFDTO">
 		INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
@@ -208,7 +233,25 @@
 	
 	<select id="getListType" parameterType="String" resultType="StockDTO">
 		select s.PNUM, s.PNAME, s.SCOUNT, s.COST, s.CNUM, s.PCONTENT, s.PRICE, s.PSEQ, s.MAIN from stock s ,p_category c 
-		where s.cnum = c.cnum and c.ptype = #{ptype}
+		where s.cnum = c.cnum  <if test='ptype!="all"'>and c.ptype = #{ptype}</if> 
+	</select>
+	
+	<select id="getStock" parameterType="int" resultType="StockDTO">
+		select s.PNUM, s.PNAME, s.SCOUNT, s.COST, s.CNUM, s.PCONTENT, s.PRICE, s.PSEQ, s.MAIN from stock s 
+		where s.pseq = #{pseq}
+	</select>
+	
+	<select id="getEboard" parameterType="com.luna.board.dtos.PagingDTO" resultMap="EBoard_resultMap">
+			  SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.*
+				FROM (
+					SELECT eb.ESEQ,if2.IMGNAME FROM E_BOARD eb,IMG_FILE if2 
+					WHERE eb.ESEQ = if2.ESEQ
+					ORDER BY eb.eseq DESC 
+		 	) A
+				)
+		WHERE RN BETWEEN #{start} and #{end}
 	</select>
 </mapper>
 

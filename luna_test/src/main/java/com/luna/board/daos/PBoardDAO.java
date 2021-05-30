@@ -1,5 +1,6 @@
 package com.luna.board.daos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.dtos.ImgFileDTO;
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
@@ -25,6 +27,38 @@ public class PBoardDAO implements IPBoardDAO{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public void updateBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList, int mainNum, int pseq) {
+		// TODO Auto-generated method stub
+		sqlSession.update(namespace+"updateBoard",dto);
+		//System.out.println("원래 내용 업데이트!");
+		Map<String,Object> map = new HashMap<>();
+		String main ="";
+		sqlSession.update(namespace+"clearStock", pseq);
+		for(int i=0;i<pnum.length;i++) {
+			if(pnum[i]==mainNum) {
+				main = "true";
+				
+			}else {
+				main = "false";
+			}
+			
+			map.put("pnum", pnum[i]);
+			map.put("main", main);
+			map.put("pseq",pseq);
+			sqlSession.update(namespace+"updateStock", map);
+			//System.out.println("재고 업데이트!");
+		}
+		sqlSession.delete(namespace+"deleteOption",pseq);
+		System.out.println("기존옵션 삭제!");
+		for(int i=0;i<optionList.size();i++) {
+			//System.out.println(optionList.get(i).getOvalue());
+			sqlSession.update(namespace+"insertoption", optionList.get(i));
+			//System.out.println("새 옵션 추가!!");
+		}
+	}
+	
 	@Override
 	public boolean insertBoard(PBoardDTO dto, int[] pnum_arr, List<POptionDTO> optionList,int mainNum) {
 		Map<String,Object> map = new HashMap<>();
@@ -40,14 +74,11 @@ public class PBoardDAO implements IPBoardDAO{
 			}
 			map.put("pnum", pnum_arr[i]);
 			map.put("main", main);
+			map.put("pseq", 0);
 			isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
 		}
- 		
- 		
-	
-		
 		for(int i=0;i<optionList.size();i++) {
-			System.out.println(optionList.get(i).getOvalue());
+			//System.out.println(optionList.get(i).getOvalue());
 			isS2= sqlSession.insert(namespace+"insertoption", optionList.get(i))>0? true:false;
 		}
 		boolean isS3 = false;
@@ -240,4 +271,50 @@ public class PBoardDAO implements IPBoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+"getListType", ptype);
 	}
+
+	@Override
+	public Map<String, Object> getDetailUpdateForm(int pseq) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = new HashMap<>();
+		PBoardDTO pboard= sqlSession.selectOne(namespace+"getPBoard", pseq);
+		List<StockDTO> stockList = sqlSession.selectList(namespace+"getStock", pseq);
+		List<POptionDTO> option= sqlSession.selectList(namespace+"getOption", pseq);
+		for(int i=0;i<option.size();i++) {
+			option.get(i).setOconArr(option.get(i).getOcontent().split("/"));
+			option.get(i).setOvalArr(option.get(i).getOvalue().split("/"));
+		}
+		map.put("option",option);
+		map.put("pboard", pboard);
+		map.put("stockList",stockList);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> mainPage() {
+		// TODO Auto-generated method stub
+		Map<String,Object> map =new HashMap<>();
+		PagingDTO pagingDTO = new PagingDTO();
+		
+		pagingDTO.setStart(1);
+		pagingDTO.setEnd(5);
+		pagingDTO.setArrayNum(4);
+		List<PBoardDTO> list = sqlSession.selectList(namespace+"getPagingList",pagingDTO);
+		map.put("best",list);
+		for(int i=1;i<=5;i++) {
+			list = new ArrayList<>();
+			String paging ="paging"+i;
+			pagingDTO.setSorting(i);
+			list = sqlSession.selectList(namespace+"getPagingList", pagingDTO);
+			map.put(paging,list);
+		}
+		pagingDTO = new PagingDTO();
+		pagingDTO.setStart(1);
+		pagingDTO.setEnd(3);
+		List<EBoardDTO> eventList = sqlSession.selectList(namespace+"getEboard",pagingDTO);
+		map.put("event", eventList);
+		
+		return map;
+	}
+
+
 }

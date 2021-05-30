@@ -65,7 +65,7 @@ function setThumbnail(event) {
 	}
 
 $(document).ready(function(){
-	var optNum = 0;
+	var optNum = $("input[name='optNum']").val();
 	var jsondata = {};
 	$("#addStock").click(function(){
 		window.open("selectstock.do","팝업","width = 1200, height = 1200, top = 100, left = 200, location = no");
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	
 	$("#addOpt").click(function(){		
 		optNum++;
-		var table = "<table border='1'  ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th>옵션제거</th></tr></thead>";
+		var table = "<table border='1' class='option' ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th>옵션제거</th></tr></thead>";
 		table += "<tbody id='opt"+optNum+"'><tr><th>항목<input type='button' onclick='addcon("+optNum+")' value='+'></th>";
 		table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품추가비용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
 		table += "<td><input type='button' onclick='delcon("+optNum+")' value='항목제거'></td></tr></tbody></table>"
@@ -127,12 +127,13 @@ $(document).ready(function(){
 				var ocontent = "";
 				var ovalue = "";
 				var otitle = $("#otitle"+i).val();
+				var oseq = $("#oseq"+i).val();
 				if($("input[name ='necessary"+i+"']").prop("checked")){
 					necessary = "true";
-					alert(necessary);
+					//alert(necessary);
 				}else{
 					necessary = "false";
-					alert(necessary);
+					//alert(necessary);
 				}
 				 $("input[name=ocontent"+i+"]").each(function(index, item){
 					 if(index==0){
@@ -148,18 +149,19 @@ $(document).ready(function(){
 						  ovalue += "/"+$(this).val();
 					  }
 				   });
-				jsondata["opt"+i] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
+				jsondata["opt"+i] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary,"oseq":oseq};
 			} 	
 		}else if(optNum==1){
 			var otitle =  $("#otitle"+1).val();
-			 var ocontent ="";
+			var ocontent ="";
 			var necessary = "";
+			var oseq = $("#oseq"+1).val();
 			if($("input[name=necessary"+1).is(":checked")){
 				necessary = "true";
-				alert(necessary );
+				//alert(necessary );
 			}else{
 				necessary = "false";
-				alert(necessary );
+				//alert(necessary );
 			}
 			 $("input[name=ocontent"+1+"]").each(function(index, item){
 				  if(index==0){
@@ -175,22 +177,26 @@ $(document).ready(function(){
 					  ovalue += "/"+$(this).val();
 				  }
 			   });
-			 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
+			 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary,"oseq":oseq};
 		}
 		var realObject = JSON.stringify(jsondata);
  		$.ajax({
- 			url : "insertpboard.do",
+ 			url : "updatepboard.do",
  			mehthod : "post",
  			dataType : "json", 
  			traditional : true,
- 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr,"mainNum":mainNum},
+ 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr,"mainNum":mainNum,"pseq":$("#pseq").val()},
  			asnc:false,
 			success : function(data) {
-				//alert("성공!");
+				alert("글수정에성공하였습니다!");
 			}
  		});	
  		var formData = new FormData();
  		var inputFile = $("#imgname");
+ 		if($("#imgname").val()==""){
+ 			
+ 			location.href = "pboard.do";
+ 		}
  		var files = inputFile[0].files;
  		formData.append('key1','value1');
  		formData.append('key2','value2');
@@ -212,6 +218,10 @@ $(document).ready(function(){
 })
 </script>
 <style type="text/css" > 
+
+			.option{
+				text-align :left;
+			}
 			#content {
 			    background-color: white;
 			}
@@ -287,8 +297,12 @@ $(document).ready(function(){
 <form method="post" action="insertpboard.do" id="insert" enctype="multipart/form-data">
 <div>
 	<div>
+		<div>글번호</div>
+	<input type="text" name="ptitle" id="pseq" value="${map.pboard.pseq}" readonly>
+	</div>
+	<div>
 		<div>제목</div>
-	<input type="text" name="ptitle" id="ptitle" value="${ptitle }">
+	<input type="text" name="ptitle" id="ptitle" value="${map.pboard.ptitle}">
 	</div>
 	<br>
 	<div><!-- 이미지 추가 -->						
@@ -298,20 +312,77 @@ $(document).ready(function(){
 	<br>
 	<span>항목추가</span>
 	<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button>
-	<div id="stock"><!-- 가져온 stock 받아주는 div -->							
+	<div ><!-- 가져온 stock 받아주는 div -->		
+	<table border="1">
+		<thead>
+		<tr>
+			<th>메인</th>
+			<th>상품번호</th>
+			<th>상품명</th>
+			<th>상품재고수량</th>
+			<th>원가</th>
+			<th>카테고리번호</th>
+			<th>상품내용</th>
+			<th>판매가</th>
+			<th>제거</th>
+		</tr>
+		</thead>
+		<tbody id="stock">
+		<c:forEach items="${map.stockList }" var="i"> 
+		<tr>
+		<td><input type='checkbox' name='main' value='${i.pnum}' onclick='checkOnlyOne(this)' <c:if test="${i.main=='true' }">checked</c:if>></td>
+		<td><input type='hidden' name='pnum' value="${i.pnum}">${i.pnum }</td>
+		<td>${i.pname}</td>
+		<td>${i.scount}</td>
+		<td>${i.cost}</td>
+		<td>${i.cnum}</td>
+		<td>${i.pcontent}</td>
+		<td>${i.price}</td>
+		<td><input type="button" name="delSto" value="제거"></td>
+		</tr>
+		</c:forEach>
+		</tbody>
+	</table>					
 	</div>
 	<br>
 	<button type="button" id="addOpt">옵션추가</button>
-	<div id="opt"><!-- 해당 옵션 가져오는 태그 --></div>
+	<div id="opt"><!-- 해당 옵션 가져오는 태그 -->
+	<c:forEach items="${map.option }" var="i" varStatus="status">
+		<table border="1" class="option">
+			<thead>
+				<tr>
+					<th>옵션명&nbsp;
+					<input type="text" id="otitle${status.count}" name="otitle" value="${i.otitle }"><input type="hidden" id="oseq${status.count }" name="oseq" value="${i.oseq }"/></th>
+					<th colspan="3">필수<input type="checkbox" value="필수" <c:if test="${i.necessary =='true' }">checked</c:if> onclick="necc(${status.count})" id="necessary${status.count}" name="necessary${status.count}"></th>
+					<th>옵션제거</th>
+				</tr>
+			</thead>
+			<tbody id="opt${status.count}">
+				<c:forEach items="${i.oconArr}" var="k" varStatus="kStatus">
+					<tr>
+						<th>항목<c:if test="${kStatus.count==1 }" > <input type="button" onclick="addcon(${status.count})" value="+"></c:if></th>
+						<td><input type="text" name="ocontent${status.count}" value="${k }"></td>
+						<th>상품추가비용</th>
+						<td><input type="text" name="ovalue${status.count}" value="${i.ovalArr[kStatus.index ]}"></td>
+						<td><input type="button" onclick="delcon(${status.count})" value="항목제거"></td>
+					</tr>
+				<c:set var="optNum" value="${status.count}"/>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:forEach>
+	<input type="hidden" value="${optNum}" name="optNum">
+	</div>
 	<div>
 		<div>내용</div>
-		<div><!-- 표시할 textarea 영역 --> <textarea id="pcontent"  name="pcontent" rows="10" cols="100" ></textarea></div>
+		<div><!-- 표시할 textarea 영역 --> <textarea id="pcontent"  name="pcontent" rows="10" cols="100" >${map.pboard.pcontent }</textarea></div>
 	</div>
 	<div>
 		<input type="button" value="작성" class="btnn">
-		<input type="button" value="연습" class="praBtn">
 	</div>
 </div>
 </form>
 </body>
+<script type="text/javascript" src="<c:url value='resources/smarteditor2-2.8.2.3/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
+
 </html>

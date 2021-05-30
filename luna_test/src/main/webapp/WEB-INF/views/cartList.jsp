@@ -204,7 +204,7 @@ $(function(){
 			<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
 		</c:forEach>
-		<tr><th>총 금액</th><td><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</td></tr>
+		<tr><th colspan="2">총 금액</th><td colspan="2"><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</td></tr>
 	<tr>
 		<td colspan="5" id="cartD" >
 			<input type="button" value="전체 항목 구매" name="allBuy">

@@ -458,16 +458,16 @@ public class MemberController {
 		return "couponInsertForm";
 	}
 	
-	@RequestMapping(value = "/insertEveryCoup.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model, String[] chk) {
-		boolean isS = CouponService.insertEveryCoup(chk);
-		if(isS) {
-			return "redirect:coupon.do";
-		} else {
-			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
-			return "error";
-		}
-	}
+//	@RequestMapping(value = "/insertEveryCoup.do", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String insert(Locale locale, Model model, String[] chk) {
+//		boolean isS = CouponService.insertEveryCoup(chk);
+//		if(isS) {
+//			return "redirect:coupon.do";
+//		} else {
+//			model.addAttribute("msg", "쿠폰 추가를 실패하였습니다.");
+//			return "error";
+//		}
+//	}
 	
 }
 	

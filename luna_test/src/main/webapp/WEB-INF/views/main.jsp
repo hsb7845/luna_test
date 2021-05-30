@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,8 @@
     * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
-img {vertical-align: middle;}
+img {vertical-align: middle;
+}
 
 /* Slideshow container */
 .slideshow-container {
@@ -88,37 +90,36 @@ img {vertical-align: middle;}
         align-items: flex-start;
         -webkit-align-items: flex-start;
     }
-    .box > div {
-        flex: 1;
-        -webkit-flex: 1;
-        margin: 10px;
-        font-size: 20px;
-    }
+    .list_start {
+    text-align: left;
+}
+
+.list_in {
+	text-align: center;
+}
+
+.list_detail {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    margin : 10px;
+}
     
 </style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
 <div class="slideshow-container">
-
+<c:forEach items="${map.event }" var="i" varStatus="status">
 <div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
+  <div class="numbertext">${status.count }/ 3</div>
+  <a href ="eboardDetail?eseq=${i.eseq }">
   <img src="http://placehold.it/300x100" style="width:100%">
+  </a>
+  <input type="hidden" name="imgname" value="${i.image.imgname}">
   <div class="text">Caption One</div>
 </div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="http://placehold.it/300x100" style="width:100%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="http://placehold.it/300x100" style="width:100%">
-  <div class="text">Caption Three</div>
-</div>
-
+</c:forEach>
 </div>
 <br>
 
@@ -128,62 +129,99 @@ img {vertical-align: middle;}
   <span class="dot"></span> 
 </div>
     
-	<h3>New</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+	<h2>New</h2>
+   
+    <div class="list_start">
+    	<c:forEach items="${map.paging1 }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Best Items</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+    <h2>Best Items</h2>
+     <div class="list_start">
+    	<c:forEach items="${map.best }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Earring</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+    <h2>Earring</h2>
+  <div class="list_start">
+    	<c:forEach items="${map.paging2 }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Necklace</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+    <h2>Necklace</h2>
+    <div class="list_start">
+    	<c:forEach items="${map.paging3 }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Ring</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+    <h2>Ring</h2>
+    <div class="list_start">
+    	<c:forEach items="${map.paging4 }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Bracelet</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
+    <h2>Bracelet</h2>
+     <div class="list_start">
+    	<c:forEach items="${map.paging5 }" var="i">
+    	<div class="list_detail">
+    	<a href='pboarddetail.do?pseq=${i.pseq }'>
+			<c:if test="${i.image.imgname !=null }">
+				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+			</c:if>
+				<div>${i.ptitle }</div><br>
+				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
+				</a>
+				</div>
+        </c:forEach>
     </div>
-    <h3>Etc</h3>
-    <div class="box">
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-        <div><img src="img/flex.png" onclick="location=''"></div>
-    </div>
+<!--     <h2>Etc</h2> -->
+<!--     <div class="box"> -->
+<!--         <div><img src="img/flex.png" onclick="location=''"></div> -->
+<!--         <div><img src="img/flex.png" onclick="location=''"></div> -->
+<!--         <div><img src="img/flex.png" onclick="location=''"></div> -->
+<!--         <div><img src="img/flex.png" onclick="location=''"></div> -->
+<!--         <div><img src="img/flex.png" onclick="location=''"></div> -->
+<!--     </div> -->
 
 
 <script>

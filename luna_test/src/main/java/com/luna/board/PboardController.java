@@ -207,6 +207,9 @@ public class PboardController {
 	}
 	@RequestMapping(value = "/main.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main(Locale locale, Model model) {
+		Map<String,Object> map = pBoardService.mainPage();
+
+		model.addAttribute("map",map);
 		return "main";
 
 	}
@@ -214,22 +217,49 @@ public class PboardController {
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateboard(Locale locale, Model model,int pseq) {
-		PBoardDTO dto = pBoardService.getBoard(pseq);
-		System.out.println("ptitle"+dto.getPtitle());
-		model.addAttribute("dto", dto);
+		Map<String,Object> map = pBoardService.getDetailUpdateForm(pseq);
+		//System.out.println(map.get("rboard"));
+		model.addAttribute("map", map);
 		return "pboardupdateform";
 	}
-
+	@ResponseBody
 	@RequestMapping(value = "/updatepboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String update(Locale locale, Model model, PBoardDTO dto) {
-		boolean isS = pBoardService.updateBoard(dto);
-		if(isS) {
-			return "redirect:pboard.do";
-		}else {
-			model.addAttribute("msg","상품 글 수정을 실패하였습니다.");
-			return "error";
+	public String update(Locale locale, Model model,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum,int pseq) {
+		System.out.println("여기는 오는거지?");
+		
+		List<POptionDTO> optionList = new ArrayList<>();
+		POptionDTO optDto = new POptionDTO();
+		JSONParser  parser = new JSONParser();
+		//System.out.println(mainNum);
+		try {
+			Object obj = parser.parse(realObject);
+			JSONObject jsonObj = (JSONObject) obj;
+			//System.out.println("jsonObj.toJSONString()"+jsonObj.get("opt1").toString());
+			
+		//	System.out.println(optjson.get("otitle"));
+			for(int i=1;i<=optNum;i++) {
+				optDto = new POptionDTO();
+				JSONObject optjson = (JSONObject) jsonObj.get("opt"+i);
+				//System.out.println(optjson.toJSONString());
+				optDto.setOtitle((String) optjson.get("otitle"));
+				optDto.setOcontent((String) optjson.get("ocontent"));
+				optDto.setOvalue((String) optjson.get("ovalue"));
+				optDto.setNecessary((String) optjson.get("necessary"));
+				optDto.setPseq(pseq);
+				optionList.add(optDto);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+		
+		PBoardDTO dto = new PBoardDTO();
+		dto.setPseq(pseq);
+		dto.setPtitle(ptitle);
+		dto.setPcontent(pcontent);
+		int[] pnum = pnum_arr;
+		pBoardService.updateBoard(dto,pnum,optionList,mainNum,pseq);	
+		return "";
 	}
 	
 	@RequestMapping(value = "/muldelPboard.do", method = {RequestMethod.GET,RequestMethod.POST})

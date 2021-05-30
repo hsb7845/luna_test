@@ -27,5 +27,8 @@ public interface IPBoardDAO {
 	MemberDTO getMember(String id);
 	int searchId(String id, int pseq);
 	List<StockDTO> getListType(String ptype);
+	Map<String, Object> getDetailUpdateForm(int pseq);
+	void updateBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList, int mainNum, int pseq);
+	Map<String, Object> mainPage();
 	
 }

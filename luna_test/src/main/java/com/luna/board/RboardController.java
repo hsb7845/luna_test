@@ -38,7 +38,7 @@ public class RboardController {
 			} else {
 				List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO(id));
 				model.addAttribute("list",list);
-				return "rboardlist";
+				return "myRboardList";
 			}
 		
 			}

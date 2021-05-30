@@ -132,6 +132,9 @@
                     var chk = $(this).val();
                     chk_arr.push(chk);
                 })
+                $("#coupon").click(function(){
+		 			location.href='coupon.do'
+		 		});
             })
             // $("#insertmemberform").click(function(){ location.href='insertmemberform.do'
             // });
@@ -517,6 +520,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                                 	<input type="button" value="생일 회원 보기" onclick="birthMem()"/>
                                     <input type="button" value="신규 가입 회원 보기" onclick="freshMem()"/>
                                     <input type="button" value="쿠폰 추가" onclick="addCoupon()"/>
+                                    <input type="button" value="쿠폰함" id="coupon"/>
                                 </td>
                             </tr>
                         </table>

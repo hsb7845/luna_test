@@ -37,6 +37,7 @@ import com.luna.board.dtos.PBoardDTO;
 import com.luna.board.dtos.PCategoryDTO;
 import com.luna.board.dtos.POptionDTO;
 import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 import com.luna.board.service.IPBoardService;
 import com.luna.board.service.IStockService;
@@ -213,7 +214,16 @@ public class PboardController {
 		return "main";
 
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "/showAnsR.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String showAnsR(Locale locale, Model model,int rseq) {
+		RBoardDTO dto = pBoardService.showAnsR(rseq);
+		Map<String,Object> map = new HashMap<>();
+		map.put("dto",dto);
+		model.addAttribute("map",map);
+		return "main";
+
+	}
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String updateboard(Locale locale, Model model,int pseq) {

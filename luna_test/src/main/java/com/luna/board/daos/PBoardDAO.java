@@ -316,5 +316,11 @@ public class PBoardDAO implements IPBoardDAO{
 		return map;
 	}
 
+	@Override
+	public RBoardDTO showAnsR(int rseq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"showAnsR", rseq);
+	}
+
 
 }

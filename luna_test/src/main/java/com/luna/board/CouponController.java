@@ -79,9 +79,6 @@ public class CouponController {
 	public String insert(Locale locale, Model model,  String[] id, String ccontent, int discount, HttpServletRequest request) {
 		List<CouponDTO> list = new ArrayList<>();
 		CouponDTO dto = new CouponDTO();
-		System.out.println(id[0]);
-		System.out.println(id[1]);
-		System.out.println(id[2]);
 		
 		if(id.length>0) {
 			for(int i=0; i<id.length; i++) {

@@ -32,8 +32,26 @@
 	}
 </style>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <script type="text/javascript">
+	function showAnswer(rseq){
+		$.ajax({
+			url : "showAnsR.do",
+			mehthod : "post",
+			dataType : "json",
+			data : {"rseq":rseq},
+			async : false,
+			success : function(data) {
+				alert("일단 성공!");
+				var dto = data["dto"];
+				var AnsHtml = "<tr><th>&nbsp;└[답글]"+dto[id]+"</th>";
+				AnsHtml += "<td>"+dto[rcontent]+"</td></tr>";
+				$("#answer"+rseq).html(AnsHtml);
+			}
+		});
+	}
+
+
 
 	function allSel(val){
 		var chks=document.getElementsByName("chk");
@@ -104,7 +122,6 @@
 				<th>상품 게시글 번호</th>
 				<th>아이디</th>
 				<th>별점</th>
-				<th>부모글 번호</th>
 			</tr>
 			<%
 				if(list==null||list.size()==0){
@@ -121,8 +138,9 @@
 						<td><%=dto.getPseq()%></td>
 						<td><%=dto.getId()%></td>
 						<td><%=dto.getStarrank()%></td>
-						<td ><%=dto.getPar_rseq()%></td>
 					</tr>
+					<div id="answer<%=dto.getRseq()%>"></div>
+					
 		<%
 				}
 			}

@@ -253,6 +253,11 @@
 				)
 		WHERE RN BETWEEN #{start} and #{end}
 	</select>
+	
+	<select id="showAnsR" parameterType="int" resultType="RBDTO">
+		SELECT * FROM R_BOARD rb  WHERE PAR_RSEQ =#{rseq}
+	</select>
+	
 </mapper>
 
 

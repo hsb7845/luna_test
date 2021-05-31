@@ -52,6 +52,9 @@
 			<when test="select=='귀걸이'">and pc.ptype='귀걸이'</when>
 			<when test="select=='목걸이'">and pc.ptype='목걸이'</when>
 			<when test="select=='반지'">and pc.ptype='반지'</when>
+			<when test="select=='팔찌'">and pc.ptype='팔찌'</when>
+			<when test="select=='기타'">and pc.ptype='기타'</when>
+			
 			<when test="select=='all'"></when>
 		</choose>
 		order by pb.pseq desc
@@ -68,7 +71,7 @@
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
 		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit,if2.imgname from P_board p,stock s,img_file if2
-		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true' AND if2.PSEQ =p.PSEQ(+)
+		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true' AND if2.PSEQ(+) =p.PSEQ
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">

@@ -232,6 +232,8 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                     <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                     <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                     <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                    <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                    <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                     <a class="collapse-item" href="rboard.do">리뷰</a>
                     <a class="collapse-item" href="qboard.do">문의사항</a>
                     <a class="collapse-item" href="eboard.do">이벤트</a>

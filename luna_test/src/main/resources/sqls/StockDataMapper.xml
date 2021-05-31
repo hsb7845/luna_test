@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="getColor" resultType="PCDTO" parameterType="String">
-		SELECT CNUM, PTYPE, PCOLOR, PSIZE 
+		SELECT DISTINCT CNUM, PTYPE, PCOLOR, PSIZE 
 		FROM P_CATEGORY
 		WHERE ptype=#{ptype}
 	</select>

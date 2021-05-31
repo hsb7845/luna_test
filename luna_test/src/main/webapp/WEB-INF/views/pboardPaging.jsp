@@ -99,7 +99,7 @@
 			<div class="list_detail">
 			<a href='pboarddetail.do?pseq=${list.pseq }'>
 			<c:if test="${list.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg"><br>
+				<img src="upload/${list.image.imgname}"><br>
 			</c:if>
 				<div class="list_in">
 					<div>${list.ptitle }</div><br>

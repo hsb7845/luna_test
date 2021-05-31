@@ -68,7 +68,7 @@
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
 		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit,if2.imgname from P_board p,stock s,img_file if2
-		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true' AND if2.PSEQ =p.PSEQ
+		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true' AND if2.PSEQ =p.PSEQ(+)
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">
@@ -195,7 +195,7 @@
 		<when test="pseq==0">=p_board_seq.currval</when>
 		</choose>
 		, main = #{main}
-				WHERE pnum = #{pnum}
+		WHERE pnum = #{pnum}
 	</update>
 	<select id="count" parameterType="int" resultType="int">
 		SELECT count(starrank) FROM r_board WHERE pseq=#{pseq} 
@@ -223,7 +223,8 @@
 	
 	<insert id="insertimgFile" parameterType="IFDTO">
 		INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
-		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin',P_BOARD_SEQ.CURRVAL,0,0)	
+		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin'<if test="pseq==0">,P_BOARD_SEQ.CURRVAL</if>
+		<if test="pseq!=0">,#{pseq}</if>,0,0)	
 	</insert>
 	
 	<update id="boardHit" parameterType="int">

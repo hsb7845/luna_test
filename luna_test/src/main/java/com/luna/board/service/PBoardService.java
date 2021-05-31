@@ -186,10 +186,10 @@ public class PBoardService implements IPBoardService{
 	                System.out.println("fileMap :"+fileMap);
 	                multipartFile.transferTo(tmp);
 	                if(count==0) {
-	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"true");
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"),0, 0, 0,"true");
 	                	isS = PBoardDAO.uploadImg(dto);
 	                }else {
-	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"false");
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"),0, 0, 0,"false");
 	                	isS = PBoardDAO.uploadImg(dto);
 	                }
 	                count++;
@@ -251,22 +251,22 @@ public class PBoardService implements IPBoardService{
 	}
 
 	@Override
-	public boolean updateImg(int pseq,HttpServletRequest request, MultipartFile[] uploadFiles) {
+	public boolean updateImg(int pseq,HttpServletRequest request, List<MultipartFile> uploadFiles) {
 		 Map<String,Object>fileMap=new HashMap<String,Object>();
 		 HttpSession session = request.getSession();
 		 boolean isS = false;
-		 int count = 0;
-	        for(MultipartFile multipartFile : uploadFiles) {
+	        for(int i=0;i<uploadFiles.size();i++) {
 	            try {
-	               String fileName=multipartFile.getOriginalFilename();
+	               String fileName=uploadFiles.get(i).getOriginalFilename();
 	               String path2=request.getSession().getServletContext().getRealPath("upload");
 	               System.out.println(path2);
 	                File tmp=new File(path2+"/"+fileName);
-	                int fileSize=(int)multipartFile.getSize();
+	                int fileSize=(int)uploadFiles.get(i).getSize();
 	                fileMap.put("fileName", fileName);
-	                fileMap.put("fileSize", multipartFile.getSize());
+	                fileMap.put("fileSize", uploadFiles.get(i).getSize());
 	                System.out.println("fileMap :"+fileMap);
-	                multipartFile.transferTo(tmp);
+	                uploadFiles.get(i).transferTo(tmp);
+	                System.out.println("여기까지되는거맞이 업로드까지?");
 	                if(pseq!=0) {
 	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), pseq, 0, 0,"true");
 	                	isS = PBoardDAO.uploadImg(dto);
@@ -274,12 +274,11 @@ public class PBoardService implements IPBoardService{
 	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"true");
 	                	isS = PBoardDAO.uploadImg(dto);
 	                }
-	                count++;
-	      
 	            }
 	            catch(Exception e){
 	                return false;
 	            }
+	            System.out.println("isS : "+isS);
 	    }
 	        return isS;
 	}

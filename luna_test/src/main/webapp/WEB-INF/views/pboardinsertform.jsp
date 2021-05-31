@@ -215,8 +215,6 @@
 		 		var formData = new FormData();
 		 		var inputFile = $("#imgname");
 		 		var files = inputFile[0].files;
-		 		formData.append('key1','value1');
-		 		formData.append('key2','value2');
 		 		for(var i=0;i<files.length;i++){
 		 			formData.append('uploadFiles',files[i]);
 		 		}

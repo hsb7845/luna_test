@@ -102,11 +102,11 @@ public class PboardController {
 		
 		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum),Integer.parseInt(sorting));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
-		System.out.println(pagingDTO.getStart());
-		System.out.println(pagingDTO.getEnd());
+		//System.out.println(pagingDTO.getStart());
+		//System.out.println(pagingDTO.getEnd());
 		for(int i=0;i<list.size();i++) {
-			System.out.println("i="+i);
-			System.out.println(list.get(i).getPseq());
+			//System.out.println("i="+i);
+			//System.out.println(list.get(i).getPseq());
 			
 		}
 		model.addAttribute("paging", pagingDTO);
@@ -238,7 +238,9 @@ public class PboardController {
 	}
 	
 	@RequestMapping(value = "/updateImg.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updateImg(Locale locale, Model model,int pseq,MultipartFile[] uploadFiles,HttpServletRequest request) {
+	public String updateImg(Locale locale, Model model,@RequestParam final int pseq,@RequestParam(required=false) List<MultipartFile>uploadFiles,HttpServletRequest request) {
+		System.out.println(pseq);
+		System.out.println(uploadFiles.size());
 		boolean isS = pBoardService.updateImg(pseq,request,uploadFiles);
 		//System.out.println(map.get("rboard"));
 		if(isS) {
@@ -261,7 +263,7 @@ public class PboardController {
 	@ResponseBody
 	@RequestMapping(value = "/updatepboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String update(Locale locale, Model model,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum,int pseq) {
-		System.out.println("여기는 오는거지?");
+		//System.out.println("여기는 오는거지?");
 		
 		List<POptionDTO> optionList = new ArrayList<>();
 		POptionDTO optDto = new POptionDTO();
@@ -330,10 +332,10 @@ public class PboardController {
 	@ResponseBody
 	@RequestMapping(value = "/searchId.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public  int searchId(Locale locale, Model model,String id,int pseq){
-		System.out.println("id는 "+id);
+	//	System.out.println("id는 "+id);
 		pseq = pBoardService.serachId(id,pseq);
 		
-		System.out.println(pseq);
+	//	System.out.println(pseq);
 		return pseq;
 	}
 	

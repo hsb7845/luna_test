@@ -284,7 +284,7 @@ $(document).ready(function(){
 <div>
 	<div>
 		<div>글번호</div>
-	<input type="text" name="ptitle" id="pseq" value="${map.pboard.pseq}" readonly>
+	<input type="text" name="pseq" id="pseq" value="${map.pboard.pseq}" readonly>
 	</div>
 	<div>
 		<div>제목</div>
@@ -292,7 +292,7 @@ $(document).ready(function(){
 	</div>
 	<br>
 	<div><!-- 이미지 추가 -->						
-	<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" ></span>
+	<span><input type='file' multiple="multiple" id="imgname" name="uploadFiles" onchange="setThumbnail(event);" ></span>
 	<div id="image_container"></div>
 	</div>
 	<br>

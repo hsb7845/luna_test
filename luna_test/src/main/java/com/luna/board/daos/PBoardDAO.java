@@ -1,4 +1,4 @@
-package com.luna.board.daos;
+ package com.luna.board.daos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class PBoardDAO implements IPBoardDAO{
 			//System.out.println("재고 업데이트!");
 		}
 		sqlSession.delete(namespace+"deleteOption",pseq);
-		System.out.println("기존옵션 삭제!");
+		//System.out.println("기존옵션 삭제!");
 		for(int i=0;i<optionList.size();i++) {
 			//System.out.println(optionList.get(i).getOvalue());
 			sqlSession.update(namespace+"insertoption", optionList.get(i));
@@ -208,7 +208,7 @@ public class PBoardDAO implements IPBoardDAO{
 				rankAvg.put(5,per);
 				break;
 		}
-		System.out.println(rankAvg);
+		//System.out.println(rankAvg);
 		}
 		//System.out.println((double)(Integer.parseInt(String.valueOf(countRank.get(0).get("count")))/(double)count)*100.0);
 		

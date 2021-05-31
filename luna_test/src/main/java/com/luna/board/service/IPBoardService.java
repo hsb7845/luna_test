@@ -38,5 +38,5 @@ public interface IPBoardService {
 	Map<String, Object> mainPage();
 	RBoardDTO showAnsR(int rseq);
 	QBoardDTO showAnsQ(int qseq);
-	boolean updateImg(int pseq, HttpServletRequest request, MultipartFile[] uploadFiles);
+	boolean updateImg(int pseq, HttpServletRequest request, List<MultipartFile> uploadFiles);
 }

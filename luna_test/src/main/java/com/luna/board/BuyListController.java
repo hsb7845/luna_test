@@ -78,9 +78,9 @@ public class BuyListController {
 	@RequestMapping(value = "/buyform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String buytForm(Locale locale, Model model,HttpServletRequest request) {
 		int pseq =  Integer.parseInt(request.getParameter("pseq"));
-		System.out.println("구매폼  : "+request.getParameter("selOptNum"));
+		//System.out.println("구매폼  : "+request.getParameter("selOptNum"));
 		int selOptNum = Integer.parseInt(request.getParameter("selOptNum"));
-		System.out.println("selOptNum"+selOptNum);
+		//System.out.println("selOptNum"+selOptNum);
 		Map<String,Object> map = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");

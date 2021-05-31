@@ -490,13 +490,13 @@ padding : 5px;
 			<input type="hidden" name="id" value="${sessionScope.id }">
 			<!-- 대표 이미지 -->
 			<c:if test="${map.img != null }">
-				<img  name="imgMain" class="imgmain" src="upload/img_dummy1.jpg">
+				<img  name="imgMain" class="imgmain" src="upload/${map.img[0].imgname }">
 			</c:if>
 
 			<div>
 				<!-- 서브 이미지 -->
 				<c:forEach items="${map.img }" var="i">
-					<img class="imgsub"  name="imgsub" src="upload/img_dummy1.jpg">
+					<img class="imgsub"  name="imgsub" src="upload/${i.imgname }">
 				</c:forEach>
 			</div>
 			<input type="hidden" name="pseq" value="${map.pboard.pseq }" />

@@ -152,10 +152,10 @@
 						var otitle = $("#otitle"+i).val();
 						if($("input[name ='necessary"+i+"']").prop("checked")){
 							necessary = "true";
-							alert(necessary);
+							//alert(necessary);
 						}else{
 							necessary = "false";
-							alert(necessary);
+							//alert(necessary);
 						}
 						 $("input[name=ocontent"+i+"]").each(function(index, item){
 							 if(index==0){
@@ -179,10 +179,10 @@
 					var necessary = "";
 					if($("input[name=necessary"+1).is(":checked")){
 						necessary = "true";
-						alert(necessary );
+						//alert(necessary );
 					}else{
 						necessary = "false";
-						alert(necessary );
+						//alert(necessary );
 					}
 					 $("input[name=ocontent"+1+"]").each(function(index, item){
 						  if(index==0){

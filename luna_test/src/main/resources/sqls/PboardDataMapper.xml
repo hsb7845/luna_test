@@ -67,8 +67,8 @@
 	</insert>
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
-		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit from P_board p,stock s
-		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true'
+		SELECT  p.pseq,p.PCONTENT,p.pdate,p.ptitle,s.price,p.hit,if2.imgname from P_board p,stock s,img_file if2
+		where p.pseq = #{pseq} and p.pseq = s.pseq and s.main = 'true' AND if2.PSEQ =p.PSEQ
  	</select>
 	
 	<update id ="updateBoard" parameterType="PBDTO">

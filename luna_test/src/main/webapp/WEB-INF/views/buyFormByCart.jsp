@@ -130,7 +130,7 @@
 			<c:forEach items="${list}" var="i" varStatus="status" >
 			<c:set var="count" value="${status.count }"/>
 			<tr>
-				<td>${i.image.imgname }</td>
+				<td><img src="upload/${i.image.imgname }"></td>
 				<td><input type="hidden" value="${i.pboard.pseq}" name="pseq${status.count }"/>${i.pboard.ptitle }<br><input type="hidden"value="${i.selOpt }" name="selOpt${status.count}"/>${i.selOpt }</td>
 				<td><input type="hidden"value="${i.price }" name="price${status.count}"/>${i.price}원</td>
 				<td><input type="hidden"value="${i.pcount }" name="amount${status.count}"/>${i.pcount}</td>

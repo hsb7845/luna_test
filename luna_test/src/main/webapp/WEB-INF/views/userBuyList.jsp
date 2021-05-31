@@ -22,7 +22,7 @@
 	</tr>
 	<c:forEach items="${list }" var="i">
 		<tr>
-			<td>${i.image.imgname }</td>
+			<td><img src="upload/${i.image.imgname }"></td>
 			<td colspan="2"><a href="buyDetail.do?bdseq=${i.bdseq }">${i.pboard.ptitle }<br>${i.selOpt }</a></td>
 			<td>${i.price }</td>
 			<td><fmt:formatDate value="${i.blDTO.buyDate }" pattern="yyyy.MM.dd " /></td>

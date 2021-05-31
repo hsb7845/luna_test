@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-
 <mapper namespace="com.luna.pcategory">
 
    <select id="getAllList" resultType="PCDTO">
-      select cnum, ptype, pcolor, psize 
-      from p_category 
-      order by cnum desc
+      SELECT CNUM, PTYPE, PCOLOR, PSIZE 
+      FROM P_CATEGORY 
+      ORDER BY CNUM DESC
    </select>
 
    <insert id="insertboard" parameterType="PCDTO">
@@ -24,12 +22,12 @@
    
    <update id ="updateBoard" parameterType="PCDTO">
       UPDATE P_CATEGORY 
-      SET PTYPE = #{ptype}, PCOLOR = #{pcolor}, PSIZE=#{psize} 
+      SET PTYPE = #{ptype}, PCOLOR = #{pcolor}, PSIZE = #{psize} 
       WHERE CNUM = #{cnum}
    </update>
    
    <delete id ="deleteBoard" parameterType="int">
-      delete from p_category where cnum = #{cnum}
+      DELETE FROM P_CATEGORY WHERE CNUM = #{cnum}
    </delete>
 
    <delete id="mulDel" parameterType="Map">
@@ -38,6 +36,5 @@
          #{i}
       </foreach>
    </delete>
-   
    
 </mapper>

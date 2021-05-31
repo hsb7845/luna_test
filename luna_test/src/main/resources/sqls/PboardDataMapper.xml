@@ -52,6 +52,8 @@
 			<when test="select=='귀걸이'">and pc.ptype='귀걸이'</when>
 			<when test="select=='목걸이'">and pc.ptype='목걸이'</when>
 			<when test="select=='반지'">and pc.ptype='반지'</when>
+			<when test="select=='팔찌'">and pc.ptype='팔찌'</when>
+			<when test="select=='기타'">and pc.ptype='기타'</when>
 			<when test="select=='all'"></when>
 		</choose>
 		order by pb.pseq desc

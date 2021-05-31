@@ -24,8 +24,6 @@ public class StockController {
 	
 	@Autowired
 	private  IStockService StockService;
-
-
 	
 	@RequestMapping(value = "/stock.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String stock(Locale locale, Model model) {

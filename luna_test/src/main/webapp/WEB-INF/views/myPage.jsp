@@ -160,26 +160,7 @@
   <hr class="sidebar-divider">  
         <div class="wrap">
             <div class="menu">
-<!--                 <a href="index.do" id="main">go main</a><br><br> -->
-			<div class="coupon" >
-                <p class="p1" >
-                    <a href="coupon.do">coupon 쿠폰</a>
-                </p>
-                    <%
- 				if(hit != null && hit.getHit()>0) { 
- 			%>
-                        <img src="resources/img/bell.png" style="max-width: 1.8%; height: auto;"/>
-                    <%
-				}
-			%>
-                
-                <h5>
-                	고객님이 보유하고 계신 쿠폰 내역을 보여드립니다.
-                </h5>
-                
-			</div>
-
-                <hr class="sidebar-divider"> 
+<!--                 <a href="index.do" id="main">go main</a><br><br> -->              
                 
              <div class="profile">                
                 <p class="p1">
@@ -192,7 +173,7 @@
                 <hr class="sidebar-divider">    
                <div class="order">
                 <p class="p1">
-                    <a href="cart.do">order 주문내역 조회</a>
+                    <a href="cart.do">cart 장바구니</a>
                 </p>
                 <h5>
                 	고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
@@ -237,6 +218,24 @@
                 </h5>
                 </div>
 				<hr class="sidebar-divider">   
+				<div class="coupon" >
+                <p class="p1" >
+                    <a href="coupon.do">coupon 쿠폰</a>
+                </p>
+                    <%
+ 				if(hit != null && hit.getHit()>0) { 
+ 			%>
+                        <img src="resources/img/bell.png" style="max-width: 1.8%; height: auto;"/>
+                    <%
+				}
+			%>
+                
+                <h5>
+                	고객님이 보유하고 계신 쿠폰 내역을 보여드립니다.
+                </h5>
+                
+			</div>
+				  <hr class="sidebar-divider"> 
 			
             </div>
 	   	</div>   

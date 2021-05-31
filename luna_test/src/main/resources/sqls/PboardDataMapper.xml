@@ -122,7 +122,8 @@
 		FROM (
 			SELECT ROWNUM RN, A.*
 				FROM (
-						SELECT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME ,s.PRICE,p.hit
+						SELECT p.PSEQ ,p.PTITLE ,p.PDATE ,p.PCONTENT ,i.IMGNAME,s.PRICE,p.hit
+						,DENSE_RANK() OVER(PARTITION BY i.pseq ORDER BY i.IMGNAME DESC)AS rk
 						FROM p_BOARD p ,IMG_FILE i,STOCK s ,p_category c
 						where p.PSEQ = i.pseq(+) AND p.PSEQ =s.PSEQ  AND s.main = 'true' AND s.cnum = c.cnum 
 						<choose>
@@ -162,6 +163,7 @@
 						</choose>
 						
 						) A
+						WHERE A.RK = 1
 				)
 		WHERE RN BETWEEN #{start} and #{end}
 	</select>

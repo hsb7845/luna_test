@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.luna.board.dtos.MemberDTO;
 import com.luna.board.dtos.PBoardDTO;
@@ -37,4 +38,5 @@ public interface IPBoardService {
 	Map<String, Object> mainPage();
 	RBoardDTO showAnsR(int rseq);
 	QBoardDTO showAnsQ(int qseq);
+	boolean updateImg(int pseq, HttpServletRequest request, MultipartFile[] uploadFiles);
 }

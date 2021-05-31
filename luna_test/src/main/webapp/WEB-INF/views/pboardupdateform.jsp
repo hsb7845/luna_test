@@ -196,24 +196,10 @@ $(document).ready(function(){
  		if($("#imgname").val()==""){
  			
  			location.href = "pboard.do";
+ 		}else{
+ 			$("#update").submit();
  		}
- 		var files = inputFile[0].files;
- 		formData.append('key1','value1');
- 		formData.append('key2','value2');
- 		for(var i=0;i<files.length;i++){
- 			formData.append('uploadFiles',files[i]);
- 		}
- 		$.ajax({
- 			url : "uploadimgfileTest.do",
- 			type : "post",
- 			processData: false,
-            contentType: false,
- 			data : formData,
-			success : function(data) {
-				//alert("성공!");
-				location.href = "pboard.do";
-			}
- 		});	
+ 		
 	});
 })
 </script>
@@ -294,7 +280,7 @@ $(document).ready(function(){
 
 </head>
 <body>
-<form method="post" action="insertpboard.do" id="insert" enctype="multipart/form-data">
+<form method="post"  action="updateImg.do" id="update" enctype="multipart/form-data">
 <div>
 	<div>
 		<div>글번호</div>

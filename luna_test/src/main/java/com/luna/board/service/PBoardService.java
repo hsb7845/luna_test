@@ -250,6 +250,40 @@ public class PBoardService implements IPBoardService{
 		return PBoardDAO.showAnsQ(qseq);
 	}
 
+	@Override
+	public boolean updateImg(int pseq,HttpServletRequest request, MultipartFile[] uploadFiles) {
+		 Map<String,Object>fileMap=new HashMap<String,Object>();
+		 HttpSession session = request.getSession();
+		 boolean isS = false;
+		 int count = 0;
+	        for(MultipartFile multipartFile : uploadFiles) {
+	            try {
+	               String fileName=multipartFile.getOriginalFilename();
+	               String path2=request.getSession().getServletContext().getRealPath("upload");
+	               System.out.println(path2);
+	                File tmp=new File(path2+"/"+fileName);
+	                int fileSize=(int)multipartFile.getSize();
+	                fileMap.put("fileName", fileName);
+	                fileMap.put("fileSize", multipartFile.getSize());
+	                System.out.println("fileMap :"+fileMap);
+	                multipartFile.transferTo(tmp);
+	                if(pseq!=0) {
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), pseq, 0, 0,"true");
+	                	isS = PBoardDAO.uploadImg(dto);
+	                }else {
+	                	ImgFileDTO dto = new ImgFileDTO(0, fileSize, fileName,(String)session.getAttribute("id"), 0, 0, 0,"true");
+	                	isS = PBoardDAO.uploadImg(dto);
+	                }
+	                count++;
+	      
+	            }
+	            catch(Exception e){
+	                return false;
+	            }
+	    }
+	        return isS;
+	}
+
 	
 	
 }

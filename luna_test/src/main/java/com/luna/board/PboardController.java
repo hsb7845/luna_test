@@ -237,6 +237,18 @@ public class PboardController {
 
 	}
 	
+	@RequestMapping(value = "/updateImg.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String updateImg(Locale locale, Model model,int pseq,MultipartFile[] uploadFiles,HttpServletRequest request) {
+		boolean isS = pBoardService.updateImg(pseq,request,uploadFiles);
+		//System.out.println(map.get("rboard"));
+		if(isS) {
+			return "pboardlist";
+		}else {
+			return "error";
+		}
+		
+	}
+	
 	
 
 	@RequestMapping(value = "/updatePboardForm.do", method = {RequestMethod.GET,RequestMethod.POST})

@@ -201,6 +201,7 @@
 					 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
 				}
 				var realObject = JSON.stringify(jsondata);
+				var pseq =0;
 		 		$.ajax({
 		 			url : "insertpboard.do",
 		 			mehthod : "post",
@@ -209,28 +210,44 @@
 		 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr,"mainNum":mainNum},
 		 			asnc:false,
 					success : function(data) {
-						//alert("성공!");
+						if($("#imgname").val()==""){
+				 			location.href = "pboard.do";
+		 		 		}else{
+							pseq = data["pseq"];
+							$("input[name='pseq']").val(pseq);
+							$("#insert").submit();
+		 		 		}
 					}
+						
 		 		});	
-		 		var formData = new FormData();
-		 		var inputFile = $("#imgname");
-		 		var files = inputFile[0].files;
-		 		for(var i=0;i<files.length;i++){
-		 			formData.append('uploadFiles',files[i]);
-		 		}
-		 		$.ajax({
-		 			url : "uploadimgfileTest.do",
-		 			type : "post",
-		 			processData: false,
-		            contentType: false,
-		 			data : formData,
-					success : function(data) {
-						//alert("성공!");
-						location.href = "pboard.do";
-					}
-		 		});	
+		 		
+		 		pseq = $("input[name='pseq']").val();
+ 		 		
+//  		 			var formData = new FormData();
+//  		 			var inputFile=$("input[name='uploadFiles']");
+//  		 			var files = inputFile[0].files;
+ 		 			
+//  		 			alert(pseq);
+//  		 			formData.append("pseq",pseq);
+//  		 			for(var i=0;i<files.length;i++){
+//  		 				alert(files[i]);
+//  		 				formData.append('uploadFiles',files[i]);
+//  		 			}
+//  		 			$.ajax({
+//  			 			url : "uploadimgfileTest.do",
+//  			 			mehthod : "post",
+//  			 			dataType : "json", 
+//  			 			traditional : true,
+//  			 			data : formData,
+//  			 			processData: false,
+//  			        	contentType: false,
+//  			 			asnc:false,
+//  						success : function(data) {
+//  							location.href = "pboard.do";
+//  						}
+//  			 		});	
+ 		 		});
 			});
-		})
 		
 		</script>
 		<style type="text/css" > 
@@ -375,8 +392,6 @@
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
-                            <a class="collapse-item" href="pboard.do?select=귀걸이">팔찌</a>
-                            <a class="collapse-item" href="pboard.do?select=목걸이">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
@@ -472,7 +487,9 @@
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid" id="content" >
-					<form method="post" action="insertpboard.do" id="insert" enctype="multipart/form-data">
+                
+					<form method="post" action="updateImg.do" id="insert" enctype="multipart/form-data">
+					<input type="hidden"  name="pseq">
 					<div>
 						<div>
 							<div>제목</div>
@@ -480,7 +497,7 @@
 						</div>
 						<br>
 						<div><!-- 이미지 추가 -->						
-						<span><input type='file' multiple="multiple" id="imgname" name="imgname" onchange="setThumbnail(event);" required="required" ></span>
+						<span><input type='file' multiple="multiple" id="imgname" name="uploadFiles" onchange="setThumbnail(event);" required="required" ></span>
 						<div id="image_container"></div>
 						</div>
 						<br>

@@ -52,9 +52,6 @@
 			<when test="select=='귀걸이'">and pc.ptype='귀걸이'</when>
 			<when test="select=='목걸이'">and pc.ptype='목걸이'</when>
 			<when test="select=='반지'">and pc.ptype='반지'</when>
-			<when test="select=='팔찌'">and pc.ptype='팔찌'</when>
-			<when test="select=='기타'">and pc.ptype='기타'</when>
-			
 			<when test="select=='all'"></when>
 		</choose>
 		order by pb.pseq desc
@@ -67,6 +64,9 @@
 	<insert id="insertboard" parameterType="PBDTO">
 		INSERT INTO P_BOARD(PSEQ, PCONTENT, PDATE, PTITLE,hit)
 		VALUES(P_BOARD_SEQ.nextval,#{pcontent},sysdate, #{ptitle},0)
+		<selectKey keyProperty="pseq" resultType="Integer" order="AFTER">
+			SELECT p_board_seq.currval FROM DUAL
+		</selectKey>
 	</insert>
 	
 	<select id ="getPBoard" resultMap="PBDTO_resultMap" parameterType="int">
@@ -192,12 +192,7 @@
 	</update>
 	
 	<update id="updateStock" parameterType="Map">
-		UPDATE STOCK SET pseq
-		<choose>
-		<when test="pseq!=0"> =#{pseq}</when>
-		<when test="pseq==0">=p_board_seq.currval</when>
-		</choose>
-		, main = #{main}
+		UPDATE STOCK SET pseq=#{pseq}, main = #{main}
 		WHERE pnum = #{pnum}
 	</update>
 	<select id="count" parameterType="int" resultType="int">
@@ -216,17 +211,14 @@
 	</delete>
 	
 	<insert id="insertoption" parameterType="PODTO">
-		INSERT INTO P_OPTION VALUES(P_OPTION_SEQ.NEXTVAL,
-		<if test="pseq==0">P_BOARD_SEQ.CURRVAL,</if>
-		<if test="pseq!=0">#{pseq},</if>
-		#{otitle},#{ocontent},#{ovalue},#{necessary})
+		INSERT INTO P_OPTION VALUES(P_OPTION_SEQ.NEXTVAL,#{pseq},#{otitle},#{ocontent},#{ovalue},#{necessary})
 	</insert>
 	
 	
 	
 	<insert id="insertimgFile" parameterType="IFDTO">
 		INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
-		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin'<if test="pseq==0">,P_BOARD_SEQ.CURRVAL</if>
+		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin'<if test="pseq==0">,#{pseq}</if>
 		<if test="pseq!=0">,#{pseq}</if>,0,0)	
 	</insert>
 	

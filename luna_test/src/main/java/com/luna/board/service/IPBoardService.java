@@ -18,7 +18,7 @@ import com.luna.board.dtos.RBoardDTO;
 import com.luna.board.dtos.StockDTO;
 
 public interface IPBoardService {
-	boolean insertBoard(PBoardDTO dto,int[] pnum, List<POptionDTO> optionList, int mainNum);
+	Map<String, Object> insertBoard(PBoardDTO dto,int[] pnum, List<POptionDTO> optionList, int mainNum);
 	List<PBoardDTO> getAllList(String select);
 	PBoardDTO getBoard(int pseq);
 	boolean deleteBoard(int pseq);

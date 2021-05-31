@@ -60,9 +60,14 @@ public class PBoardDAO implements IPBoardDAO{
 	}
 	
 	@Override
-	public boolean insertBoard(PBoardDTO dto, int[] pnum_arr, List<POptionDTO> optionList,int mainNum) {
+	public Map<String,Object> insertBoard(PBoardDTO dto, int[] pnum_arr, List<POptionDTO> optionList,int mainNum) {
 		Map<String,Object> map = new HashMap<>();
 		boolean isS = sqlSession.insert(namespace+"insertboard",dto)>0? true:false;
+		int pseq = dto.getPseq();
+		//System.out.println(pseq);
+		for(int i=0;i<optionList.size();i++) {
+			optionList.get(i).setPseq(pseq);
+		}
 		boolean isS2 = false;
 		String main ="";
 		for(int i=0;i<pnum_arr.length;i++) {
@@ -74,7 +79,7 @@ public class PBoardDAO implements IPBoardDAO{
 			}
 			map.put("pnum", pnum_arr[i]);
 			map.put("main", main);
-			map.put("pseq", 0);
+			map.put("pseq", pseq);
 			isS2 = sqlSession.update(namespace+"updateStock", map)>0? true:false;
 		}
 		for(int i=0;i<optionList.size();i++) {
@@ -85,8 +90,11 @@ public class PBoardDAO implements IPBoardDAO{
 		if(isS&&isS2) {
 			isS3 = true;
 		}
-		
-		return isS3;
+		isS = isS3;
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("pseq",pseq);
+		resultMap.put("isS",isS);
+		return resultMap;
 	}
 
 	@Override

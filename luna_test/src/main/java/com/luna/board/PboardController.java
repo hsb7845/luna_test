@@ -157,7 +157,7 @@ public class PboardController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertpboard.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String insert(Locale locale, Model model ,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum ,HttpServletRequest request) {
+	public Map<String,Object> insert(Locale locale, Model model ,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum ,HttpServletRequest request) {
 		List<POptionDTO> optionList = new ArrayList<>();
 		POptionDTO optDto = new POptionDTO();
 		JSONParser  parser = new JSONParser();
@@ -187,15 +187,9 @@ public class PboardController {
 		dto.setPcontent(pcontent);
 		int[] pnum = pnum_arr;
 		
-		boolean isS = pBoardService.insertBoard(dto,pnum,optionList,mainNum);
-		if(isS) {
-			return "redirect:pboard.do";
-		}else {
-			model.addAttribute("msg","상품 글 추가를 실패하였습니다.");
-			return "error";
-		}
-
-
+		Map<String,Object> map = pBoardService.insertBoard(dto,pnum,optionList,mainNum);
+		
+		return map;
 	}
 	
 	@RequestMapping(value = "/pboarddetail.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -238,13 +232,12 @@ public class PboardController {
 	}
 	
 	@RequestMapping(value = "/updateImg.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String updateImg(Locale locale, Model model,@RequestParam final int pseq,@RequestParam(required=false) List<MultipartFile>uploadFiles,HttpServletRequest request) {
-		System.out.println(pseq);
-		System.out.println(uploadFiles.size());
+	public String updateImg(Locale locale, Model model,@RequestParam int pseq,@RequestParam(required=false) List<MultipartFile>uploadFiles,HttpServletRequest request) {
+		System.out.println("여기서의"+pseq);
 		boolean isS = pBoardService.updateImg(pseq,request,uploadFiles);
 		//System.out.println(map.get("rboard"));
 		if(isS) {
-			return "pboardlist";
+			return "redirect:pboard.do";
 		}else {
 			return "error";
 		}
@@ -384,7 +377,8 @@ public class PboardController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/uploadimgfileTest.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public Map<String,Object> uploadimgfileTest(Locale locale, Model model,MultipartFile[] uploadFiles,HttpServletRequest request){
+	public Map<String,Object> uploadimgfileTest(Locale locale, Model model,@RequestParam String pseq,MultipartFile[] uploadFiles,HttpServletRequest request){
+		System.out.println("아작스 오니?");
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		boolean fileUpload =  pBoardService.uploadFile(uploadFiles,request);
 		if(fileUpload) {

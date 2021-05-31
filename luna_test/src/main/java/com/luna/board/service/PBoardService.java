@@ -103,11 +103,11 @@ public class PBoardService implements IPBoardService{
 
 
 	@Override
-	public boolean insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList,int mainNum) {
+	public Map<String,Object> insertBoard(PBoardDTO dto, int[] pnum, List<POptionDTO> optionList,int mainNum) {
 		// TODO Auto-generated method stub
-		boolean isS =false;
-		isS = PBoardDAO.insertBoard(dto, pnum,optionList,mainNum);
-		return isS;
+		
+		Map<String,Object> map = PBoardDAO.insertBoard(dto, pnum,optionList,mainNum);
+		return map;
 	}
 
 

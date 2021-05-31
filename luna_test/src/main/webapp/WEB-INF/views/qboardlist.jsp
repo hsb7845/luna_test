@@ -303,7 +303,7 @@
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-					<p class="cls1">문의 게시판 글 목록</p> 
+					<p class="cls1">문의사항 목록</p> 
 					<form action="muldelQboard.do" method="post">
 					<table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 						<col width="50px">
@@ -312,7 +312,6 @@
 						<col width="300px">
 						<col width="200px">
 						<col width="100px">
-						<col width="50px">
 						<tr class="qboardT" >
 							<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 							<th>번호</th>
@@ -320,7 +319,6 @@
 							<th>내용</th>
 							<th>상품 게시글 번호</th>
 							<th>아이디</th>
-							<th>부모글 번호</th>
 						</tr>
 						<%
 							if(list==null||list.size()==0){
@@ -347,7 +345,6 @@
 									<td><%=dto.getQcontent()%></td>
 									<td><%=dto.getPseq()%></td>
 									<td><%=dto.getId()%></td>
-									<td><%=dto.getPar_qseq()%></td>
 								</tr>
 					<%
 							}

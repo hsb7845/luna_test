@@ -351,7 +351,6 @@
 							<col width="200px">
 							<col width="100px">
 							<col width="100px">
-							<col width="200px">
 							<tr class="rboardT">
 								<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 								<th>리뷰 게시글 번호</th>
@@ -360,11 +359,10 @@
 								<th>상품 게시글 번호</th>
 								<th>아이디</th>
 								<th>별점</th>
-								<th>부모글 번호</th>
 							</tr>
 							<%
 								if(list==null||list.size()==0){
-									out.print("<tr><td colspan='8'>----작성된 리뷰가 없습니다.---</td></tr>");
+									out.print("<tr><td colspan='7'>----작성된 리뷰가 없습니다.---</td></tr>");
 									} else {
 								for(int i=0;i<list.size();i++){
 									RBoardDTO dto=list.get(i);
@@ -389,7 +387,6 @@
 										<td><%=dto.getPseq()%></td>
 										<td><%=dto.getId()%></td>
 										<td><%=dto.getStarrank()%></td>
-										<td ><%=dto.getPar_rseq()%></td>
 									</tr>
 						<%
 								}

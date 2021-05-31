@@ -558,7 +558,7 @@ padding : 5px;
 			</div>
 		
 			<div class="content">
-			<h1>상품내용</h1>
+			<br><h1>상품내용</h1>
 			${map.pboard.pcontent }
 			</div>
 			<br>

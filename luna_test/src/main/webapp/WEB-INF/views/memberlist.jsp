@@ -528,12 +528,16 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             </tr>
                         </table>
                     </form>
- </div>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row"></div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
                 </div>
-            </div>
-            <!-- End of Main Content -->
-        </div>
-        <!-- End of Main Content -->
+                <!-- End of Main Content -->
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">

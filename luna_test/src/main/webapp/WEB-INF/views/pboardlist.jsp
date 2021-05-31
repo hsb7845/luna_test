@@ -229,7 +229,7 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <p class="collapse-header"><a href="pboard.do"> 상품게시판관리:</a> </p>
-	                    <a class="collapse-item" href="pboard.do?sselect=귀걸이">귀걸이</a>
+	                    <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
 	                    <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
 	                    <a class="collapse-item" href="pboard.do?select=반지">반지</a>
 	                    <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>

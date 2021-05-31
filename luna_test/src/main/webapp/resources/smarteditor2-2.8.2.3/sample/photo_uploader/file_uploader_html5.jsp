@@ -42,6 +42,6 @@
     		// System.out.println("File 삭제 오류!"); 
     		// } 
     	// } 
-    sFileInfo += "&bNewLine=true&sFileName="+ name+"&sFileURL="+"/upload/"+realname; 
+    sFileInfo += "&bNewLine=true&sFileName="+ name+"&sFileURL="+"upload/"+name; 
     out.println(sFileInfo);
     // ./로컬경로에 파일 저장하기 ============================================ %>

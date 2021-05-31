@@ -23,9 +23,10 @@
 <!-- <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 
 <style type="text/css">
+
    .wrap{
       display : grid;
-      grid-template-rows: 50px 500px 50px;
+/*       grid-template-rows: 50px 600px 50px; */
    }
     .wrap > div {margin: 1px; padding: 10px; font-size: 20px;}
     .header { 
@@ -55,8 +56,11 @@
        display: inline-block;
        height: 20px;
     }
+   
+    
     div.menu1 {
     	background-color: gray;
+    	color: white
     }
     div.menu2{
 		text-transform; capitalize;
@@ -65,31 +69,60 @@
 		background-color: white;
 		font-color: white;
 	}
-    @font-face { 
-   	    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; 
-   	    font-weight: normal; 
-   	    font-style: normal; 
-   	} 
+    @font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
    	body,button,input{ 
-   		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; 
+   		font-family: 'GmarketSansLight'; 
    		font-weight: bold; 
    	}	 
    	h1 {
-   		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';    	
+   		font-family: 'GmarketSansLight';    	
    		font-color: white;
+   	}
+   	h2, h3, h5{
+   		font-family: 'GmarketSansLight';    	
+   		font-color: white;
+   	}
+   	p {
+   		font-size: 20px;
+   		padding: 0px;
+   	}
+   	.p1 {
+/*    		border: 1px solid red; */
+   		padding: 0px !important;
+   		margin-bottom : -15px !important; 
+   	}
+   	#mainLogo{
+   			
+   	
+   	}
+
+   	.coupon, .profile, .order, .buylist, .review, .pa, .post {
+   		padding: 0px !important ;
+/*    		border: 1px solid blue; */
+   	}
+   	
+   	.home{
+   	 		margin-left : 700px;
    	}
  
 </style>
 
 </head>
 <body>
-			<div class="menu1">
-			<h1><a href="myPage.do" rel="home">
-				<p style="text-align:left">
-					<img id='mainLogo' src='upload/logo_gray.png' style='width:150px; height:80px; vertical-align: middle;' />
-						마이페이지</a></p>
-			</a></h1>
+			<h2><div class="menu1">
+			<a href="myPage.do"  class="home"  rel="home"  style="text-align:center">
+<!-- 					<img id='mainLogo' src='upload/logo_gray.png' style='width:150px; height:80px; vertical-align: middle;' /> -->
+						<span style=" color:white;" >
+<!-- 							마이페이지 -->
+							<img src="upload/mypage_white.png" style='width:200px; height:80px; vertical-align: middle;' />
+						</span></a>
+			</a></h2>
 			<div class="menu2">
 			<%
 				if(session.getAttribute("id") == null){
@@ -115,7 +148,7 @@
 	String id = (String)session.getAttribute("id");
 	if(id!=null){
 			%>
-        <h3>${nickname}님 환영합니다.</h3>
+        <h3>&nbsp; ${nickname} 님 환영합니다.</h3>
     <%
 		}
 	
@@ -124,12 +157,14 @@
     <%
 	CouponDTO hit = (CouponDTO) request.getAttribute("dto");
 %>
-
+  <hr class="sidebar-divider">  
         <div class="wrap">
             <div class="menu">
 <!--                 <a href="index.do" id="main">go main</a><br><br> -->
-                <h5>
-                    <a href="coupon.do">쿠폰함</a>
+			<div class="coupon" >
+                <p class="p1" >
+                    <a href="coupon.do">coupon 쿠폰</a>
+                </p>
                     <%
  				if(hit != null && hit.getHit()>0) { 
  			%>
@@ -137,31 +172,84 @@
                     <%
 				}
 			%>
-                </h5>
+                
                 <h5>
-                    <a href="updatememberForm.do?id=${id}">회원정보 수정</a>
+                	고객님이 보유하고 계신 쿠폰 내역을 보여드립니다.
                 </h5>
-                <h5>
-                    <a href="cart.do">장바구니</a>
-                </h5>
-                <h5>
-                    <a href="buylist.do?id=${id }">내 구매 목록</a>
-                </h5>
-                <h5>
-                    <a href="rboard.do?id=${id }">내가 쓴 리뷰 보기</a>
-                </h5>
-                <h5>
-                    <a href="qboard.do?id=${id }">내가 쓴 문의 사항 보기</a>
-                </h5>
+                
+			</div>
 
+                <hr class="sidebar-divider"> 
+                
+             <div class="profile">                
+                <p class="p1">
+                    <a href="updatememberForm.do?id=${id}">profile 회원정보</a>
+                </p>
+                <h5>
+                	회원이신 고객님의 개인정보를 관리하는 공간입니다.
+               	</h5>
+               </div>  
+                <hr class="sidebar-divider">    
+               <div class="order">
+                <p class="p1">
+                    <a href="cart.do">order 주문내역 조회</a>
+                </p>
+                <h5>
+                	고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
+  
+                </h5>
+               </div>
+                <hr class="sidebar-divider">    
+                
+                <div class="buylist">
+                <p class="p1">
+                    <a href="buylist.do?id=${id }">buy list 내 구매 목록</a>
+                </p>
+                <h5>
+                	구매하신 상품의 목록을 보여드립니다.
+                </h5>
+                </div>
+                <hr class="sidebar-divider">    
+                <div class="review">
+                <p class="p1">
+                    <a href="rboard.do?id=${id }">review 내가 쓴 리뷰</a>
+                </p>
+                <h5>
+                	고객님이 등록하신 리뷰의 목록을 보여드립니다.
+                </h5>
+                </div>
+                <hr class="sidebar-divider">    
+                <div class="qa">
+                <p class="p1">
+                    <a href="qboard.do?id=${id }">Q&A 내가 쓴 문의사항</a>
+                </p>
+                <h5>
+                	고객님이 등록하신 리뷰의 목록을 보여드립니다.
+                </h5>
+                </div>
+                <hr class="sidebar-divider">    
+                <div class="post">
+                 <p class="p1">
+                    <a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp"> post office 우체국 배송조회</a>
+                </p>
+                <h5>
+                	고객님이 주문하신 상품의 배송 조회를 할 수 있도록 우체국 사이트로 이동합니다.
+                </h5>
+                </div>
+				<hr class="sidebar-divider">   
+			
             </div>
-            <div class="content"></div>
-            <div class="content">
-                <a href="https://service.epost.go.kr/iservice/usr/trace/usrtrc001k01.jsp">우체국 배송조회</a>
-            </div>
+	   	</div>   
 
-        </div>
-        <%@ include file="footer.jsp" %>
+	
+	
+	
+		<div>
+			
+			<%@ include file="footer.jsp" %>
+			
+		</div>
+  
     <script>
     
     </script>

@@ -107,11 +107,11 @@
 			.container-fluid {
 			    background-color: white;
 			}
-			@font-face {
-			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
-			    font-weight: normal;
-			    font-style: normal;
-			}
+/* 			@font-face { */
+/* 			    font-family: 'Gyeonggi_Tittle_OTF_FontInstaller'; */
+/* 			    font-weight: normal; */
+/* 			    font-style: normal; */
+/* 			} */
 			.rboardT {
             	font-size: 15px;
             	text-align: center;
@@ -186,7 +186,7 @@
                     <!-- Sidebar - Brand -->
                     <a
                         class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="index.do">
+                        href="rboard.do">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
@@ -245,9 +245,12 @@
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                         </div>
                     </div>
                 </li>
@@ -341,9 +344,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 					<p class="cls1">리뷰 목록</p> 
-						<form action="muldelRboard.do" method="post">
-						
-						<table align="left" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+						<form action="muldelRboard.do" method="post">						
+						<table align="left" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 							<col width="50px">
 							<col width="150px">
 							<col width="200px">
@@ -397,7 +399,7 @@
 						<tr>
 							<td colspan="8" class="rboardD">
 								<input type="button" value="리뷰 등록" id="insertrboardform" />
-								<input type="button" value="메인" id="main">
+<!-- 								<input type="button" value="메인" id="main"> -->
 								<input type="submit" value="삭제" />
 								
 						<!-- 		<a href=".do">메인</a> -->

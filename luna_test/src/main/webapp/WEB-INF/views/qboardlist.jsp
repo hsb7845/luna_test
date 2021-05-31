@@ -149,7 +149,7 @@
                     <!-- Sidebar - Brand -->
                     <a
                         class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="index.do">
+                        href="qboard.do">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
@@ -208,9 +208,12 @@
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                         </div>
                     </div>
                 </li>
@@ -355,7 +358,7 @@
 					<tr>
 						<td colspan="6" class="qboardD" >
 <!-- 							<input type="button" value="문의 등록" id="insertqboardform"> -->
-							<input type="button" value="메인" id="main">
+<!-- 							<input type="button" value="메인" id="main"> -->
 							<input type="submit" value="삭제" />							
 					<!-- 		<a href="insertqboardform.do">문의 사항 작성</a> -->
 					<!-- 		<a href=".do">메인</a> -->

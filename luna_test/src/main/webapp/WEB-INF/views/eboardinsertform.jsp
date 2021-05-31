@@ -130,7 +130,7 @@
                     <!-- Sidebar - Brand -->
                     <a
                         class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="index.do">
+                        href="eboard.do">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
@@ -189,9 +189,12 @@
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                         </div>
                     </div>
                 </li>
@@ -285,7 +288,8 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 					<form id="frm" method="post" action="inserteboard.do" enctype="multipart/form-data">
-						<table style="width : 1100px;">
+						<table style="width : 1100px;" 
+						align="center" border="0" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 							<tr>
 								<th>제목</th>
 								<td><input type="text" name="etitle"></td>
@@ -298,6 +302,7 @@
 							<td>내용</td>
 							<td><!-- 표시할 textarea 영역 --> <textarea id="econtent"  name="econtent" rows="10" cols="100" ></textarea></td>
 							</tr>
+
 							<tr>
 								<td colspan="2"><input id="save" type="submit" value="작성"></td>
 							</tr>

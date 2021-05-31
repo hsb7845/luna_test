@@ -51,6 +51,44 @@
 			margin: 0;'
 			
 		}
+		button {
+			    color: #666666;
+			    font-family: inherit;
+			    font-size: 14px;
+			    line-height: 1.8;
+			    word-wrap: break-word;
+			    -webkit-hyphens: auto;
+			    -moz-hyphens: auto;
+			    -ms-hyphens: auto;
+			    hyphens: auto;
+			
+			    font-size: 100%;
+			    /* Corrects font size not being inherited in all browsers */
+			    margin: 0;
+			    /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+			    vertical-align: baseline;
+			    /* Improves appearance and consistency in all browsers */
+			}
+			button,
+			input[type="button"],
+			input[type="reset"],
+			input[type="submit"] {
+			    border: 1px solid #ccc;
+			    border-radius: 0;
+			    background: #ccc;
+			    color: #fff;
+			    cursor: pointer;
+			    /* Improves usability and consistency of cursor style between image-type 'input' and others */
+			    -webkit-appearance: button;
+			    /* Corrects inability to style clickable 'input' types in iOS */
+			    padding: 3px 15px;
+			}
+			button:hover,
+			input[type="button"]:hover,
+			input[type="reset"]:hover,
+			input[type="submit"]:hover {
+			    opacity: 0.6;
+			}
 
 		
 	</style>
@@ -70,14 +108,14 @@
             id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a href="index.do">
+            <a href="stock.do">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <img
                         id='mainLogo'
-                        src='upload/logo.png'
+                        src='upload/logo_gray.png'
                         style='width:200px; height:90px; vertical-align: middle;'/>
                 </a>
             </div>
@@ -138,12 +176,15 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">게시판관리:</h6>
-                    <a class="collapse-item" href="utilities-color.html">귀걸이</a>
-                    <a class="collapse-item" href="utilities-border.html">목걸이</a>
-                    <a class="collapse-item" href="utilities-animation.html">기타</a>
-                    <a class="collapse-item" href="utilities-other.html">리뷰</a>
-                    <a class="collapse-item" href="utilities-other.html">문의사항</a>
-                    <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
+                            <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
+                            <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
+                            <a class="collapse-item" href="rboard.do">리뷰</a>
+                            <a class="collapse-item" href="qboard.do">문의사항</a>
+                            <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                 </div>
             </div>
         </li>
@@ -454,8 +495,8 @@
             <div class="row" >
 				<form method="post" action="updateStock.do">
 				<input type="hidden" name="pnum" value="${dto.pnum}">
-					<table border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" >
-						<tbody id="tbody">
+					<table align="center" border="0" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" >
+					
 						<tr>
 							<th>상품번호</th>
 							<td>
@@ -495,9 +536,9 @@
 <%-- 							<input type="text" name="pcontent" value="${dto.pcontent }" ></p> --%>
 <!-- 						<p>판매가 -->
 <%-- 							<input type="number" name="price" value="${dto.price }" ></p> --%>
-					</tbody>		
+					
 					</table>
-
+					<table align="center" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 						<tr>
 							<td class="stockD" >
 								<input type="submit" value="수정">				
@@ -505,6 +546,7 @@
 								<input type="button" value="뒤로 가기" onClick="location.href='http://localhost:8888/board/stock.do'">
 							</td>
 						</tr>
+					</table>
 				</form>	
 			</div>
 

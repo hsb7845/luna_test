@@ -228,14 +228,14 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
 
                     <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="index.do">
+                        href="member.do">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
                         <div class="sidebar-brand-text mx-3">
                             <img
                                 id='mainLogo'
-                                src='upload/logo.png'
+                                src='upload/logo_gray.png'
                                 style='width:200px; height:90px; vertical-align: middle;'/>
                         </a>
                     </div>
@@ -301,9 +301,12 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                         </div>
                     </div>
                 </li>
@@ -454,7 +457,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                    <%--  </select>--%>
                
 
-                <table align="center" border="1" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+                <table align="center" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
                     <tr class="memberT">
                         <th ><input type="checkbox" name="all" onclick="allSel(this)"/></th>
                         <th>아이디</th>

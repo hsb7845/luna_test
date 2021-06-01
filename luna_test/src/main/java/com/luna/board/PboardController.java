@@ -105,7 +105,7 @@ public class PboardController {
 		/* sorting =1 -> 신상 2 ->귀걸이 3-> 목걸이 4-> 반지 5->팔찌 6->귀걸이
 		 * 
 		 * */
-	
+		
 		
 		pagingDTO = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),Integer.parseInt(arrayNum),Integer.parseInt(sorting));
 		List<PBoardDTO> list = pBoardService.getPagingList(pagingDTO);
@@ -119,6 +119,7 @@ public class PboardController {
 		model.addAttribute("paging", pagingDTO);
 		model.addAttribute("list",list);
 		model.addAttribute("arrayNum", arrayNum);
+		model.addAttribute("sorting",sorting);
 		String msg= "";
 		if(list==null) {
 			msg="해당 페이지에 아직 글이없습니다.";

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.luna.board.dtos.EBoardDTO;
+import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 public interface IEBoardService {
 
@@ -19,5 +21,9 @@ public interface IEBoardService {
 	boolean updateBoard(EBoardDTO dto, MultipartHttpServletRequest request);
 
 	boolean mulDel(String[] chk);
+
+	List<EBoardDTO> getPagingList(PagingDTO pagingDTO);
+
+	int countBoard();
 
 }

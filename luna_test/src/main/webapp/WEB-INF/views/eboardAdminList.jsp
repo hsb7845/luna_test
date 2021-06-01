@@ -1,7 +1,8 @@
+<%@page import="com.luna.board.dtos.EBoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
 <!DOCTYPE html>
 <html lang="UTF-8">
@@ -14,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>adminMain</title>
+        <title>이벤트게사판</title>
 
         <!-- Custom fonts for this template-->
         <link
@@ -26,231 +27,58 @@
             rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="<c:url value='resources/bootstrap-4.4.1-dist/css/bootstrap.min.css'/>">
-		<script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
-		<script src="<c:url value='resources/bootstrap-4.4.1-dist/js/bootstrap.min.js'/>"></script>
-		<script>
-		var chk_arr =[];
-		var optNum = 0;
-		function setThumbnail(event) {
-			for (var image of event.target.files) { 
-				var reader = new FileReader(); 
-				reader.onload = function(event) {
-					var img = document.createElement("img"); 
-					img.setAttribute("src", event.target.result);
-					document.querySelector("div#image_container").appendChild(img); 
-					};
-				reader.readAsDataURL(image); 
-			} 
-		}
-		
-			function addcon(tbody){
-				 var tbodyId = document.getElementById("opt"+tbody);
-				 var row = tbodyId.insertRow( tbodyId.rows.length ); // 하단에 추가
-				 var cell1 = row.insertCell(0);
-				 var cell2 = row.insertCell(1);
-				 var cell3 = row.insertCell(2);
-				 var cell4 = row.insertCell(3);
-				 var cell5 = row.insertCell(4);
-				 cell1.innerHTML = "항목";
-				 cell2.innerHTML = "<input type='text' name='ocontent"+tbody+"'>";
-				 cell3.innerHTML = "상품추가비용";
-				 cell4.innerHTML = "<input type='text' name='ovalue"+tbody+"'>";
-				 cell5.innerHTML = "<input type='button' onclick='delcon(\""+tbody+"\")' value='항목제거'>";
-			}
-			
-			function delcon(table){
-				var tableData = document.getElementById("opt"+table);
-				if(tableData.rows.length>=2){
-					tableData.deleteRow(tableData.rows.length-1);
-				}
-				
-			}
-			
-			function checkOnlyOne(element) {
-				  
-				  const checkboxes 
-				      = document.getElementsByName("main");
-				  
-				  checkboxes.forEach((cb) => {
-				    cb.checked = false;
-				  })
-				  
-				  element.checked = true;
-				}
-			
-			
-			function delOpt(num){
-				 var table =$("#table"+num);
-				 optNum--;
-				 table.remove();
-			}
-		
-		$(document).ready(function(){
-			
-			var jsondata = {};
-			$("#addStock").click(function(){
-				window.open("selectstock.do","팝업","width = 1000, height = 1000, top = 100, left = 200, location = no");
-			});
-			
-			
-			
-			var $input = $("#stock");
-			$("#stcok").on('input',function(){
-				console.log("input text changed!"+$(this).val());
-			});
-			
-			$("#addOpt").click(function(){		
-				optNum++;
-				var table = "<table border='1' id='table"+optNum+"' ><thead><tr><th>옵션명&nbsp;<input type='text' id='otitle"+optNum+"' name='otitle' ></th><th colspan='3'>필수<input type='checkbox' value='필수' onclick='necc("+optNum+")' id='necessary"+optNum+"' name='necessary"+optNum+"'></th><th><input type='button' onclick='delOpt("+optNum+")' value='옵션제거'></th></tr></thead>";
-				table += "<tbody id='opt"+optNum+"'><tr><th>항목<input type='button' onclick='addcon("+optNum+")' value='+'></th>";
-				table += "<td><input type='text' name='ocontent"+optNum+"' ></td><th>상품추가비용</th><td><input type='text' name='ovalue"+optNum+"' ></td>";
-				table += "<td><input type='button' onclick='delcon("+optNum+")' value='항목제거'></td></tr></tbody></table>"
-				$("#opt").append(table);	
-			})
-		
-			var oEditors = [];
-			nhn.husky.EZCreator.createInIFrame({
-				oAppRef: oEditors,
-				elPlaceHolder: "pcontent",
-				sSkinURI: "resources/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
-				fCreator: "createSEditor2"
-			});
-		
-			 $(".praBtn").on("click", function() {
-				 	var mainNum = 0;
-					$("input[name='main']").each(function(){
-						if($(this).is(":checked")){
-							mainNum = $(this).val();
-						}
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+		     // core, BOM, DOM  3가지 영역으로 나눔
+		     	function allSel(val){
+		     		//val --> input객체--> Element객체 안에 구현 여러 속성들이 있음 그중에 tagName을 사용해봄
+		//      		alert(val.tagName);
+		//      		alert(val);
+		    		// getElementById(), getElementsByTagName(), ...className ....등 
+		     		var chks=document.getElementsByName("chk");//[chk,chk,chk...]
+		     		for(var i=0;i<chks.length;i++){
+		     			chks[i].checked=val.checked;
+		     		}
+		//      		val.parentNode.style.backgroundColor="red";
+		     	}
+		     	//form 태그에서 submit 이벤트가 발생하면 함수실행 
+		    	$(function(){
+		    		$("form").submit(function(){
+		    			var bool = true;
+		    			var count=$(this).find("input[name=chk]:checked").length;
+		    			if(count==0){
+		    				alert('최소 하나 이상 체크하세요!!!');
+		    				bool= false;
+		    			}else if(confirm("정말 삭제하시겠습니까?")==false){
+		    				bool = false;
+		    			}
+		    			return bool
+		    			
+		    		});
+		    		var chks = document.getElementsByName("chk");
+		    	 	for(var i=0;i<chks.length;i++){
+		    	 		chks[i].onclick =function(){//체크박스에서 클릭이벤트가 발생하면 함수를 실행해라
+		    	 			var checkdObjs = document.querySelectorAll("input[name=chk]:checked");
+		    	 			if(checkedObjs.length ==chks.length){
+		    	 				document.getElementsByName("all")[0].checked=true;
+		    	 			}else{
+		    	 				document.getElementsByName("all")[0].checked=false;
+		    	 			}
+		    	 		}
+		    	 	}
+		    	 	$("#inserteboardform").click(function(){
+						location.href='inserteboardform.do'
 					});
-			});
-			
-			
-			 
-			 
-			$(".btnn").on("click", function() {
-				var pnum_arr = [];
-				$("input[name='pnum']").each(function(){
-					var pnum = $(this).val();
-					pnum_arr.push(pnum);
-				});
-				var mainNum = 0;
-				$("input[name='main']").each(function(){
-					if($(this).is(":checked")){
-						mainNum = $(this).val();
-						//alert(mainNum);
-					}
-				});
-				
-				oEditors.getById["pcontent"].exec("UPDATE_CONTENTS_FIELD", []);
-				var value = document.getElementById("pcontent").value;
-				if(optNum>1){
-					for(var i=1;i<=optNum;i++){
-						var ocontent = "";
-						var ovalue = "";
-						var otitle = $("#otitle"+i).val();
-						if($("input[name ='necessary"+i+"']").prop("checked")){
-							necessary = "true";
-							//alert(necessary);
-						}else{
-							necessary = "false";
-							//alert(necessary);
-						}
-						 $("input[name=ocontent"+i+"]").each(function(index, item){
-							 if(index==0){
-								 ocontent = $(this).val();
-							  }else{
-								 ocontent += "/"+$(this).val();
-							  }
-						   });
-						 $("input[name=ovalue"+i+"]").each(function(index, item){	
-							  if(index==0){
-								 ovalue = $(this).val();
-							  }else{
-								  ovalue += "/"+$(this).val();
-							  }
-						   });
-						jsondata["opt"+i] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
-					} 	
-				}else if(optNum==1){
-					var otitle =  $("#otitle"+1).val();
-					 var ocontent ="";
-					var necessary = "";
-					if($("input[name=necessary"+1).is(":checked")){
-						necessary = "true";
-						//alert(necessary );
-					}else{
-						necessary = "false";
-						//alert(necessary );
-					}
-					 $("input[name=ocontent"+1+"]").each(function(index, item){
-						  if(index==0){
-							 ocontent = $(this).val();
-						  }else{
-							  ocontent += "/"+$(this).val();
-						  }
-					   });
-					 $("input[name=ovalue"+1+"]").each(function(index, item){
-						  if(index==0){
-							 ovalue = $(this).val();
-						  }else{
-							  ovalue += "/"+$(this).val();
-						  }
-					   });
-					 jsondata["opt"+1] = {"otitle":otitle,"ocontent":ocontent,"ovalue":ovalue,"necessary":necessary};
-				}
-				var realObject = JSON.stringify(jsondata);
-				var pseq =0;
-		 		$.ajax({
-		 			url : "insertpboard.do",
-		 			mehthod : "post",
-		 			dataType : "json", 
-		 			traditional : true,
-		 			data : { "realObject" :realObject,"optNum" :optNum,"ptitle":$("#ptitle").val(),"pcontent":$("#pcontent").val(),"pnum_arr":pnum_arr,"mainNum":mainNum},
-		 			asnc:false,
-					success : function(data) {
-						if($("#imgname").val()==""){
-				 			location.href = "pboard.do";
-		 		 		}else{
-							pseq = data["pseq"];
-							$("input[name='pseq']").val(pseq);
-							$("#insert").submit();
-		 		 		}
-					}
-						
-		 		});	
-		 		
-		 		pseq = $("input[name='pseq']").val();
- 		 		
-//  		 			var formData = new FormData();
-//  		 			var inputFile=$("input[name='uploadFiles']");
-//  		 			var files = inputFile[0].files;
- 		 			
-//  		 			alert(pseq);
-//  		 			formData.append("pseq",pseq);
-//  		 			for(var i=0;i<files.length;i++){
-//  		 				alert(files[i]);
-//  		 				formData.append('uploadFiles',files[i]);
-//  		 			}
-//  		 			$.ajax({
-//  			 			url : "uploadimgfileTest.do",
-//  			 			mehthod : "post",
-//  			 			dataType : "json", 
-//  			 			traditional : true,
-//  			 			data : formData,
-//  			 			processData: false,
-//  			        	contentType: false,
-//  			 			asnc:false,
-//  						success : function(data) {
-//  							location.href = "pboard.do";
-//  						}
-//  			 		});	
- 		 		});
-			});
-		
-		</script>
+		    	})
+        </script>
 		<style type="text/css" > 
+			table {
+	    		width: 100%;
+	  		}
+			.cls1 {
+			    font-size: 30px;
+			    text-align: center;
+			}
 			#content {
 			    background-color: white;
 			}
@@ -262,7 +90,18 @@
 			    font-weight: normal;
 			    font-style: normal;
 			}
-			
+			.eboardT {
+				text-align: center;
+				font-size: 15px;
+			}
+			.eboardM {
+				text-align: center;
+				font-size: 13px;
+			}			
+			.eboardD {
+				text-align: left;
+				font-size: 12px;
+			}			
 			body,
 			button,
 			input {
@@ -307,21 +146,12 @@
 			input[type="submit"]:hover {
 			    opacity: 0.6;
 			}
-		#btnimg{
-			width : 25px;
-			height : 25px;
-		}
-	
-		#image_container > img {
-			width: 460px;
-			height : 460px;
-		}
-		div#content{
-			text-align: left;
-		}
-	</style>
+			</style>
 
     </head>
+<%
+	List<EBoardDTO> list= (List<EBoardDTO>) request.getAttribute("list");
+%>
 
         <body id="page-top">
             <!-- Page Wrapper -->
@@ -333,7 +163,7 @@
                     <!-- Sidebar - Brand -->
                     <a
                         class="sidebar-brand d-flex align-items-center justify-content-center"
-                        href="index.do">
+                        href="eboard.do">
                         <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div>
@@ -392,9 +222,12 @@
                             <a class="collapse-item" href="pboard.do?select=귀걸이">귀걸이</a>
                             <a class="collapse-item" href="pboard.do?select=목걸이">목걸이</a>
                             <a class="collapse-item" href="pboard.do?select=반지">반지</a>
+                            <a class="collapse-item" href="pboard.do?select=팔찌">팔찌</a>
+                            <a class="collapse-item" href="pboard.do?select=기타">기타</a>
                             <a class="collapse-item" href="rboard.do">리뷰</a>
                             <a class="collapse-item" href="qboard.do">문의사항</a>
                             <a class="collapse-item" href="eboard.do">이벤트</a>
+                            <a class="collapse-item" href="pcategory.do">카테고리</a>
                         </div>
                     </div>
                 </li>
@@ -486,56 +319,50 @@
 
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="content" >
-                
-					<form method="post" action="updateImg.do" id="insert" enctype="multipart/form-data">
-					<input type="hidden"  name="pseq">
-					<div>
-						<div>
-							<div>제목</div>
-						<input type="text" name="ptitle" id="ptitle">
-						</div>
-						<br>
-						<div><!-- 이미지 추가 -->						
-						<span><input type='file' multiple="multiple" id="imgname" name="uploadFiles" onchange="setThumbnail(event);" required="required" ></span>
-						<div id="image_container"></div>
-						</div>
-						<br>
-						<span>항목변경</span>
-						<button type="button" id="addStock" ><img id="btnimg" src="upload/plus.png"></button>
-						<div >
-						<table border='1'>
-						<thead><!-- 가져온 stock 받아주는 div -->
-						<tr>
-							<th>메인</th>
-							<th>상품번호</th>
-							<th>상품명</th>
-							<th>상품재고수량</th>
-							<th>원가</th>
-							<th>카테고리번호</th>
-							<th>상품내용</th>
-							<th>판매가</th>
-							<th>제거</th>
+                <div class="container-fluid">
+					<p class="cls1">이벤트 게시판 글 목록</p> 
+					<form action="muldelEboard.do" method="post">
+					<table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" >
+						<col width="50px">
+						<col width="50px">
+						<col width="100px">
+						<col width="300px">
+						<col width="200px">
+						<tr class="eboardT" >
+							<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
+							<th>번호</th>
+							<th></th>
+							<th>제목</th>
 						</tr>
-						</thead>
-						<tbody id="stock">
-							
-						</tbody>
-						</table>							
-						</div>
-						<br>
-						<button type="button" id="addOpt">옵션추가</button>
-						<div id="opt"><!-- 해당 옵션 가져오는 태그 --></div>
-						<div>
-							<div>내용</div>
-							<div><!-- 표시할 textarea 영역 --> <textarea id="pcontent"  name="pcontent"></textarea></div>
-						</div>
-						<div>
-							<input type="button" value="작성" class="btnn">
-						</div>
-					</div>
+						<%
+							if(list==null||list.size()==0){
+								out.print("<tr><td colspan='4'>----작성된 이벤트 글이 없습니다.</td></tr>");
+								}else{
+							for(int i=0;i<list.size();i++){
+								EBoardDTO dto=list.get(i);
+						%>
+									<tr class="eboardM" >
+										<td id="m2"><input type="checkbox" name="chk" value="<%=dto.getEseq()%>"/></td>
+										<td id="m2"><%=dto.getEseq()%></td>
+										<td id="m2"><%=dto.getImage().getImgname() %></td>
+										<td id="m2"><a href="updateeboardForm.do?eseq=<%=dto.getEseq() %>"><%=dto.getEtitle()%></a> </td>
+									</tr>
+						<%
+								}
+							}
+						%>
+						</table>
+						<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
+							<tr>
+								<td colspan="4" class="eboardD" >
+<!-- 									<a href="inserteboardform.do">이벤트 작성</a> -->
+									<input type="button" value="이벤트작성" id="inserteboardform">
+<!-- 									<a href=".do">메인</a> -->
+									<input type="submit" value="삭제" />
+								</td>
+							</tr>
+						</table>
 					</form>
-					<div id="log"></div>
                     </div>
                     <!-- End of Main Content -->
                 </div>
@@ -589,16 +416,19 @@
         <!-- Bootstrap core JavaScript-->
         <script src="resources/boot/vendor/jquery/jquery.min.js"></script>
         <script src="resources/boot/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <!-- Core plugin JavaScript-->
         <script src="resources/boot/vendor/jquery-easing/jquery.easing.min.js"></script>
+
         <!-- Custom scripts for all pages-->
         <script src="resources/boot/js/sb-admin-2.min.js"></script>
+
         <!-- Page level plugins -->
         <script src="resources/boot/vendor/chart.js/Chart.min.js"></script>
+
         <!-- Page level custom scripts -->
         <script src="resources/boot/js/demo/chart-area-demo.js"></script>
         <script src="resources/boot/js/demo/chart-pie-demo.js"></script>
 
     </body>
-    <script type="text/javascript" src="<c:url value='resources/smarteditor2-2.8.2.3/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 </html>

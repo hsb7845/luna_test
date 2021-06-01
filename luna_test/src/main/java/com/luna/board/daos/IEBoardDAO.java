@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.PagingDTO;
 
 public interface IEBoardDAO {
 
@@ -22,5 +23,9 @@ public interface IEBoardDAO {
 	boolean insertImg(ImgFileDTO imgFileDTO);
 
 	boolean updateImg(ImgFileDTO imgFileDTO);
+
+	List<EBoardDTO> getPagingList(PagingDTO pagingDTO);
+
+	int countBoard();
 
 }

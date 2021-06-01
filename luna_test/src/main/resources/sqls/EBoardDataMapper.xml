@@ -43,6 +43,21 @@
       </foreach>
    </delete>
    
+   <select id="getPagingList" resultMap="EBDTO_resultMap" parameterType="com.luna.board.dtos.PagingDTO">
+   		 SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.*
+				FROM (
+						SELECT e.ESEQ ,e.ETITLE ,e.ECONTENT ,i.imgname
+						,DENSE_RANK() OVER(PARTITION BY i.eseq ORDER BY i.IMGNAME DESC)AS rk
+						FROM E_BOARD e ,IMG_FILE i
+						where e.eSEQ = i.eseq(+) 
+							) A
+						WHERE A.RK = 1
+				)
+		WHERE RN BETWEEN #{start} and #{end}
+   </select>
+   
    <insert id="insertImg" parameterType="IFDTO">
   		 INSERT INTO IMG_FILE(IMGNUM, FILESIZE, IMGNAME, ID, PSEQ, RSEQ, ESEQ) values
 		(img_file_seq.NEXTVAL,#{filesize},#{imgname},'admin',0,0,E_BOARD_SEQ.CURRVAL)
@@ -54,4 +69,8 @@
 	WHERE IMGNUM=(SELECT DISTINCT IMGNUM FROM IMG_FILE if2 WHERE ESEQ =#{eseq})
    </update>
    
+   
+   <select id="countBoard" resultType="int">
+   select count(*) from e_board
+   </select>
 </mapper>

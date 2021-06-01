@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.PagingDTO;
 
 @Repository
 public class EBoardDAO implements IEBoardDAO{
@@ -64,5 +65,17 @@ public class EBoardDAO implements IEBoardDAO{
 	public boolean updateImg(ImgFileDTO imgFileDTO) {
 		// TODO Auto-generated method stub
 		return  sqlSession.update(namespace+"updateImg", imgFileDTO)>0?true:false;
+	}
+
+	@Override
+	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+"getPagingList",pagingDTO);
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"countBoard");
 	}
 }

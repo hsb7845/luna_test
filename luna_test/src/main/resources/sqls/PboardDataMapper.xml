@@ -140,10 +140,10 @@
 								AND s.cnum = c.cnum AND c.ptype = '반지'
 							</when>
 							<when test="sorting==5">
-								AND s.cnum = c.cnum AND c.ptype = '팔찌'
+								AND s.cnum = c.cnum AND c.ptype = '기타'
 							</when>
 							<when test="sorting==6">
-								AND s.cnum = c.cnum AND c.ptype = '기타'
+								AND s.cnum = c.cnum AND c.ptype = '팔찌'
 							</when>
 						</choose>
 						<choose>

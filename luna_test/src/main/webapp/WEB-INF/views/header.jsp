@@ -55,19 +55,17 @@
 		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 		<div class="menu-menu-1-container">
 			<ul id="menu-menu-1" class="menu nav-menu">
-				<li><a href="pboardpaging.do?sorting=1">신상품</a></li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
 				<li><a href="pboardpaging.do?sorting=2">귀걸이</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
 				<li><a href="pboardpaging.do?sorting=3">목걸이</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
 				<li><a href="pboardpaging.do?sorting=4">반지</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="pboardpaging.do?sorting=5">팔찌</a></li>
+				<li><a href="pboardpaging.do?sorting=6">팔찌</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="pboardpaging.do?sorting=6">기타</a></li>
+				<li><a href="pboardpaging.do?sorting=5">기타</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="eboard.do">이벤트</a></li>
+				<li><a href="eboard.do">이벤트/공지사항</a></li>
 			</ul>
 		</div>
 		</nav>

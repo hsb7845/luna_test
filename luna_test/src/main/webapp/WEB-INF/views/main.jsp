@@ -215,7 +215,7 @@ img {vertical-align: middle;
     </div>
    
      <div class="list_start">
-      <h2>Bracelet</h2>
+      <h2>ETC</h2>
     	<c:forEach items="${map.paging5 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>

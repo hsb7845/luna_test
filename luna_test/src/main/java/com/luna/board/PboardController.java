@@ -265,6 +265,7 @@ public class PboardController {
 	@RequestMapping(value = "/updatepboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String update(Locale locale, Model model,String realObject,int optNum,int[] pnum_arr,String ptitle,String pcontent,int mainNum,int pseq) {
 		//System.out.println("여기는 오는거지?");
+		System.out.println("pcontent: "+pcontent);
 		
 		List<POptionDTO> optionList = new ArrayList<>();
 		POptionDTO optDto = new POptionDTO();

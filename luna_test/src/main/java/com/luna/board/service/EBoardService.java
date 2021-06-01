@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.luna.board.daos.IEBoardDAO;
 import com.luna.board.dtos.EBoardDTO;
 import com.luna.board.dtos.ImgFileDTO;
+import com.luna.board.dtos.PagingDTO;
+import com.luna.board.dtos.RBoardDTO;
 
 @Service
 public class EBoardService implements IEBoardService {
@@ -98,5 +100,21 @@ public class EBoardService implements IEBoardService {
 	public boolean mulDel(String[] chk) {
 		return EBoardDAO.mulDel(chk);
 	}
+
+	
+
+	@Override
+	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO) {
+		// TODO Auto-generated method stub
+		return EBoardDAO.getPagingList(pagingDTO);
+	}
+
+	@Override
+	public int countBoard() {
+		// TODO Auto-generated method stub
+		return EBoardDAO.countBoard();
+	}
+
+	
 
 }

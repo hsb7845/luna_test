@@ -461,7 +461,7 @@ padding : 5px;
 	font-size : 25pt;
 }
 .infoArea > table {
-	width : 500px;
+	width : 700px;
 }
 
 

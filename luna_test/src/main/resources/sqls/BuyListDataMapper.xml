@@ -66,9 +66,11 @@
 				<when test='toDate!="" and fromDate!="" and !delStatus.equals("all")'>
 					where BUYDATE BETWEEN to_date(#{toDate},'YYYY-MM-DD') and to_date(#{fromDate},'YYYY-MM-DD') AND delStatus = #{delStatus}
 				</when> 
-				
 				<when test='toDate=="" and fromDate=="" and !delStatus.equals("all")'>
 				WHERE delStatus = #{delStatus}
+				</when>
+				<when test='toDate!="" and fromDate!="" and delStatus.equals("all")'>
+					where BUYDATE BETWEEN to_date(#{toDate},'YYYY-MM-DD') and to_date(#{fromDate},'YYYY-MM-DD')
 				</when>
 			</choose>
 		order by  buydate desc

@@ -38,7 +38,7 @@ import com.luna.board.dtos.CartDTO;
 			chk = sqlSession.selectOne(namespace+"countCart", dto);
 			if(chk>=1) {
 				pcount = sqlSession.selectOne(namespace+"getPcount", dto);
-				dto.setPcount(pcount+1);
+				dto.setPcount(pcount+dto.getPcount());
 				isS = sqlSession.update(namespace+"updateCart2", dto)>0?true:false;
 				
 			}else {

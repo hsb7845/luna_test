@@ -33,7 +33,7 @@ public class CartController {
 		List<CartDTO> list;
 		if(id==null) {
 			msg = "비정상적인 접근입니다.";
-			return "index";
+			return "redirect:main.do";
 		}else {
 			list = CartService.getAllList(id);
 		}

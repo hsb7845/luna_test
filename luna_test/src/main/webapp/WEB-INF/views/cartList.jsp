@@ -200,7 +200,7 @@ $(function(){
 		<c:forEach items="${list }" var="list">
 			<tr align="center" class="cartM">
 			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>
-			<td>${list.pseq }</td>
+			<td>${list.pboard.pseq }</td>
 			<td>${list.selOpt }</td>
 			<td><fmt:formatNumber value="${list.price }" pattern="#,###" /></td>	
 			<td>${list.pcount }</td>

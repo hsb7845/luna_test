@@ -2,11 +2,21 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.luna.cart">
-
-	<select id="getAllList" resultType="CartDTO" parameterType="String">
+	<resultMap type="CartDTO" id="Cart_resultMap">
+		<result column="SEQ" property="seq"/>
+		<result column="id" property="id"/>
+		<result column="Pcount" property="pcount"/>
+		<result column="selopt" property="selOpt"/>
+		<result column="price" property="price"/>
+		<collection property="pboard" ofType="PBDTO">
+			<result column="PTITLE" property="ptitle"></result>
+			<result column="PSEQ" property="pseq"></result>
+		</collection>
+	</resultMap>
+	<select id="getAllList" resultMap="Cart_resultMap" parameterType="String">
 		SELECT *
-		FROM CART WHERE id = #{id}
-		 ORDER BY SEQ DESC
+		FROM CART c,p_board p WHERE c.id = #{id}
+		ORDER BY c.SEQ DESC
 	
 	</select>
 	

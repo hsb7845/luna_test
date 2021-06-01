@@ -28,20 +28,24 @@ public class QboardController {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String admin = (String)session.getAttribute("admin");
-		if(admin !=null) {
-			if(admin.equals("관리자")) {
-				List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO());
-				model.addAttribute("list",list);
-				return "qboardlist";
+		if(id !=null) {
+			if(admin !=null) {
+				if(admin.equals("관리자")) {
+					List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO());
+					model.addAttribute("list",list);
+					return "qboardlist";
 				} else {
 					List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO(id));
 					model.addAttribute("list",list);
 					return "myqboardlist";
 				}
-		}else {
-			return "userlogin";
+			}else {
+				List<QBoardDTO> list = qBoardService.getAllList(new QBoardDTO(id));
+				model.addAttribute("list",list);
+				return "myqboardlist";
+			}
 		}
-		
+		return "userlogin";
 	}
 	
 	@RequestMapping(value = "/insertqboardform.do", method = {RequestMethod.GET,RequestMethod.POST})

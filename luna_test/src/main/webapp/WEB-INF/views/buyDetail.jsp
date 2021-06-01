@@ -148,7 +148,7 @@
 	<c:forEach items="${list }" var="list">
 		<tr>
 			<td>${list.bdseq }</td>
-			<td><img src="upload/${list.image.imgname }"></td>
+			<td><img src="upload/${list.image.imgname }"  width="150px" height="150px"></td>
 			<td><a href="pboarddetail.do?pseq=${list.pboard.pseq }">${list.pboard.ptitle }</a><br>${list.selOpt }</td>
 			<td><fmt:formatNumber value="${list.price}" pattern="#,###" />원<br>(${list.pcount }개)</td>
 			<td>${list.blDTO.delStatus}</td>

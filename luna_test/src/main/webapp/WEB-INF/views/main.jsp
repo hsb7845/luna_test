@@ -99,7 +99,7 @@ img {vertical-align: middle;
 
 .list_start>H2 {
   
-  	margin-left : 300px;
+  	margin-left : 15%;
 }
 .list_in {
 	text-align: center;

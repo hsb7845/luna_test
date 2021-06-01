@@ -548,7 +548,7 @@
 <p class="cls1">구매현황</p>
 <form action="buylistOpt.do" method="post">
 <div align="right">
-<input type="date" name="toDate">~<input type="date" name="fromDate">&nbsp;&nbsp;  
+<input type="date" max="9999-12-31" name="toDate">~<input type="date" max="9999-12-31" name="fromDate">&nbsp;&nbsp;  
 <select name="delStatus" id="delStatus"> 
 	<option value="all" selected>전체</option>
 	<option value="입금전">입금전</option>

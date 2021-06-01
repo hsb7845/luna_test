@@ -96,7 +96,7 @@
 			<c:forEach items="${list }" var="list" varStatus="sta">
 				<tr>
 				<td>${list.eseq }</td>
-				<td><a href="eboardeetail.do?board=notice?eseq=${list.eseq }">${list.etitle }</a></td>
+				<td><a href="eboarddetail.do?board=notice&eseq=${list.eseq }">${list.etitle }</a></td>
 				<td>루나</td>
 				</tr>
 			</c:forEach>

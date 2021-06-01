@@ -98,10 +98,10 @@
 		var chks = [];
 		$("input[name='chk']").each(function(){
 			var chk = $(this).val();
-			alert(chk);
+		//	alert(chk);
 			chks.push(chk);
 		});
-		alert(chks);
+	//	alert(chks);
 		$("input[name='chks']").val(chks);
 		$("input[name='address']").val(address);
 		if($("input[name='address']")!= "() "){

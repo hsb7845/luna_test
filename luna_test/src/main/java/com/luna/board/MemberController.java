@@ -204,7 +204,7 @@ public class MemberController {
 						}
 					}
 					
-					return "redirect:index.do";
+					return "redirect:main.do";
 				}				
 			}else {
 				msg="아이디나 비밀번호가 틀렸습니다.";
@@ -224,7 +224,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		System.out.println("세션 정보삭제 완료");
 		session.invalidate();
-		return "index"; 
+		return "redirect:main.do"; 
 	}
 		 
     /* 이메일 인증 */
@@ -361,7 +361,7 @@ public class MemberController {
     			session.setAttribute("id", dto.getId());
     			session.setAttribute("nickname", dto.getNickName());
     			session.setAttribute("admin", dto.getAdmin());
-    			return "index";
+    			return "redirect:main.do";
     			
     		}
     		
@@ -372,7 +372,7 @@ public class MemberController {
 		    	
     			session.setAttribute("id", dto.getId());
     			session.setAttribute("nickname", dto.getNickName());
-    			return "index";
+    			return "redirect:main.do";
     		
 			} else {
 				return "loginForm";

@@ -69,13 +69,19 @@ public class PboardController {
 
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
 	public String nomain(Locale locale, Model model) {
-		return "index";
+		Map<String,Object> map = pBoardService.mainPage();
+
+		model.addAttribute("map",map);
+		return "main";
 	}
 	
 	@RequestMapping(value = "/index.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String index(Locale locale, Model model) {
+		Map<String,Object> map = pBoardService.mainPage();
 
-		return "index";
+		model.addAttribute("map",map);
+
+		return "main";
 	}
 	@RequestMapping(value = "/pboardpaging.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pboardPaging(Locale locale, Model model,PagingDTO pagingDTO,@RequestParam(value="sorting",required=false)String sorting,

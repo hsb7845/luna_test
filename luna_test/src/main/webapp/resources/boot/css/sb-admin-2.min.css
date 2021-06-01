@@ -519,7 +519,7 @@ pre code {
     }
 }
 .row {
-    display: flex;
+/*     display: flex; */
 	background-color: white;
     flex-wrap: wrap;
     margin-right: -.75rem;

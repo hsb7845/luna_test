@@ -6,154 +6,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>SB Admin 2 - Register</title>
 
-<style type="text/css">
- button {
-   color:#666666;
-   font-family:inherit;
-   font-size:14px;
-   line-height:1.8;
-   word-wrap:break-word;
-   -webkit-hyphens:auto;
-    -moz-hyphens:auto;
-    -ms-hyphens:auto;
-         hyphens:auto;
-         
-         font-size:100%;
-   /* Corrects font size not being inherited in all browsers */
-   margin:0;
-   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
-   vertical-align:baseline;
-   /* Improves appearance and consistency in all browsers */
-}
-button,input[type="button"],input[type="reset"],input[type="submit"] {
-   border:1px solid #ccc;
-   border-radius:0px;
-   background:#ccc;
-   color:#fff;
-   cursor:pointer;
-   /* Improves usability and consistency of cursor style between image-type 'input' and others */
-   -webkit-appearance:button;
-   /* Corrects inability to style clickable 'input' types in iOS */
-   padding:3px 15px;
-}
-button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
-   opacity:0.6;
-}
-@font-face {
-    font-family: 'BinggraeSamanco-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body,button,input{
-	font-family: 'BinggraeSamanco-Bold';
-	font-weight: bold;
-	line-height: 20px;
-
- }
-/*  .body { */
-/* 	left: 50%;	 */
-/* 	position: relative;		 */
-/* } */
-
-.pwck_input_re_1{
-	color : green;
-	display : none;    
-}
-.pwck_input_re_2{
-	color : red;
-	display : none;    
-}    
-.pw_reg_tr{
-	display :none;
-	color : green;
-}
-.pw_reg_fl{
-	display:  none;
-	color :red;
-}
-
-</style>
-</head>
-
-<body> 		
-
-	<div class=body>
-	<form method="post" action="insertmember.do" id="join">
-		<h1>회원가입</h1>
-		<div id="id" >
-			<label for="id">아이디</label><br>
-			<input type="text" name="id" id="id" required />
-			<button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>
-		</div>
-		<div class="pw_wrap">
-		<div class="pw_name=">비밀번호</div>
-		<div class="pw_input_box">
-			<input type="password" class="pw_input" name="pwd" placeholder="영문자+특수문자 조합"required>
-		</div>
-		<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
-		<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
-		</div>
-		<div class="pwck_wrap">
-			<div class="pwck_name">비밀번호확인</div>
-			<div class="pwck_input_box">
-				<input type="password" class="pwck_input" name="pwdCheck"required>
-			</div>
-		<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
-		<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
-		</div>
-		<div class="mail_wrap">
-			<div class="email">이메일</div>
-			<div class="mail_input_box">
-			<input class="mail_input" name="email" required>
-			</div>
-			<div class="mail_check_wrap">
-			<div class="mail_check_input_box" id="mail_check_input_box_false">	
-					인증번호<br><input class="mail_check_input" disabled="disabled"required>
-			</div>
-			<div class="mail_check_button">
-				<span><input type="button" value="인증번호 전송"></span>
-			</div>
-			<div class="clearfix"></div>
-			 <span id="mail_check_input_box_warn"></span>
-			</div>
-		</div>
-
-
-주소<br>
-<input type="text" name="adr1" id="sample2_postcode" placeholder="우편번호"required>
-<input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="adr2" id="sample2_address" placeholder="주소"required><br>
-<input type="text" name="adr3" id="sample2_detailAddress" placeholder="상세주소"required>
-<input type="text" name="adr4" id="sample2_extraAddress" placeholder="참고항목"required><br>
-
-<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-</div>
-
-		생년월일<br> <input type="date" name="birthtest" max="9999-12-31" required><br>
-		성별<br>
-		남<input type="checkbox" name="sex" onclick="checkOnly(this);" value="남" >
-		여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
-		핸드폰 <br><input type="text" name="phone"required>
-		<br>
-<!-- <- 		가입일 <input type="Date" name="joindate"><br>  - -->
-		닉네임 <br><input type="text" name="nickName"required><br>
-		이름<br>	<input type="text" name="name"required>
-		<input type="hidden" value="일반회원" name="admin">
-<br><br>
-		<input type="submit" value="회원가입">
-		<input type="reset" value="다시입력">
-	</form>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- Custom fonts for this template-->
+    <link href="resources/boot/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="resources/boot/css/sb-admin-2.min.css" rel="stylesheet">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -361,7 +229,193 @@ function check() {
 	}
 }
  </script>
-</div>
+ <style type="text/css">
+ 	 button {
+	   color:#666666;
+	   font-family:inherit;
+	   font-size:14px;
+	   line-height:1.8;
+	   word-wrap:break-word;
+	   -webkit-hyphens:auto;
+	    -moz-hyphens:auto;
+	    -ms-hyphens:auto;
+	         hyphens:auto;
+	         
+	         font-size:100%;
+	   /* Corrects font size not being inherited in all browsers */
+	   margin:0;
+	   /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+	   vertical-align:baseline;
+	   /* Improves appearance and consistency in all browsers */
+	}
+	button,input[type="button"],input[type="reset"],input[type="submit"] {
+	   border:1px solid #ccc;
+	   border-radius:0px;
+	   background:#ccc;
+	   color:#fff;
+	   cursor:pointer;
+	   /* Improves usability and consistency of cursor style between image-type 'input' and others */
+	   -webkit-appearance:button;
+	   /* Corrects inability to style clickable 'input' types in iOS */
+	   padding:3px 15px;
+	}
+	button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover {
+	   opacity:0.6;
+	}
+	
+	body,button,input{
+		font-family: 'BinggraeSamanco-Bold';
+		font-weight: bold;
+		line-height: 20px;
+	
+	 }
+	 
+	 .pwck_input_re_1{
+		color : green;
+		display : none;    
+	}
+	.pwck_input_re_2{
+		color : red;
+		display : none;    
+	}    
+	.pw_reg_tr{
+		display :none;
+		color : green;
+	}
+	.pw_reg_fl{
+		display:  none;
+		color :red;
+	}
+ </style>
+</head>
+<body class="bg-gradient-primary" method="post" action="insertmember.do" id="join">
+<div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image">
+                    	<img src="upload/logo.png" style='width:200px; height:80px; vertical-align: middle;'>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
+                            </div>
+                            <form class="user">
+<!--  아이디 -->
+                            	<div class="form-group">
+<!--                                     <input type="text" class="form-control form-control-user" id="id" placeholder="아이디"> -->
+<!-- 									<label for="id">아이디</label> -->
+                                    <input type="text" class="form-control form-control-user" 
+                                    placeholder="아이디" name="id" id="id" required >
+                                    <button type="button" id="idChk" onclick="fn_idChk();">중복확인</button><br>                                
+                                </div>
+<!--  비밀번호 -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+<!--                                     	<div class="pw_name=">비밀번호</div> -->
+                                        <input type="password" class="form-control form-control-user" 
+                                        placeholder="비밀번호" name="pwd" placeholder="영문자+특수문자 조합" required >
+                                    	<div class="pw_reg_tr" >올바른 비밀번호입니다.</div>
+										<div class ="pw_reg_fl">(7자이상)최소 하나이상의 특수문자를 사용해주세요.</div>
+                                    </div>
+<!-- 비밀번호 확인 -->
+                                    <div class="col-sm-6">                                       
+                                    	<div class="pwck_wrap">
+<!-- 											<div class="pwck_name">비밀번호확인</div> -->
+											<div class="pwck_input_box">
+												<input type="password" class="form-control form-control-user" 
+												id="exampleLastName" placeholder="비밀번호확인" name="pwdCheck"required>				
+											</div>
+										<span class="pwck_input_re_1">비밀번호가 일치합니다</span>
+										<span class="pwck_input_re_2">비밀번호가일치하지않습니다</span>
+										</div>                                    
+                                    </div>
+                                </div>
+<!--   이메일 -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    	<div class="mail_input_box">
+                                        <input name="email" class="form-control form-control-user" id="exampleInputPassword" placeholder="이메일"  required>
+                                    	</div>
+                                    </div>
+                                    <div class="col-sm-6">                                    	
+                                        <input class="mail_check_input" disabled="disabled" placeholder="인증번호" required >
+                                    
+                                    	<div class="mail_check_button">
+											<span><input type="button" value="인증번호 전송"></span>
+										</div>
+										<div class="clearfix"></div>
+											<span id="mail_check_input_box_warn"></span>
+										</div>									                                   
+                                   </div> 
+<!-- 주소 -->
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="우편번호">
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="우편번호찾기">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="주소">
+                                    </div>                     
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="상세주소">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="참고항목">
+                                    </div>                                
+                                </div>
+<!--  생년월일 -->
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+<!--                                     	생년월일 -->
+                                    	<input type="date" class="form-control form-control-user" name="birthtest" max="9999-12-31" placeholder="생년월일" required><br>
+                                    </div>
+                                    <div class="col-sm-6">
+<!--                                         <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password"> -->
+<!--                             			성별<br> -->
+											남<input type="checkbox" name="sex" onclick="checkOnly(this);" value="남" >
+											여<input type="checkbox" name="sex" onclick="checkOnly(this);" value="여" ><br>
+                                    </div>
+                                </div>
+<!--  핸드폰 -->                       
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="핸드폰">
+                                </div>
+<!--   이름 및 닉네임  -->                                
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="이름">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="닉네이">
+                                    </div>
+                                </div>
+                                
+                                <a href="login.html" class="btn btn-primary btn-user btn-block">회원가입</a>
+                                <a href="login.html" class="btn btn-primary btn-user btn-block">다시입력</a>
+                                <hr>
+
+                            </form>                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="resources/boot/vendor/jquery/jquery.min.js"></script>
+    <script src="resources/boot/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="resources/boot/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="resources/boot/js/sb-admin-2.min.js"></script>
+    
 </body>
 </html>
 

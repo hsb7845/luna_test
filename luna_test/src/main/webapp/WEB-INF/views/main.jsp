@@ -80,6 +80,8 @@ img {vertical-align: middle;
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
+	
+
   .text {font-size: 11px}
 }
     
@@ -91,14 +93,20 @@ img {vertical-align: middle;
         -webkit-align-items: flex-start;
     }
     .list_start {
-    text-align: left;
+  
+    text-align: center;
 }
 
+.list_start>H2 {
+  
+  	margin-left : 300px;
+}
 .list_in {
 	text-align: center;
 }
 
 .list_detail {
+	
     display: inline-block;
     width: 300px;
     height: 100px;
@@ -129,14 +137,15 @@ img {vertical-align: middle;
   <span class="dot"></span> 
 </div>
     
-	<h2>New</h2>
+	
    
     <div class="list_start">
+    	<h2>New</h2>
     	<c:forEach items="${map.paging1 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
@@ -144,13 +153,14 @@ img {vertical-align: middle;
 				</div>
         </c:forEach>
     </div>
-    <h2>Best Items</h2>
+   
      <div class="list_start">
+     	 <h2>Best Items</h2>
     	<c:forEach items="${map.best }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
@@ -158,13 +168,14 @@ img {vertical-align: middle;
 				</div>
         </c:forEach>
     </div>
-    <h2>Earring</h2>
+    
   <div class="list_start">
+  	<h2>Earring</h2>
     	<c:forEach items="${map.paging2 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
@@ -172,13 +183,14 @@ img {vertical-align: middle;
 				</div>
         </c:forEach>
     </div>
-    <h2>Necklace</h2>
+    
     <div class="list_start">
+    	<h2>Necklace</h2>
     	<c:forEach items="${map.paging3 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
@@ -186,13 +198,14 @@ img {vertical-align: middle;
 				</div>
         </c:forEach>
     </div>
-    <h2>Ring</h2>
+   
     <div class="list_start">
+     <h2>Ring</h2>
     	<c:forEach items="${map.paging4 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>
@@ -200,13 +213,14 @@ img {vertical-align: middle;
 				</div>
         </c:forEach>
     </div>
-    <h2>Bracelet</h2>
+   
      <div class="list_start">
+      <h2>Bracelet</h2>
     	<c:forEach items="${map.paging5 }" var="i">
     	<div class="list_detail">
     	<a href='pboarddetail.do?pseq=${i.pseq }'>
 			<c:if test="${i.image.imgname !=null }">
-				<img  src="upload/img_dummy1.jpg" style="width :200px;height : 200px;"><br>
+				<img  src="upload/${i.image.imgname }" style="width :250px;height : 250px;"><br>
 			</c:if>
 				<div>${i.ptitle }</div><br>
 				<div><fmt:formatNumber value="${i.stock.price}" pattern="#,###" /> 원</div><div width="100px"></div>

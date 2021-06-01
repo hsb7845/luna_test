@@ -264,7 +264,7 @@
 			SELECT ROWNUM RN, A.*
 				FROM (
 					SELECT eb.ESEQ,if2.IMGNAME FROM E_BOARD eb,IMG_FILE if2 
-					WHERE eb.ESEQ = if2.ESEQ
+					WHERE eb.ESEQ = if2.ESEQ and boa_sta = '이벤트'
 					ORDER BY eb.eseq DESC 
 		 	) A
 				)

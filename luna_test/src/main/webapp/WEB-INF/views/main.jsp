@@ -122,10 +122,9 @@ img {vertical-align: middle;
 <div class="mySlides fade">
   <div class="numbertext">${status.count }/ 3</div>
   <a href ="eboardDetail?eseq=${i.eseq }">
-  <img src="http://placehold.it/300x100" style="width:100%">
+  <img src="upload/${i.image.imgname}" style="width:100%;height:300px;">
   </a>
   <input type="hidden" name="imgname" value="${i.image.imgname}">
-  <div class="text">Caption One</div>
 </div>
 </c:forEach>
 </div>

@@ -141,7 +141,7 @@ public class PBoardService implements IPBoardService{
 					String path2=request.getSession()
 						.getServletContext().getRealPath("upload");
 					System.out.println("path2:"+path2);
-					File f=new File(path2+"/"+imgname);
+					File f=new File(path+"/"+imgname);
 					
 					
 					

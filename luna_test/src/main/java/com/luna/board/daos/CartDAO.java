@@ -30,9 +30,21 @@ import com.luna.board.dtos.CartDTO;
 	public boolean insertCart(List<CartDTO> list) {
 		// TODO Auto-generated method stub
 		boolean isS =false;
+		System.out.println("오니?");
 		for(int i=0;i<list.size();i++) {
+			int chk = 0;
+			int pcount = 0;
 			CartDTO dto = list.get(i);
-			isS = sqlSession.insert(namespace+"insertCart",dto)>0?true:false;
+			chk = sqlSession.selectOne(namespace+"countCart", dto);
+			if(chk>=1) {
+				pcount = sqlSession.selectOne(namespace+"getPcount", dto);
+				dto.setPcount(pcount+1);
+				isS = sqlSession.update(namespace+"updateCart2", dto)>0?true:false;
+				
+			}else {
+				isS = sqlSession.insert(namespace+"insertCart",dto)>0?true:false;
+			}
+			
 		}
 		return isS;
 	}

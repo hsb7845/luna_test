@@ -24,8 +24,10 @@ public interface IEBoardDAO {
 
 	boolean updateImg(ImgFileDTO imgFileDTO);
 
-	List<EBoardDTO> getPagingList(PagingDTO pagingDTO);
+	List<EBoardDTO> getPagingList(PagingDTO pagingDTO, String board);
 
 	int countBoard();
+
+	EBoardDTO getDetail(int eseq, String board);
 
 }

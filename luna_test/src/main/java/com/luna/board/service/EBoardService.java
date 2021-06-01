@@ -104,15 +104,21 @@ public class EBoardService implements IEBoardService {
 	
 
 	@Override
-	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO) {
+	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO, String board) {
 		// TODO Auto-generated method stub
-		return EBoardDAO.getPagingList(pagingDTO);
+		return EBoardDAO.getPagingList(pagingDTO,  board);
 	}
 
 	@Override
 	public int countBoard() {
 		// TODO Auto-generated method stub
 		return EBoardDAO.countBoard();
+	}
+
+	@Override
+	public EBoardDTO getDetail(int eseq, String board) {
+		// TODO Auto-generated method stub
+		return EBoardDAO.getDetail(eseq,board);
 	}
 
 	

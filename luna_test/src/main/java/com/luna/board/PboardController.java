@@ -131,6 +131,7 @@ public class PboardController {
 	}
 	
 	
+	
 	@RequestMapping(value = "/pboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String pboard(Locale locale, Model model,String select ) {
 		

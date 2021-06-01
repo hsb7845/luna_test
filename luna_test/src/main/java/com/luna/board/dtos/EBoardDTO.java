@@ -4,7 +4,18 @@ public class EBoardDTO {
 	private int eseq;
 	private String econtent;
 	private String etitle;
+	private String boa_sta;
+	
+
 	private ImgFileDTO image;
+	
+	public String getBoa_sta() {
+		return boa_sta;
+	}
+	public void setBoa_sta(String boa_sta) {
+		this.boa_sta = boa_sta;
+	}
+
 	
 	public ImgFileDTO getImage() {
 		return image;

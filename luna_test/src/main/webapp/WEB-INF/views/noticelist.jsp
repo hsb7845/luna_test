@@ -18,6 +18,11 @@
 
 </head>
 <style>
+	.notice{
+		margin-left : 100px;
+		width:80%;
+	}
+
 	h2 {
 		text-align: center;
 	}
@@ -40,25 +45,13 @@
 	text-align: center;
 }
 
-.main_list {
-    width: 1100px;
-    margin: 0 auto;
-}
 
 .list_start {
     text-align: left;
 }
 
-.list_in {
-	text-align: center;
-}
 
-.list_detail {
-    display: inline-block;
-    width: 300px;
-    height: 300px;
-    margin : 10px;
-}
+
 
 .paging_start{
 	text-align: center;
@@ -75,32 +68,40 @@
 <body>
 <%@ include file="header.jsp" %>
 <div id="outter">
+	<h3>공지사항</h3>
 	<div style="float:right">
 	</div>
 </div> <!-- 옵션선택 끝 -->
 	<br><br><br>
-		<div class="main_list">
+	<input type="hidden" name='sorting' value="${paging.sorting }">
+	<div class="main_list">
 	
 		<div class="main_title">
 		</div>
 		<div class="list_start">
-
-		<c:forEach items="${list }" var="list" varStatus="sta">
-			<div class="list_detail">
-			<a href='eboarddetail.do?board=event&eseq=${list.eseq }'>
-			<c:if test="${list.image.imgname !=null }">
-				<img src="upload/${list.image.imgname}"><br>
-			</c:if>
-				<div class="list_in">
-					<div>${list.etitle }</div><br>
-	<%-- 				<div><fmt:formatDate value="${list.pdate }" pattern="yyyy.MM.dd"/> </div> --%>
-	<%-- 			<c:if test="${sta.count%3==0 }"> --%>
-	<!-- 				<br> -->
-	<%-- 			</c:if> --%>
-				</div>
-				</a>
-			</div>
-		</c:forEach>
+		<table class="notice">
+		<col width="100px"> 
+		<col width="500px">
+		<col width="100px">
+		<tr>
+			<th>
+				게시글 번호
+			</th>
+			<th>
+				제목
+			</th>
+			<th>
+				작성자
+			</th>
+			<c:forEach items="${list }" var="list" varStatus="sta">
+				<tr>
+				<td>${list.eseq }</td>
+				<td><a href="eboardeetail.do?board=notice?eseq=${list.eseq }">${list.etitle }</a></td>
+				<td>루나</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 	</div>
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">

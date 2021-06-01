@@ -31,7 +31,7 @@ import com.luna.board.service.IEBoardService;
 		@RequestMapping(value = "/eboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 		public String eboard(Locale locale, Model model,HttpServletRequest request,PagingDTO pagingDTO,
 				@RequestParam(value="nowPage", required=false)String nowPage,
-				@RequestParam(value="cntPerPage",required=false)String cntPerPage) {
+				@RequestParam(value="cntPerPage",required=false)String cntPerPage,String board) {
 			if(nowPage ==null&&cntPerPage==null) {
 				nowPage="1";
 				cntPerPage = "12";
@@ -52,10 +52,25 @@ import com.luna.board.service.IEBoardService;
 				return "eboardAdminList";
 				} 
 				}
-			List<EBoardDTO> list = eBoardService.getPagingList(pagingDTO);
-			model.addAttribute("list",list);
-			return "eboardlist";
+			if(board!=null) {
+				if(board.equals("event")) {
+					List<EBoardDTO> list = eBoardService.getPagingList(pagingDTO,board);
+					model.addAttribute("list",list);
+					model.addAttribute("paging", pagingDTO);
+					return "eboardlist";
+				}else if(board.equals("notice")) {
+					List<EBoardDTO> list = eBoardService.getPagingList(pagingDTO,board);
+					model.addAttribute("list",list);
+					model.addAttribute("paging", pagingDTO);
+					return "noticelist";
+				}
 			}
+			
+			return "error";
+			
+		
+			
+		}
 
 		
 		@RequestMapping(value = "/inserteboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
@@ -87,6 +102,15 @@ import com.luna.board.service.IEBoardService;
 			return "eboardupdateform";
 		}
 
+		@RequestMapping(value = "/eboarddetail.do", method = {RequestMethod.GET,RequestMethod.POST})
+		public String eboarddetail(Locale locale, Model model,int eseq,String board) {
+			EBoardDTO dto  = eBoardService.getDetail(eseq,board);
+			model.addAttribute("dto",dto);
+			return "eboarddetail";
+		}
+		
+		
+		
 		@RequestMapping(value = "/updateeboard.do", method = {RequestMethod.GET,RequestMethod.POST})
 		public String update(Locale locale, Model model, EBoardDTO dto,MultipartHttpServletRequest request) {
 			boolean isS = eBoardService.updateBoard(dto,request);

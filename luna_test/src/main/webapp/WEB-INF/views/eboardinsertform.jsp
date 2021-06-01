@@ -291,6 +291,14 @@
 						<table style="width : 1100px;" 
 						align="center" border="0" cellpadding="5" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 							<tr>
+								<th>분류</th>
+								<td>
+									<select name="boa_sta" >
+										<option value="공지">공지</option>
+										<option value="이벤트">이벤트</option>
+									</select>
+								</td>
+							<tr>
 								<th>제목</th>
 								<td><input type="text" name="etitle"></td>
 							</tr>

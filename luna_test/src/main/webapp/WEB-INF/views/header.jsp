@@ -65,7 +65,9 @@
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
 				<li><a href="pboardpaging.do?sorting=5">기타</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="eboard.do">이벤트/공지사항</a></li>
+				<li><a href="eboard.do?board=event">이벤트</a></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+				<li><a href="eboard.do?board=notice">공지사항</a></li>
 			</ul>
 		</div>
 		</nav>

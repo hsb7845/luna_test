@@ -68,14 +68,36 @@ public class EBoardDAO implements IEBoardDAO{
 	}
 
 	@Override
-	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO) {
+	public List<EBoardDTO> getPagingList(PagingDTO pagingDTO, String board) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"getPagingList",pagingDTO);
+		Map<String,Object> map =new HashMap<String, Object>();
+		map.put("pagingDTO", pagingDTO);
+		if(board.equals("event")) {
+			map.put("board", "이벤트");
+		}else if(board.equals("notice")) {
+			map.put("board","공지");
+		}
+		
+		return sqlSession.selectList(namespace+"getPagingList",map);
 	}
 
 	@Override
 	public int countBoard() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"countBoard");
+	}
+
+	@Override
+	public EBoardDTO getDetail(int eseq, String board) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map =new HashMap<String, Object>();
+		map.put("eseq", eseq);
+		if(board.equals("event")) {
+			map.put("board", "이벤트");
+		}else if(board.equals("notice")) {
+			map.put("board","공지");
+		}
+		
+		return sqlSession.selectOne(namespace+"getDetail", map);
 	}
 }

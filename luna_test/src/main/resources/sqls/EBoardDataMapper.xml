@@ -5,6 +5,7 @@
 
 <mapper namespace="com.luna.eboard">
 	<resultMap type="EBDTO" id="EBDTO_resultMap">
+			<result column="BOA_STA" property="boa_sta"/>
 			<result column="ESEQ" property="eseq"/>
 			<result column="ETITLE" property="etitle"/>
 			<result column="ECONTENT" property="econtent"/>
@@ -14,17 +15,23 @@
 	</resultMap>
    <select id="getAllList" resultMap="EBDTO_resultMap">
       select * from E_board eb ,img_file if2
-      where eb.eseq = if2.eseq
+      where eb.eseq = if2.eseq(+)
        order by eb.eseq desc
    </select>
 
    <insert id="insertboard" parameterType="EBDTO">
-      INSERT INTO E_BOARD(ESEQ, ECONTENT, ETITLE)
-      VALUES(E_BOARD_SEQ.nextval,#{econtent}, #{etitle})
+      INSERT INTO E_BOARD(ESEQ, ECONTENT, ETITLE,BOA_STA)
+      VALUES(E_BOARD_SEQ.nextval,#{econtent}, #{etitle},#{boa_sta})
    </insert>
+   <select id ="getDetail" resultMap="EBDTO_resultMap" parameterType="map">
+    	select  eb.ESEQ ,eb.ETITLE,eb.ECONTENT ,IF2.IMGNAME,eb.BOA_STA from E_board eb ,img_file if2
+     where eb.eseq = if2.eseq(+) and eb.eseq = #{eseq} and eb.boa_sta = #{board}
+    </select>
+   
+   
    
    <select id ="getBoard" resultType="EBDTO" parameterType="int">
-      select eseq, econtent, etitle from E_board
+      select eseq, econtent, etitle,boa_sta from E_board
       where eseq = #{eseq}
     </select>
    
@@ -43,19 +50,19 @@
       </foreach>
    </delete>
    
-   <select id="getPagingList" resultMap="EBDTO_resultMap" parameterType="com.luna.board.dtos.PagingDTO">
+   <select id="getPagingList" resultMap="EBDTO_resultMap" parameterType="Map">
    		 SELECT * 
 		FROM (
 			SELECT ROWNUM RN, A.*
 				FROM (
-						SELECT e.ESEQ ,e.ETITLE ,e.ECONTENT ,i.imgname
+						SELECT e.ESEQ ,e.ETITLE ,e.ECONTENT,e.boa_sta ,i.imgname
 						,DENSE_RANK() OVER(PARTITION BY i.eseq ORDER BY i.IMGNAME DESC)AS rk
 						FROM E_BOARD e ,IMG_FILE i
-						where e.eSEQ = i.eseq(+) 
+						where e.eSEQ = i.eseq(+) AND boa_sta = #{board}
 							) A
 						WHERE A.RK = 1
 				)
-		WHERE RN BETWEEN #{start} and #{end}
+		WHERE RN BETWEEN #{pagingDTO.start} and #{pagingDTO.end}
    </select>
    
    <insert id="insertImg" parameterType="IFDTO">

@@ -320,7 +320,7 @@
 <!-- content 추가분 여기에 작성 -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-					<p class="cls1">이벤트 게시판 글 목록</p> 
+					<p class="cls1">이벤트 및 공지 글 목록</p> 
 					<form action="muldelEboard.do" method="post">
 					<table align="center" border="1" cellpadding="4" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse" >
 						<col width="50px">
@@ -331,8 +331,9 @@
 						<tr class="eboardT" >
 							<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 							<th>번호</th>
-							<th></th>
+							<th>분류</th>
 							<th>제목</th>
+							
 						</tr>
 						<%
 							if(list==null||list.size()==0){
@@ -344,7 +345,7 @@
 									<tr class="eboardM" >
 										<td id="m2"><input type="checkbox" name="chk" value="<%=dto.getEseq()%>"/></td>
 										<td id="m2"><%=dto.getEseq()%></td>
-										<td id="m2"><%=dto.getImage().getImgname() %></td>
+										<td id="m2"><%=dto.getBoa_sta()%></td>
 										<td id="m2"><a href="updateeboardForm.do?eseq=<%=dto.getEseq() %>"><%=dto.getEtitle()%></a> </td>
 									</tr>
 						<%

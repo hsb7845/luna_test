@@ -177,9 +177,11 @@ public class PBoardService implements IPBoardService{
 	        for(MultipartFile multipartFile : uploadFiles) {
 	            try {
 	               String fileName=multipartFile.getOriginalFilename();
+	               
+	               String path = "C:\\Users\\주안\\git\\luna_test\\luna_test\\src\\main\\webapp\\upload";
 	               String path2=request.getSession().getServletContext().getRealPath("upload");
 	               System.out.println(path2);
-	                File tmp=new File(path2+"/"+fileName);
+	                File tmp=new File(path+"/"+fileName);
 	                int fileSize=(int)multipartFile.getSize();
 	                fileMap.put("fileName", fileName);
 	                fileMap.put("fileSize", multipartFile.getSize());

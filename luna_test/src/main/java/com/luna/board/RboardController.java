@@ -25,25 +25,30 @@ public class RboardController {
 	private IRBoardService rBoardService;
 	
 	
-	@RequestMapping(value = "/rboard.do", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/rboard.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String rboard(Locale locale, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		String admin = (String)session.getAttribute("admin");
-		if(admin !=null) {
-		if(admin.equals("관리자")) {
-			List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO());
-			model.addAttribute("list",list);
-			return "rboardlist";
+		String id = (String) session.getAttribute("id");
+		String admin = (String) session.getAttribute("admin");
+		if (id != null) {
+			if (admin != null) {
+				if (admin.equals("관리자")) {
+					List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO());
+					model.addAttribute("list", list);
+					return "rboardlist";
+				} else {
+					List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO(id));
+					model.addAttribute("list", list);
+					return "myRboardList";
+				}
 			} else {
 				List<RBoardDTO> list = rBoardService.getAllList(new RBoardDTO(id));
-				model.addAttribute("list",list);
+				model.addAttribute("list", list);
 				return "myRboardList";
 			}
-		
-			}
-			return "userlogin";
 		}
+		return "userlogin";
+	}
 	
 	@RequestMapping(value = "/insertrboardform.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String insertboard(Locale locale, Model model,int pseq,String id) {

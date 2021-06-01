@@ -11,10 +11,11 @@
    <%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
     <%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%> 
     <% // 로컬경로에 파일 저장하기 ============================================ 
-    
+    System.out.println("path 여기에서 업로드"); 
     String sFileInfo = ""; 
     // 파일명 - 싱글파일업로드와 다르게 멀티파일업로드는 HEADER로 넘어옴 
     String name = request.getHeader("file-name"); 
+    System.out.println("name"+name); 
     // 확장자
     String ext = name.substring(name.lastIndexOf(".")+1);
     // 파일 기본경로 
@@ -23,7 +24,7 @@
     String path = defaultPath + "upload" + File.separator; 
     File file = new File(path); 
     if(!file.exists()) { file.mkdirs(); } 
-    String realname = UUID.randomUUID().toString() + "." + ext;
+    //String realname = UUID.randomUUID().toString() + "." + ext;
     InputStream is = request.getInputStream();
     OutputStream os = new FileOutputStream(path + name); 
     int numRead; 
@@ -42,6 +43,6 @@
     		// System.out.println("File 삭제 오류!"); 
     		// } 
     	// } 
-    sFileInfo += "&bNewLine=true&sFileName="+ name+"&sFileURL="+"upload/"+name; 
+    sFileInfo += "&bNewLine=true&sFileName="+name+"&sFileURL="+"upload/"+name; 
     out.println(sFileInfo);
     // ./로컬경로에 파일 저장하기 ============================================ %>

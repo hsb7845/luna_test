@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>내 구매 목록</title>
 </head>
+
 <body>
 <%@ include file="header.jsp" %>
 <h1 align="center">내 구매목록</h1>
@@ -22,7 +23,7 @@
 	</tr>
 	<c:forEach items="${list }" var="i">
 		<tr>
-			<td><img src="upload/${i.image.imgname }"></td>
+			<td><img src="upload/${i.image.imgname }" width="150px" height="150px"></td>
 			<td colspan="2"><a href="buyDetail.do?bdseq=${i.bdseq }">${i.pboard.ptitle }<br>${i.selOpt }</a></td>
 			<td>${i.price }</td>
 			<td><fmt:formatDate value="${i.blDTO.buyDate }" pattern="yyyy.MM.dd " /></td>

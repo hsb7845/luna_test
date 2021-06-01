@@ -346,7 +346,7 @@ public class MemberController {
 	    	dto.setNickName(kakaoProfile.getProperties().getNickname());
 	    	dto.setName(kakaoProfile.getProperties().getNickname());
 	    	dto.setSex(kakaoProfile.getKakao_account().getGender());
-	      	
+	      	dto.setAdmin("kakao");
     		int result = MemberService.idChk(dto);
     		if (result>=1) {
     			HttpSession session = request.getSession();	
@@ -354,7 +354,9 @@ public class MemberController {
     	
     			session.setAttribute("id", dto.getId());
     			session.setAttribute("nickname", dto.getNickName());
+    			session.setAttribute("admin", dto.getAdmin());
     			return "index";
+    			
     		}
     		
 			boolean isS = MemberService.insertKMember(dto);

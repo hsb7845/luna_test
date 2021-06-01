@@ -391,17 +391,16 @@
         <!-- Begin Page Content -->
  <div class="container-fluid">
 
-
-<div class="row">
 <p class="cls1">상품게시판관리</p>
+<div class="row">
 <form action="muldelPboard.do" method="post">
 <table border="1" align="center" cellpadding="3" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
-	<col width="50px">
-	<col width="100px">
-	<col width="300px">
+	<col width="150px">
+	<col width="200px">
+	<col width="400px">
+	<col width="400px">
 	<col width="300px">
 	<col width="200px">
-	<col width="100px">
 	<tr align="center" class="pboardT" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>번호</th>

@@ -147,7 +147,7 @@
 						</c:if>
 						</c:forEach></td>
 					</tr>
-					<tr  id="answer${i.rseq}" style="display:none;">
+					<tr id="answer${i.rseq}" style="display:none;">
 						<td></td>
 					</tr>
 					</c:forEach>

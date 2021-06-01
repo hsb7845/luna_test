@@ -79,7 +79,8 @@
 				asnc:false,
 				success : function(data) {
 					var mdto = data["mdto"];
-					$("input[name='address']").val(mdto["name"]);
+					
+					$("input[name='name']").val(mdto["name"]);
 					$("input[name='phone']").val(mdto["phone"]);
 					$("input[name='adr1']").val(mdto["adr1"]);
 					$("input[name='adr2']").val(mdto["adr2"]);
@@ -188,11 +189,8 @@
     <input name="bank" type="text" size="50" maxlength="50"value="" readonly></td>
     </tr>
     <tr class="cardPayment">
-    	<th>카드결제 : </th><td>카드결제는 구현이안됐습니다.</td>
+    	<th>카드결제 : </th><td>카드결제는 지원하지 않습니다.</td>
     </tr>
-		<tr>
-			<th>적립 포인트 및 쿠폰</th>
-		</tr>
 		
 	</table>
 	<div class="cmd">

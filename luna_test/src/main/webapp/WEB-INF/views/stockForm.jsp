@@ -141,6 +141,8 @@
 </script>
 <script src="<c:url value='resources/js/jquery-3.6.0.min.js'/>"></script>
 <style >
+
+
 textarea {
     width: 250px;
     height: 100px;
@@ -158,11 +160,13 @@ body,button,input {
 }
 
 #content {
+	text-align : center;
 	background-color: white;
 }
 
 div.row {
 	text-align: center;
+	display : block;
 }
  div#stockForm { 
      text-align: center; 

@@ -97,7 +97,7 @@ $(document).ready(function(){
 </script>
 </head>
 
-	<script src="js/main.js"></script>
+<script src="js/main.js"></script>
 <form action="login.do" method="post">
 	<c:if test="${returnUrl!=null }" >
 		<c:choose>

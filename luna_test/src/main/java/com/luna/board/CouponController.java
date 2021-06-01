@@ -109,9 +109,13 @@ public class CouponController {
 	
 
 	@RequestMapping(value = "/myPage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String ring(Locale locale, Model model) {
-		CouponDTO dto = CouponService.ringCoupon();
-		model.addAttribute("dto", dto);
+	public String ring(Locale locale, Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		if(id!=null) {
+			CouponDTO dto = CouponService.ringCoupon(id);
+			model.addAttribute("dto", dto);
+		}
 		return "myPage";
 	}
 	

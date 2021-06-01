@@ -54,9 +54,9 @@ public class CouponService implements ICouponService {
 	}
 	
 	@Override
-	public CouponDTO ringCoupon() {
+	public CouponDTO ringCoupon(String id) {
 		// TODO Auto-generated method stub
-		return CouponDAO.ringCoupon();
+		return CouponDAO.ringCoupon(id);
 	}
 
 

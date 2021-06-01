@@ -111,7 +111,6 @@
 	
 	body,button,input{
 		font-family: 'Gyeonggi_Tittle_OTF_FontInstaller';
-		font-weight: bold;
 	}
 	button {
 	   color:#666666;
@@ -594,14 +593,14 @@
 				<td>${i.name }</td>
 				<td>${i.address }</td>
 				<td>${i.phone }</td>
-				<td>₩<fmt:formatNumber value="${i.totalPrice }" pattern="#,###" />원</td>
+				<td><fmt:formatNumber value="${i.totalPrice }" pattern="#,###" />원</td>
 				<c:set var="total" value="${total+i.totalPrice }"/>
 				<td><fmt:formatDate value="${i.buyDate }" pattern="yyyy년MM월dd일"/></td>
 			</tr>
 			
 		</c:forEach>
 	</table>
-	<p align="right">총 : ₩<fmt:formatNumber value="${total }" pattern="#,###" /> 원</p>
+	<p align="right">총 : <fmt:formatNumber value="${total }" pattern="#,###" /> 원</p>
 	<table align="left" border="0" cellpadding="10" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<tr>
 		<td colspan="10" class="buylistD">

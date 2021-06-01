@@ -219,9 +219,9 @@
                 </div>
 				<hr class="sidebar-divider">   
 				<div class="coupon" >
-                <p class="p1" >
+                <span class="p1" >
                     <a href="coupon.do">coupon 쿠폰</a>
-                </p>
+                </span>
                     <%
  				if(hit != null && hit.getHit()>0) { 
  			%>

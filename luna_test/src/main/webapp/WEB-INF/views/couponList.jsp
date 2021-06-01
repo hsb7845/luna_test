@@ -99,7 +99,7 @@ $(function(){
 	 		}
 	 	}
 	 	$("#main").click(function(){
-			location.href='.do'
+			location.href='main.do'
 		});
 		$("#couponInsertForm").click(function(){
 		location.href='couponInsertForm.do'
@@ -195,15 +195,7 @@ $(function(){
 	         rowspan="1"
 	         colspan="1"
 	         aria-label="Start date: activate to sort column ascending"
-	         style="width: 50px;">아이디</th>
-	      <th
-	         class="sorting"
-	         tabindex="0"
-	         aria-controls="dataTable"
-	         rowspan="1"
-	         colspan="1"
-	         aria-label="Start date: activate to sort column ascending"
-	         style="width: 50px;">조회수</th>                                       
+	         style="width: 50px;">아이디</th>                                     
 	 </tr>
 	
 	<%
@@ -230,7 +222,6 @@ $(function(){
 				<td><a href="couponUpdateForm.do?cseq=<%=dto.getCseq()%>" ><%=dto.getCcontent()%></a></td>
 				<td><%=dto.getDiscount()%></td>
 				<td><%=dto.getId()%></td>
-				<td><%=dto.getHit()%></td>
 			</tr>
 	<%
 			}

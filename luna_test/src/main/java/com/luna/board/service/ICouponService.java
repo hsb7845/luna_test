@@ -13,7 +13,7 @@ public interface ICouponService {
 	boolean updateCoupon(CouponDTO dto);
 	boolean hitCoupon(CouponDTO dto);
 	boolean mulDel(String[] chk);
-	CouponDTO ringCoupon();
+	CouponDTO ringCoupon(String id);
 	List<CouponDTO> getAllList(CouponDTO couponDTO);
 //	boolean insertCoupon(CouponDTO dto);
 	//boolean insertAllCoup(CouponDTO dto);

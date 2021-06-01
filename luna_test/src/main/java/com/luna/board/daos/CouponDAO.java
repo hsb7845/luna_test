@@ -75,9 +75,9 @@ public class CouponDAO implements ICouponDAO {
 	}
 
 	@Override
-	public CouponDTO ringCoupon() {
+	public CouponDTO ringCoupon(String id) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"ringCoupon");
+		return sqlSession.selectOne(namespace+"ringCoupon",id);
 	}
 
 	@Override
@@ -89,6 +89,8 @@ public class CouponDAO implements ICouponDAO {
 	public boolean insertEveryCoup(String [] chk) {
 		return sqlSession.insert("com.luna.member.insertEveryCoup",chk)>0?true:false;
 	}
+
+
 
 //	@Override
 //	public List<CouponDTO> getAllList(String id) {

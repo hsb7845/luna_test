@@ -198,10 +198,9 @@
 							+ selectedOptNum
 							+ ');"></td>';
 					innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
-							+ price
+							+ price+"원"
 							+ "</span></td></tr>"
-					$("#optContainer").append(
-							innerText);
+					$("#optContainer").append(innerText);
 					changeTotalPrice();
 				}
 			} else if (optNum > 1) {
@@ -218,6 +217,7 @@
 					}
 					optname += $("#opt"+ i+ " option:selected").attr("value2")+ "/";
 					price = parseInt(price)+ parseInt(optval);
+					price = parseInt(price);
 				}
 				for(var i=1;i<=selectedOptNum;i++){
 					var selOpt = $("#selectedOpt"+i).text();
@@ -251,8 +251,7 @@
 						+ selectedOptNum
 						+ ');"></td>';
 				innerText += "<td><input type='hidden' name='sumPrice' id='sum"+selectedOptNum+"'value='"+price+"'/><input type='hidden' name='price"+selectedOptNum+"' value="+price+"><span id='sumText"+selectedOptNum+"'>"
-						+ price
-						+ "</span></td></tr>"
+						+ "<fmt:formatNumber value='' pattern='#,###'/> 원</span></td></tr>"
 				$("#optContainer").append(innerText);
 				changeTotalPrice();
 			}
@@ -322,7 +321,7 @@
 		var price = $("input[name='price" + i + "']").val();
 		var sum = amount * price;
 		$("#sum" + i).val(sum)
-		$('#sumText' + i).text(sum);
+		$('#sumText' + i).text(sum+"원");
 		changeTotalPrice();
 	}
 
@@ -367,6 +366,10 @@
 <style>
 .detailR{
 	border-bottom:3px solid;
+}
+
+.close{
+	float:right;
 }
 
 .detailQ{
@@ -426,7 +429,7 @@ border-bottom:2px solid;
 	top: 50%;
 	left: 50%;
 	width: 500px;
-	height: 400px;
+	height: 600px;
 	z-index: 1;
 	background-color: white;
 	visibility: hidden;
@@ -442,6 +445,9 @@ margin-left : 400px;
 	bottom:0;
 }
 
+.cartcontent{
+	text-align :center;
+}
 
 .content {
 position:relative;
@@ -549,7 +555,7 @@ padding : 5px;
 					</tbody>
 					<tfoot>
 					<tr>
-					<th>총 금액 :</th><td colspan="2" id="totalprice"></td>
+					<th>총 금액 :</th><td colspan="2" id="totalprice"><fmt:formatNumber value="" pattern="#,###" /> 원</td>
 					</tr>
 					<tr>
 					<td colspan="3"><input type="button" value="장바구니" id="cart"> <input type="button" name="buy" value="바로구매"></td>
@@ -694,13 +700,13 @@ padding : 5px;
 	</div>
 	<div id="popup_layer">
 		<div class="header">
-			<h3>장바구니</h3>
-			<a onclick="$('#popup_layer').hide()"><img src="upload/close.png"></a>
+			<span style="font-size:30px; color:black; "><b>장바구니</b></span><a onclick="$('#popup_layer').hide()"><img class="close" src="upload/close.png"></a>
 		</div>
-		<div class="content">
-			<img src="upload/cart.png">
-			<p>장바구니에 상품이 정상적으로 담겼습니다.</p>
+		<div class="cartcontent">
+			<img src="upload/cart.jpg" style="width:300px; height:300px;">
+			
 		</div>
+		<p id="cartText"></p>
 		<div>
 			<button onclick="goCart()">장바구니 이동</button>
 			<button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button>

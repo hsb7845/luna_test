@@ -30,6 +30,9 @@
 <link rel='stylesheet' href='resources/luna/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 
 <style>
+	#replytable{
+		width: 80%
+	}
 	.cls1 {
 		font-size: 40px;
 		text-align: center;
@@ -170,7 +173,22 @@ $(function(){
 
 	<div class="wrap">
 
+	<div class="star-box">
+  <span class="star star_left"></span>
+  <span class="star star_right"></span>
 
+  <span class="star star_left"></span>
+  <span class="star star_right"></span>
+
+  <span class="star star_left"></span>
+  <span class="star star_right"></span>
+
+ <span class="star star_left"></span>
+ <span class="star star_right"></span>
+
+ <span class="star star_left"></span>
+ <span class="star star_right"></span>
+</div>
 
 	<form method="post" name="replyForm" action="insertrreply.do">
 	<input type="hidden" name="pseq" value="${dto.pseq }">
@@ -179,7 +197,7 @@ $(function(){
 	
 	
 	<p class="cls1">리뷰 상세보기</p>	
-	<table>
+	<table id="replytable">
 	
 		<tr>
 			<th>제목</th>
@@ -191,11 +209,22 @@ $(function(){
 		</tr>
 		<tr>
 			<th>별점</th>
-			<td><input type="number" name="par_starrank" value="${dto.starrank}" readonly></td>
+			<td><div class="rating"><c:forEach var="i" begin="1" end="5" step="1"> 
+					<c:if test="${dto.starrank<i }">
+						<input type="checkbox" name="starrank" id="rating1" value="1" class="rate_radio" title="1점"  disabled>
+              			  <label for="rating1"></label>
+						</c:if>
+						<c:if test="${dto.starrank>=i }">
+						<input type="checkbox" name="starrank" id="rating1" value="1" class="rate_radio" title="1점" checked disabled>
+             			  <label for="rating1"></label>
+						</c:if>	
+			</c:forEach></div>
+			</td>
 		</tr>
 	</table>
+	<h3 style="color:#888888">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 달기</h3>
 	<table>
-		<p2>댓글 달기</p2>
+		
 		<tr>
 			<th>제목</th>
 			<td><input type="text" name="rtitle"></td>

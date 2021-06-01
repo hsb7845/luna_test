@@ -195,10 +195,6 @@
     <tr class="cardPayment">
     	<th>카드결제 : </th><td>카드결제는 구현이안됐습니다.</td>
     </tr>
-		<tr>
-			<th>적립 포인트 및 쿠폰</th>
-		</tr>
-		
 	</table>
 	<div class="cmd">
 			

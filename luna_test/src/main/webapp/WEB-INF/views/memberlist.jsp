@@ -514,7 +514,7 @@ button:hover,input[type="button"]:hover,input[type="reset"]:hover,input[type="su
                             <tr>
                                 <td class="memberD">
                                     <!-- <a href="insertmemberform.do">회원가입</a> -->
-                                    <input type="button" value="회원가입" id="insertmemberform">
+                                   
                                     <!-- <input type="button" value="메인" id="main"> -->
                                     <input type="button" value="삭제" onclick="delBoard()"/>
                                     

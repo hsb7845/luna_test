@@ -9,6 +9,18 @@
 		 ORDER BY SEQ DESC
 	
 	</select>
+	
+	<select id="countCart" parameterType="CartDTO" resultType="int">
+	SELECT count(*)
+		FROM CART c 
+		WHERE id=#{id} AND pseq=#{pseq} and selopt = #{selOpt}
+	</select>
+	
+	<select id="getPcount" parameterType="CartDTO" resultType="int">
+	SELECT pcount
+		FROM CART c 
+		WHERE id=#{id} AND pseq=#{pseq} and selopt = #{selOpt}
+	</select>
 
 	<insert id="insertCart" parameterType="CartDTO">
 		INSERT INTO CART (SEQ, ID, PSEQ, PCOUNT,SELOPT,PRICE) 
@@ -23,9 +35,13 @@
 	
 	<update id ="updateCart" parameterType="CartDTO">
 		UPDATE CART SET PCOUNT=#{pcount} 
-		WHERE SEQ=#{seq}
+		WHERE SEQ=#{seq} 
 	</update>
 	
+	<update id ="updateCart2" parameterType="CartDTO">
+		UPDATE CART SET PCOUNT=#{pcount} 
+		WHERE id=#{id} AND pseq=#{pseq} and selopt = #{selOpt}
+	</update>
 	<delete id ="deleteCart" parameterType="int">
 		DELETE FROM CART 
 		WHERE SEQ =#{seq}

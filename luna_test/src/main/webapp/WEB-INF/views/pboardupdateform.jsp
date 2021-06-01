@@ -189,9 +189,7 @@ $(document).ready(function(){
  			asnc:false,
 			success : function(data) {
 				alert("글수정에성공하였습니다!");
-			}, error:function(request,status,error){
-		        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-		     }
+			}
  		});	
  		var formData = new FormData();
  		var inputFile = $("#imgname");

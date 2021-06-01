@@ -67,6 +67,13 @@ public class PboardController {
 	@Autowired
 	private IStockService stockService;
 
+	
+	 @RequestMapping(value = "/goAdmin.do", method = {RequestMethod.GET,RequestMethod.POST})
+		public String admin(Locale locale, Model model) {
+			return "adminMain";
+		}	
+	
+	
 	@RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
 	public String nomain(Locale locale, Model model) {
 		Map<String,Object> map = pBoardService.mainPage();

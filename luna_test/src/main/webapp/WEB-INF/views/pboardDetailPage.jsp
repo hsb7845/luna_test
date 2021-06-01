@@ -706,7 +706,7 @@ padding : 5px;
 			<img src="upload/cart.jpg" style="width:300px; height:300px;">
 			
 		</div>
-		<p id="cartText"></p>
+		<p id="cartText">장바구니에 상품이 담겼습니다.</p>
 		<div>
 			<button onclick="goCart()">장바구니 이동</button>
 			<button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button>

@@ -109,7 +109,7 @@ body,button,input{font-family: 'Poppins-Medium';
 <!-- 						<span class="btn-show-pass"> -->
 <!-- 							<i class="zmdi zmdi-eye"></i> -->
 <!-- 						</span> -->
-						<input class="input100" type="text" name="name" style="text-align:left;">
+						<input class="input100" type="text" name="name" >
 						<span class="focus-input100" data-placeholder="Name" style="text-align:left;"></span>
 					</div>
 					

@@ -41,13 +41,23 @@
 					<a href="loginForm.do">로그인</a> &nbsp;
 			<% 	
 				} else {
-			%>
-					<a href="myPage.do">마이페이지</a> &nbsp;
-					<a href="cart.do">장바구니</a> &nbsp; 
+					if(((String)session.getAttribute("admin")).equals("관리자")){
+						%>
+					<a href="goAdmin.do">관리자페이지</a> &nbsp;
 					<a href=logout.do>로그아웃</a> &nbsp; 
-			<% 
+						
+						<%
+					}else{
+						%>
+						<a href="myPage.do">마이페이지</a> &nbsp;
+						<a href="cart.do">장바구니</a> &nbsp; 
+						<a href=logout.do>로그아웃</a> &nbsp; 
+						<%
+					}
 				}
 			%>
+			
+
 		
 		</div>
 		<nav id="site-navigation" class="main-navigation">

@@ -345,7 +345,13 @@ public class MemberController {
 	    	dto.setEmail(kakaoProfile.getKakao_account().getEmail());
 	    	dto.setNickName(kakaoProfile.getProperties().getNickname());
 	    	dto.setName(kakaoProfile.getProperties().getNickname());
-	    	dto.setSex(kakaoProfile.getKakao_account().getGender());
+	    	String sex = kakaoProfile.getKakao_account().getGender();
+	    	if(sex!=null) {
+	    		dto.setSex(sex);
+	    	}else {
+	    		dto.setSex("비동의");
+	    	}
+	    
 	      	dto.setAdmin("kakao");
     		int result = MemberService.idChk(dto);
     		if (result>=1) {

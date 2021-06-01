@@ -14,8 +14,8 @@
 		</collection>
 	</resultMap>
 	<select id="getAllList" resultMap="Cart_resultMap" parameterType="String">
-		SELECT *
-		FROM CART c,p_board p WHERE c.id = #{id}
+		SELECT c.seq,c.id,c.pcount,c.selopt,c.price ,p.pseq,p.ptitle
+		FROM CART c,p_board p WHERE c.id = #{id} and p.pseq=c.pseq
 		ORDER BY c.SEQ DESC
 	
 	</select>

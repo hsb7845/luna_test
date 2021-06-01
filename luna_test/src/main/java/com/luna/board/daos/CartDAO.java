@@ -23,6 +23,8 @@ import com.luna.board.dtos.CartDTO;
 	@Override
 	public List<CartDTO> getAllList(String id) {
 		// TODO Auto-generated method stub
+		List<CartDTO> list = sqlSession.selectList(namespace+"getAllList",id);
+		System.out.println("ptitle"+list.get(0).getPboard().getPtitle());
 		return sqlSession.selectList(namespace+"getAllList",id);
 	}
 

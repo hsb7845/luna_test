@@ -30,7 +30,7 @@ public class CartController {
 	public String cart(Locale locale, Model model,HttpServletRequest request) {
 		String id =(String) request.getSession().getAttribute("id");
 		String msg = " ";
-		List<CartDTO> list;
+		List<CartDTO> list = new ArrayList<CartDTO>();
 		if(id==null) {
 			msg = "비정상적인 접근입니다.";
 			return "redirect:main.do";

@@ -185,6 +185,7 @@ $(function(){
 	<tr align="center" class="cartT" >
 		<th><input type="checkbox" name="all"  onclick="allSel(this)"/></th>
 		<th>상품게시글번호</th>
+		<th>상품명</th>
 		<th>선택사항</th>
 		<th>판매가</th>
 		<th>상품수량</th>
@@ -201,6 +202,7 @@ $(function(){
 			<tr align="center" class="cartM">
 			<td><input type="checkbox" name="chk" value="${list.seq }"/></td>
 			<td>${list.pboard.pseq }</td>
+			<td>${list.pboard.ptitle }</td>
 			<td>${list.selOpt }</td>
 			<td><fmt:formatNumber value="${list.price }" pattern="#,###" /></td>	
 			<td>${list.pcount }</td>

@@ -309,6 +309,7 @@ public class PBoardDAO implements IPBoardDAO{
 		List<PBoardDTO> list = sqlSession.selectList(namespace+"getPagingList",pagingDTO);
 		map.put("best",list);
 		for(int i=1;i<=5;i++) {
+			pagingDTO.setArrayNum(0);
 			list = new ArrayList<>();
 			String paging ="paging"+i;
 			pagingDTO.setSorting(i);

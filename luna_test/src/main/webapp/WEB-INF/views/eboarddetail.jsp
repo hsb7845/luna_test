@@ -10,7 +10,6 @@
 <%@ include file="header.jsp" %>
 <body>
 <c:if test="${dto.image.imgname !=null }">
-<img src="upload/${dto.image.imgname }">
 </c:if>
 <div style="text-align:center;">
 <br>${dto.econtent }</div>

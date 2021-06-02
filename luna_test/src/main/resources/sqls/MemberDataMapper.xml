@@ -87,7 +87,7 @@
 	</select>
 
 	<update id="pwdUpdate" parameterType="MDTO">
-		update member set PWD = #{pwd} where EMAIL=#{email}
+		update member set PWD = #{pwd} where id=#{id}
 	</update>
 
 	<!-- 생일자 현재 월 기준으로 월 출력 -->

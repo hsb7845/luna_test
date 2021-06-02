@@ -429,7 +429,7 @@ public class MemberController {
 	                "임시비밀번호는 " + checkNum + "입니다." + 
 	                "<br>";
 	        dto.setPwd(pwd);
-	        	        
+	        boolean isS = MemberService.pwdUpdate(dto);	        
 	        try {
 	            MimeMessage message = mailSender.createMimeMessage();
 	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");

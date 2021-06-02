@@ -121,7 +121,7 @@ img {vertical-align: middle;
 <c:forEach items="${map.event }" var="i" varStatus="status">
 <div class="mySlides fade">
   <div class="numbertext">${status.count }/ 3</div>
-  <a href ="eboardDetail?eseq=${i.eseq }">
+  <a href ="eboarddetail.do?eseq=${i.eseq }&board=event">
   <img src="upload/${i.image.imgname}" style="width:100%;height:300px;">
   </a>
   <input type="hidden" name="imgname" value="${i.image.imgname}">

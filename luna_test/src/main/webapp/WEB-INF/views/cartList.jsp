@@ -179,7 +179,7 @@ $(function(){
 <table border="1" cellpadding="2" cellspacing="0" bordercolor="#000000" style="border-collapse:collapse">
 	<col width="50px">
 	<col width="150px">
-	<col width="150px">
+	<col width="300px">
 	<col width="150px">
 	<col width="150px">
 	<tr align="center" class="cartT" >
@@ -211,8 +211,8 @@ $(function(){
 			<c:set var="totalPrice" value="${totalPrice+sumPrice }"/>
 			</tr>
 		</c:forEach>
-		<tr><th colspan="2">총 금액</th><td colspan="2"><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</td></tr>
-	<tr>
+<%-- 		<tr><th colspan="2">총 금액</th><td colspan="2"><fmt:formatNumber value="${totalPrice }" pattern="#,###" />원</td></tr> --%>
+<!-- 	<tr> -->
 		<td colspan="5" id="cartD" >
 			<input type="button" value="전체 항목 구매" name="allBuy">
 			<input type="button" value="선택 항목 구매" name="sel">

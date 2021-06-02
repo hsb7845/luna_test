@@ -360,7 +360,10 @@
 		
 	}
 	
-	
+	function keepShop(){
+		$('#popup_layer').hide();
+		window.location.reload();
+	}
 	
 </script>
 <style>
@@ -700,7 +703,7 @@ padding : 5px;
 	</div>
 	<div id="popup_layer">
 		<div class="header">
-			<span style="font-size:30px; color:black; "><b>장바구니</b></span><a onclick="$('#popup_layer').hide()"><img class="close" src="upload/close.png"></a>
+			<span style="font-size:30px; color:black; "><b>장바구니</b></span><a onclick="keepShop()"><img class="close" src="upload/close.png"></a>
 		</div>
 		<div class="cartcontent">
 			<img src="upload/cart.jpg" style="width:300px; height:300px;">
@@ -709,7 +712,7 @@ padding : 5px;
 		<p id="cartText">장바구니에 상품이 담겼습니다.</p>
 		<div>
 			<button onclick="goCart()">장바구니 이동</button>
-			<button onclick="$('#popup_layer').hide()">쇼핑 계속하기</button>
+			<button onclick="keepShop()">쇼핑 계속하기</button>
 		</div>
 	</div>
 </body>
